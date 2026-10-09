@@ -1,0 +1,1172 @@
+"""Full cinematic landing pages for Felag, one per hero. The hero comes from shared.py; this file adds the scenes
+below it (statement, proof, offer, how, who, people, contracting, FAQ, closing, footer) and the motion engine.
+Two themes: "rune" (fire and light) and "harvest" (land and seasons). Copy is the reviewed first-pass copy."""
+
+import os
+from shared import LOCKUP, CSS, COMMON_JS, STRIP
+_HERE = os.path.dirname(os.path.abspath(__file__))
+def _photo(name):
+    try:
+        return open(os.path.join(_HERE, "photo", "people", name + ".b64.txt")).read().strip()
+    except OSError:
+        return ""
+
+MARK_PATH = "M0 0H32V104H0Z M44 0H66L44 22Z M44 38L82 0H104L44 60Z M44 76L104 16V104H44Z"
+PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76L104 16V104H44Z"]
+
+# ---------------------------------------------------------------------------------------------- content
+
+STATEMENT = ("Felag is a boutique engineering studio whose principal-led pods design and ship production systems for funded "
+             "fintech and technology companies, from backend and infrastructure at scale to payments and identity, with every "
+             "engagement priced on the outcome.")
+
+# the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
+CAPS = [
+    dict(piece=0, name="Backend and infrastructure at scale", line="The services, queues and data stores that hold at production load, the cloud under them written as code, and the front ends on top, measured on load and interaction time."),
+    dict(piece=3, name="Payments rails", line="Card programmes, account ledgers, settlement and the integrations with issuers, processors and banks, with the audit trail a regulated business is asked to produce."),
+    dict(piece=2, name="Identity and SSO", line="Enterprise single sign-on, account models and the permission layer between them, and identity for the software agents that act on a person's behalf."),
+    dict(piece=1, name="Distributed ledgers, where they fit", line="Where a product needs a ledger that several parties have to trust, we design and ship it; where it does not, the sprint says so."),
+]
+
+SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nuxt, React Native/Expo, Flutter; AWS, GCP, Kubernetes, "
+          "Terraform; EVM (Ethereum, L2s, Polygon CDK), Substrate/Polkadot, Solana, Cosmos, Canton/Daml, Stellar, Bitcoin/Lightning, TON; "
+          "Postgres, Redis, ScyllaDB/Cassandra, ClickHouse, Kafka, NATS, RabbitMQ, gRPC, GraphQL, REST, websockets, The Graph and custom indexers.")
+
+L2B = "https://l2beat.com/layer2s/projects/wirex"
+WIREX_PR = "https://wirexapp.com/blog/post/wirex-partners-with-gatewayfm-to-elevate-its-zk-powered-wirex-pay-decentralised-payment-network-0868"
+GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure/"
+
+A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
+B_NAMED = "We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting, at 140k+ requests per second at peak and 50 ms average latency on the heavy requests."
+C_LINE = "We built the event infrastructure and backend for Infinex, the Synthetix front-end, under governance proposal XIP-9."
+D_LINE = "We designed and built account-abstraction wallets with enterprise single sign-on for a global technology company."
+E_LINE = "We built an identity system for AI agents on a major cloud platform for the same global technology company, as a pilot."
+F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
+G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
+H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
+B_DEFAULT = "We designed the RPC proxy that served 140k+ requests per second in production for a major browser wallet and a leading DEX aggregator."
+W_LINE = "NFT launches by our team that collectively raised $100M+."
+DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
+SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
+DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure, and the Gateway.fm Platform department built the platform, through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
+KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
+ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
+I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
+J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
+K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
+O_LINE = "Uddug launched OG:Crystals, which raised $10M+ at launch."
+P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
+Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
+R_LINE = "Uddug won and delivered Web3 Foundation and Protocol Labs grants and RFPs."
+Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
+
+# the lead cases: numbers first on the page, then these seven, every one named
+PROOF_CARDS = [
+    dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
+    dict(kicker="2019 to 2020, then a Uddug client", title="Snark.art", body=SNARK_LINE, links=[("snark.art", "https://snark.art")], era="Andrew, then Uddug"),
+    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
+    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
+    dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
+    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
+    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
+    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew with the Gateway.fm Platform department, 2025 to 2026"),
+    dict(kicker="2017 to 2018, told as it was", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
+]
+
+# the names wall: every name the register and the history allow, each with its one line and its era
+WALL = [
+    ("Wirex Pay", "client", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
+    ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
+    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew with the Gateway.fm Platform department, 2025 to 2026"),
+    ("Gateway", "client", DEPT_LINE, [], "Gateway.fm, 2024 to 2026"),
+    ("EY Nightfall", "client", H_NAMED, [], "Gateway.fm, 2024 to 2025"),
+    ("LUKSO", "client", "LUKSO received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
+    ("Lumia", "client", "Lumia received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
+    ("ApeChain", "client", "For ApeChain we designed a pull-based price feed at about 1,000 requests per second and a native verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
+    ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
+    ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
+    ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
+    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2021"),
+    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2021"),
+    ("Parity", "client", "Uddug won and delivered Parity Substrate grants and RFPs alongside the Web3 Foundation ones.", [], "Uddug, 2020 to 2021"),
+    ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
+    ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
+    ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
+    ("Metazoku", "client", Y_LINE, [], "Uddug, 2023"),
+    ("Snark.art", "client", SNARK_LINE, [("snark.art", "https://snark.art")], "Andrew, then Uddug"),
+    ("Synthetix", "protocol", "Infinex is the Synthetix front-end; we built its event infrastructure and backend under governance proposal XIP-9.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Lido", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Stellar", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Canton", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Polygon zkEVM", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Miden", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Iden3", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+]
+
+# the record, three eras; the Gateway.fm era opens on the department line
+ERAS = [
+    dict(name="Uddug", years="2018 to 2024",
+         intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
+         cases=[
+             ("2020 to 2021", "Web3 Foundation and Protocol Labs", R_LINE, []),
+             ("2021", "OG:Crystals", O_LINE, []),
+             ("2021", "Marscatsvoyage", P_LINE, []),
+             ("From 2022", "Arsnl.art", Q_LINE, []),
+             ("2023", "Metazoku", Y_LINE, []),
+             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
+         ]),
+    dict(name="Gateway.fm", years="2021 to 2026",
+         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments.",
+         cases=[
+             ("2021 to 2022", "The RPC proxy", B_DEFAULT, []),
+             ("2023 to 2025", "Presto", K_LINE, []),
+             ("2023 to 2025", "The indexing platform", J_LINE, []),
+             ("2023 to 2025", "Oracles", I_NAMED, []),
+             ("2024", "Wirex Pay", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)]),
+             ("2024 to 2025", "Humanity Protocol", F_NAMED, []),
+             ("2024 to 2025", "The shared prover", H_NAMED, []),
+             ("2025", "Wallets with enterprise single sign-on", D_LINE, []),
+             ("2025", "Identity for AI agents, a pilot", E_LINE, [("Case study, by the team at Gateway.fm", GW_CASE)]),
+             ("2025 to 2026", "DeepNode", DN_LINE, [("KuCoin listing announcement", KUCOIN)]),
+             ("2025 to 2026", "Gateway Yield", G_NAMED, []),
+         ]),
+    dict(name="Felag", years="From July 2026",
+         intro="Felag was founded in July 2026 as the restart of Uddug.",
+         cases=[]),
+]
+
+OFFERS = [
+    dict(name="Free technical workshop", price="Free", note="",
+         body="A time-boxed session with a founder that frames the problem, constraints and options and ends with a sprint scope or a clear no. It produces a decision, not a spec.",
+         what=["The problem, the constraints and the options, framed", "A sprint scope, or a clear no"], terms=["Free", "Time-boxed", "No spec, no design, no estimate"], who="A founder"),
+    dict(name="Architecture Sprint", price="$7.5k", note="launch price, list $15k",
+         body="One to two weeks with a named principal: spec, architecture decisions, risk register, costed build options and a build decision. Paid in advance, credited against a pod or fixed-price build signed within 30 days.",
+         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited against a pod or fixed-price build signed within 30 days"], who="A named principal"),
+    dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
+         body="A named principal, never a contractor, with explicit days, decisions and ownership. Monthly in advance, three-month initial term.",
+         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "Three-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
+    dict(name="Pods", price="$10k to $60k a month", note="by size",
+         body="From one senior engineer with principal oversight to a named principal leading a team of two to three, on defined outcomes. Monthly in advance, cancel with two weeks' notice, the principal named in the SOW.",
+         what=["Defined outcomes, not hours", "From one senior with principal oversight to a principal-led team of two to three", "Fixed-price builds quoted from a completed sprint"], terms=["Monthly in advance", "Cancel with two weeks' notice", "Principal named in the SOW; substitution needs the client's consent"], who="A named principal, with senior and specialist engineers as the scope needs"),
+    dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
+         body="A fixed-scope review for investors and acquirers. Fixed price, half paid on start.",
+         what=["A fixed-scope review of the system and the team", "Findings an investor or acquirer can act on"], terms=["Fixed price", "Half paid on start"], who="A named principal"),
+]
+OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a "
+              "completed sprint. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price.")
+
+HOW = [
+    ("Workshop", "A free technical workshop with a founder frames the problem, the constraints and the options, and ends with a sprint scope or a clear no."),
+    ("Architecture Sprint", "A paid sprint of one to two weeks with a named principal produces the spec, the architecture decisions, a risk register and costed build options."),
+    ("Decision", "A build decision, ours and the client's, made on the sprint output rather than on a sales call."),
+    ("Pod", "Then a pod on a monthly retainer, or a fixed-price build quoted from the sprint, with delivery running on our own AI-assisted development framework under the named principal's review."),
+]
+HOW_NOTE = ("The contract is with Felag and the SOW names the principal who leads the work, with a substitution clause that requires the "
+            "client's consent. Pods are billed monthly in advance and cancel with two weeks' notice.")
+
+WHO = [
+    ("A post-raise CTO with a hard integration and no senior hire in time", "The Series A or B roadmap has an integration nobody on the team has shipped before, and the senior hire will not land in time. We take the integration as a defined outcome and hand it back documented."),
+    ("A funded technology company with a performance, scale or reliability problem", "The product works until it is busy. We measure the problem first, then fix the cause, and we say so when the answer is a smaller change than the team expected."),
+    ("A regulated payments or asset issuer rebuilding for a new regime", "MiCA, DORA, the UK regime, GENIUS, VARA, HKMA or MAS has changed what the system must record and prove, and the team needs engineers who have built for one of these regimes before."),
+    ("A licensed fintech replacing a failed offshore vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest under a named principal."),
+    ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the hiring bar and the technical decisions until a full-time hire makes sense."),
+    ("A product agency without a senior backend bench", "The agency has the design and the client, and needs a principal behind the backend for the length of the engagement without building that bench itself."),
+]
+TURN_DOWN = "Hourly billing without a spend cap, a dedicated eight-person team as a product, public-sector tenders scored on headcount, and any work that would turn us back into a fifteen-person shop."
+
+PEOPLE = [
+    dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands",
+         bio="Andrew Skurlatov is co-founder and CTO of Felag. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. He co-founded Uddug in 2018 as its CTO and led it to its acquisition by Gateway.fm in 2024. There he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments whose work included the Wirex Pay platform, identity projects for a global technology company and the infrastructure behind $1B+ locked in staking.",
+         links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
+    dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus",
+         bio="Mikhail Manko is co-founder and CEO of Felag. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew Skurlatov in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product. At Felag he runs partnerships and deals, from the first call to the signed contract.",
+         links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
+    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="",
+         bio="Pavel Dodonov is Principal Engineer for infrastructure and ZK at Felag and a partner. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the shared prover architecture for L2 ecosystems, GPU and CPU autoscaling for the prover fleets, and an EVM event-indexing platform that most of the company's projects reused. Before that he spent a decade in scientific R&D, with 20+ published papers.",
+         links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
+    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="",
+         bio="Andrey Solovov is Principal Engineer for Web3 systems at Felag and a partner. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients, among them a push oracle that delivered multi-asset prices every 500 ms and a pull-based feed at about 1,000 requests per second. Before Gateway he built smart contracts and payments architecture at Uddug.",
+         links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
+]
+PEOPLE_NOTE = ("The founders have worked together since 2015. Felag is the 2026 restart of Uddug, acquired in 2024. "
+               "A named principal leads every engagement; contractors join on demand and are never sold as principals.")
+
+CONTRACT = [
+    ("Legal entity", "Felag, incorporated in 2026."),
+    ("Principals", "Netherlands and Cyprus."),
+    ("Named principal", "Every contract names the principal who leads the work. Substitution needs the client's consent."),
+    ("Contractors", "QA, DevOps and additional development on demand, never sold as principals."),
+    ("Billing", "No hourly billing. Retainers are paid monthly in advance; sprints are paid in advance."),
+    ("Subcontracting and IP", "[subcontracting and IP clause line]"),
+    ("Incident contact", "[incident contact line]"),
+    ("DORA and ICT vendor pack", "[DORA and ICT vendor pack line]"),
+]
+
+FAQ = [
+    ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price."),
+    ("Who actually works on our system?", "A named principal, one of the people above, leads every engagement and is written into the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
+    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint; if there is not, it ends with a clear no."),
+    ("Where are you based and who do we contract with?", "The contract is with Felag. The principals work from the Netherlands and Cyprus."),
+    ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
+    ("What do you turn down?", "Hourly billing without a spend cap, a dedicated eight-person team sold as a product, public-sector tenders scored on headcount, and work that would grow us back into a fifteen-person shop."),
+    ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under the named principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
+]
+
+# eyebrows and small story lines per theme
+THEMES = {
+    "rune": dict(
+        statement_eyebrow="The studio", build_eyebrow="What we build", proof_eyebrow="Proof", wall_eyebrow="Names", more_eyebrow="The record", offer_eyebrow="What it costs",
+        how_eyebrow="How an engagement runs", how_line="Four steps, with a decision at each one, and the mark is complete when the work is.",
+        who_eyebrow="Who we work with", people_eyebrow="Who we are", contracting_eyebrow="Contracting and security",
+        faq_eyebrow="Questions we are asked", book_eyebrow="Next step",
+        book_line="",
+    ),
+    "harvest": dict(
+        statement_eyebrow="The field", build_eyebrow="What grows here", proof_eyebrow="Past harvests", wall_eyebrow="Names", more_eyebrow="Earlier harvests", offer_eyebrow="What it costs",
+        how_eyebrow="Sow, grow, harvest", how_line="Four steps from the first furrow to the harvest, with a decision at each one.",
+        who_eyebrow="Who we work with", people_eyebrow="Who we are", contracting_eyebrow="Contracting and security",
+        faq_eyebrow="Questions we are asked", book_eyebrow="Next step",
+        book_line="Seen from above, the field says what the work was for.",
+    ),
+}
+
+def header():
+    return f'''<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a>
+    <nav class="nav" aria-label="Page sections">
+      <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Offer</a><a href="#how">How</a><a href="#people">People</a></div>
+      <a class="btn btn-sm" href="mailto:info@felag.net">Write to us</a>
+    </nav>
+  </div>
+</header>'''
+
+# ---------------------------------------------------------------------------------------------- css
+
+SITE_CSS = '''
+/* ---- site-wide scale, larger than the system scale on purpose */
+.hero-inner{padding-bottom:0}
+@media (max-width:900px){.hero-inner{padding-bottom:40px}}
+main{position:relative;z-index:1}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none}
+.sec{position:relative;padding:clamp(96px,12vh,160px) 0}
+.sec h2,.scene-book h2,.scene-build h2,.h2{font-size:clamp(40px,5.2vw,78px);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
+.huge{font-size:clamp(52px,8vw,132px);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
+.lead{font-size:clamp(18px,1.5vw,22px);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
+.eyebrow{display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";display:inline-block;width:22px;height:1px;background:var(--accent)}
+.stagger .reveal{transition-delay:calc(var(--i,0) * 90ms)}
+.rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
+
+/* ---- rune theme: the rune lands in the header, fire on titles, numbers and the mark */
+.theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
+.hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
+.hero-statement .statement{margin-top:24px}
+.theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
+.lockup svg{overflow:visible}
+.mark-arrived .site-header .mark-fill{animation:markflash 1.1s ease-out}
+@keyframes markflash{0%{fill:#FFE1C2;filter:drop-shadow(0 0 16px rgba(239,163,124,.95))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(239,163,124,0))}}
+.theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after,.theme-rune .scene-build h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:linear-gradient(90deg,var(--copper-deep),var(--accent) 60%,#FFE1C2);box-shadow:0 0 16px rgba(239,163,124,.7),0 0 4px rgba(255,225,194,.9);transition:width 1.2s cubic-bezier(.2,.7,.2,1) .15s}
+.theme-rune .sec h2.reveal.in::after,.theme-rune .scene-book h2.lit::after,.theme-rune .scene-build h2.lit::after{width:120px;animation:cool 1.4s ease-out 1.25s forwards}
+@keyframes cool{to{background:linear-gradient(90deg,var(--copper-deep),var(--accent) 60%,var(--accent));box-shadow:0 0 0 rgba(239,163,124,0),0 0 0 rgba(255,225,194,0)}}
+.theme-rune .metric .big.burn{animation:burn 2s ease-out both}
+@keyframes burn{0%{color:#FFE1C2;text-shadow:0 0 34px rgba(239,163,124,.95),0 0 8px rgba(255,225,194,.9)}60%{color:#F3C3A0;text-shadow:0 0 24px rgba(239,163,124,.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(239,163,124,0)}}
+.theme-rune .how-mark{overflow:visible}
+.theme-rune .how-mark path{--dx:0;--dy:0;transition:opacity .35s}
+.theme-rune .how-mark path.on{animation:ignite 1.3s ease-out both}
+@keyframes ignite{0%{fill:#FFE1C2;filter:drop-shadow(0 0 22px rgba(239,163,124,1))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(239,163,124,0))}}
+@media (max-width:900px){.theme-rune .hero{height:calc(100vh + 1000px);min-height:1700px}.hero-statement{justify-content:flex-start;padding-top:calc(var(--head) + 24px)}}
+
+/* ---- statement scene */
+.scene-statement{height:230vh}
+.scene-statement .pin{position:sticky;top:0;height:100vh;min-height:640px;display:flex;align-items:flex-start;overflow:hidden;padding-top:calc(var(--head) + 3vh)}
+.statement{font-size:clamp(28px,3.7vw,56px);line-height:1.12;font-weight:600;letter-spacing:-0.03em;max-width:24ch;margin-top:28px}
+.statement .w{display:inline-block;color:var(--text);opacity:.22;will-change:opacity}
+.statement .w.hot{color:var(--accent-hover);text-shadow:0 0 28px rgba(223,142,99,.45)}
+.scene-statement .cur{position:absolute;bottom:clamp(40px,8vh,80px);left:var(--side);font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:.04em}
+
+/* ---- build: the mark is the diagram, one piece per thing we build */
+.scene-build{height:calc(100vh + 240vh);position:relative}
+.scene-build .pin{position:sticky;top:0;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:center;padding-top:var(--head)}
+.scene-build .wrap{width:100%}
+.markmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;margin-top:40px}
+.caps-left{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.cap{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px 12px;opacity:.32;transition:opacity .5s}
+.cap.on{opacity:1}
+.cap .k{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:6px}
+.cap h3{font-size:clamp(22px,2.2vw,32px);line-height:1.05;font-weight:600;letter-spacing:-0.025em;transition:color .4s}
+.cap.on h3{color:var(--accent-hover)}
+.theme-rune .cap.on h3{text-shadow:0 0 22px rgba(239,163,124,.4)}
+.cap p{grid-column:2;color:var(--text-secondary);font-size:16px;line-height:25px;margin-top:8px;max-width:34em;max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .5s,margin .4s}
+.cap.on p{max-height:160px;opacity:1}
+.cap:not(.on) p{margin-top:0}
+.mark-col{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+.bigmark{width:min(100%,420px);height:auto;display:block;overflow:visible}
+.bigmark path{fill:transparent;stroke:var(--line-strong);stroke-width:.8;transition:fill .5s,stroke .5s,filter .6s}
+.bigmark path.on{fill:var(--accent);stroke:var(--accent)}
+.theme-rune .bigmark path.on{filter:drop-shadow(0 0 18px rgba(239,163,124,.55))}
+.bigmark path.hot{animation:ignite 1.1s ease-out}
+.mark-count{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+.skills-foot{margin-top:40px;max-width:70em;font-size:12px;line-height:20px}
+.skills-foot .n{color:var(--accent);margin-right:12px}
+.skills{font-family:var(--mono);font-size:13px;line-height:22px;color:var(--text-secondary)}
+
+/* ---- proof: metrics, ticker, filmstrip */
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.metric{padding:28px 0 0;border-top:1px solid var(--line-strong);display:flex;flex-direction:column;gap:12px}
+.metric .big{font-size:clamp(52px,6.4vw,108px);line-height:.92;font-weight:600;letter-spacing:-0.045em;font-variant-numeric:tabular-nums lining-nums;min-height:1em;white-space:nowrap}
+.metric .big em{font-style:normal;color:var(--accent)}
+.metric .label{font-family:var(--mono);font-size:13px;color:var(--text-secondary)}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:72px;padding:18px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker .row{display:flex;gap:56px;width:max-content;animation:tick 46s linear infinite;font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--text-secondary);white-space:nowrap}
+.ticker .row span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:24px;vertical-align:3px;opacity:.8}
+@keyframes tick{to{transform:translateX(-50%)}}
+.scene-proof{position:relative}
+.scene-proof .pin{position:sticky;top:0;height:100vh;min-height:680px;display:flex;flex-direction:column;justify-content:center;gap:40px;overflow:hidden}
+.track{display:flex;gap:24px;padding:0 var(--side);will-change:transform}
+.card{flex:0 0 clamp(440px,38vw,600px);min-height:min(56vh,520px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(223,142,99,.16),transparent 70%);opacity:0;transition:opacity .5s}
+.card:hover::before{opacity:1}
+.card .kicker{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.02em}
+.card h3{font-size:clamp(26px,2.4vw,36px);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
+.card p{color:var(--text-secondary);font-size:17px;line-height:27px}
+.card .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:15px}
+.card .wordmark{font-size:22px;font-weight:600;letter-spacing:-0.02em}
+.card .wordmark.muted{color:var(--text-secondary);font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:.02em}
+.card .idx{position:absolute;right:28px;top:28px;font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+.scene-proof .progress{position:absolute;left:var(--side);right:var(--side);bottom:36px;height:1px;background:var(--line)}
+.scene-proof .progress i{display:block;height:100%;width:0;background:var(--accent)}
+
+.card .era{font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-align:right}
+
+/* ---- the names wall */
+.wall{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:48px;align-items:baseline}
+.name{appearance:none;background:none;border:0;padding:4px 0;margin:0;color:var(--text);font-family:var(--sans);font-weight:600;letter-spacing:-0.03em;line-height:1;cursor:pointer;position:relative;transition:color .25s}
+.name.client{font-size:clamp(28px,3.6vw,56px)}
+.name.protocol{font-size:clamp(18px,1.9vw,28px);color:var(--text-secondary);font-weight:500;align-self:center;padding-top:10px}
+.name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:linear-gradient(90deg,var(--accent),#FFE1C2);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.name:hover,.name:focus-visible{color:var(--accent-hover)}
+.theme-rune .name:hover,.theme-rune .name:focus-visible,.theme-rune .name.on{text-shadow:0 0 22px rgba(239,163,124,.45)}
+.name.on{color:var(--accent)}
+.name.on::after,.name:hover::after{transform:scaleX(1)}
+.name:focus-visible{outline:none}
+.wall-detail{flex:0 0 100%;overflow:hidden;height:0;transition:height .5s cubic-bezier(.2,.7,.2,1)}
+.wall-detail-inner{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0 30px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:start}
+.wall-detail-inner .wall-era{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:4px}
+.wall-detail-inner p{font-size:clamp(18px,1.6vw,22px);line-height:1.45;max-width:40em}
+.wall-detail-inner .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:15px}
+
+/* ---- the record, three eras along a line */
+.eras{position:relative;margin-top:64px;padding-left:40px}
+.era-line{position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.era-line i{display:block;width:100%;height:0;background:linear-gradient(180deg,var(--accent),var(--accent-hover));box-shadow:0 0 12px rgba(239,163,124,.5)}
+.era-block{position:relative;padding-bottom:72px}
+.era-block:last-child{padding-bottom:0}
+.era-block::before{content:"";position:absolute;left:-37px;top:14px;width:11px;height:11px;background:var(--bg);border:1px solid var(--line-strong);transform:rotate(45deg);transition:background-color .4s,border-color .4s,box-shadow .4s}
+.era-block.lit::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 14px rgba(239,163,124,.6)}
+.era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
+.era-name{font-size:clamp(34px,4vw,60px);line-height:1;font-weight:600;letter-spacing:-0.03em}
+.era-years{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.era-intro{color:var(--text-secondary);font-size:18px;line-height:29px;margin-top:10px;max-width:46em}
+.era-cases{margin-top:28px;border-top:1px solid var(--line)}
+.rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.rec .yr{font-family:var(--mono);font-size:13px;color:var(--text-secondary);padding-top:4px}
+.rec h4{font-size:19px;line-height:1.25;font-weight:600;letter-spacing:-0.015em;margin:0}
+.rec p{color:var(--text-secondary);font-size:16px;line-height:25px;margin-top:6px;max-width:56em}
+.rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:14px}
+
+/* ---- offer: stacking panels */
+.stack{margin-top:64px}
+.panel::after{content:"";position:absolute;inset:0;border-radius:4px;background:var(--bg);opacity:var(--cover,0);pointer-events:none;transition:opacity .1s linear}
+.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;transform-origin:50% 0;will-change:transform,opacity;box-shadow:0 -20px 60px rgba(14,17,20,.6)}
+.pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
+.pk{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:10px}
+.pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.pcol li,.pcol p{font-size:15px;line-height:22px;color:var(--text);margin:0;max-width:none}
+.pcol li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--accent);margin-right:10px;vertical-align:3px}
+.panel h3{font-size:clamp(30px,3.4vw,52px);line-height:1;font-weight:600;letter-spacing:-0.03em}
+.panel > div > p{color:var(--text-secondary);font-size:17px;line-height:27px;margin-top:18px;max-width:30em}
+.panel .price{text-align:right}
+.panel .price b{display:block;font-size:clamp(40px,5vw,84px);line-height:.95;font-weight:600;letter-spacing:-0.035em;color:var(--accent);font-variant-numeric:tabular-nums}
+.panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:13px;color:var(--text-secondary)}
+.panel .n{font-family:var(--mono);font-size:12px;color:var(--text-secondary);margin-bottom:22px}
+.offer-note{margin-top:32px;max-width:52em;color:var(--text-secondary);font-size:17px;line-height:28px}
+
+/* ---- how */
+.how-line{margin-top:28px}
+.how-stage{position:relative;margin-top:64px}
+.how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
+.step .k{font-family:var(--mono);font-size:12px;color:var(--accent);display:flex;align-items:center;gap:12px}
+.step h3{font-size:24px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;margin-top:18px}
+.step p{color:var(--text-secondary);margin-top:14px}
+.step{opacity:.25;transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.step.on{opacity:1;transform:none}
+.how-mark{width:min(34vw,360px);height:auto;display:block;margin:0 auto}
+.how-mark path{fill:var(--accent);opacity:0;transform:translate(var(--dx,0),var(--dy,0));transition:opacity .6s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.how-mark path.on{opacity:1;transform:translate(0,0)}
+.how-mark-wrap{position:relative}
+.how-mark-wrap::before{content:"";position:absolute;left:50%;top:50%;width:min(70vw,760px);height:min(70vw,760px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(223,142,99,.16),rgba(223,142,99,0) 70%);opacity:var(--glow,0);transition:opacity .8s;pointer-events:none}
+.how-mark path:nth-child(1){--dx:-30px;--dy:0}.how-mark path:nth-child(2){--dx:0;--dy:-30px}.how-mark path:nth-child(3){--dx:26px;--dy:-16px}.how-mark path:nth-child(4){--dx:28px;--dy:22px}
+.furrow{width:100%;height:120px;display:block}
+.furrow .soil{fill:none;stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:6 8}
+.furrow .path{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.furrow .sprout{fill:none;stroke:var(--accent-hover);stroke-width:2;stroke-linecap:round;opacity:0;transition:opacity .4s}
+.furrow.fire .soil{stroke-dasharray:none;stroke:var(--line)}
+.furrow.fire .path{filter:drop-shadow(0 0 8px rgba(239,163,124,.6))}
+.furrow.fire .sprout{stroke-width:3;filter:drop-shadow(0 0 10px rgba(239,163,124,.9))}
+.furrow .sprout.on{opacity:1}
+.how-note{margin-top:48px;color:var(--text-secondary);max-width:52em;font-size:17px;line-height:28px}
+
+/* ---- who */
+.who-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.sit{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:14px;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .4s}
+.sit:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.sit h3{font-size:21px;line-height:1.25;font-weight:600;letter-spacing:-0.015em;text-wrap:balance}
+.sit p{color:var(--text-secondary);font-size:16px}
+.sit .n{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.turn{margin-top:24px;border:1px solid var(--copper-deep);border-radius:4px;padding:32px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;background:linear-gradient(90deg,rgba(140,78,44,.14),rgba(140,78,44,0) 60%)}
+.turn h3{font-size:21px;font-weight:600;letter-spacing:-0.015em}
+.turn p{color:var(--text)}
+
+/* ---- people */
+.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:64px}
+.person{display:flex;flex-direction:column;gap:18px}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--surface);border:1px solid var(--line);transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.portrait svg,.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.portrait img{filter:contrast(1.02)}
+.portrait .light{position:absolute;inset:-40%;background:radial-gradient(40% 40% at var(--lx,70%) var(--ly,20%),rgba(239,163,124,.34),transparent 70%);transition:opacity .4s;mix-blend-mode:screen}
+.portrait .ini{position:absolute;left:18px;bottom:14px;font-family:var(--mono);font-size:13px;color:var(--text-secondary);letter-spacing:.06em}
+.portrait .slot{position:absolute;right:18px;bottom:14px;font-family:var(--mono);font-size:11px;color:var(--text-secondary);opacity:.7}
+.person h3{font-size:clamp(24px,2vw,30px);line-height:1.1;font-weight:600;letter-spacing:-0.025em}
+.person .role{color:var(--accent);font-size:15px;margin-top:6px}
+.person .where{font-family:var(--mono);font-size:12px;color:var(--text-secondary);margin-top:8px}
+.person p.bio{color:var(--text-secondary);font-size:15px;line-height:24px}
+.person .links{display:flex;gap:18px;font-size:15px;margin-top:auto}
+.people-note{margin-top:56px;color:var(--text-secondary);max-width:52em;font-size:17px;line-height:28px}
+
+/* ---- contracting */
+.facts{margin-top:56px;border-top:1px solid var(--line)}
+.facts .row{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.facts .k{font-family:var(--mono);font-size:13px;color:var(--text-secondary);padding-top:3px}
+.facts .v{font-size:18px;line-height:28px}
+.facts .v.todo{color:var(--text-secondary);font-family:var(--mono);font-size:14px}
+
+/* ---- faq */
+.faq{margin-top:56px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;font-size:clamp(20px,1.8vw,26px);font-weight:600;letter-spacing:-0.02em;line-height:1.2}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:0 0 28px;width:28px;height:28px;border:1px solid var(--line-strong);border-radius:50%;position:relative;transition:transform .4s,border-color .3s}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1px;background:var(--text);transform:translate(-50%,-50%)}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg);border-color:var(--accent)}
+.faq .a{overflow:hidden;height:0;transition:height .45s cubic-bezier(.2,.7,.2,1)}
+.faq .a p{padding:0 0 28px;color:var(--text-secondary);font-size:17px;line-height:28px;max-width:56em}
+
+/* ---- closing */
+.scene-book{position:relative}
+.scene-book .pin{position:relative;min-height:640px;overflow:hidden;display:flex;align-items:center;padding:150px 0 160px}
+.scene-book .art{position:absolute;inset:0;width:100%;height:100%}
+.scene-book .wrap{position:relative;z-index:2;width:100%}
+.scene-book h2{max-width:10ch}
+.scene-book .mail{margin-top:28px;font-size:clamp(18px,1.6vw,22px);color:var(--text-secondary);max-width:24em}
+.scene-book .cta{margin-top:36px}
+.scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:12px;color:var(--text-secondary);max-width:34em;text-align:right}
+.foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:14px;color:var(--text-secondary);background:var(--bg)}
+.foot .lockup svg{height:28px}
+.foot .todo{font-family:var(--mono);font-size:12px}
+.foot .links{display:flex;gap:20px;flex-wrap:wrap}
+
+@media (max-width:1100px){
+  .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .sec{padding:80px 0}
+  .scene-statement{height:auto}.scene-statement .pin{position:relative;height:auto;min-height:0;padding:80px 0}
+  .scene-statement .cur{display:none}
+  .scene-book .wrap{padding-top:50vh}
+  .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
+  .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3{color:var(--text)}.mark-count{display:none}
+  .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
+  .eras{padding-left:28px}.era-block::before{left:-25px}
+  .metrics{grid-template-columns:minmax(0,1fr)}
+  .scene-proof{height:auto}.scene-proof .pin{position:relative;height:auto;min-height:0;display:block;padding:0}
+  .track{flex-direction:column;transform:none;padding:0}
+  .card{flex-basis:auto;min-height:0}
+  .scene-proof .progress{display:none}
+  .panel{grid-template-columns:minmax(0,1fr);position:relative;top:auto}.pcols{grid-template-columns:minmax(0,1fr)}
+  .panel .price{text-align:left}
+  .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
+  .scene-book .pin{display:block;min-height:0;padding:96px 0 120px}
+  .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
+  .foot{grid-template-columns:minmax(0,1fr)}
+  .step{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker .row{animation:none}
+  .step{opacity:1;transform:none}
+  .how-mark path{opacity:1;transform:none}
+  .statement .w{opacity:1}
+}
+'''
+
+# ---------------------------------------------------------------------------------------------- markup
+
+def silhouette(seed):
+    # a lit bust, abstract on purpose: it is a slot for the photograph
+    return f'''<svg viewBox="0 0 400 500" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg{seed}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B2126"/><stop offset="1" stop-color="#0E1114"/></linearGradient>
+<linearGradient id="sk{seed}" x1="0.2" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#3a2a22"/><stop offset=".55" stop-color="#22201f"/><stop offset="1" stop-color="#141719"/></linearGradient>
+<radialGradient id="rim{seed}" cx="0.78" cy="0.18" r="0.6"><stop offset="0" stop-color="#EFA37C" stop-opacity=".55"/><stop offset=".5" stop-color="#DF8E63" stop-opacity=".12"/><stop offset="1" stop-color="#DF8E63" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="400" height="500" fill="url(#bg{seed})"/>
+<g>
+<ellipse cx="{200 + (seed % 3) * 4}" cy="{182 - (seed % 2) * 6}" rx="{78 + (seed % 4) * 2}" ry="{96 + (seed % 3) * 3}" fill="url(#sk{seed})"/>
+<path d="M60 500 C70 380 130 330 200 322 C270 330 330 380 340 500 Z" fill="url(#sk{seed})"/>
+<rect x="176" y="250" width="48" height="90" fill="url(#sk{seed})"/>
+</g>
+<rect width="400" height="500" fill="url(#rim{seed})"/>
+<rect width="400" height="500" fill="#000" opacity=".12"/>
+</svg>'''
+
+
+def sections(t, theme):
+    words = " ".join(f'<span class="w">{w}</span>' for w in STATEMENT.split(" "))
+    bigmark = '<svg class="bigmark" viewBox="-6 -6 116 116" aria-hidden="true">' + "".join(f'<path data-piece="{i}" d="{pp}"></path>' for i, pp in enumerate(PIECES)) + '</svg>'
+    caps = "".join(f'<div class="cap" data-cap="{i}" data-piece="{c["piece"]}"><div class="k">0{i+1}</div><h3>{c["name"]}</h3><p>{c["line"]}</p></div>' for i, c in enumerate(CAPS))
+    cards = ""
+    for i, c in enumerate(PROOF_CARDS):
+        links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
+        cards += f'<article class="card"><div class="idx">0{i+1} / 0{len(PROOF_CARDS)}</div><div class="kicker">{c["kicker"]}</div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+    wall = ""
+    for i, (nm, grp, txt, links, era) in enumerate(WALL):
+        lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
+        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false">{nm}</button><template id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></template>'
+    eras = ""
+    for e in ERAS:
+        rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
+        eras += f'<div class="era-block"><div class="era-head reveal"><div class="era-name">{e["name"]}</div><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
+    panels = ""
+    for i, o in enumerate(OFFERS):
+        note = f'<span>{o["note"]}</span>' if o["note"] else ""
+        cols = (f'<div class="pcol"><div class="pk">What you get</div><ul>{"".join(f"<li>{x}</li>" for x in o["what"])}</ul></div>'
+                f'<div class="pcol"><div class="pk">Terms</div><ul>{"".join(f"<li>{x}</li>" for x in o["terms"])}</ul></div>'
+                f'<div class="pcol"><div class="pk">Who delivers</div><p>{o["who"]}</p></div>')
+        panels += f'<article class="panel" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
+    steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}</div><h3>{h}</h3><p>{b}</p></div>' for i, (h, b) in enumerate(HOW))
+    if theme == "rune":
+        how_art = ('<svg class="furrow fire" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
+                   '<path class="soil" d="M0 80 L1200 80"/>'
+                   '<path class="path" d="M0 80 L1200 80"/>'
+                   + "".join(f'<path class="sprout" d="M{x} 80 L{x} 46"></path>' for x in (150, 450, 750, 1050)) +
+                   '</svg>')
+    else:
+        how_art = ('<svg class="furrow" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
+                   '<path class="soil" d="M0 78 C150 70 250 92 400 82 C550 72 650 94 800 84 C950 74 1050 92 1200 82"/>'
+                   '<path class="path" d="M0 78 C150 70 250 92 400 82 C550 72 650 94 800 84 C950 74 1050 92 1200 82"/>'
+                   + "".join(f'<path class="sprout" d="M{x} 80 C{x} 60 {x-10} 52 {x-16} 44 M{x} 80 C{x} 58 {x+12} 50 {x+18} 40 M{x} 82 L{x} 34" ></path>' for x in (150, 450, 750, 1050)) +
+                   '</svg>')
+    who = "".join(f'<article class="sit reveal" style="--i:{i}"><div class="n">0{i+1}</div><h3>{h}</h3><p>{b}</p></article>' for i, (h, b) in enumerate(WHO))
+    people = ""
+    for i, p in enumerate(PEOPLE):
+        links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in p["links"])
+        where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
+        pic = (f'<img src="{p["photo"]}" alt="{p["name"]}" loading="lazy">' if p.get("photo") else silhouette(p["seed"]))
+        tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
+        people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait" data-tilt>{pic}<div class="light"></div>'
+                   f'{tag}</div>'
+                   f'<div><h3>{p["name"]}</h3><div class="role">{p["role"]}</div>{where}</div><p class="bio">{p["bio"]}</p>'
+                   f'{("<div class=links>" + links + "</div>") if links else ""}</article>')
+    facts = "".join(f'<div class="row reveal" style="--i:{i}"><div class="k">{k}</div><div class="v{" todo" if v.startswith("[") else ""}">{v}</div></div>' for i, (k, v) in enumerate(CONTRACT))
+    faq = "".join(f'<details><summary><span>{q}</span><i></i></summary><div class="a"><p>{a}</p></div></details>' for q, a in FAQ)
+    if theme == "rune":
+        book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
+    else:
+        book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
+
+    statement_scene = "" if theme == "rune" else f'''
+<section class="scene-statement" id="statement" data-scrub="statement">
+  <div class="pin">
+    <div class="wrap">
+      <p class="eyebrow">{t["statement_eyebrow"]}</p>
+      <p class="statement" id="statement-text">{words}</p>
+    </div>
+    <div class="cur">Keep scrolling</div>
+  </div>
+</section>'''
+    return f'''
+{statement_scene}
+
+<section class="scene-build" id="build" data-scrub="build">
+  <div class="pin">
+    <div class="wrap">
+      <p class="eyebrow">{t["build_eyebrow"]}</p>
+      <h2>Four things we build.</h2>
+      <div class="markmap">
+        <div class="caps-left">{caps}</div>
+        <div class="mark-col">{bigmark}<div class="mark-count" id="mark-count">01 / 04</div></div>
+      </div>
+      <p class="skills skills-foot"><span class="n">Stack</span>{SKILLS}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="proof" style="padding-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["proof_eyebrow"]}</p>
+    <h2 class="reveal">What we have shipped.</h2>
+    <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
+    <div class="metrics stagger">
+      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second in production, for a major browser wallet and a leading DEX aggregator</div></article>
+      <article class="metric reveal" style="--i:1"><div class="big"><em>$</em>100M+</div><div class="label">raised, collectively, by NFT launches by our team</div></article>
+      <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
+    </div>
+  </div>
+</section>
+<section class="scene-proof" id="proof-cases" data-scrub="hscroll" aria-label="Lead cases">
+  <div class="pin">
+    <div class="wrap"><p class="lead" style="margin-top:0">Nine cases, each in the words the record allows, with the public record linked where one exists.</p></div>
+    <div class="track" id="track">{cards}</div>
+    <div class="progress"><i id="track-progress"></i></div>
+  </div>
+</section>
+<section class="sec" id="names" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
+    <h2 class="reveal">The names on the record.</h2>
+    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for the line it is allowed to carry.</p>
+    <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
+  </div>
+</section>
+<section class="sec" id="record" data-scrub="record">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
+    <h2 class="reveal">The record, in three eras.</h2>
+    <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+  </div>
+</section>
+
+<section class="sec" id="offer">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
+    <h2 class="huge reveal">We do not bill hours.</h2>
+    <p class="lead reveal">Engagements and prices, in US dollars excluding VAT.</p>
+    <div class="stack" id="stack">{panels}</div>
+    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net">Write to us</a></div>
+  </div>
+</section>
+
+<section class="sec" id="how" data-scrub="how">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["how_eyebrow"]}</p>
+    <h2 class="reveal">How an engagement runs.</h2>
+    <p class="lead reveal">{t["how_line"]}</p>
+    <div class="how-stage">{how_art}<div class="how-grid">{steps}</div></div>
+    <p class="how-note reveal">{HOW_NOTE}</p>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
+    <h2 class="reveal">Six situations we see most often.</h2>
+    <div class="who-grid stagger">{who}</div>
+    <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
+  </div>
+</section>
+
+<section class="sec" id="people">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["people_eyebrow"]}</p>
+    <h2 class="reveal">The people who lead the work.</h2>
+    <div class="people-grid stagger">{people}</div>
+    <p class="people-note reveal">{PEOPLE_NOTE}</p>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["faq_eyebrow"]}</p>
+    <h2 class="reveal">The ones that come up on nearly every first call.</h2>
+    <div class="faq reveal">{faq}</div>
+  </div>
+</section>
+
+<section class="scene-book" id="book">
+  <div class="pin">
+    {book_art}
+    <div class="wrap">
+      <p class="eyebrow">{t["book_eyebrow"]}</p>
+      <h2>Let’s talk.</h2>
+      <p class="mail">Start with a free technical workshop with a founder. Write to <a href="mailto:info@felag.net">info@felag.net</a>.</p>
+      <div class="cta"><a class="btn" href="mailto:info@felag.net">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+    </div>
+    {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
+  </div>
+</section>
+<footer class="foot">
+  <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
+  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="mailto:info@felag.net">info@felag.net</a></div>
+</footer>'''
+
+# ---------------------------------------------------------------------------------------------- motion engine
+
+SITE_JS = r'''
+// ---- scrub engine: sections with data-scrub get a progress value each frame while near the viewport
+(function(){
+  var handlers = {};
+  window.onScrub = function(name, fn){ handlers[name] = fn; };
+  var items = [];
+  document.querySelectorAll('[data-scrub]').forEach(function(el){ items.push({el: el, name: el.getAttribute('data-scrub'), last: -1}); });
+  var ticking = false;
+  function progressOf(el){
+    var r = el.getBoundingClientRect(), runway = el.offsetHeight - window.innerHeight;
+    if (runway <= 0){ return Math.max(0, Math.min(1, (window.innerHeight - r.top) / (window.innerHeight + el.offsetHeight))); }
+    return Math.max(0, Math.min(1, -r.top / runway));
+  }
+  function tick(){
+    ticking = false;
+    items.forEach(function(it){
+      var r = it.el.getBoundingClientRect();
+      var near = r.bottom > -200 && r.top < window.innerHeight + 200;
+      if (!near && it.last >= 0 && it.last !== 0 && it.last !== 1) return;
+      var p = progressOf(it.el);
+      if (near && handlers[it.name]) handlers[it.name](p, it.el);
+      it.last = p;
+    });
+  }
+  function request(){ if (!ticking){ ticking = true; requestAnimationFrame(tick); } }
+  window.addEventListener('scroll', request, {passive: true});
+  window.addEventListener('resize', request);
+  window.addEventListener('load', request);
+  setTimeout(request, 50); setTimeout(request, 600);
+})();
+
+// ---- statement: words light up as you scroll
+(function(){
+  var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
+  var n = words.length, narrow = window.innerWidth < 900;
+  var inHero = !!document.getElementById('hero-statement');
+  if (reduce || narrow){
+    words.forEach(function(w){ w.style.opacity = 1; });
+    if (inHero){ var hs = document.getElementById('hero-statement'); if (reduce) hs.style.setProperty('--st', 1); else window.onScrub('statement', function(){ hs.style.setProperty('--st', Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)).toFixed(3)); }); }
+    return;
+  }
+  window.onScrub('statement', function(p, el){
+    var q;
+    if (inHero){
+      // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
+      var hp = heroProgress();
+      el.style.setProperty('--st', Math.max(0, Math.min(1, (hp - 0.3)/0.1)).toFixed(3));
+      q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
+    } else {
+      // progress from the moment the scene enters at the bottom to the end of its runway, so the words light while the text rises
+      var r = el.getBoundingClientRect(), h = window.innerHeight, runway = Math.max(1, el.offsetHeight - h);
+      q = Math.max(0, Math.min(1, (h*0.9 - r.top) / (h*0.9 + runway)));
+    }
+    var lit = (q - 0.04) / 0.86 * (n + 3) - 1;
+    for (var i = 0; i < n; i++){
+      var k = Math.max(0, Math.min(1, lit - i));
+      words[i].style.opacity = (0.22 + 0.78*k).toFixed(3);
+      words[i].classList.toggle('hot', k > 0 && k < 1);
+    }
+  });
+})();
+
+// ---- proof filmstrip: horizontal travel pinned to vertical scroll
+(function(){
+  var sec = document.getElementById('proof-cases'), track = document.getElementById('track'), bar = document.getElementById('track-progress');
+  if (!sec || !track) return;
+  var over = 0;
+  function layout(){
+    if (window.innerWidth < 900){ sec.style.height = ''; track.style.transform = ''; over = 0; return; }
+    var side = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--side')) || 80;
+    over = Math.max(0, track.scrollWidth - window.innerWidth);
+    sec.style.height = (window.innerHeight + over*1.15 + 200) + 'px';
+  }
+  layout(); window.addEventListener('resize', layout);
+  window.onScrub('hscroll', function(p){
+    if (over <= 0) return;
+    var e = p; // linear so the strip tracks the finger
+    track.style.transform = 'translate3d(' + (-over*e).toFixed(1) + 'px,0,0)';
+    if (bar) bar.style.width = (e*100).toFixed(2) + '%';
+  });
+})();
+
+// ---- what we build: the scroll lights one piece of the mark at a time, and the thing it stands for
+(function(){
+  var caps = document.querySelectorAll('#build .cap'), pieces = document.querySelectorAll('#build .bigmark path'), count = document.getElementById('mark-count'); if (!caps.length) return;
+  var current = -1, narrow = window.innerWidth < 900;
+  if (narrow){ caps.forEach(function(c){ c.classList.add('on'); }); pieces.forEach(function(pc){ pc.classList.add('on'); }); return; }
+  window.onScrub('build', function(p){
+    var idx = Math.min(caps.length - 1, Math.floor(Math.max(0, p - 0.02) / 0.96 * caps.length));
+    if (idx === current) return;
+    current = idx;
+    caps.forEach(function(c, i){ c.classList.toggle('on', i === idx); });
+    var piece = caps[idx].getAttribute('data-piece');
+    pieces.forEach(function(pc){ var on = pc.getAttribute('data-piece') === piece; var was = pc.classList.contains('on'); pc.classList.toggle('on', on); if (on && !was){ pc.classList.remove('hot'); void pc.offsetWidth; pc.classList.add('hot'); } });
+    if (count) count.textContent = '0' + (idx + 1) + ' / 0' + caps.length;
+  });
+})();
+
+// ---- the names wall: a name opens its line right under its own row
+(function(){
+  var wall = document.getElementById('wall'), detail = document.getElementById('wall-detail'), inner = document.getElementById('wall-detail-inner');
+  if (!wall || !detail) return;
+  var open = null;
+  function close(){ if (!open) return; open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); open = null; detail.style.height = detail.scrollHeight + 'px'; requestAnimationFrame(function(){ detail.style.height = '0px'; }); detail.addEventListener('transitionend', function h(){ detail.hidden = true; detail.removeEventListener('transitionend', h); }); }
+  wall.addEventListener('click', function(e){
+    var btn = e.target.closest('.name'); if (!btn) return;
+    if (open === btn){ close(); return; }
+    if (open){ open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); }
+    open = btn; btn.classList.add('on'); btn.setAttribute('aria-expanded', 'true');
+    var tpl = document.getElementById('wall-' + btn.getAttribute('data-i'));
+    inner.innerHTML = ''; inner.appendChild(tpl.content.cloneNode(true));
+    // find the last name on the same visual row and place the detail after it
+    var top = btn.offsetTop, names = wall.querySelectorAll('.name'), last = btn;
+    names.forEach(function(n){ if (Math.abs(n.offsetTop - top) < 6 && n.offsetLeft > last.offsetLeft) last = n; });
+    detail.hidden = false; detail.style.height = '0px'; last.insertAdjacentElement('afterend', detail);
+    requestAnimationFrame(function(){ detail.style.height = detail.scrollHeight + 'px'; });
+    detail.addEventListener('transitionend', function h(){ if (!detail.hidden) detail.style.height = 'auto'; detail.removeEventListener('transitionend', h); });
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+// ---- the record: the era line draws as the reader moves down it, each era lighting its marker
+(function(){
+  var fill = document.getElementById('era-line-fill'), blocks = document.querySelectorAll('.era-block'); if (!fill) return;
+  window.onScrub('record', function(p, el){
+    var r = el.getBoundingClientRect(), h = window.innerHeight;
+    var eras = document.getElementById('eras').getBoundingClientRect();
+    var q = Math.max(0, Math.min(1, (h*0.7 - eras.top) / Math.max(1, eras.height)));
+    fill.style.height = (q*100).toFixed(2) + '%';
+    blocks.forEach(function(b){ var br = b.getBoundingClientRect(); b.classList.toggle('lit', br.top < h*0.7); });
+  });
+})();
+
+// ---- offer stack: panels shrink and dim as the next one covers them
+(function(){
+  var panels = document.querySelectorAll('#stack .panel'); if (!panels.length) return;
+  function update(){
+    if (window.innerWidth < 900){ panels.forEach(function(p){ p.style.transform = ''; p.style.removeProperty('--cover'); }); return; }
+    var head = 96;
+    for (var i = 0; i < panels.length - 1; i++){
+      var next = panels[i+1].getBoundingClientRect(), me = panels[i].getBoundingClientRect();
+      var covered = Math.max(0, Math.min(1, (me.bottom - next.top) / Math.max(1, me.height)));
+      panels[i].style.transform = 'scale(' + (1 - covered*0.06).toFixed(4) + ') translateY(' + (-covered*8).toFixed(1) + 'px)';
+      panels[i].style.setProperty('--cover', (covered*0.6).toFixed(3));
+    }
+  }
+  var ticking = false;
+  function req(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; update(); }); } }
+  window.addEventListener('scroll', req, {passive: true}); window.addEventListener('resize', req); update();
+})();
+
+// ---- how: steps and their art follow the scroll through the section
+(function(){
+  var steps = document.querySelectorAll('#how .step'), pieces = document.querySelectorAll('.how-mark path'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
+  var len = path ? path.getTotalLength() : 0;
+  if (path){ path.style.strokeDasharray = len; path.style.strokeDashoffset = len; }
+  window.onScrub('how', function(p, el){
+    var r = el.getBoundingClientRect(), h = window.innerHeight;
+    // local progress: 0 when the section top reaches 80% of the viewport, 1 when its bottom reaches 40%
+    var q = Math.max(0, Math.min(1, (h*0.8 - r.top) / Math.max(1, r.height - h*0.4)));
+    var narrow = window.innerWidth < 900;
+    steps.forEach(function(s, i){ s.classList.toggle('on', narrow || q > (i + 0.5) / (steps.length + 0.6)); });
+    var lit = 0; pieces.forEach(function(pc, i){ var on = q > (i + 0.5) / (pieces.length + 0.6); pc.classList.toggle('on', on); if (on) lit = i + 1; });
+    var wrap = document.getElementById('how-mark-wrap'); if (wrap) wrap.style.setProperty('--glow', (lit/Math.max(1, pieces.length)).toFixed(2));
+    if (path) path.style.strokeDashoffset = (len * (1 - Math.min(1, q*1.15))).toFixed(1);
+    sprouts.forEach(function(s, i){ s.classList.toggle('on', q > (i + 0.55) / (sprouts.length + 0.6)); });
+  });
+})();
+
+// ---- rune theme: the metrics burn in, the closing title draws its stroke
+(function(){
+  if (!document.getElementById('root').classList.contains('theme-rune') || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add(en.target.classList.contains('big') ? 'burn' : 'lit'); io.unobserve(en.target); } }); }, {threshold: 0.6});
+  document.querySelectorAll('.metric .big, .scene-book h2, .scene-build h2').forEach(function(el){ io.observe(el); });
+})();
+
+// ---- people: the light on the portrait follows the pointer
+(function(){
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('[data-tilt]').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+      card.style.setProperty('--lx', (x*100).toFixed(1) + '%'); card.style.setProperty('--ly', (y*100).toFixed(1) + '%');
+      card.style.transform = 'perspective(900px) rotateY(' + ((x-0.5)*8).toFixed(2) + 'deg) rotateX(' + ((0.5-y)*8).toFixed(2) + 'deg)';
+    });
+    card.addEventListener('pointerleave', function(){ card.style.transform = ''; card.style.removeProperty('--lx'); card.style.removeProperty('--ly'); });
+  });
+})();
+
+// ---- faq: animated open and close
+(function(){
+  document.querySelectorAll('.faq details').forEach(function(d){
+    var a = d.querySelector('.a'), s = d.querySelector('summary');
+    if (d.open) a.style.height = 'auto';
+    s.addEventListener('click', function(e){
+      e.preventDefault();
+      if (d.open){
+        a.style.height = a.scrollHeight + 'px'; requestAnimationFrame(function(){ a.style.height = '0px'; });
+        a.addEventListener('transitionend', function h(){ d.open = false; a.removeEventListener('transitionend', h); });
+      } else {
+        d.open = true; a.style.height = '0px'; requestAnimationFrame(function(){ a.style.height = a.scrollHeight + 'px'; });
+        a.addEventListener('transitionend', function h(){ a.style.height = 'auto'; a.removeEventListener('transitionend', h); });
+      }
+    });
+  });
+})();
+'''
+
+# the closing scene, rune theme: the rune draws itself, ignites once and becomes the mark
+BOOK_RUNE_JS = r"""
+(function(){
+  var canvas = document.getElementById('book-art'); if (!canvas) return;
+  var ctx = canvas.getContext('2d'), W = 0, H = 0, k = 1, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var hasFilter = 'filter' in ctx;
+  var pieces = [[[0,0],[32,0],[32,104],[0,104]],[[44,0],[66,0],[44,22]],[[44,38],[82,0],[104,0],[44,60]],[[44,76],[104,16],[104,104],[44,104]]];
+  var strokes = [{a: [16, 104], b: [16, 0]}, {a: [16, 72], b: [62, 26]}, {a: [16, 40], b: [62, -6]}];
+  strokes.forEach(function(s){ s.len = Math.hypot(s.b[0]-s.a[0], s.b[1]-s.a[1]); });
+  var total = strokes.reduce(function(a, s){ return a + s.len; }, 0);
+  var cx, cy, scale, p = 0, visible = false, t = 0, last = 0;
+  function clamp(x){ return Math.max(0, Math.min(1, x)); }
+  function layout(){ var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); k = Math.min(W, H)/900; var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.32, H*0.74)/104; cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.22 : H*0.5; }
+  layout(); window.addEventListener('resize', layout);
+  function P(x, y){ return [cx + (x - 52)*scale, cy + (y - 52)*scale]; }
+  function ease(x){ return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3)/2; }
+  function tracePath(c, upto){
+    var left = upto;
+    for (var i = 0; i < strokes.length && left > 0; i++){
+      var s = strokes[i], f = Math.min(1, left/s.len); left -= s.len;
+      var a = P(s.a[0], s.a[1]), b = P(s.a[0] + (s.b[0]-s.a[0])*f, s.a[1] + (s.b[1]-s.a[1])*f);
+      c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]);
+    }
+  }
+  function drawRune(c, upto, w, col, alpha, comp){
+    c.save(); c.globalCompositeOperation = comp || 'source-over'; c.globalAlpha = clamp(alpha); c.strokeStyle = col; c.lineWidth = w; c.lineCap = 'round'; c.lineJoin = 'round';
+    c.beginPath(); tracePath(c, upto); c.stroke(); c.restore();
+  }
+  function drawMark(c, alpha, hot){
+    c.save(); c.globalAlpha = alpha;
+    c.fillStyle = hot > 0 ? 'rgb(' + Math.round(223 + 32*hot) + ',' + Math.round(142 + 83*hot) + ',' + Math.round(99 + 95*hot) + ')' : '#DF8E63';
+    if (hasFilter && hot > 0){ c.shadowColor = 'rgba(239,163,124,' + (0.9*hot).toFixed(2) + ')'; c.shadowBlur = 46*hot*k + 8; }
+    pieces.forEach(function(pc){ c.beginPath(); pc.forEach(function(pt, i){ var q = P(pt[0], pt[1]); if (i) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); }); c.closePath(); c.fill(); });
+    c.restore();
+  }
+  function frame(now){
+    var dt = Math.min(0.05, (now - last)/1000); last = now; t += dt;
+    if (!visible){ requestAnimationFrame(frame); return; }
+    if (started && !hold) p = Math.min(0.9, (t - t0)*0.25);
+    ctx.clearRect(0, 0, W, H);
+    // stage 1: the rune draws itself (p 0.05 to 0.42); stage 2: one ignition pulse (0.42 to 0.52); stage 3: it becomes the mark (0.52 to 0.82)
+    var draw = ease(clamp((p - 0.05)/0.37));
+    var ig = clamp((p - 0.42)/0.1);
+    var morph = clamp((p - 0.52)/0.3);
+    var upto = total*draw, w = 10*scale/8;
+    var runeA = 1 - morph, breathe = 0.95 + 0.05*Math.sin(t*1.2), flare = ig > 0 ? (1 - clamp((p - 0.46)/0.2)) : 0;
+    if (draw > 0.2){
+      var hg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 70*scale);
+      hg.addColorStop(0, 'rgba(223,142,99,' + ((0.16*breathe*draw + 0.22*flare)*(1 - morph*0.5)).toFixed(3) + ')'); hg.addColorStop(1, 'rgba(223,142,99,0)');
+      ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H);
+    }
+    if (runeA > 0){
+      if (hasFilter){ ctx.save(); ctx.filter = 'blur(' + (18*k).toFixed(1) + 'px)'; ctx.globalCompositeOperation = 'lighter'; drawRune(ctx, upto, w*3, '#DF8E63', (0.45 + 0.4*ig)*runeA*breathe, 'lighter'); ctx.restore(); }
+      drawRune(ctx, upto, w*1.3, '#8C4E2C', runeA); drawRune(ctx, upto, w, ig > 0 ? '#E8996D' : '#DF8E63', runeA);
+      drawRune(ctx, upto, w*0.45, '#FFD9B4', (0.5 + 0.4*ig)*runeA, 'lighter');
+      if (ig > 0 && ig < 1){
+        var seg = total*0.16, head = ig*(total + seg);
+        ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.lineWidth = w*0.7; ctx.strokeStyle = '#FFF1E0'; ctx.globalAlpha = 0.9*Math.sin(ig*Math.PI);
+        ctx.setLineDash([seg, total*4]); ctx.lineDashOffset = -(head - seg); ctx.beginPath(); tracePath(ctx, total); ctx.stroke(); ctx.restore();
+      }
+      if (draw > 0 && draw < 1){
+        var left = upto, tip = null;
+        for (var i = 0; i < strokes.length; i++){ var s = strokes[i]; if (left <= s.len){ var f = left/s.len; tip = P(s.a[0] + (s.b[0]-s.a[0])*f, s.a[1] + (s.b[1]-s.a[1])*f); break; } left -= s.len; }
+        if (tip){ var tg = ctx.createRadialGradient(tip[0], tip[1], 0, tip[0], tip[1], 26*k + 8); tg.addColorStop(0, 'rgba(255,236,210,.95)'); tg.addColorStop(0.3, 'rgba(239,163,124,.5)'); tg.addColorStop(1, 'rgba(239,163,124,0)'); ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = tg; ctx.beginPath(); ctx.arc(tip[0], tip[1], 26*k + 8, 0, 6.283); ctx.fill(); ctx.restore(); }
+      }
+    }
+    if (morph > 0) drawMark(ctx, morph, 1 - morph);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  var started = false, hold = false, t0 = 0;
+  function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } }
+  window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', look); look(); setTimeout(look, 400);
+  if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
+})();
+"""
+
+# the closing scene, harvest theme: the field from above, the rune cut into it
+BOOK_HARVEST_JS = r"""
+(function(){
+  var canvas = document.getElementById('book-art'); if (!canvas) return;
+  var ctx = canvas.getContext('2d'), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  var field = document.createElement('canvas'), fctx = field.getContext('2d');
+  var stub = document.createElement('canvas'), sctx = stub.getContext('2d');
+  var channels = [[[38,0],[38,104],12],[[44,30],[80,-4],11.3],[[44,68],[108,2],11.3]];
+  var cx, cy, scale, p = 0, visible = false, t = 0, last = 0;
+  function P(u, v){ return [cx + (u - 52)*scale, cy + (v - 52)*scale]; }
+  function inChannel(u, v){
+    for (var i = 0; i < channels.length; i++){ var c = channels[i], ax = c[0][0], ay = c[0][1], dx = c[1][0]-ax, dy = c[1][1]-ay, l2 = dx*dx+dy*dy, tt = ((u-ax)*dx + (v-ay)*dy)/l2; if (tt < -0.02 || tt > 1.02) continue; var px = ax + dx*tt, py = ay + dy*tt; if (Math.hypot(u-px, v-py) < c[2]/2) return true; }
+    return false;
+  }
+  function layout(){
+    var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height);
+    [canvas, field, stub].forEach(function(c){ c.width = W*dpr; c.height = H*dpr; });
+    [ctx, fctx, sctx].forEach(function(c){ c.setTransform(dpr, 0, 0, dpr, 0, 0); });
+    var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.3, H*0.74)/104; cx = narrow ? W*0.5 : W*0.7; cy = narrow ? H*0.26 : H*0.5;
+    // soil
+    var g = fctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#100c09'); g.addColorStop(1, '#1a120c'); fctx.fillStyle = g; fctx.fillRect(0, 0, W, H);
+    for (var i = 0; i < 1800; i++){ fctx.fillStyle = 'rgba(' + (56 + Math.random()*36|0) + ',' + (34 + Math.random()*22|0) + ',' + (20 + Math.random()*12|0) + ',' + (0.12 + Math.random()*0.25).toFixed(2) + ')'; fctx.beginPath(); fctx.ellipse(Math.random()*W, Math.random()*H, 2 + Math.random()*6, 1 + Math.random()*2, Math.random()*3.14, 0, 6.283); fctx.fill(); }
+    // the ears in rough rows, copper from above, brighter towards the light in the top right
+    var step = Math.max(5, 6.5*scale/4.2), r0 = Math.max(1.3, 1.9*scale/4.2);
+    for (var y = -step; y < H + step; y += step){
+      for (var x = -step; x < W + step; x += step*0.8){
+        var jx = x + (Math.random()-0.5)*step, jy = y + (Math.random()-0.5)*step;
+        var lightK = 0.35 + 0.65*Math.max(0, Math.min(1, 1 - Math.hypot((jx - W*0.86)/W, (jy - H*0.1)/H)*1.4));
+        var lit = (0.25 + Math.random()*0.75)*lightK;
+        fctx.fillStyle = 'rgba(' + (70 + 130*lit|0) + ',' + (42 + 70*lit|0) + ',' + (18 + 30*lit|0) + ',' + (0.5 + 0.5*Math.random()).toFixed(2) + ')';
+        fctx.beginPath(); fctx.ellipse(jx, jy, r0*(0.7 + Math.random()*0.8), r0*0.55*(0.7 + Math.random()*0.8), 0.5 + Math.random()*0.5, 0, 6.283); fctx.fill();
+      }
+    }
+    // the stubble: soil and pale cut straw, only inside the channels
+    sctx.clearRect(0, 0, W, H);
+    sctx.lineCap = 'round';
+    channels.forEach(function(c){ var a = P(c[0][0], c[0][1]), b = P(c[1][0], c[1][1]); sctx.strokeStyle = '#26190f'; sctx.lineWidth = c[2]*scale; sctx.beginPath(); sctx.moveTo(a[0], a[1]); sctx.lineTo(b[0], b[1]); sctx.stroke(); });
+    sctx.globalCompositeOperation = 'source-atop';
+    var n = Math.round(W*H/240);
+    for (var k = 0; k < n; k++){
+      var fx = Math.random()*W, fy = Math.random()*H;
+      var u = (fx - cx)/scale + 52, v = (fy - cy)/scale + 52;
+      if (u < -8 || u > 116 || v < -8 || v > 112 || !inChannel(u, v)) continue;
+      var pale = Math.random() < 0.7;
+      sctx.fillStyle = pale ? 'rgba(' + (196 + Math.random()*40|0) + ',' + (150 + Math.random()*40|0) + ',' + (92 + Math.random()*30|0) + ',' + (0.5 + Math.random()*0.45).toFixed(2) + ')' : 'rgba(60,38,22,' + (0.4 + Math.random()*0.4).toFixed(2) + ')';
+      sctx.beginPath(); sctx.ellipse(fx, fy, r0*(1.2 + Math.random()*1.6), r0*0.4, Math.random()*3.14, 0, 6.283); sctx.fill();
+    }
+    sctx.globalCompositeOperation = 'source-over';
+  }
+  layout(); window.addEventListener('resize', layout);
+  function clipChannel(c, tt){
+    // the band from a to a + (b - a) * tt, as a rotated rectangle
+    var a = P(c[0][0], c[0][1]), b = P(c[1][0], c[1][1]), dx = b[0]-a[0], dy = b[1]-a[1], L = Math.hypot(dx, dy), nx = -dy/L, ny = dx/L, hw = c[2]*scale*0.5 + 2, ex = dx/L*hw, ey = dy/L*hw;
+    var e = [a[0] + dx*tt, a[1] + dy*tt];
+    ctx.beginPath(); ctx.moveTo(a[0] + nx*hw - ex, a[1] + ny*hw - ey); ctx.lineTo(e[0] + nx*hw, e[1] + ny*hw); ctx.lineTo(e[0] - nx*hw, e[1] - ny*hw); ctx.lineTo(a[0] - nx*hw - ex, a[1] - ny*hw - ey); ctx.closePath(); ctx.clip();
+  }
+  function frame(now){
+    var dt = Math.min(0.05, (now - last)/1000); last = now; t += dt;
+    if (!visible){ requestAnimationFrame(frame); return; }
+    if (started && !hold) p = Math.min(0.9, (t - t0)*0.25);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(field, 0, 0, W, H);
+    var reveal = [Math.max(0, Math.min(1, (p - 0.06)/0.3)), Math.max(0, Math.min(1, (p - 0.36)/0.16)), Math.max(0, Math.min(1, (p - 0.52)/0.18))];
+    for (var i = 0; i < 3; i++){ if (reveal[i] <= 0) continue; ctx.save(); clipChannel(channels[i], reveal[i]); ctx.drawImage(stub, 0, 0, W, H); ctx.restore(); }
+    // wind: a soft band of light crossing the field, and a slow breathing of the dusk light
+    var wx = ((t*0.07) % 1.4) - 0.2;
+    var wg = ctx.createLinearGradient(W*(wx - 0.25), 0, W*(wx + 0.25), H*0.6); wg.addColorStop(0, 'rgba(239,163,124,0)'); wg.addColorStop(0.5, 'rgba(239,163,124,' + (0.10 + 0.03*Math.sin(t*0.9)).toFixed(3) + ')'); wg.addColorStop(1, 'rgba(239,163,124,0)');
+    ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = wg; ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+    var lg = ctx.createRadialGradient(W*0.86, H*0.1, 0, W*0.86, H*0.1, Math.max(W, H)*0.9); lg.addColorStop(0, 'rgba(223,142,99,.16)'); lg.addColorStop(0.45, 'rgba(223,142,99,.03)'); lg.addColorStop(1, 'rgba(14,17,20,.55)');
+    ctx.fillStyle = lg; ctx.fillRect(0, 0, W, H);
+    // the veil that keeps the words readable
+    var narrow = W < 900;
+    var vg = narrow ? ctx.createLinearGradient(0, H*0.35, 0, H*0.9) : ctx.createLinearGradient(0, 0, W*0.62, 0);
+    vg.addColorStop(0, narrow ? 'rgba(14,17,20,0)' : 'rgba(14,17,20,.94)'); vg.addColorStop(narrow ? 0.5 : 0.55, narrow ? 'rgba(14,17,20,.85)' : 'rgba(14,17,20,.6)'); vg.addColorStop(1, narrow ? 'rgba(14,17,20,.94)' : 'rgba(14,17,20,0)');
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  var started = false, hold = false, t0 = 0;
+  function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } }
+  window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', look); look(); setTimeout(look, 400);
+  if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
+})();
+"""
+
+# ambient layers
+AMBIENT_RUNE = dict(
+    markup='<div class="ambient warm" aria-hidden="true"></div>',
+    css=('.ambient.warm{background:radial-gradient(50% 45% at 78% 30%,rgba(223,142,99,.09),transparent 70%);animation:warm 22s ease-in-out infinite alternate}'
+         '@keyframes warm{to{transform:translate(-10%,14%) scale(1.2)}}'
+         '@media (prefers-reduced-motion:reduce){.ambient.warm{animation:none}}'),
+    js='')
+
+AMBIENT_HARVEST = dict(
+    markup='<div class="ambient grain" aria-hidden="true"></div><div class="ambient warm" aria-hidden="true"></div>',
+    css=('.ambient.grain{opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'220\' height=\'220\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'.9\' numOctaves=\'2\' stitchTiles=\'stitch\'/><feColorMatrix values=\'0 0 0 0 1 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .9 0\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\'/></svg>");mix-blend-mode:screen}'
+         '.ambient.warm{background:radial-gradient(60% 50% at 80% 20%,rgba(223,142,99,.08),transparent 70%);animation:warm 18s ease-in-out infinite alternate}'
+         '@keyframes warm{to{transform:translate(-8%,12%) scale(1.15)}}'
+         '.sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 30%,rgba(239,163,124,.08) 50%,transparent 70%);background-size:300% 100%;animation:sheen 9s linear infinite;mix-blend-mode:screen}'
+         '@keyframes sheen{from{background-position:120% 0}to{background-position:-120% 0}}'
+         '@media (prefers-reduced-motion:reduce){.ambient.warm,.sheen{animation:none}}'),
+    js='')
+
+
+def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
+    t = THEMES[theme]
+    amb = AMBIENT_RUNE if theme == "rune" else AMBIENT_HARVEST
+    words = " ".join(f'<span class="w">{w}</span>' for w in STATEMENT.split(" "))
+    hero_statement = (f'<div class="wrap hero-statement" id="hero-statement" data-scrub="statement"><p class="eyebrow">{t["statement_eyebrow"]}</p>'
+                      f'<p class="statement" id="statement-text">{words}</p></div>') if theme == "rune" else ""
+    book_js = BOOK_RUNE_JS if theme == "rune" else BOOK_HARVEST_JS
+    return f'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{STATEMENT}">
+<link rel="canonical" href="https://felag.net/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Felag">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{STATEMENT}">
+<meta property="og:url" content="https://felag.net/">
+<meta property="og:image" content="https://felag.net/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Felagnet">
+<meta name="theme-color" content="#0E1114">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>
+</head>
+<body>
+<div class="theme-{theme}" id="root">
+{amb["markup"]}
+{header()}
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-pin">
+    {scene_markup}
+    <div class="wrap hero-inner">
+      <h1 class="rise r1">{headline}</h1>
+      <p class="sub rise r2">{sub}</p>
+      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+    </div>
+    {hero_statement}
+  </div>
+</section>
+{sections(t, theme)}
+</main>
+</div>
+{scripts_before}
+<script>
+{COMMON_JS}
+{scene_script}
+{SITE_JS}
+{book_js}
+{amb["js"]}
+</script>
+</body>
+</html>
+'''

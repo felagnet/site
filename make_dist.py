@@ -1,0 +1,107 @@
+"""Assemble dist/, the folder GitHub Pages serves: the rune page as index.html, plus CNAME, .nojekyll,
+robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png, og.png and 404.html. Standard library only.
+Run after build_site.py. The harvest page is a kept prototype and is not copied."""
+
+import datetime
+import os
+import shutil
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from felagsite import MARK_PATH  # noqa: E402
+from shared import LOCKUP  # noqa: E402
+
+DOMAIN = "felag.net"
+SITE = f"https://{DOMAIN}/"
+OUT = os.path.join(HERE, "out")
+STATIC = os.path.join(HERE, "static")
+DIST = os.path.join(HERE, "dist")
+FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;500;600&display=swap">')
+
+FAVICON = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104"><path fill="#DF8E63" d="{MARK_PATH}"/></svg>\n'
+
+ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n"
+
+SITEMAP = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{site}</loc>
+    <lastmod>{date}</lastmod>
+  </url>
+</urlset>
+"""
+
+PAGE_404 = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felag, page not found</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0E1114">
+{FONTS}
+<style>
+:root{{--bg:#0E1114;--line:#262C31;--text:#E9ECEE;--accent:#DF8E63;--accent-hover:#EFA37C;
+  --sans:"Schibsted Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;--side:clamp(16px,6vw,120px);color-scheme:dark}}
+*{{box-sizing:border-box}}
+html,body{{margin:0;background:var(--bg);color:var(--text)}}
+body{{min-height:100vh;display:flex;flex-direction:column;font-family:var(--sans);font-size:16px;line-height:26px;-webkit-font-smoothing:antialiased}}
+header{{height:72px;display:flex;align-items:center;padding:0 var(--side);border-bottom:1px solid var(--line)}}
+.lockup{{display:inline-flex}}
+.lockup svg{{display:block;height:38px;width:auto}}
+.mark-fill{{fill:var(--accent)}}.word-fill{{fill:var(--text)}}
+main{{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:96px var(--side)}}
+h1{{margin:0;font-size:clamp(40px,5.4vw,80px);line-height:1;font-weight:600;letter-spacing:-0.03em}}
+p{{margin:0;font-size:clamp(18px,1.6vw,22px);line-height:1.45}}
+a{{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}
+a:hover{{color:var(--accent-hover)}}
+a:focus-visible{{outline:2px solid var(--accent);outline-offset:3px}}
+</style>
+</head>
+<body>
+<header><a class="lockup" href="{SITE}" aria-label="Felag, home">{LOCKUP}</a></header>
+<main>
+<h1>That page is not here.</h1>
+<p><a href="{SITE}">Back to felag.net</a></p>
+</main>
+</body>
+</html>
+"""
+
+
+def write(name, text):
+    with open(os.path.join(DIST, name), "w", encoding="utf-8", newline="\n") as f:
+        f.write(text)
+
+
+def main():
+    page = os.path.join(OUT, "felag-rune.html")
+    if not os.path.exists(page):
+        sys.exit("out/felag-rune.html is missing; run python3 build_site.py first")
+    images = [os.path.join(STATIC, n) for n in ("apple-touch-icon.png", "og.png")]
+    for img in images:
+        if not os.path.exists(img):
+            sys.exit(f"{os.path.relpath(img, HERE)} is missing; run python3 make_images.py first")
+
+    if os.path.isdir(DIST):
+        shutil.rmtree(DIST)
+    os.makedirs(DIST)
+    shutil.copyfile(page, os.path.join(DIST, "index.html"))
+    for img in images:
+        shutil.copyfile(img, os.path.join(DIST, os.path.basename(img)))
+    write("CNAME", DOMAIN)
+    write(".nojekyll", "")
+    write("robots.txt", ROBOTS)
+    write("sitemap.xml", SITEMAP.format(site=SITE, date=datetime.date.today().isoformat()))
+    write("favicon.svg", FAVICON)
+    write("404.html", PAGE_404)
+    for name in sorted(os.listdir(DIST)):
+        print("dist/" + name, os.path.getsize(os.path.join(DIST, name)))
+
+
+if __name__ == "__main__":
+    main()

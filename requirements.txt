@@ -1,0 +1,2 @@
+# Only check.py and make_images.py need this; the build itself is standard library only.
+playwright==1.56.0
