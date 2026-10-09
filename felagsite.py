@@ -956,7 +956,7 @@ BOOK_RUNE_JS = r"""
   function drawMark(c, alpha, hot){
     c.save(); c.globalAlpha = alpha;
     c.fillStyle = hot > 0 ? 'rgb(' + Math.round(223 + 32*hot) + ',' + Math.round(142 + 83*hot) + ',' + Math.round(99 + 95*hot) + ')' : '#DF8E63';
-    if (hasFilter && hot > 0){ c.shadowColor = 'rgba(239,163,124,' + (0.9*hot).toFixed(2) + ')'; c.shadowBlur = 46*hot*k + 8; }
+    if (hot > 0){ c.shadowColor = 'rgba(239,163,124,' + (0.9*hot).toFixed(2) + ')'; c.shadowBlur = 46*hot*k + 8; }
     pieces.forEach(function(pc){ c.beginPath(); pc.forEach(function(pt, i){ var q = P(pt[0], pt[1]); if (i) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); }); c.closePath(); c.fill(); });
     c.restore();
   }
@@ -978,6 +978,7 @@ BOOK_RUNE_JS = r"""
     }
     if (runeA > 0){
       if (hasFilter){ ctx.save(); ctx.filter = 'blur(' + (18*k).toFixed(1) + 'px)'; ctx.globalCompositeOperation = 'lighter'; drawRune(ctx, upto, w*3, '#DF8E63', (0.45 + 0.4*ig)*runeA*breathe, 'lighter'); ctx.restore(); }
+      else { var off = W + 400; ctx.save(); ctx.setTransform(dpr, 0, 0, dpr, -off*dpr, 0); ctx.shadowOffsetX = off*dpr; ctx.shadowOffsetY = 0; ctx.shadowBlur = 36*k; ctx.shadowColor = 'rgba(223,142,99,' + clamp((0.45 + 0.4*ig)*runeA*breathe).toFixed(3) + ')'; drawRune(ctx, upto, w*3, '#000', 1, 'lighter'); ctx.restore(); }
       drawRune(ctx, upto, w*1.3, '#8C4E2C', runeA); drawRune(ctx, upto, w, ig > 0 ? '#E8996D' : '#DF8E63', runeA);
       drawRune(ctx, upto, w*0.45, '#FFD9B4', (0.5 + 0.4*ig)*runeA, 'lighter');
       if (ig > 0 && ig < 1){

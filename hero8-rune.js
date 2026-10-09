@@ -6,6 +6,8 @@
   var glowC = document.createElement('canvas'), gctx = glowC.getContext('2d');
   var hasFilter = ('filter' in ctx) && (function(){ try { ctx.filter = 'blur(1px)'; var ok = ctx.filter === 'blur(1px)'; ctx.filter = 'none'; return ok; } catch(e){ return false; } })();
   try { ctx.imageSmoothingQuality = 'high'; gctx.imageSmoothingQuality = 'high'; } catch(e){}
+  // Safari has no canvas filter, so there the glow is blurred with a canvas shadow instead, on a canvas at CSS resolution
+  var softC = document.createElement('canvas'), sctx = softC.getContext('2d');
   var root = document.getElementById('root');
   var lockup = document.querySelector('.site-header .lockup svg');
 
@@ -57,11 +59,26 @@
     sx[i] = x; sy[i] = y; svx[i] = Math.cos(a)*sp; svy[i] = Math.sin(a)*sp - 30; sm[i] = 0.22 + Math.random()*0.3; sl[i] = sm[i]; sw[i] = 0.8 + Math.random()*0.8;
   }
 
+  // the same two glow strokes as the filter path, drawn off canvas so only their blurred shadow lands, then added on top
+  function softGlow(blur, alpha, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA){
+    var off = softC.width + 400;
+    sctx.setTransform(1, 0, 0, 1, 0, 0); sctx.globalCompositeOperation = 'source-over'; sctx.clearRect(0, 0, softC.width, softC.height);
+    sctx.globalCompositeOperation = 'lighter'; sctx.shadowBlur = blur*2; sctx.shadowOffsetX = off; sctx.shadowOffsetY = 0;
+    sctx.lineCap = 'round'; sctx.lineJoin = 'round'; sctx.strokeStyle = '#000';
+    [[3.0, '223,142,99', 0.5], [1.3, '239,163,124', 0.55]].forEach(function(g){
+      sctx.setTransform(1, 0, 0, 1, -off, 0); sctx.translate(ox, oy); sctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); sctx.scale(scale, scale);
+      sctx.shadowColor = 'rgba(' + g[1] + ',' + clamp(g[2]*glowA).toFixed(3) + ')';
+      sctx.lineWidth = wBase*g[0]; sctx.beginPath(); tracePath(sctx, upto); sctx.stroke();
+    });
+    ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = alpha; ctx.drawImage(softC, 0, 0, softC.width, softC.height, 0, 0, W, H); ctx.restore();
+  }
+
   var cx = 0, cy = 0, S = 1, narrow = false;
   function layout(){
     W = pin.clientWidth; H = pin.clientHeight;
     canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     glowC.width = Math.round(W*dpr); glowC.height = Math.round(H*dpr); gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    softC.width = Math.max(1, Math.round(W)); softC.height = Math.max(1, Math.round(H));
     narrow = W < 900;
     S = narrow ? Math.min(W*0.62, H*0.30)/110 : Math.min(H*0.62, W*0.30)/110;
     cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.71 : H*0.52;
@@ -119,22 +136,21 @@
     }
     // bloom: the rune drawn wide on a separate canvas, blurred twice
     var k = scale/S;
-    gctx.clearRect(0, 0, W, H);
-    gctx.save(); gctx.translate(ox, oy); gctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); gctx.scale(scale, scale);
     var glowA = ((0.35 + 0.65*lit)*breathe + flare*0.8)*alive*(1 - fl*0.6);
     if (hasFilter){
+      gctx.clearRect(0, 0, W, H);
+      gctx.save(); gctx.translate(ox, oy); gctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); gctx.scale(scale, scale);
       drawRune(gctx, upto, wBase*3.0, '#DF8E63', 0.5*glowA, 'lighter');
       drawRune(gctx, upto, wBase*1.3, '#EFA37C', 0.55*glowA, 'lighter');
-    } else {
-      for (var gl = 0; gl < 7; gl++){ var wf = 1.4 + gl*1.1; drawRune(gctx, upto, wBase*wf, gl < 4 ? '#EFA37C' : '#DF8E63', (0.22 - gl*0.026)*glowA, 'lighter'); }
-    }
-    gctx.restore();
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    if (hasFilter){
+      gctx.restore();
+      ctx.save(); ctx.globalCompositeOperation = 'lighter';
       ctx.filter = 'blur(' + Math.max(2, Math.round(22*Math.min(1.2, k))) + 'px)'; ctx.globalAlpha = 0.9; ctx.drawImage(glowC, 0, 0, glowC.width, glowC.height, 0, 0, W, H);
       ctx.filter = 'blur(' + Math.max(1, Math.round(7*Math.min(1.2, k))) + 'px)'; ctx.globalAlpha = 0.7; ctx.drawImage(glowC, 0, 0, glowC.width, glowC.height, 0, 0, W, H);
-    } else ctx.drawImage(glowC, 0, 0, glowC.width, glowC.height, 0, 0, W, H);
-    ctx.restore();
+      ctx.restore();
+    } else {
+      softGlow(Math.max(2, 22*Math.min(1.2, k))/dpr, 0.9, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
+      softGlow(Math.max(1, 7*Math.min(1.2, k))/dpr, 0.7, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
+    }
     // the rune itself: a deep copper underlay, the copper stroke, a warm inner light
     ctx.save(); ctx.translate(ox, oy); ctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); ctx.scale(scale, scale);
     drawRune(ctx, upto, wBase*1.3, '#8C4E2C', 0.95*alive*(1 - fl*0.8));
