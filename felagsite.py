@@ -156,14 +156,14 @@ OFFERS = [
 OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a "
               "completed sprint. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price.")
 
+# each step: its name, the output it ends with, one short line
 HOW = [
-    ("Workshop", "A free technical workshop with a founder frames the problem, the constraints and the options, and ends with a sprint scope or a clear no."),
-    ("Architecture Sprint", "A paid sprint of one to two weeks with a named principal produces the spec, the architecture decisions, a risk register and costed build options."),
-    ("Decision", "A build decision, ours and the client's, made on the sprint output rather than on a sales call."),
-    ("Pod", "Then a pod on a monthly retainer, or a fixed-price build quoted from the sprint, with delivery running on our own AI-assisted development framework under the named principal's review."),
+    ("Workshop", "The problem, framed.", "Free, with a founder. Ends with a sprint scope or a clear no."),
+    ("Architecture Sprint", "Architecture and a detailed technical proposal.", "One to two weeks with a named principal."),
+    ("Decision", "A fixed scope, agreed together.", "Set by the client and our engineers on the sprint output."),
+    ("Pod", "A team built for the task.", "Formed around the scope and scaled with it."),
 ]
-HOW_NOTE = ("The contract is with Felag and the SOW names the principal who leads the work, with a substitution clause that requires the "
-            "client's consent. Pods are billed monthly in advance and cancel with two weeks' notice.")
+HOW_NOTE = "The principal who leads the work is named in the SOW and changes only with the client's consent."
 
 WHO = [
     ("A post-raise CTO with a hard integration and no senior hire in time", "The Series A or B roadmap has an integration nobody on the team has shipped before, and the senior hire will not land in time. We take the integration as a defined outcome and hand it back documented."),
@@ -217,7 +217,7 @@ FAQ = [
 THEMES = {
     "rune": dict(
         statement_eyebrow="The studio", build_eyebrow="What we build", proof_eyebrow="Proof", wall_eyebrow="Names", more_eyebrow="The record", offer_eyebrow="What it costs",
-        how_eyebrow="How an engagement runs", how_line="Four steps, with a decision at each one, and the mark is complete when the work is.",
+        how_eyebrow="How an engagement runs", how_line="Four steps, each with a clear output.",
         who_eyebrow="Who we work with", people_eyebrow="Who we are", contracting_eyebrow="Contracting and security",
         faq_eyebrow="Questions we are asked", book_eyebrow="Next step",
         book_line="",
@@ -398,8 +398,9 @@ main{position:relative;z-index:1}
 .how-stage{position:relative;margin-top:64px}
 .how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
 .step .k{font-family:var(--mono);font-size:12px;color:var(--accent);display:flex;align-items:center;gap:12px}
-.step h3{font-size:24px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;margin-top:18px}
-.step p{color:var(--text-secondary);margin-top:14px}
+.step .k span{color:var(--text-secondary)}
+.step h3{font-size:clamp(24px,2.1vw,30px);line-height:1.12;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--accent-hover);text-wrap:balance}
+.step p{color:var(--text-secondary);margin-top:12px;font-size:16px;line-height:24px}
 .step{opacity:.25;transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
 .step.on{opacity:1;transform:none}
 .how-mark{width:min(34vw,360px);height:auto;display:block;margin:0 auto}
@@ -557,7 +558,7 @@ def sections(t, theme):
                 f'<div class="pcol"><div class="pk">Terms</div><ul>{"".join(f"<li>{x}</li>" for x in o["terms"])}</ul></div>'
                 f'<div class="pcol"><div class="pk">Who delivers</div><p>{o["who"]}</p></div>')
         panels += f'<article class="panel" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
-    steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}</div><h3>{h}</h3><p>{b}</p></div>' for i, (h, b) in enumerate(HOW))
+    steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}<span>{h}</span></div><h3>{o}</h3><p>{b}</p></div>' for i, (h, o, b) in enumerate(HOW))
     if theme == "rune":
         how_art = ('<svg class="furrow fire" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
                    '<path class="soil" d="M0 80 L1200 80"/>'
