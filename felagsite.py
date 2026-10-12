@@ -288,7 +288,7 @@ main{position:relative;z-index:1}
 .scene-statement .cur{position:absolute;bottom:clamp(40px,8vh,80px);left:var(--side);font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:.04em}
 
 /* ---- build: the mark is the diagram, one piece per thing we build */
-.scene-build{height:calc(100vh + 240vh);position:relative}
+.scene-build{height:calc(100vh + 110vh);position:relative}
 .scene-build .pin{position:sticky;top:0;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:center;padding-top:var(--head)}
 .scene-build .wrap{width:100%}
 .markmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;margin-top:40px}
@@ -303,11 +303,9 @@ main{position:relative;z-index:1}
 .cap.on p{max-height:160px;opacity:1}
 .cap:not(.on) p{margin-top:0}
 .mark-col{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
-.bigmark{width:min(100%,420px);height:auto;display:block;overflow:visible}
-.bigmark path{fill:transparent;stroke:var(--line-strong);stroke-width:.8;transition:fill .5s,stroke .5s,filter .6s}
-.bigmark path.on{fill:var(--accent);stroke:var(--accent)}
-.theme-rune .bigmark path.on{filter:drop-shadow(0 0 18px rgba(239,163,124,.55))}
-.bigmark path.hot{animation:ignite 1.1s ease-out}
+.bigmark{width:min(100%,340px);height:auto;display:block;overflow:visible}
+.bigmark path{fill:rgba(223,142,99,.16);transition:fill .5s}
+.bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
 .skills-foot{margin-top:40px;max-width:70em;font-size:12px;line-height:20px}
 .skills-foot .n{color:var(--accent);margin-right:12px}
@@ -810,7 +808,7 @@ SITE_JS = r'''
     current = idx;
     caps.forEach(function(c, i){ c.classList.toggle('on', i === idx); });
     var piece = caps[idx].getAttribute('data-piece');
-    pieces.forEach(function(pc){ var on = pc.getAttribute('data-piece') === piece; var was = pc.classList.contains('on'); pc.classList.toggle('on', on); if (on && !was){ pc.classList.remove('hot'); void pc.offsetWidth; pc.classList.add('hot'); } });
+    pieces.forEach(function(pc){ pc.classList.toggle('on', pc.getAttribute('data-piece') === piece); });
     if (count) count.textContent = '0' + (idx + 1) + ' / 0' + caps.length;
   });
 })();
