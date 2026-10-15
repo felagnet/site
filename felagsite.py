@@ -6,10 +6,8 @@ import os
 from shared import LOCKUP, CSS, COMMON_JS, STRIP
 _HERE = os.path.dirname(os.path.abspath(__file__))
 def _photo(name):
-    try:
-        return open(os.path.join(_HERE, "photo", "people", name + ".b64.txt")).read().strip()
-    except OSError:
-        return ""
+    # the portraits ship as files under people/, copied there by build_site.py and make_dist.py
+    return name if os.path.exists(os.path.join(_HERE, "photo", "people", name + ".jpg")) else ""
 
 MARK_PATH = "M0 0H32V104H0Z M44 0H66L44 22Z M44 38L82 0H104L44 60Z M44 76L104 16V104H44Z"
 PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76L104 16V104H44Z"]
@@ -283,7 +281,7 @@ main{position:relative;z-index:1}
 .scene-statement{height:230vh}
 .scene-statement .pin{position:sticky;top:0;height:100vh;min-height:640px;display:flex;align-items:flex-start;overflow:hidden;padding-top:calc(var(--head) + 3vh)}
 .statement{font-size:clamp(28px,3.7vw,56px);line-height:1.12;font-weight:600;letter-spacing:-0.03em;max-width:24ch;margin-top:28px}
-.statement .w{display:inline-block;color:var(--text);opacity:.22;will-change:opacity}
+.statement .w{display:inline-block;color:var(--text);opacity:.22}
 .statement .w.hot{color:var(--accent-hover);text-shadow:0 0 28px rgba(223,142,99,.45)}
 .scene-statement .cur{position:absolute;bottom:clamp(40px,8vh,80px);left:var(--side);font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:.04em}
 
@@ -576,7 +574,7 @@ def sections(t, theme):
     for i, p in enumerate(PEOPLE):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in p["links"])
         where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
-        pic = (f'<img src="{p["photo"]}" alt="{p["name"]}" loading="lazy">' if p.get("photo") else silhouette(p["seed"]))
+        pic = (f'<picture><source type="image/webp" srcset="people/{p["photo"]}.webp"><img src="people/{p["photo"]}.jpg" width="800" height="1000" alt="{p["name"]}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
         tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
         people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait" data-tilt>{pic}<div class="light"></div>'
                    f'{tag}</div>'
@@ -974,9 +972,12 @@ BOOK_RUNE_JS = r"""
     pieces.forEach(function(pc){ c.beginPath(); pc.forEach(function(pt, i){ var q = P(pt[0], pt[1]); if (i) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); }); c.closePath(); c.fill(); });
     c.restore();
   }
+  var running = false;
+  function schedule(){ if (!running){ running = true; last = performance.now(); requestAnimationFrame(frame); } }
   function frame(now){
+    running = false;
     var dt = Math.min(0.05, (now - last)/1000); last = now; t += dt;
-    if (!visible){ requestAnimationFrame(frame); return; }
+    if (!visible) return; // look() schedules a frame again when the scene is back on screen
     if (started && !hold) p = Math.min(0.9, (t - t0)*0.25);
     ctx.clearRect(0, 0, W, H);
     // stage 1: the rune draws itself (p 0.05 to 0.42); stage 2: one ignition pulse (0.42 to 0.52); stage 3: it becomes the mark (0.52 to 0.82)
@@ -984,7 +985,7 @@ BOOK_RUNE_JS = r"""
     var ig = clamp((p - 0.42)/0.1);
     var morph = clamp((p - 0.52)/0.3);
     var upto = total*draw, w = 10*scale/8;
-    var runeA = 1 - morph, breathe = 0.95 + 0.05*Math.sin(t*1.2), flare = ig > 0 ? (1 - clamp((p - 0.46)/0.2)) : 0;
+    var done = hold || p >= 0.9, runeA = 1 - morph, breathe = done ? 1 : 0.95 + 0.05*Math.sin(t*1.2), flare = ig > 0 ? (1 - clamp((p - 0.46)/0.2)) : 0;
     if (draw > 0.2){
       var hg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 70*scale);
       hg.addColorStop(0, 'rgba(223,142,99,' + ((0.16*breathe*draw + 0.22*flare)*(1 - morph*0.5)).toFixed(3) + ')'); hg.addColorStop(1, 'rgba(223,142,99,0)');
@@ -1007,13 +1008,14 @@ BOOK_RUNE_JS = r"""
       }
     }
     if (morph > 0) drawMark(ctx, morph, 1 - morph);
-    requestAnimationFrame(frame);
+    // the mark at rest is drawn once; frames run only while the rune is still drawing or igniting
+    if (!done || !started) { running = true; requestAnimationFrame(frame); }
   }
-  requestAnimationFrame(frame);
   var started = false, hold = false, t0 = 0;
-  function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } }
-  window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', look); look(); setTimeout(look, 400);
+  function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } if (visible) schedule(); }
+  window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', function(){ layout(); look(); }); document.addEventListener('visibilitychange', look);
   if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
+  look(); setTimeout(look, 400);
 })();
 """
 

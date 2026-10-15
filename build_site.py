@@ -33,6 +33,12 @@ pages = {
     extra_css=".veil-left{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(14,17,20,.86) 0%,rgba(14,17,20,.55) 34%,rgba(14,17,20,0) 60%)}@media (max-width:900px){.veil-left{background:linear-gradient(180deg,rgba(14,17,20,.82) 0%,rgba(14,17,20,.45) 45%,rgba(14,17,20,0) 70%)}}",
     scripts_before=three),
 }
+# the portraits, as files next to the page
+PEOPLE_DIR = os.path.join(OUT, "people"); os.makedirs(PEOPLE_DIR, exist_ok=True)
+for fn in sorted(os.listdir(os.path.join(HERE, "photo", "people"))):
+    if fn.endswith((".jpg", ".webp")) and not fn.endswith("-src.jpg"):
+        with open(os.path.join(HERE, "photo", "people", fn), "rb") as src, open(os.path.join(PEOPLE_DIR, fn), "wb") as dst:
+            dst.write(src.read())
 for name, html in pages.items():
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(html)

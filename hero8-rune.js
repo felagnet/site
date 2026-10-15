@@ -99,10 +99,17 @@
   root.classList.add('mark-pending');
   if (reduce) setArrived(true);
 
+  // frames run only while the hero is on screen and the rune is alive; the clock pauses in between
+  var running = false, pausedAt = 0;
+  function schedule(){ if (running) return; running = true; if (pausedAt){ t0 += performance.now() - pausedAt; pausedAt = 0; } last = performance.now(); requestAnimationFrame(frame); }
+  function onScroll(){ if (!reduce){ var pp = heroProgress(); setArrived(pp >= 0.29); root.classList.toggle('over-hero', pp < 0.3); } schedule(); }
+  window.addEventListener('scroll', onScroll, {passive: true}); window.addEventListener('resize', schedule); document.addEventListener('visibilitychange', schedule);
+  window.addEventListener('pointermove', schedule, {passive: true});
   function frame(now){
+    running = false;
     var dt = Math.min(0.05, (now - last)/1000); last = now;
     var pr = pin.getBoundingClientRect();
-    if (pr.bottom <= 0 || pr.top >= window.innerHeight || document.hidden){ t0 += dt*1000; if (!reduce){ var pp = heroProgress(); setArrived(pp >= 0.29); root.classList.toggle('over-hero', pp < 0.3); } requestAnimationFrame(frame); return; }
+    if (pr.bottom <= 0 || pr.top >= window.innerHeight || document.hidden){ pausedAt = now; return; }
     // sp drives the text fade and the header; p drives the flight, and is held at 0 under reduced motion
     var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce ? 0 : sp;
     root.classList.toggle('over-hero', sp < 0.3);
@@ -125,7 +132,7 @@
     if (!reduce) setArrived(p >= 0.29);
 
     ctx.clearRect(0, 0, W, H);
-    if (alive <= 0){ requestAnimationFrame(frame); return; }
+    if (alive <= 0) return; // the rune has landed in the header; scrolling back up schedules the next frame
     // halo behind the lit rune
     if (lit > 0 || ig > 0){
       var hr = 320*Math.min(S, 3.2)*(1 - fl*0.85);
@@ -182,7 +189,9 @@
       ctx.beginPath(); ctx.moveTo(x0 - svx[i]*dt*2.2, y0 - svy[i]*dt*2.2); ctx.lineTo(sx[i], sy[i]); ctx.stroke();
     }
     ctx.restore();
-    requestAnimationFrame(frame);
+    // under reduced motion the rune is still; it only needs a frame while the pointer tilt is settling
+    var settling = Math.abs(target.x - mouse.x) + Math.abs(target.y - mouse.y) > 0.002;
+    if (!reduce || settling){ running = true; requestAnimationFrame(frame); }
   }
-  requestAnimationFrame(frame);
+  schedule();
 })();

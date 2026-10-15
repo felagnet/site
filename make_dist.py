@@ -1,5 +1,5 @@
 """Assemble dist/, the folder GitHub Pages serves: the rune page as index.html, plus CNAME, .nojekyll,
-robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png, og.png and 404.html. Standard library only.
+robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png, og.png, 404.html and the portraits under people/. Standard library only.
 Run after build_site.py. The harvest page is a kept prototype and is not copied."""
 
 import datetime
@@ -93,14 +93,20 @@ def main():
     shutil.copyfile(page, os.path.join(DIST, "index.html"))
     for img in images:
         shutil.copyfile(img, os.path.join(DIST, os.path.basename(img)))
+    people = os.path.join(OUT, "people")
+    if not os.path.isdir(people):
+        sys.exit("out/people is missing; run python3 build_site.py first")
+    shutil.copytree(people, os.path.join(DIST, "people"))
     write("CNAME", DOMAIN)
     write(".nojekyll", "")
     write("robots.txt", ROBOTS)
     write("sitemap.xml", SITEMAP.format(site=SITE, date=datetime.date.today().isoformat()))
     write("favicon.svg", FAVICON)
     write("404.html", PAGE_404)
-    for name in sorted(os.listdir(DIST)):
-        print("dist/" + name, os.path.getsize(os.path.join(DIST, name)))
+    for root, _, files in sorted(os.walk(DIST)):
+        for name in sorted(files):
+            p = os.path.join(root, name)
+            print(os.path.relpath(p, HERE), os.path.getsize(p))
 
 
 if __name__ == "__main__":

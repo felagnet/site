@@ -41,7 +41,8 @@ PEOPLE_LINKS = {
     "Andrey Solovov": ["LinkedIn", "GitHub"],
 }
 DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "favicon.svg",
-              "apple-touch-icon.png", "og.png", "404.html"]
+              "apple-touch-icon.png", "og.png", "404.html"] + [
+              f"people/{n}.{ext}" for n in ("andrew", "mike", "pavel", "andrey") for ext in ("jpg", "webp")]
 VIEWPORTS = [(1440, 900), (1728, 1117), (390, 844)]
 GL_NOISE = re.compile(r"GL Driver Message|GPU stall|GroupMarkerNotSet|swiftshader|ANGLE|WebGL", re.I)
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -110,7 +111,7 @@ class Page(HTMLParser):
         if tag == "link":
             self.links.append(a)
         if self.people_depth:
-            n = sum(v.count("data:image/jpeg;base64") for v in a.values())
+            n = 1 if tag == "img" and a.get("src", "").startswith("people/") and a.get("src", "").endswith(".jpg") else 0
             self.people_jpegs += n
             if self.card_depth:
                 self.cards[-1]["jpegs"] += n
@@ -201,7 +202,7 @@ def static_checks(html, page):
     row("Every mailto is info@felag.net", bool(mails) and not other,
         ", ".join(other) if other else "no mailto found")
 
-    row("Four portraits in #people", page.people_jpegs == 4, f"{page.people_jpegs} JPEG data URIs inside #people")
+    row("Four portraits in #people", page.people_jpegs == 4, f"{page.people_jpegs} portrait files inside #people")
     no_photo = [c["name"].strip() for c in page.cards if c["jpegs"] != 1]
     if no_photo:
         row("Each People card has its portrait", False, ", ".join(no_photo))
