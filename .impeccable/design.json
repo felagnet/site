@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T00:00:00Z",
+  "title": "Design System: Felag",
+  "extensions": {
+    "colorMeta": {
+      "iron": { "role": "neutral", "displayName": "Iron", "canonical": "oklch(18% 0.008 248)", "tonalRamp": ["#090B0E", "#222529", "#3F4246", "#5E6266", "#7F8387", "#A1A5AA", "#C5CACE", "#EAEFF4"] },
+      "slate": { "role": "neutral", "displayName": "Slate", "canonical": "oklch(21% 0.011 242)", "tonalRamp": ["#070C0F", "#21262A", "#3D4347", "#5C6267", "#7D8388", "#9FA6AB", "#C3CAD0", "#E8F0F5"] },
+      "seam": { "role": "neutral", "displayName": "Seam", "canonical": "oklch(29% 0.012 243)", "tonalRamp": ["#070C10", "#20262B", "#3D4348", "#5B6268", "#7C8389", "#9FA6AC", "#C3CAD1", "#E8F0F6"] },
+      "steel": { "role": "neutral", "displayName": "Steel", "canonical": "oklch(52% 0.016 241)", "tonalRamp": ["#060C11", "#1E262C", "#3B434A", "#5A6369", "#7A848B", "#9DA7AE", "#C1CBD3", "#E6F0F8"] },
+      "ash": { "role": "neutral", "displayName": "Ash", "canonical": "oklch(94% 0.004 236)", "tonalRamp": ["#0A0B0D", "#232527", "#404244", "#5F6263", "#808384", "#A3A5A7", "#C7C9CB", "#ECEFF1"] },
+      "smoke": { "role": "neutral", "displayName": "Smoke", "canonical": "oklch(70% 0.015 241)", "tonalRamp": ["#060C11", "#1F262C", "#3B4349", "#5A6269", "#7B848A", "#9DA6AD", "#C1CBD2", "#E6F0F8"] },
+      "copper": { "role": "primary", "displayName": "Copper", "canonical": "oklch(72% 0.115 48)", "tonalRamp": ["#2A0000", "#4D0400", "#702900", "#944A1D", "#B96B41", "#DF8E63", "#FFB286", "#FFD7AA"] },
+      "hot-copper": { "role": "primary", "displayName": "Hot copper", "canonical": "oklch(78% 0.105 48)", "tonalRamp": ["#280000", "#4A0A00", "#6C2C00", "#904C26", "#B56E48", "#DB906A", "#FFB48D", "#FFDAB1"] },
+      "deep-copper": { "role": "primary", "displayName": "Deep copper", "canonical": "oklch(49% 0.096 48)", "tonalRamp": ["#260000", "#470F00", "#692F08", "#8D4F2D", "#B1704E", "#D7936F", "#FDB692", "#FFDCB6"] },
+      "ember": { "role": "primary", "displayName": "Ember", "canonical": "oklch(93% 0.053 68)", "tonalRamp": ["#190500", "#361F04", "#553D22", "#755C40", "#987D60", "#BC9F82", "#E1C3A5", "#FFE9CA"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The one huge statement per page, max 11ch." },
+      "headline": { "displayName": "Headline", "purpose": "Every section h2 and the hero h1, max 15ch, with the 120 px copper rule under it in the rune theme." },
+      "title": { "displayName": "Title", "purpose": "Card titles; panels, capabilities, people and situations scale it up or down." },
+      "metric": { "displayName": "Metric", "purpose": "The big numbers in proof and the prices in offer panels, always tabular lining figures." },
+      "body": { "displayName": "Body", "purpose": "Reading text at 16/26, 34 to 56em; cards and panels at 17/27." },
+      "label": { "displayName": "Label", "purpose": "Mono eyebrows, kickers, years, counts, identifiers and the skills line." }
+    },
+    "shadows": [
+      { "name": "panel-lift", "value": "0 -20px 60px rgba(14,17,20,.6)", "purpose": "Iron shadow above each sticky offer panel so the stack reads as sheets. The only grey shadow in the system." },
+      { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s. The how-mark pieces use 22 px." },
+      { "name": "title-rule-glow", "value": "0 0 16px rgba(239,163,124,.7), 0 0 4px rgba(255,225,194,.9)", "purpose": "On the 2 px copper rule as it grows under a headline; cooled to none after 1.25 s." },
+      { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number arriving ember; cools to ash over 2 s." },
+      { "name": "warm-halo", "value": "0 0 22px rgba(239,163,124,.45)", "purpose": "Text shadow on a held state: the open capability, a hovered or selected name, the hot word in the statement." },
+      { "name": "marker-glow", "value": "0 0 14px rgba(239,163,124,.6)", "purpose": "The lit era diamond; the era line fill uses 12 px at .5." },
+      { "name": "card-bloom", "value": "radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)", "purpose": "Copper wash from the top right of a proof card on hover." }
+    ],
+    "motion": [
+      { "name": "ease-house", "value": "cubic-bezier(.2, .7, .2, 1)", "purpose": "Every transition and reveal on the page." },
+      { "name": "ease-in-out-cubic", "value": "x < 0.5 ? 4x^3 : 1 - (-2x + 2)^3 / 2", "purpose": "The hero canvas: stroke drawing and the flight of the rune to the header." },
+      { "name": "reveal", "value": "opacity .7s ease, transform .7s ease-house, from translateY(28px)", "purpose": "Section content arriving; staggered 90 ms per item." },
+      { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons." },
+      { "name": "lift", "value": "transform .5s ease-house, border-color .4s", "purpose": "Situation card hover, 6 px up." },
+      { "name": "underline", "value": "transform .45s ease-house, scaleX from 0 at the left", "purpose": "Names wall hover underline." },
+      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Mark landing, title rule, metric burn, how-mark pieces." },
+      { "name": "ticker", "value": "46s linear infinite", "purpose": "The names strip in proof." },
+      { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no ticker, no reveal." }
+    ],
+    "breakpoints": [
+      { "name": "two-column", "value": "1100px" },
+      { "name": "single-column", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action on the page, a copper slab with iron text.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Write to us</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 28px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border-radius: 2px; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; transition: background-color .15s; } .ds-btn-primary:hover { background: var(--accent-hover, #EFA37C); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; }"
+    },
+    {
+      "name": "Small button",
+      "kind": "button",
+      "refersTo": "button-small",
+      "description": "The header variant of the primary button.",
+      "html": "<a class=\"ds-btn-small\" href=\"#\">Write to us</a>",
+      "css": ".ds-btn-small { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border-radius: 2px; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color .15s; } .ds-btn-small:hover { background: var(--accent-hover, #EFA37C); } .ds-btn-small:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Copper with a thin offset underline; the secondary action beside a button.",
+      "html": "<a class=\"ds-link\" href=\"#\">See prices</a>",
+      "css": ".ds-link { color: var(--accent, #DF8E63); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .15s; } .ds-link:hover { color: var(--accent-hover, #EFA37C); } .ds-link:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Smoke text links and the small button, on the sticky iron header.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\">Proof</a><a href=\"#\">Offer</a><a href=\"#\">How</a><a href=\"#\">People</a></div><a class=\"ds-nav-btn\" href=\"#\">Write to us</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 36px; height: 72px; padding: 0 24px; background: var(--bg, #0E1114); border-bottom: 1px solid var(--line, #262C31); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-nav-links { display: flex; gap: 36px; } .ds-nav-links a { font-size: 15px; font-weight: 500; color: var(--text-secondary, #98A1A8); text-decoration: none; transition: color .15s; } .ds-nav-links a:hover { color: var(--text, #E9ECEE); } .ds-nav-links a:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; } .ds-nav-btn { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border-radius: 2px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background-color .15s; } .ds-nav-btn:hover { background: var(--accent-hover, #EFA37C); }"
+    },
+    {
+      "name": "Eyebrow",
+      "kind": "chip",
+      "refersTo": "eyebrow",
+      "description": "Mono label with a copper dash, 24 px above every headline.",
+      "html": "<p class=\"ds-eyebrow\">What we build</p>",
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 14px; margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; letter-spacing: .04em; color: var(--text-secondary, #98A1A8); } .ds-eyebrow::before { content: ''; display: inline-block; width: 22px; height: 1px; background: var(--accent, #DF8E63); }"
+    },
+    {
+      "name": "Proof card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A slate slab with a hairline, a copper kicker and a copper bloom on hover.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-idx\">01</span><p class=\"ds-card-kicker\">Launched August 2024</p><h3 class=\"ds-card-title\">Wirex Pay</h3><p class=\"ds-card-body\">We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer behind its non-custodial debit cards.</p><div class=\"ds-card-foot\"><a class=\"ds-card-link\" href=\"#\">L2BEAT listing</a><span class=\"ds-card-era\">Gateway.fm, 2024</span></div></article>",
+      "css": ".ds-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; max-width: 520px; min-height: 360px; padding: 36px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%); opacity: 0; transition: opacity .5s; pointer-events: none; } .ds-card:hover::before { opacity: 1; } .ds-card-idx { position: absolute; right: 28px; top: 28px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-card-kicker { margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .02em; color: var(--accent, #DF8E63); } .ds-card-title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; } .ds-card-body { margin: 0; font-size: 17px; line-height: 27px; color: var(--text-secondary, #98A1A8); } .ds-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; gap: 16px; } .ds-card-link { font-size: 15px; color: var(--accent, #DF8E63); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; } .ds-card-link:hover { color: var(--accent-hover, #EFA37C); } .ds-card-era { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); }"
+    },
+    {
+      "name": "Situation card",
+      "kind": "card",
+      "refersTo": "situation-card",
+      "description": "A numbered slate card that lifts 6 px on hover.",
+      "html": "<article class=\"ds-sit\"><span class=\"ds-sit-n\">03</span><h3 class=\"ds-sit-title\">A regulated payments or asset issuer rebuilding for a new regime</h3><p class=\"ds-sit-body\">The regime has changed what the system must record and prove, and the team needs engineers who have built for one before.</p></article>",
+      "css": ".ds-sit { display: flex; flex-direction: column; gap: 14px; max-width: 400px; padding: 32px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .4s; } .ds-sit:hover { transform: translateY(-6px); border-color: var(--line-strong, #616A71); } .ds-sit-n { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--accent, #DF8E63); } .ds-sit-title { margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; } .ds-sit-body { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
+    },
+    {
+      "name": "Key-value row",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "The record, facts and wall detail rows: mono key, ash value, seam rules.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-row\"><div class=\"ds-row-k\">Named principal</div><div class=\"ds-row-v\">Every contract names the principal who leads the work. Substitution needs the client's consent.</div></div><div class=\"ds-row\"><div class=\"ds-row-k\">Billing</div><div class=\"ds-row-v\">No hourly billing. Retainers are paid monthly in advance; sprints are paid in advance.</div></div></div>",
+      "css": ".ds-rows { border-top: 1px solid var(--line, #262C31); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: var(--text, #E9ECEE); } .ds-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line, #262C31); } .ds-row-k { padding-top: 3px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-row-v { font-size: 18px; line-height: 28px; }"
+    },
+    {
+      "name": "FAQ item",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "Native disclosure with the steel ring whose plus turns copper when open.",
+      "html": "<details class=\"ds-faq\"><summary><span>Do you bill by the hour?</span><i></i></summary><p>No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free.</p></details>",
+      "css": ".ds-faq { border-top: 1px solid var(--line, #262C31); border-bottom: 1px solid var(--line, #262C31); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: var(--text, #E9ECEE); } .ds-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary i { flex: 0 0 28px; width: 28px; height: 28px; border: 1px solid var(--line-strong, #616A71); border-radius: 50%; position: relative; transition: transform .4s, border-color .3s; } .ds-faq summary i::before, .ds-faq summary i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 1px; background: var(--text, #E9ECEE); transform: translate(-50%, -50%); } .ds-faq summary i::after { transform: translate(-50%, -50%) rotate(90deg); } .ds-faq[open] summary i { transform: rotate(45deg); border-color: var(--accent, #DF8E63); } .ds-faq summary:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; } .ds-faq p { margin: 0; padding: 0 0 28px; font-size: 17px; line-height: 28px; color: var(--text-secondary, #98A1A8); max-width: 56em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The forge at rest",
+    "overview": "Dark iron ground and one copper element that has just cooled. The page is a large, exact, unhurried surface: oversized Schibsted Grotesk headings on long measures, hairlines instead of boxes, IBM Plex Mono for the small labels that date and number things, and copper as the only colour. Nothing moves unless the scroll asks it to, and when it does, the movement is a single idea: copper heats to ember, flares, and cools back to copper within two seconds. The mark is the only thing on the page that was ever hot.\n\nThe mark is Fehu drawn as the counterform of a square, four solid pieces and three channels, read as a geometric symbol first and a rune second. It carries the whole identity: it draws itself in the hero, lands in the header, becomes the diagram of what we build, and reassembles in the closing scene. Everything else defers to it.",
+    "keyCharacteristics": [
+      "Dark only on the site. Iron ground, slate surfaces, seam hairlines.",
+      "Copper is the single accent and it works hard: the mark, links, the primary button, eyebrow dashes, numbers that matter, one emphasis per section.",
+      "Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.",
+      "Copper light is part of the system: ignition flashes on arrival, warm blooms on hover, the soft iron shadow that separates stacked panels. Never on a body surface at rest.",
+      "Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
+    ],
+    "rules": [
+      { "name": "The One Metal Rule", "body": "Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.", "section": "colors" },
+      { "name": "The Cooling Rule", "body": "Ember appears only as the start of a transition that ends in copper or ash. If an element is ember or glowing after two seconds, it is a defect.", "section": "colors" },
+      { "name": "The Text-on-Copper Rule", "body": "Text on a copper fill is always iron, never ash and never white.", "section": "colors" },
+      { "name": "The Tabular Rule", "body": "Every number, price and metric sets tabular lining figures.", "section": "typography" },
+      { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
+      { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
+      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition or a held state: arrival, hover, selection, the current step. A surface at rest shows no glow and no grey shadow, except the panel lift that separates a stack.", "section": "elevation" },
+      { "name": "The Copper Light Rule", "body": "Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.",
+      "Do build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.",
+      "Do use tabular lining figures on every number, price and metric.",
+      "Do let copper light mark a transition or a held state: ignite at ember, cool to copper or ash within two seconds, bloom on hover.",
+      "Do use the house ease, cubic-bezier(.2, .7, .2, 1), and reveal with a 28 px rise over 0.7 s, staggered 90 ms.",
+      "Do show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.",
+      "Do collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens."
+    ],
+    "donts": [
+      "Don't put a glow, a grey shadow or a gradient on a surface at rest. The panel lift that separates stacked sheets is the one exception.",
+      "Don't add a second accent, a status colour, purple, neon green, or any white glow.",
+      "Don't rotate the mark, recolour a piece, round its corners, fill a channel, or place it on a photograph.",
+      "Don't use runic alphabets as decoration, Norse imagery, hexagons, chains and nodes, circuit patterns, isometric cubes, stock photography or emoji.",
+      "Don't set anything in uppercase, use a pill, a corner above 4 px, a border heavier than 1 px, or a font other than Schibsted Grotesk and IBM Plex Mono.",
+      "Don't write an em dash or an exclamation mark anywhere, including code comments."
+    ]
+  }
+}
