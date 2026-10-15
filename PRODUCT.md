@@ -26,7 +26,7 @@ Success for a visit is an email to info@felag.net asking for the free technical 
 
 Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, priced on outcomes rather than hours. Both lines are locked in core.md, used verbatim on the site, LinkedIn and proposal covers, and are never edited by an agent.
 
-The statement under "The studio" is the one sentence from core.md, confirmed by Mike and locked (Andrew, 15 October 2026). core.md still carries a "Mike to confirm before public use" note on it, which is stale and is for a founder to update.
+The statement under "The studio" is the one sentence from core.md, locked by both founders (Andrew, 15 and 16 October 2026). core.md still carries a "Mike to confirm before public use" note on it, which is stale; a founder updates it there.
 
 What a neighbouring agency cannot truthfully copy:
 
@@ -46,7 +46,7 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 
 ## Capabilities and Constraints
 
-- One page, in this order: hero, the studio statement, what we build (four capabilities mapped to the four pieces of the mark), proof, names wall, the record in three eras, what it costs, how an engagement runs, who we work with, who we are, contracting and security, questions, next step, footer.
+- One page, in this order: hero, the studio statement, what we build (four capabilities mapped to the four pieces of the mark), proof, names wall, the record in three eras, what it costs, how an engagement runs, who we work with, who we are, questions, next step, footer.
 - Offers and prices on the page come from rate-card.md: free technical workshop; Architecture Sprint $7.5k launch price, list $15k; Fractional CTO from $4k a month; pods $10k to $60k a month; technical due diligence quoted per scope. Prices in USD excluding VAT.
 - Copy is locked for agents. A suggested copy change goes to .impeccable/review/copy-notes.md, not to the source.
 - Wording rules enforced by check.py: never "passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "four people", "Talk to a founder", "sold to", "Andrei" or "Georgia". No em dashes and no exclamation marks anywhere, including comments and commit messages. Sentence case.
@@ -57,7 +57,7 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 
 Open decisions, recorded, not invented:
 
-- The three Contracting rows that ship as bracketed placeholders (Subcontracting and IP, Incident contact, DORA and ICT vendor pack) are not wanted on the site. Andrew's decision, 15 October 2026; he removes them himself. Logged in .impeccable/review/copy-notes.md.
+- A Contracting section (legal entity, principals, named principal, contractors, billing, and three bracketed placeholders) is built by felagsite.py but never placed on the page, so none of it is public. Andrew does not want it on the site (15 October 2026) and leaves the source as it is. Logged in .impeccable/review/copy-notes.md.
 - positioning.md is draft 0.3.2 and unlocked: the supporting paragraph, the three verb-phrase families and their order, and the three sprint scopes in offers.md are not on the site until both founders lock them.
 - The rate-card review (two-principal pod as default, sprint at the top of its band) is open; the site follows the published card.
 - An EU contracting wrapper (NL BV) is undecided; nothing on the site promises EU establishment.
