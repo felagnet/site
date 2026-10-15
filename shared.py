@@ -6,13 +6,16 @@ LOCKUP = '''<svg viewBox="0 0 451.76 143.17" role="img" aria-label="Felag" focus
 CSS = '''
 :root{
   --bg:#0E1114;--surface:#151A1E;--line:#262C31;--line-strong:#616A71;--text:#E9ECEE;--text-secondary:#98A1A8;
-  --accent:#DF8E63;--accent-hover:#EFA37C;--on-accent:#0E1114;--copper-deep:#8C4E2C;--steel:#7C93A6;
+  --accent:#DF8E63;--accent-hover:#EFA37C;--on-accent:#0E1114;--copper-deep:#8C4E2C;--ember:var(--ember);
+  --copper-rgb:223,142,99;--hot-rgb:239,163,124;--ember-rgb:255,225,194;--deep-rgb:140,78,44;--iron-rgb:14,17,20;
+  --dim:.5;
   --sans:"Schibsted Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   --side:clamp(16px,6vw,120px);--head:72px;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scrollbar-color:var(--line-strong) var(--bg)}
+::selection{background:var(--accent);color:var(--on-accent)}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:26px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3,p{margin:0}
 a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;transition:color .15s,background-color .15s}
@@ -26,7 +29,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .btn-sm{height:44px;padding:0 20px;font-size:15px}
 .textlink{font-size:16px;font-weight:500}
 .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);transition:background-color .4s,border-color .4s}
-.over-hero .site-header{background:linear-gradient(180deg,rgba(14,17,20,.92) 0%,rgba(14,17,20,.55) 70%,rgba(14,17,20,0) 100%);border-color:transparent}
+.over-hero .site-header{background:linear-gradient(180deg,rgba(var(--iron-rgb),.92) 0%,rgba(var(--iron-rgb),.55) 70%,rgba(var(--iron-rgb),0) 100%);border-color:transparent}
 .mark-pending .site-header .mark-fill{opacity:0;transition:opacity .5s}
 .mark-arrived .site-header .mark-fill{opacity:1}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--head)}

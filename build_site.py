@@ -21,7 +21,7 @@ pages = {
     sub="A principal-led studio for technology companies, priced on outcomes rather than hours.",
     scene_markup='<canvas id="scene" class="scene" aria-hidden="true"></canvas><div class="vignette" aria-hidden="true"></div>',
     scene_script=js("hero8-rune.js"),
-    extra_css=".vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 100% at 72% 50%,rgba(14,17,20,0) 45%,rgba(14,17,20,.7) 100%)}"),
+    extra_css=".vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 100% at 72% 50%,rgba(var(--iron-rgb),0) 45%,rgba(var(--iron-rgb),.7) 100%)}"),
   "felag-harvest.html": full_page(
     theme="harvest",
     title="Felag, the work is measured at the harvest, not by the hour",

@@ -135,7 +135,7 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 - **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, eyebrow dashes, the copper half of progress rules, prices, lit markers, the "em" inside a metric.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, the active word in the statement, the heading of an open capability, step titles. Also the colour of the hover glow at 40 to 95 percent alpha.
 - **Deep copper** (#8C4E2C): the cold end of the copper gradient on title rules, and the border and wash of the turn-down block.
-- **Ember** (#FFE1C2): the flash colour. The first frame of every ignition (mark, title rule, metric, fire path) and the bright end of the names-wall underline. Never a resting colour.
+- **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, title rule, metric, fire path) and the bright end of the names-wall underline. Never a resting colour.
 
 ### Neutral
 - **Iron** (#0E1114): the page background, the text on copper buttons, the fill of unlit era markers, and the colour of the shadow that lifts a stacked panel.
@@ -144,6 +144,8 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 - **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, the hover border of a situation card.
 - **Ash** (#E9ECEE): primary text and the wordmark.
 - **Smoke** (#98A1A8): secondary text, lead paragraphs, labels, eyebrows, nav links at rest, protocol names on the wall.
+
+Every copper light in CSS is written from the tokens `--copper-rgb`, `--hot-rgb`, `--ember-rgb` and `--deep-rgb`, and every veil from `--iron-rgb`, so the family moves together. Only the canvas scripts carry literal values.
 
 ### Named Rules
 **The One Metal Rule.** Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.
@@ -170,6 +172,12 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 - **Body** (400, 16px/26px): reading text, max 34 to 56em depending on the block; card and panel body at 17/27.
 - **Label** (400 mono, 12 to 13px, 0.04em where it is an eyebrow): eyebrows with a 22 px copper dash before them, kickers in copper, years and counts in smoke.
 
+### Size steps
+Fixed sizes in use, all on the house faces: 12 and 13 px mono for labels and kickers, 14 px for the footer, 15 px for nav and small links, 16 px body, 17 px for card and panel body, 18 px for key-value values and era intros, 19 px for record case titles, 21 px for situation titles, 22 px for the lead cap. Fluid sizes run through clamp() and are listed with their roles above. A new size joins this list before it ships.
+
+### Dim states
+Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower.
+
 ### Named Rules
 **The Tabular Rule.** Every number, price and metric sets tabular lining figures.
 
@@ -187,7 +195,7 @@ Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px ever
 
 ## Elevation & Depth
 
-The system is flat by structure and lit by state. Depth comes from the three greys (iron, slate, seam) and from copper light, not from grey shadows on resting surfaces.
+The system is flat by structure and lit by state. Depth comes from the three greys (iron, slate, seam) and from copper light, not from grey shadows on resting surfaces. Text selection is copper with iron text, and the scrollbar is steel on iron.
 
 ### Shadow Vocabulary
 - **Panel lift** (`box-shadow: 0 -20px 60px rgba(14,17,20,.6)`): an iron shadow above each sticky offer panel so the stack reads as sheets sliding over each other. The only grey shadow in the system.
