@@ -135,7 +135,7 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 - **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, eyebrow dashes, the copper half of progress rules, prices, lit markers, the "em" inside a metric.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, the active word in the statement, the heading of an open capability, step titles. Also the colour of the hover glow at 40 to 95 percent alpha.
 - **Deep copper** (#8C4E2C): the cold end of the copper gradient on title rules, and the border and wash of the turn-down block.
-- **Ember** (#FFE1C2): the flash colour. The first frame of every ignition (mark, title rule, metric, how-mark pieces) and the bright end of the names-wall underline. Never a resting colour.
+- **Ember** (#FFE1C2): the flash colour. The first frame of every ignition (mark, title rule, metric, fire path) and the bright end of the names-wall underline. Never a resting colour.
 
 ### Neutral
 - **Iron** (#0E1114): the page background, the text on copper buttons, the fill of unlit era markers, and the colour of the shadow that lifts a stacked panel.
@@ -191,12 +191,12 @@ The system is flat by structure and lit by state. Depth comes from the three gre
 
 ### Shadow Vocabulary
 - **Panel lift** (`box-shadow: 0 -20px 60px rgba(14,17,20,.6)`): an iron shadow above each sticky offer panel so the stack reads as sheets sliding over each other. The only grey shadow in the system.
-- **Ignition** (`drop-shadow(0 0 16px rgba(239,163,124,.95))` to `0`): the flash when the mark lands in the header, when a how-mark piece arrives (22 px) and when the fire path lights (8 to 10 px). Starts at ember, ends with no shadow.
+- **Ignition** (`drop-shadow(0 0 16px rgba(239,163,124,.95))` to `0`): the flash when the mark lands in the header, and the fire path in the how scene (8 to 10 px). Starts at ember, ends with no shadow.
 - **Title rule glow** (`0 0 16px rgba(239,163,124,.7), 0 0 4px rgba(255,225,194,.9)`): on the 2 px copper rule as it grows, cooled to none after 1.25 s.
 - **Metric burn** (`text-shadow: 0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)` to `0`): the big numbers arrive ember and cool to ash over 2 s.
 - **Warm halo** (`text-shadow: 0 0 22px rgba(239,163,124,.4 to .45)`): the open capability title, a hovered or selected name on the wall, the hot word in the statement. State glow, present while the state holds.
 - **Marker glow** (`0 0 12px to 14px rgba(239,163,124,.5 to .6)`): the lit era diamond and the copper fill of the era line.
-- **Card bloom** (`radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)`): a copper wash from the top right corner of a proof card on hover, and the same tint at 16 percent behind the how-mark while it assembles.
+- **Card bloom** (`radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)`): a copper wash from the top right corner of a proof card on hover.
 - **Hero bloom**: the rune on the canvas is drawn wide on a second canvas and blurred twice (22 px and 7 px) at 90 and 70 percent alpha. Safari has no canvas filter, so there the same glow is a canvas shadow blur; keep that fallback.
 
 ### Named Rules
@@ -206,7 +206,7 @@ The system is flat by structure and lit by state. Depth comes from the three gre
 
 ## Shapes
 
-Square by default. Corners are 0, 2 px on buttons and the skip link, 4 px on cards, panels, portraits and the turn-down block, and never more. Borders are 1 px hairlines in seam, stepping up to steel for controls and markers, to copper when lit and to deep copper for the turn-down block. The only circle on the page is the 28 px FAQ disclosure icon, a steel ring whose plus turns 45 degrees and goes copper when open. Markers are small squares: 5 to 7 px copper squares before list items and ticker names, an 11 px square rotated 45 degrees on the era line. Progress rules are 1 px lines that fill from seam to copper. Portraits are 4:5 wells with a 4 px radius and a warm radial light that follows the cursor.
+Square by default. Corners are 0, 2 px on buttons and the skip link, 4 px on cards, panels, portraits and the turn-down block, and never more. Borders are 1 px hairlines in seam, stepping up to steel for controls and markers, to copper when lit and to deep copper for the turn-down block. The only circle on the page is the 28 px FAQ disclosure icon, a steel ring whose plus turns 45 degrees and goes copper when open. Markers are small squares: 5 to 7 px copper squares before list items, an 11 px square rotated 45 degrees on the era line. Progress rules are 1 px lines that fill from seam to copper. Portraits are 4:5 wells with a 4 px radius and a warm radial light that follows the cursor.
 
 ## Components
 
@@ -244,16 +244,13 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Style:** sticky 72 px header, lockup at 38 px on the left with the mark in copper and the wordmark in ash, four smoke text links and the small primary button on the right. Transparent over the hero, iron with a seam rule once the mark has landed. Under 900 px only the lockup and the button remain. A skip link appears at the top left on focus.
 
 ### The mark
-- **Signature component.** Four copper pieces, three channels, the geometry fixed. Draws itself stroke by stroke in the hero canvas, blooms, and lands in the header with a 1.1 s ember flash. In the build scene it is the diagram: pieces at 16 percent copper fill light to full copper one at a time as the matching capability opens. In the how scene the pieces slide in from 26 to 30 px offsets and ignite. In the closing scene it reassembles on a canvas. Reduced motion shows every mark finished and still. Never rotate it, recolour a piece, round a corner or fill a channel; its glow follows the Elevation rules above.
+- **Signature component.** Four copper pieces, three channels, the geometry fixed. Draws itself stroke by stroke in the hero canvas, blooms, and lands in the header with a 1.1 s ember flash. In the build scene it is the diagram: pieces at 16 percent copper fill light to full copper one at a time as the matching capability opens. In the closing scene it reassembles on a canvas. Reduced motion shows every mark finished and still. Never rotate it, recolour a piece, round a corner or fill a channel; its glow follows the Elevation rules above.
 
 ### Names wall
 - **Style:** names as borderless buttons in semibold ash at clamp(28px, 3.6vw, 56px) for clients and clamp(18px, 1.9vw, 28px) smoke for protocols, wrapped with a 10 by 14 px gap. Hover or selection turns the name hot copper with a warm halo and draws a 2 px copper-to-ember underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
 
 ### Record line
 - **Style:** a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper and glows when lit, era names at headline scale, cases as key-value rows with the year in mono.
-
-### Ticker
-- **Style:** a strip of 20 px semibold smoke names between seam rules, each preceded by a 6 px copper square, scrolling left over 46 s with an 8 percent fade at each edge. Static under reduced motion.
 
 ## Do's and Don'ts
 

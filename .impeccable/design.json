@@ -25,7 +25,7 @@
     },
     "shadows": [
       { "name": "panel-lift", "value": "0 -20px 60px rgba(14,17,20,.6)", "purpose": "Iron shadow above each sticky offer panel so the stack reads as sheets. The only grey shadow in the system." },
-      { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s. The how-mark pieces use 22 px." },
+      { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s. The fire path in the how scene uses 8 to 10 px." },
       { "name": "title-rule-glow", "value": "0 0 16px rgba(239,163,124,.7), 0 0 4px rgba(255,225,194,.9)", "purpose": "On the 2 px copper rule as it grows under a headline; cooled to none after 1.25 s." },
       { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number arriving ember; cools to ash over 2 s." },
       { "name": "warm-halo", "value": "0 0 22px rgba(239,163,124,.45)", "purpose": "Text shadow on a held state: the open capability, a hovered or selected name, the hot word in the statement." },
@@ -39,9 +39,8 @@
       { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons." },
       { "name": "lift", "value": "transform .5s ease-house, border-color .4s", "purpose": "Situation card hover, 6 px up." },
       { "name": "underline", "value": "transform .45s ease-house, scaleX from 0 at the left", "purpose": "Names wall hover underline." },
-      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Mark landing, title rule, metric burn, how-mark pieces." },
-      { "name": "ticker", "value": "46s linear infinite", "purpose": "The names strip in proof." },
-      { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no ticker, no reveal." }
+      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Mark landing, title rule, metric burn, the fire path." },
+      { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no reveal." }
     ],
     "breakpoints": [
       { "name": "two-column", "value": "1100px" },

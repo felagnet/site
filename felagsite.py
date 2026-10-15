@@ -3,7 +3,7 @@ below it (statement, proof, offer, how, who, people, contracting, FAQ, closing, 
 Two themes: "rune" (fire and light) and "harvest" (land and seasons). Copy is the reviewed first-pass copy."""
 
 import os
-from shared import LOCKUP, CSS, COMMON_JS, STRIP
+from shared import LOCKUP, CSS, COMMON_JS
 _HERE = os.path.dirname(os.path.abspath(__file__))
 def _photo(name):
     # the portraits ship as files under people/, copied there by build_site.py and make_dist.py
@@ -258,7 +258,7 @@ main{position:relative;z-index:1}
 .stagger .reveal{transition-delay:calc(var(--i,0) * 90ms)}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
 
-/* ---- rune theme: the rune lands in the header, fire on titles, numbers and the mark */
+/* ---- rune theme: the rune lands in the header, fire on titles and numbers */
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
@@ -271,10 +271,6 @@ main{position:relative;z-index:1}
 @keyframes cool{to{background:linear-gradient(90deg,var(--copper-deep),var(--accent) 60%,var(--accent));box-shadow:0 0 0 rgba(239,163,124,0),0 0 0 rgba(255,225,194,0)}}
 .theme-rune .metric .big.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:#FFE1C2;text-shadow:0 0 34px rgba(239,163,124,.95),0 0 8px rgba(255,225,194,.9)}60%{color:#F3C3A0;text-shadow:0 0 24px rgba(239,163,124,.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(239,163,124,0)}}
-.theme-rune .how-mark{overflow:visible}
-.theme-rune .how-mark path{--dx:0;--dy:0;transition:opacity .35s}
-.theme-rune .how-mark path.on{animation:ignite 1.3s ease-out both}
-@keyframes ignite{0%{fill:#FFE1C2;filter:drop-shadow(0 0 22px rgba(239,163,124,1))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(239,163,124,0))}}
 @media (max-width:900px){.theme-rune .hero{height:calc(100vh + 1000px);min-height:1700px}.hero-statement{justify-content:flex-start;padding-top:calc(var(--head) + 24px)}}
 
 /* ---- statement scene */
@@ -309,16 +305,12 @@ main{position:relative;z-index:1}
 .skills-foot .n{color:var(--accent);margin-right:12px}
 .skills{font-family:var(--mono);font-size:13px;line-height:22px;color:var(--text-secondary)}
 
-/* ---- proof: metrics, ticker, filmstrip */
+/* ---- proof: metrics, filmstrip */
 .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
 .metric{padding:28px 0 0;border-top:1px solid var(--line-strong);display:flex;flex-direction:column;gap:12px}
 .metric .big{font-size:clamp(52px,6.4vw,108px);line-height:.92;font-weight:600;letter-spacing:-0.045em;font-variant-numeric:tabular-nums lining-nums;min-height:1em;white-space:nowrap}
 .metric .big em{font-style:normal;color:var(--accent)}
 .metric .label{font-family:var(--mono);font-size:13px;color:var(--text-secondary)}
-.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:72px;padding:18px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.ticker .row{display:flex;gap:56px;width:max-content;animation:tick 46s linear infinite;font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--text-secondary);white-space:nowrap}
-.ticker .row span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:24px;vertical-align:3px;opacity:.8}
-@keyframes tick{to{transform:translateX(-50%)}}
 .scene-proof{position:relative}
 .scene-proof .pin{position:sticky;top:0;height:100vh;min-height:680px;display:flex;flex-direction:column;justify-content:center;gap:40px;overflow:hidden}
 .track{display:flex;gap:24px;padding:0 var(--side);will-change:transform}
@@ -330,8 +322,6 @@ main{position:relative;z-index:1}
 .card p{color:var(--text-secondary);font-size:17px;line-height:27px}
 .card .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:15px}
-.card .wordmark{font-size:22px;font-weight:600;letter-spacing:-0.02em}
-.card .wordmark.muted{color:var(--text-secondary);font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:.02em}
 .card .idx{position:absolute;right:28px;top:28px;font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
 .scene-proof .progress{position:absolute;left:var(--side);right:var(--side);bottom:36px;height:1px;background:var(--line)}
 .scene-proof .progress i{display:block;height:100%;width:0;background:var(--accent)}
@@ -401,12 +391,6 @@ main{position:relative;z-index:1}
 .step p{color:var(--text-secondary);margin-top:12px;font-size:16px;line-height:24px}
 .step{opacity:.25;transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
 .step.on{opacity:1;transform:none}
-.how-mark{width:min(34vw,360px);height:auto;display:block;margin:0 auto}
-.how-mark path{fill:var(--accent);opacity:0;transform:translate(var(--dx,0),var(--dy,0));transition:opacity .6s,transform .8s cubic-bezier(.2,.7,.2,1)}
-.how-mark path.on{opacity:1;transform:translate(0,0)}
-.how-mark-wrap{position:relative}
-.how-mark-wrap::before{content:"";position:absolute;left:50%;top:50%;width:min(70vw,760px);height:min(70vw,760px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(223,142,99,.16),rgba(223,142,99,0) 70%);opacity:var(--glow,0);transition:opacity .8s;pointer-events:none}
-.how-mark path:nth-child(1){--dx:-30px;--dy:0}.how-mark path:nth-child(2){--dx:0;--dy:-30px}.how-mark path:nth-child(3){--dx:26px;--dy:-16px}.how-mark path:nth-child(4){--dx:28px;--dy:22px}
 .furrow{width:100%;height:120px;display:block}
 .furrow .soil{fill:none;stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:6 8}
 .furrow .path{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
@@ -474,7 +458,6 @@ main{position:relative;z-index:1}
 .scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:12px;color:var(--text-secondary);max-width:34em;text-align:right}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:14px;color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
-.foot .todo{font-family:var(--mono);font-size:12px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
 
 @media (max-width:1100px){
@@ -505,9 +488,7 @@ main{position:relative;z-index:1}
   .step{opacity:1;transform:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .ticker .row{animation:none}
   .step{opacity:1;transform:none}
-  .how-mark path{opacity:1;transform:none}
   .statement .w{opacity:1}
 }
 '''
@@ -582,10 +563,7 @@ def sections(t, theme):
                    f'{("<div class=links>" + links + "</div>") if links else ""}</article>')
     facts = "".join(f'<div class="row reveal" style="--i:{i}"><div class="k">{k}</div><div class="v{" todo" if v.startswith("[") else ""}">{v}</div></div>' for i, (k, v) in enumerate(CONTRACT))
     faq = "".join(f'<details><summary><span>{q}</span><i></i></summary><div class="a"><p>{a}</p></div></details>' for q, a in FAQ)
-    if theme == "rune":
-        book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
-    else:
-        book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
+    book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
 
     statement_scene = "" if theme == "rune" else f'''
 <section class="scene-statement" id="statement" data-scrub="statement">
@@ -882,7 +860,7 @@ SITE_JS = r'''
 
 // ---- how: steps and their art follow the scroll through the section
 (function(){
-  var steps = document.querySelectorAll('#how .step'), pieces = document.querySelectorAll('.how-mark path'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
+  var steps = document.querySelectorAll('#how .step'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
   var len = path ? path.getTotalLength() : 0;
   if (path){ path.style.strokeDasharray = len; path.style.strokeDashoffset = len; }
   window.onScrub('how', function(p, el){
@@ -891,8 +869,6 @@ SITE_JS = r'''
     var q = Math.max(0, Math.min(1, (h*0.8 - r.top) / Math.max(1, r.height - h*0.4)));
     var narrow = window.innerWidth < 900;
     steps.forEach(function(s, i){ s.classList.toggle('on', narrow || q > (i + 0.5) / (steps.length + 0.6)); });
-    var lit = 0; pieces.forEach(function(pc, i){ var on = q > (i + 0.5) / (pieces.length + 0.6); pc.classList.toggle('on', on); if (on) lit = i + 1; });
-    var wrap = document.getElementById('how-mark-wrap'); if (wrap) wrap.style.setProperty('--glow', (lit/Math.max(1, pieces.length)).toFixed(2));
     if (path) path.style.strokeDashoffset = (len * (1 - Math.min(1, q*1.15))).toFixed(1);
     sprouts.forEach(function(s, i){ s.classList.toggle('on', q > (i + 0.55) / (sprouts.length + 0.6)); });
   });
