@@ -82,8 +82,16 @@
     narrow = W < 900;
     S = narrow ? Math.min(W*0.62, H*0.30)/110 : Math.min(H*0.62, W*0.30)/110;
     cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.71 : H*0.52;
+    if (narrow){
+      // on a phone the rune sits under the text block, never on it: measured from where the buttons end
+      var cta = pin.querySelector('.hero-inner .cta'), pr = pin.getBoundingClientRect();
+      var ib = cta ? cta.getBoundingClientRect().bottom - pr.top : H*0.55;
+      S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110));
+      cy = Math.max(H*0.71, ib + 24 + 55*S);
+    }
   }
   window.addEventListener('resize', layout); layout();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ layout(); schedule(); });
 
   // where the rune lands: the mark inside the header lockup, in canvas coordinates
   function landing(){

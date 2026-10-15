@@ -467,8 +467,9 @@ main{position:relative;z-index:1}
   .scene-statement{height:auto}.scene-statement .pin{position:relative;height:auto;min-height:0;padding:80px 0}
   .scene-statement .cur{display:none}
   .scene-book .wrap{padding-top:50vh}
-  .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
-  .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3{color:var(--text)}.mark-count{display:none}
+  .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .furrow{display:none}
+  .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
   .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
   .eras{padding-left:28px}.era-block::before{left:-25px}
   .metrics{grid-template-columns:minmax(0,1fr)}
@@ -482,6 +483,9 @@ main{position:relative;z-index:1}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
+}
+@media (max-width:600px){
+  .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after,.theme-rune .scene-build h2::after{width:120px;transition:none}

@@ -225,7 +225,7 @@ The page is a single column of full-width sections inside a 1440 px wrap with si
 
 Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
-Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px everything becomes one column, the nav links hide behind the single Write to us button, pinned scenes unpin, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and reduced-motion states apply. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
+Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps only the People link beside the Write to us button; at 600 px everything is one column. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
 ## Elevation & Depth
 

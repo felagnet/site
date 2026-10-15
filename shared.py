@@ -65,10 +65,18 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .js .reveal:not(.in){opacity:0;transform:translateY(28px)}
 @media (max-width:900px){
-  .nav .links{display:none}
+  .nav{gap:24px}
   .hero{height:200vh;min-height:1400px}
   .hero-inner{padding-bottom:150px;justify-content:flex-start;padding-top:36px}
   .hero h1{max-width:none}
+}
+@media (max-width:700px){
+  .nav{gap:20px}
+  .nav .links a:not([href="#people"]){display:none}
+}
+@media (max-width:400px){
+  .lockup svg{height:32px}
+  .btn-sm{padding:0 16px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
