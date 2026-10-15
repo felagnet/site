@@ -19,18 +19,6 @@ typography:
     fontWeight: 600
     lineHeight: 0.95
     letterSpacing: "-0.035em"
-  headline:
-    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(40px, 5.2vw, 78px)"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-  title:
-    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(26px, 2.4vw, 36px)"
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: "-0.025em"
   metric:
     fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(52px, 6.4vw, 108px)"
@@ -38,17 +26,59 @@ typography:
     lineHeight: 0.92
     letterSpacing: "-0.045em"
     fontFeature: "tabular-nums lining-nums"
+  headline:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "clamp(40px, 5.2vw, 78px)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  subhead:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "clamp(30px, 3.4vw, 52px)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  title:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "clamp(24px, 2.2vw, 32px)"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.025em"
+  title-small:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "21px"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.015em"
+  lead:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "clamp(18px, 1.5vw, 22px)"
+    fontWeight: 400
+    lineHeight: 1.45
+    letterSpacing: "normal"
+  prose:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: "28px"
+    letterSpacing: "normal"
   body:
     fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: "26px"
     letterSpacing: "normal"
+  small:
+    fontFamily: "Schibsted Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: "22px"
+    letterSpacing: "normal"
   label:
     fontFamily: "IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace"
-    fontSize: "12px"
+    fontSize: "13px"
     fontWeight: 400
-    lineHeight: "18px"
+    lineHeight: "20px"
     letterSpacing: "0.04em"
 rounded:
   none: "0"
@@ -163,22 +193,26 @@ Every copper light in CSS is written from the tokens `--copper-rgb`, `--hot-rgb`
 **Character:** one grotesk at two extremes, very large and semibold for headings, modest and regular for reading, with a mono face doing the dating and numbering in the margins. Sentence case everywhere, never all caps. Both faces load from Google Fonts in weights 400, 500 and 600.
 
 ### Hierarchy
-- **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): the one huge statement per page, max 11ch, balanced wrap.
-- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): every section h2 and the hero h1 (the hero caps at 80 px), max 15ch, balanced wrap. In the rune theme a 2 px copper rule, 120 px wide, grows under it on reveal.
-- **Statement** (600, clamp(28px, 3.7vw, 56px), 1.12, -0.03em): the studio statement, max 24ch, revealed word by word from 22 percent opacity.
-- **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the big numbers in proof. Prices in offer panels use the same voice at clamp(40px, 5vw, 84px) in copper.
-- **Title** (600, clamp(26px, 2.4vw, 36px), 1.1, -0.025em): card titles; offer panel titles go larger at clamp(30px, 3.4vw, 52px), capability titles at clamp(22px, 2.2vw, 32px), person names at clamp(24px, 2vw, 30px), situation and FAQ titles at 21 to 26 px.
-- **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, max 34em.
-- **Body** (400, 16px/26px): reading text, max 34 to 56em depending on the block; card and panel body at 17/27.
-- **Label** (400 mono, 12 to 13px, 0.04em where it is an eyebrow): eyebrows with a 22 px copper dash before them, kickers in copper, years and counts in smoke.
+Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and nothing else. A new size joins the ramp as a role or does not ship.
 
-### Size steps
-Fixed sizes in use, all on the house faces: 12 and 13 px mono for labels and kickers, 14 px for the footer, 15 px for nav and small links, 16 px body, 17 px for card and panel body, 18 px for key-value values and era intros, 19 px for record case titles, 21 px for situation titles, 22 px for the lead cap. Fluid sizes run through clamp() and are listed with their roles above. A new size joins this list before it ships.
+- **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
+- **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof.
+- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1, every section h2 and the prices in the offer panels, max 15ch, balanced wrap, with a 120 px copper rule under a section h2.
+- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record and offer panel titles.
+- **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
+- **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
+- **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
+- **Prose** (400, 17px/28px): long paragraphs set for reading: card and panel bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
+- **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
+- **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer.
+- **Label** (400 mono, 13px/20px, 0.04em on eyebrows): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
 
 ### Dim states
 Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph borrows ash for the same reason and settles to smoke once its step lights.
 
 ### Named Rules
+**The Mono Rule.** Mono sets what dates, numbers and names things: labels, years, indices, identifiers, the stack. A sentence is never set in mono.
+
 **The Tabular Rule.** Every number, price and metric sets tabular lining figures.
 
 **The Sentence Case Rule.** No uppercase styling anywhere, including labels and buttons.
