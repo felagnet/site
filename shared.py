@@ -43,7 +43,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 /* Hero: a pinned scene with a scroll runway under it; the rest of the page is styled in felagsite.py */
 .hero{position:relative;height:230vh;min-height:1800px}
-.hero-pin{position:sticky;top:0;height:100vh;min-height:700px;overflow:hidden;margin-top:calc(-1 * var(--head))}
+.hero-pin{position:sticky;top:0;height:100vh;height:100dvh;min-height:700px;overflow:hidden;margin-top:calc(-1 * var(--head))}
 .hero-pin .hero-inner{padding-top:var(--head)}
 .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px;padding-bottom:110px;pointer-events:none;will-change:opacity,transform}

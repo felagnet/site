@@ -176,7 +176,7 @@ Every copper light in CSS is written from the tokens `--copper-rgb`, `--hot-rgb`
 Fixed sizes in use, all on the house faces: 12 and 13 px mono for labels and kickers, 14 px for the footer, 15 px for nav and small links, 16 px body, 17 px for card and panel body, 18 px for key-value values and era intros, 19 px for record case titles, 21 px for situation titles, 22 px for the lead cap. Fluid sizes run through clamp() and are listed with their roles above. A new size joins this list before it ships.
 
 ### Dim states
-Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower.
+Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph borrows ash for the same reason and settles to smoke once its step lights.
 
 ### Named Rules
 **The Tabular Rule.** Every number, price and metric sets tabular lining figures.
@@ -189,7 +189,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 
 The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics and situations, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
 
-Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them.
+Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
 Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px everything becomes one column, the nav links hide behind the single Write to us button, pinned scenes unpin and the proof track becomes a vertical list, the hero shortens, and reduced-motion states apply. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 

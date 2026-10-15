@@ -283,7 +283,7 @@ main{position:relative;z-index:1}
 
 /* ---- build: the mark is the diagram, one piece per thing we build */
 .scene-build{height:calc(100vh + 110vh);position:relative}
-.scene-build .pin{position:sticky;top:0;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:center;padding-top:var(--head)}
+.scene-build .pin{position:sticky;top:0;height:100vh;height:100dvh;min-height:680px;overflow:hidden;display:flex;align-items:center;padding-top:var(--head)}
 .scene-build .wrap{width:100%}
 .markmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;margin-top:40px}
 .caps-left{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
@@ -312,7 +312,7 @@ main{position:relative;z-index:1}
 .metric .big em{font-style:normal;color:var(--accent)}
 .metric .label{font-family:var(--mono);font-size:13px;color:var(--text-secondary)}
 .scene-proof{position:relative}
-.scene-proof .pin{position:sticky;top:0;height:100vh;min-height:680px;display:flex;flex-direction:column;justify-content:center;gap:40px;overflow:hidden}
+.scene-proof .pin{position:sticky;top:0;height:100vh;height:100dvh;min-height:680px;display:flex;flex-direction:column;justify-content:center;gap:40px;overflow:hidden}
 .track{display:flex;gap:24px;padding:0 var(--side);will-change:transform}
 .card{flex:0 0 clamp(440px,38vw,600px);min-height:min(56vh,520px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s}
@@ -390,7 +390,8 @@ main{position:relative;z-index:1}
 .step .k{font-family:var(--mono);font-size:12px;color:var(--accent);display:flex;align-items:center;gap:12px}
 .step .k span{color:var(--text-secondary)}
 .step h3{font-size:clamp(24px,2.1vw,30px);line-height:1.12;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--accent-hover);text-wrap:balance}
-.step p{color:var(--text-secondary);margin-top:12px;font-size:16px;line-height:24px}
+.step p{color:var(--text-secondary);margin-top:12px;font-size:16px;line-height:24px;transition:color .5s}
+.step:not(.on) p{color:var(--text)}
 .step{opacity:var(--dim);transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
 .step.on{opacity:1;transform:none}
 .furrow{width:100%;height:120px;display:block}
@@ -487,10 +488,10 @@ main{position:relative;z-index:1}
   .scene-book .pin{display:block;min-height:0;padding:96px 0 120px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
-  .step{opacity:1;transform:none}
+  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
 }
 @media (prefers-reduced-motion:reduce){
-  .step{opacity:1;transform:none}
+  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
   .statement .w{opacity:1}
 }
 '''
