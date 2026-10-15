@@ -120,13 +120,16 @@
     var ig = t > T_IGNITE ? clamp((t - T_IGNITE)/IGNITE_D) : 0;
     var lit = t > T_IGNITE ? clamp((t - T_IGNITE - 0.25)/0.9) : 0;
     var flare = t > T_IGNITE ? Math.exp(-(t - T_IGNITE)*2.2) : 0;
-    var breathe = 0.95 + 0.05*Math.sin(t*1.2);
+    // the forge at rest: after the ignition the light settles over 1.6 s to a resting copper and the breathing stops
+    var rest = t > T_IGNITE ? clamp((t - T_IGNITE - 1.3)/1.6) : 0;
+    var glow = lit*(1 - 0.8*rest);
+    var breathe = 1 + 0.05*Math.sin(t*1.2)*(1 - rest) - 0.05*(1 - rest);
     // flight: the rune shrinks and travels to the header mark
     var fl = easeIO(clamp((p - 0.04)/0.22)), land = landing();
     var vanish = clamp((p - 0.27)/0.03);
     var alive = 1 - vanish;
     var scale = S*(1 - fl) + land.S*fl;
-    var ox = cx*(1 - fl) + land.ox*fl, oy = (cy + Math.sin(t*0.9)*3*lit*(1 - fl))*(1 - fl) + land.oy*fl;
+    var ox = cx*(1 - fl) + land.ox*fl, oy = (cy + Math.sin(t*0.9)*3*lit*(1 - rest)*(1 - fl))*(1 - fl) + land.oy*fl;
     var wBase = 6.5*(1 - fl) + 24*fl;
     var tiltX = 1 - Math.abs(mouse.x)*0.06*(1 - fl), skew = -mouse.x*0.05*(1 - fl), tiltY = 1 - Math.abs(mouse.y)*0.04*(1 - fl);
     if (!reduce) setArrived(p >= 0.29);
@@ -137,14 +140,14 @@
     if (lit > 0 || ig > 0){
       var hr = 320*Math.min(S, 3.2)*(1 - fl*0.85);
       var halo = ctx.createRadialGradient(ox, oy, 6, ox, oy, hr);
-      halo.addColorStop(0, 'rgba(223,142,99,' + ((0.16*lit*breathe + 0.32*flare)*alive).toFixed(3) + ')');
-      halo.addColorStop(0.45, 'rgba(223,142,99,' + (0.05*lit*alive).toFixed(3) + ')');
+      halo.addColorStop(0, 'rgba(223,142,99,' + ((0.16*glow*breathe + 0.32*flare)*alive).toFixed(3) + ')');
+      halo.addColorStop(0.45, 'rgba(223,142,99,' + (0.05*glow*alive).toFixed(3) + ')');
       halo.addColorStop(1, 'rgba(223,142,99,0)');
       ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H);
     }
     // bloom: the rune drawn wide on a separate canvas, blurred twice
     var k = scale/S;
-    var glowA = ((0.35 + 0.65*lit)*breathe + flare*0.8)*alive*(1 - fl*0.6);
+    var glowA = ((0.35 + 0.65*lit)*(1 - 0.55*rest)*breathe + flare*0.8)*alive*(1 - fl*0.6);
     if (hasFilter){
       gctx.clearRect(0, 0, W, H);
       gctx.save(); gctx.translate(ox, oy); gctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); gctx.scale(scale, scale);
@@ -162,8 +165,8 @@
     // the rune itself: a deep copper underlay, the copper stroke, a warm inner light
     ctx.save(); ctx.translate(ox, oy); ctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); ctx.scale(scale, scale);
     drawRune(ctx, upto, wBase*1.3, '#8C4E2C', 0.95*alive*(1 - fl*0.8));
-    drawRune(ctx, upto, wBase, lit > 0 ? '#E8996D' : '#DF8E63', (0.9 + 0.1*lit)*alive);
-    drawRune(ctx, upto, wBase*0.45, '#FFD9B4', (0.12 + 0.2*lit*breathe + flare*0.6)*alive, 'lighter');
+    drawRune(ctx, upto, wBase, rest >= 1 ? '#DF8E63' : (lit > 0 ? '#E8996D' : '#DF8E63'), (0.9 + 0.1*lit)*alive);
+    drawRune(ctx, upto, wBase*0.45, '#FFD9B4', (0.12 + 0.2*glow*breathe + flare*0.6)*alive, 'lighter');
     // the ignition pulse: one bright segment runs the length of the rune
     if (ig > 0 && ig < 1){
       var seg = total*0.16, head = ig*(total + seg);
@@ -189,9 +192,10 @@
       ctx.beginPath(); ctx.moveTo(x0 - svx[i]*dt*2.2, y0 - svy[i]*dt*2.2); ctx.lineTo(sx[i], sy[i]); ctx.stroke();
     }
     ctx.restore();
-    // under reduced motion the rune is still; it only needs a frame while the pointer tilt is settling
+    // a rune at rest is still: once the light has settled and the pointer tilt is done, no more frames until scroll or pointer
     var settling = Math.abs(target.x - mouse.x) + Math.abs(target.y - mouse.y) > 0.002;
-    if (!reduce || settling){ running = true; requestAnimationFrame(frame); }
+    var atRest = reduce || (rest >= 1 && pg.active < 0 && fl === 0);
+    if (!atRest || settling){ running = true; requestAnimationFrame(frame); }
   }
   schedule();
 })();

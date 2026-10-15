@@ -25,11 +25,8 @@
     },
     "shadows": [
       { "name": "panel-lift", "value": "0 -20px 60px rgba(14,17,20,.6)", "purpose": "Iron shadow above each sticky offer panel so the stack reads as sheets. The only grey shadow in the system." },
-      { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s. The fire path in the how scene uses 8 to 10 px." },
-      { "name": "title-rule-glow", "value": "0 0 16px rgba(239,163,124,.7), 0 0 4px rgba(255,225,194,.9)", "purpose": "On the 2 px copper rule as it grows under a headline; cooled to none after 1.25 s." },
+      { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s." },
       { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number arriving ember; cools to ash over 2 s." },
-      { "name": "warm-halo", "value": "0 0 22px rgba(239,163,124,.45)", "purpose": "Text shadow on a held state: the open capability, a hovered or selected name, the hot word in the statement." },
-      { "name": "marker-glow", "value": "0 0 14px rgba(239,163,124,.6)", "purpose": "The lit era diamond; the era line fill uses 12 px at .5." },
       { "name": "card-bloom", "value": "radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)", "purpose": "Copper wash from the top right of a proof card on hover." }
     ],
     "motion": [
@@ -37,9 +34,9 @@
       { "name": "ease-in-out-cubic", "value": "x < 0.5 ? 4x^3 : 1 - (-2x + 2)^3 / 2", "purpose": "The hero canvas: stroke drawing and the flight of the rune to the header." },
       { "name": "reveal", "value": "opacity .7s ease, transform .7s ease-house, from translateY(28px)", "purpose": "Section content arriving; staggered 90 ms per item." },
       { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons." },
-      { "name": "lift", "value": "transform .5s ease-house, border-color .4s", "purpose": "Situation card hover, 6 px up." },
+      { "name": "lift", "value": "border-color .4s", "purpose": "Situation card hover: the border goes steel." },
       { "name": "underline", "value": "transform .45s ease-house, scaleX from 0 at the left", "purpose": "Names wall hover underline." },
-      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Mark landing, title rule, metric burn, the fire path." },
+      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Hero ignition that settles over 1.6 s, mark landing, metric burn." },
       { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no reveal." }
     ],
     "breakpoints": [
@@ -86,7 +83,7 @@
       "refersTo": "eyebrow",
       "description": "Mono label with a copper dash, 24 px above every headline.",
       "html": "<p class=\"ds-eyebrow\">What we build</p>",
-      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 14px; margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; letter-spacing: .04em; color: var(--text-secondary, #98A1A8); } .ds-eyebrow::before { content: ''; display: inline-block; width: 22px; height: 1px; background: var(--accent, #DF8E63); }"
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 14px; margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; letter-spacing: .04em; color: var(--text-secondary, #98A1A8); } .ds-eyebrow::before { content: ''; display: inline-block; width: 22px; height: 1px; background: var(--line-strong, #616A71); }"
     },
     {
       "name": "Proof card",
@@ -94,7 +91,7 @@
       "refersTo": "card",
       "description": "A slate slab with a hairline, a copper kicker and a copper bloom on hover.",
       "html": "<article class=\"ds-card\"><span class=\"ds-card-idx\">01</span><p class=\"ds-card-kicker\">Launched August 2024</p><h3 class=\"ds-card-title\">Wirex Pay</h3><p class=\"ds-card-body\">We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer behind its non-custodial debit cards.</p><div class=\"ds-card-foot\"><a class=\"ds-card-link\" href=\"#\">L2BEAT listing</a><span class=\"ds-card-era\">Gateway.fm, 2024</span></div></article>",
-      "css": ".ds-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; max-width: 520px; min-height: 360px; padding: 36px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%); opacity: 0; transition: opacity .5s; pointer-events: none; } .ds-card:hover::before { opacity: 1; } .ds-card-idx { position: absolute; right: 28px; top: 28px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-card-kicker { margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .02em; color: var(--accent, #DF8E63); } .ds-card-title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; } .ds-card-body { margin: 0; font-size: 17px; line-height: 27px; color: var(--text-secondary, #98A1A8); } .ds-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; gap: 16px; } .ds-card-link { font-size: 15px; color: var(--accent, #DF8E63); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; } .ds-card-link:hover { color: var(--accent-hover, #EFA37C); } .ds-card-era { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); }"
+      "css": ".ds-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; max-width: 520px; min-height: 360px; padding: 36px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%); opacity: 0; transition: opacity .5s; pointer-events: none; } .ds-card:hover::before { opacity: 1; } .ds-card-idx { position: absolute; right: 28px; top: 28px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-card-kicker { margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .02em; color: var(--text-secondary, #98A1A8); } .ds-card-title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; } .ds-card-body { margin: 0; font-size: 17px; line-height: 27px; color: var(--text-secondary, #98A1A8); } .ds-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; gap: 16px; } .ds-card-link { font-size: 15px; color: var(--accent, #DF8E63); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; } .ds-card-link:hover { color: var(--accent-hover, #EFA37C); } .ds-card-era { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); }"
     },
     {
       "name": "Situation card",
@@ -102,7 +99,7 @@
       "refersTo": "situation-card",
       "description": "A numbered slate card that lifts 6 px on hover.",
       "html": "<article class=\"ds-sit\"><span class=\"ds-sit-n\">03</span><h3 class=\"ds-sit-title\">A regulated payments or asset issuer rebuilding for a new regime</h3><p class=\"ds-sit-body\">The regime has changed what the system must record and prove, and the team needs engineers who have built for one before.</p></article>",
-      "css": ".ds-sit { display: flex; flex-direction: column; gap: 14px; max-width: 400px; padding: 32px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .4s; } .ds-sit:hover { transform: translateY(-6px); border-color: var(--line-strong, #616A71); } .ds-sit-n { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--accent, #DF8E63); } .ds-sit-title { margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; } .ds-sit-body { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
+      "css": ".ds-sit { display: flex; flex-direction: column; gap: 14px; max-width: 400px; padding: 32px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: border-color .4s; } .ds-sit:hover { border-color: var(--line-strong, #616A71); } .ds-sit-n { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-sit-title { margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; } .ds-sit-body { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
     },
     {
       "name": "Key-value row",
@@ -126,9 +123,9 @@
     "overview": "Dark iron ground and one copper element that has just cooled. The page is a large, exact, unhurried surface: oversized Schibsted Grotesk headings on long measures, hairlines instead of boxes, IBM Plex Mono for the small labels that date and number things, and copper as the only colour. Nothing moves unless the scroll asks it to, and when it does, the movement is a single idea: copper heats to ember, flares, and cools back to copper within two seconds. The mark is the only thing on the page that was ever hot.\n\nThe mark is Fehu drawn as the counterform of a square, four solid pieces and three channels, read as a geometric symbol first and a rune second. It carries the whole identity: it draws itself in the hero, lands in the header, becomes the diagram of what we build, and reassembles in the closing scene. Everything else defers to it.",
     "keyCharacteristics": [
       "Dark only on the site. Iron ground, slate surfaces, seam hairlines.",
-      "Copper is the single accent and it works hard: the mark, links, the primary button, eyebrow dashes, numbers that matter, one emphasis per section.",
+      "Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.",
       "Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.",
-      "Copper light is part of the system: ignition flashes on arrival, warm blooms on hover, the soft iron shadow that separates stacked panels. Never on a body surface at rest.",
+      "Copper light is part of the system and always cools: the rune ignites once and settles to copper, the mark flashes as it lands, a metric burns in and cools, a proof card blooms on hover, and the soft iron shadow separates stacked panels. Nothing glows at rest.",
       "Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
     ],
     "rules": [
@@ -138,14 +135,14 @@
       { "name": "The Tabular Rule", "body": "Every number, price and metric sets tabular lining figures.", "section": "typography" },
       { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
       { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
-      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition or a held state: arrival, hover, selection, the current step. A surface at rest shows no glow and no grey shadow, except the panel lift that separates a stack.", "section": "elevation" },
+      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the panel lift that separates a stack.", "section": "elevation" },
       { "name": "The Copper Light Rule", "body": "Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.", "section": "elevation" }
     ],
     "dos": [
       "Do keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.",
       "Do build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.",
       "Do use tabular lining figures on every number, price and metric.",
-      "Do let copper light mark a transition or a held state: ignite at ember, cool to copper or ash within two seconds, bloom on hover.",
+      "Do let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.",
       "Do use the house ease, cubic-bezier(.2, .7, .2, 1), and reveal with a 28 px rise over 0.7 s, staggered 90 ms.",
       "Do show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.",
       "Do collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens."
