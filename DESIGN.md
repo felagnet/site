@@ -191,7 +191,7 @@ The page is a single column of full-width sections inside a 1440 px wrap with si
 
 Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
-Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px everything becomes one column, the nav links hide behind the single Write to us button, pinned scenes unpin and the proof track becomes a vertical list, the hero shortens, and reduced-motion states apply. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
+Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px everything becomes one column, the nav links hide behind the single Write to us button, pinned scenes unpin, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and reduced-motion states apply. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
 ## Elevation & Depth
 
@@ -236,8 +236,9 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Corner Style:** 4 px.
 - **Background:** slate with a 1 px seam border.
 - **Shadow Strategy:** none at rest; the proof card blooms copper from its top right corner on hover; the situation card lifts 6 px and its border goes steel over 0.5 s.
-- **Internal Padding:** 36 px on proof cards (which are 440 to 600 px wide in a horizontal track), 32 px on situation cards, clamp(28px, 3.4vw, 48px) on offer panels.
-- **Anatomy:** mono kicker in copper, title, smoke body at 17/27, a footer row with links on the left and a wordmark or mono era note on the right, and a mono index in the top right corner.
+- **Internal Padding:** 36 px on proof cards (440 to 600 px wide, 86vw up to 420 px on a phone), 32 px on situation cards, clamp(28px, 3.4vw, 48px) on offer panels.
+- **Anatomy:** a header row with the mono kicker in copper on the left and the mono index on the right, title, smoke body at 17/27, a footer row with links on the left and a mono era note on the right.
+- **The cases strip:** the proof cards sit in a strip that scrolls on its own axis with mandatory snap to each card's left edge, padded by the page gutter, with a thin steel scrollbar as the cue. It never pins the page or takes over the wheel; the next card peeking at the right edge is the invitation.
 
 ### Offer panels
 - **Style:** slate sheets that stick under the header at a 12 px per-panel offset so they stack, with the panel lift shadow. Two columns: title and body on the left, the price right-aligned in copper at display scale with a mono note under it, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
@@ -255,7 +256,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Signature component.** Four copper pieces, three channels, the geometry fixed. Draws itself stroke by stroke in the hero canvas, blooms, and lands in the header with a 1.1 s ember flash. In the build scene it is the diagram: pieces at 16 percent copper fill light to full copper one at a time as the matching capability opens. In the closing scene it reassembles on a canvas. Reduced motion shows every mark finished and still. Never rotate it, recolour a piece, round a corner or fill a channel; its glow follows the Elevation rules above.
 
 ### Names wall
-- **Style:** names as borderless buttons in semibold ash at clamp(28px, 3.6vw, 56px) for clients and clamp(18px, 1.9vw, 28px) smoke for protocols, wrapped with a 10 by 14 px gap. Hover or selection turns the name hot copper with a warm halo and draws a 2 px copper-to-ember underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
+- **Style:** a quiet index: names as borderless buttons in semibold ash at clamp(22px, 2.6vw, 36px) for clients and clamp(16px, 1.5vw, 20px) smoke for protocols, wrapped with an 8 by 14 px gap. Hover or selection turns the name hot copper with a warm halo and draws a 2 px copper-to-ember underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
 
 ### Record line
 - **Style:** a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper and glows when lit, era names at headline scale, cases as key-value rows with the year in mono.

@@ -305,16 +305,16 @@ main{position:relative;z-index:1}
 .skills-foot .n{color:var(--accent);margin-right:12px}
 .skills{font-family:var(--mono);font-size:13px;line-height:22px;color:var(--text-secondary)}
 
-/* ---- proof: metrics, filmstrip */
+/* ---- proof: metrics, then the cases as a strip that scrolls on its own axis */
 .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
 .metric{padding:28px 0 0;border-top:1px solid var(--line-strong);display:flex;flex-direction:column;gap:12px}
 .metric .big{font-size:clamp(52px,6.4vw,108px);line-height:.92;font-weight:600;letter-spacing:-0.045em;font-variant-numeric:tabular-nums lining-nums;min-height:1em;white-space:nowrap}
 .metric .big em{font-style:normal;color:var(--accent)}
 .metric .label{font-family:var(--mono);font-size:13px;color:var(--text-secondary)}
-.scene-proof{position:relative}
-.scene-proof .pin{position:sticky;top:0;height:100vh;height:100dvh;min-height:680px;display:flex;flex-direction:column;justify-content:center;gap:40px;overflow:hidden}
-.track{display:flex;gap:24px;padding:0 var(--side);will-change:transform}
-.card{flex:0 0 clamp(440px,38vw,600px);min-height:min(56vh,520px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.scene-proof{position:relative;padding:72px 0 clamp(96px,12vh,160px)}
+.track{display:flex;gap:24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.card{flex:0 0 clamp(440px,38vw,600px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.card .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
 .card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s}
 .card:hover::before{opacity:1}
 .card .kicker{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.02em}
@@ -322,19 +322,17 @@ main{position:relative;z-index:1}
 .card p{color:var(--text-secondary);font-size:17px;line-height:27px}
 .card .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:15px}
-.card .idx{position:absolute;right:28px;top:28px;font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
-.scene-proof .progress{position:absolute;left:var(--side);right:var(--side);bottom:36px;height:1px;background:var(--line)}
-.scene-proof .progress i{display:block;height:100%;width:0;background:var(--accent)}
+.card .idx{flex:0 0 auto;font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
 
 .card .era{font-family:var(--mono);font-size:12px;color:var(--text-secondary);text-align:right}
 
 .links a{padding:6px 8px;margin:-6px -8px}
 
 /* ---- the names wall */
-.wall{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:48px;align-items:baseline}
+.wall{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:40px;align-items:baseline}
 .name{appearance:none;background:none;border:0;padding:4px 0;margin:0;color:var(--text);font-family:var(--sans);font-weight:600;letter-spacing:-0.03em;line-height:1;cursor:pointer;position:relative;transition:color .25s}
-.name.client{font-size:clamp(28px,3.6vw,56px)}
-.name.protocol{font-size:clamp(18px,1.9vw,28px);color:var(--text-secondary);font-weight:500;align-self:center;padding-top:10px}
+.name.client{font-size:clamp(22px,2.6vw,36px)}
+.name.protocol{font-size:clamp(16px,1.5vw,20px);color:var(--text-secondary);font-weight:500;align-self:center;padding-top:6px}
 .name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:linear-gradient(90deg,var(--accent),var(--ember));transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .name:hover,.name:focus-visible{color:var(--accent-hover)}
 .theme-rune .name:hover,.theme-rune .name:focus-visible,.theme-rune .name.on{text-shadow:0 0 22px rgba(var(--hot-rgb),.45)}
@@ -478,10 +476,9 @@ main{position:relative;z-index:1}
   .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
   .eras{padding-left:28px}.era-block::before{left:-25px}
   .metrics{grid-template-columns:minmax(0,1fr)}
-  .scene-proof{height:auto}.scene-proof .pin{position:relative;height:auto;min-height:0;display:block;padding:0}
-  .track{flex-direction:column;transform:none;padding:0}
-  .card{flex-basis:auto;min-height:0}
-  .scene-proof .progress{display:none}
+  .scene-proof{padding:56px 0 80px}
+  .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
+  .card{flex-basis:min(86vw,420px);padding:28px}
   .panel{grid-template-columns:minmax(0,1fr);position:relative;top:auto}.pcols{grid-template-columns:minmax(0,1fr)}
   .panel .price{text-align:left}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
@@ -524,7 +521,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card"><div class="idx">0{i+1} / 0{len(PROOF_CARDS)}</div><div class="kicker">{c["kicker"]}</div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">0{i+1} / 0{len(PROOF_CARDS)}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -607,12 +604,9 @@ def sections(t, theme):
     </div>
   </div>
 </section>
-<section class="scene-proof" id="proof-cases" data-scrub="hscroll" aria-label="Lead cases">
-  <div class="pin">
-    <div class="wrap"><p class="lead" style="margin-top:0">Nine cases, each in the words the record allows, with the public record linked where one exists.</p></div>
-    <div class="track" id="track">{cards}</div>
-    <div class="progress"><i id="track-progress"></i></div>
-  </div>
+<section class="scene-proof" id="proof-cases" aria-label="Lead cases">
+  <div class="wrap"><p class="lead" style="margin-top:0">Nine cases, each in the words the record allows, with the public record linked where one exists.</p></div>
+  <div class="track" id="track">{cards}</div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
   <div class="wrap">
@@ -755,40 +749,6 @@ SITE_JS = r'''
       words[i].style.opacity = (0.5 + 0.5*k).toFixed(3);
       words[i].classList.toggle('hot', k > 0 && k < 1);
     }
-  });
-})();
-
-// ---- proof filmstrip: horizontal travel pinned to vertical scroll
-(function(){
-  var sec = document.getElementById('proof-cases'), track = document.getElementById('track'), bar = document.getElementById('track-progress');
-  if (!sec || !track) return;
-  var over = 0;
-  function layout(){
-    if (window.innerWidth < 900){ sec.style.height = ''; track.style.transform = ''; over = 0; return; }
-    var side = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--side')) || 80;
-    over = Math.max(0, track.scrollWidth - window.innerWidth);
-    sec.style.height = (window.innerHeight + over*1.15 + 200) + 'px';
-  }
-  layout(); window.addEventListener('resize', layout);
-  window.onScrub('hscroll', function(p){
-    if (over <= 0) return;
-    var e = p; // linear so the strip tracks the finger
-    track.style.transform = 'translate3d(' + (-over*e).toFixed(1) + 'px,0,0)';
-    if (bar) bar.style.width = (e*100).toFixed(2) + '%';
-  });
-  // keyboard: focus on a link inside a card scrolls the page to the point where that card is on screen
-  var pin = sec.querySelector('.pin');
-  track.addEventListener('focusin', function(e){
-    var card = e.target.closest('.card'); if (!card) return;
-    if (pin){ pin.scrollLeft = 0; pin.scrollTop = 0; }
-    if (over <= 0) return;
-    var side = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-    var p = Math.max(0, Math.min(1, (card.offsetLeft - side) / over));
-    var runway = Math.max(1, sec.offsetHeight - window.innerHeight);
-    var top = sec.getBoundingClientRect().top + window.scrollY + p*runway;
-    if (Math.abs(window.scrollY - top) > 2) window.scrollTo({top: top, behavior: 'instant'});
-    track.style.transform = 'translate3d(' + (-over*p).toFixed(1) + 'px,0,0)';
-    if (bar) bar.style.width = (p*100).toFixed(2) + '%';
   });
 })();
 
