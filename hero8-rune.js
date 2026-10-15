@@ -103,9 +103,10 @@
     var dt = Math.min(0.05, (now - last)/1000); last = now;
     var pr = pin.getBoundingClientRect();
     if (pr.bottom <= 0 || pr.top >= window.innerHeight || document.hidden){ t0 += dt*1000; if (!reduce){ var pp = heroProgress(); setArrived(pp >= 0.29); root.classList.toggle('over-hero', pp < 0.3); } requestAnimationFrame(frame); return; }
-    var t = reduce ? 30 : (now - t0)/1000, p = reduce ? 0 : heroProgress();
-    root.classList.toggle('over-hero', p < 0.3);
-    fadeText(Math.min(1, p*3.4));
+    // sp drives the text fade and the header; p drives the flight, and is held at 0 under reduced motion
+    var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce ? 0 : sp;
+    root.classList.toggle('over-hero', sp < 0.3);
+    fadeText(Math.min(1, sp*3.4));
     mouse.x += (target.x - mouse.x)*0.05; mouse.y += (target.y - mouse.y)*0.05;
     var pg = progress(t), upto = pg.upto;
     // ignition: one pulse along the strokes, then a calm light

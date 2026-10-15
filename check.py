@@ -368,6 +368,17 @@ def browser_pass():
             ok = h1["ink"] > 5000 and h1 == h2 and arrived
             row("Reduced motion: hero finished at once", ok,
                 f"ink {h1['ink']}, unchanged {h1 == h2}, header mark shown {arrived}")
+            hero_h = page.evaluate("document.getElementById('top').offsetHeight")
+            states = []
+            for frac in (0.0, 0.6):
+                page.evaluate(f"window.scrollTo(0, {int(hero_h * frac)})")
+                page.wait_for_timeout(300)
+                states.append(page.evaluate(
+                    "[parseFloat(getComputedStyle(document.querySelector('.hero-inner')).opacity),"
+                    " parseFloat(getComputedStyle(document.getElementById('hero-statement')).opacity)]"))
+            ok = states[0][0] > 0.95 and states[0][1] < 0.05 and states[1][0] < 0.05 and states[1][1] > 0.95
+            row("Reduced motion: hero text and statement never overlap", ok,
+                f"at top hero {states[0][0]:.2f}, statement {states[0][1]:.2f}; at 60% hero {states[1][0]:.2f}, statement {states[1][1]:.2f}")
             page.evaluate("document.getElementById('book').scrollIntoView({block: 'start'})")
             page.wait_for_timeout(400)
             b1 = page.evaluate(CANVAS_STATS, "#book-art")

@@ -546,11 +546,11 @@ def sections(t, theme):
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
-        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false">{nm}</button><template id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></template>'
+        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><template id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></template>'
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
-        eras += f'<div class="era-block"><div class="era-head reveal"><div class="era-name">{e["name"]}</div><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
+        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
     panels = ""
     for i, o in enumerate(OFFERS):
         note = f'<span>{o["note"]}</span>' if o["note"] else ""
@@ -753,8 +753,9 @@ SITE_JS = r'''
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
   if (reduce || narrow){
+    // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); if (reduce) hs.style.setProperty('--st', 1); else window.onScrub('statement', function(){ hs.style.setProperty('--st', Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)).toFixed(3)); }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ hs.style.setProperty('--st', Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)).toFixed(3)); }); }
     return;
   }
   window.onScrub('statement', function(p, el){
@@ -795,6 +796,20 @@ SITE_JS = r'''
     var e = p; // linear so the strip tracks the finger
     track.style.transform = 'translate3d(' + (-over*e).toFixed(1) + 'px,0,0)';
     if (bar) bar.style.width = (e*100).toFixed(2) + '%';
+  });
+  // keyboard: focus on a link inside a card scrolls the page to the point where that card is on screen
+  var pin = sec.querySelector('.pin');
+  track.addEventListener('focusin', function(e){
+    var card = e.target.closest('.card'); if (!card) return;
+    if (pin){ pin.scrollLeft = 0; pin.scrollTop = 0; }
+    if (over <= 0) return;
+    var side = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    var p = Math.max(0, Math.min(1, (card.offsetLeft - side) / over));
+    var runway = Math.max(1, sec.offsetHeight - window.innerHeight);
+    var top = sec.getBoundingClientRect().top + window.scrollY + p*runway;
+    if (Math.abs(window.scrollY - top) > 2) window.scrollTo({top: top, behavior: 'instant'});
+    track.style.transform = 'translate3d(' + (-over*p).toFixed(1) + 'px,0,0)';
+    if (bar) bar.style.width = (p*100).toFixed(2) + '%';
   });
 })();
 
