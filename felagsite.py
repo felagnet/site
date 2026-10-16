@@ -42,7 +42,6 @@ E_LINE = "We built an identity system for AI agents on a major cloud platform fo
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
-W_LINE = "NFT launches by our team that collectively raised $100M+."
 DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure, and the Gateway.fm Platform department built the platform, through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
@@ -605,7 +604,7 @@ def sections(t, theme):
     <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
     <div class="metrics stagger">
       <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
-      <article class="metric reveal" style="--i:1"><div class="big"><em>$</em>100M+</div><div class="label">raised, collectively, by NFT launches by our team</div></article>
+      <article class="metric reveal" style="--i:1"><div class="big"><em>$</em>1B+</div><div class="label">locked in staking on the infrastructure we ran, serving Lido, Gnosis, Stellar and Canton</div></article>
       <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
     </div>
   </div>
