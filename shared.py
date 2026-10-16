@@ -22,7 +22,7 @@ CSS = FONT_FACE + '''
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scrollbar-color:var(--line-strong) var(--bg)}
+html{scroll-behavior:smooth;scroll-padding-top:var(--head);scrollbar-color:var(--line-strong) var(--bg)}
 ::selection{background:var(--accent);color:var(--on-accent)}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3,p{margin:0}
