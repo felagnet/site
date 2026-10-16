@@ -48,7 +48,7 @@ G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in stakin
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
 DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
-DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure, and the Gateway.fm Platform department built the platform, through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
+DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
 ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
 I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
@@ -69,7 +69,7 @@ PROOF_CARDS = [
     dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
     dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
     dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
-    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew with the Gateway.fm Platform department, 2025 to 2026"),
+    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
     dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
     dict(kicker="2017 to 2018, told as it was", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
@@ -81,7 +81,7 @@ WALL = [
     ("1inch", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
     ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
     ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
-    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew with the Gateway.fm Platform department, 2025 to 2026"),
+    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew, 2025 to 2026"),
     ("EY Nightfall", "client", H_NAMED, [], "Gateway.fm, 2024 to 2025"),
     ("LUKSO", "client", "LUKSO received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
     ("Lumia", "client", "Lumia received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
