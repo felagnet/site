@@ -41,7 +41,7 @@ PEOPLE_LINKS = {
     "Pavel Dodonov": ["LinkedIn", "GitHub"],
     "Andrey Solovov": ["LinkedIn", "GitHub"],
 }
-DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "favicon.svg",
+DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "llms.txt", "favicon.svg",
               "apple-touch-icon.png", "og.png", "404.html"] + [
               f"people/{n}.{ext}" for n in ("andrew", "mike", "pavel", "andrey") for ext in ("jpg", "webp")]
 VIEWPORTS = [(1440, 900), (1728, 1117), (390, 844)]
@@ -301,6 +301,15 @@ def dist_checks():
     if f"Sitemap: {SITE}sitemap.xml" not in robots:
         ok, note = False, "robots.txt lacks the Sitemap line"
     row("robots.txt and sitemap.xml", ok, note)
+
+    llms = read("llms.txt") or ""
+    bad = []
+    if felagsite.STATEMENT not in llms:
+        bad.append("statement missing")
+    bad += [f"question missing: {q}" for q, _ in felagsite.FAQ if q not in llms]
+    if EM_DASH in llms or "!" in llms:
+        bad.append("em dash or exclamation mark")
+    row("llms.txt carries the statement and every FAQ question", not bad, "; ".join(bad))
 
     fav = read("favicon.svg") or ""
     row("favicon.svg is the copper mark", 'viewBox="0 0 104 104"' in fav and "#DF8E63" in fav

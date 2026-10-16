@@ -1,6 +1,6 @@
 """Assemble dist/, the folder GitHub Pages serves: the rune page as index.html, plus CNAME, .nojekyll,
-robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png, og.png, 404.html and the portraits under people/. Standard library only.
-Run after build_site.py. The harvest page is a kept prototype and is not copied."""
+robots.txt, sitemap.xml, llms.txt, favicon.svg, apple-touch-icon.png, og.png, 404.html and the portraits under people/.
+Standard library only. Run after build_site.py. The harvest page is a kept prototype and is not copied."""
 
 import datetime
 import os
@@ -9,7 +9,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from felagsite import MARK_PATH  # noqa: E402
+from felagsite import FAQ, HOW, MARK_PATH, OFFERS, PEOPLE, PEOPLE_NOTE, STATEMENT, TURN_DOWN  # noqa: E402
 from shared import LOCKUP  # noqa: E402
 
 DOMAIN = "felag.net"
@@ -73,6 +73,36 @@ a:focus-visible{{outline:2px solid var(--accent);outline-offset:3px}}
 """
 
 
+def llms_txt():
+    """A plain-text summary for answer engines, built from the page constants so it cannot drift from the page."""
+    lines = ["# Felag", "", f"> {STATEMENT}", "",
+             "Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
+             "priced on outcomes rather than hours.", "", PEOPLE_NOTE, "",
+             "## What we build", "", "- Backend and infrastructure at scale", "- Payments rails", "- Identity and SSO",
+             "- Distributed ledgers, where they fit", "",
+             "## What it costs", "", "Prices in USD, excluding VAT.", ""]
+    for o in OFFERS:
+        note = f", {o['note']}" if o["note"] else ""
+        lines.append(f"- {o['name']}: {o['price']}{note}. {o['body']}")
+    lines += ["", "## How an engagement runs", ""]
+    for name, output, line in HOW:
+        lines.append(f"- {name}: {output} {line}")
+    lines += ["", "## What we turn down", "", TURN_DOWN, "", "## The people who lead the work", ""]
+    for p in PEOPLE:
+        where = f", {p['where']}" if p["where"] else ""
+        lines.append(f"- {p['name']}, {p['role']}{where}. {p['bio']}")
+    lines += ["", "## Questions", ""]
+    for q, a in FAQ:
+        lines.append(f"- {q} {a}")
+    lines += ["", "## Contact", "",
+              "- Email: info@felag.net (start with a free technical workshop with a founder)",
+              f"- Site: {SITE}",
+              "- LinkedIn: https://www.linkedin.com/company/felagnet/",
+              "- GitHub: https://github.com/felagnet",
+              "- X: https://x.com/felagnet", ""]
+    return "\n".join(lines)
+
+
 def write(name, text):
     with open(os.path.join(DIST, name), "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
@@ -101,6 +131,7 @@ def main():
     write(".nojekyll", "")
     write("robots.txt", ROBOTS)
     write("sitemap.xml", SITEMAP.format(site=SITE, date=datetime.date.today().isoformat()))
+    write("llms.txt", llms_txt())
     write("favicon.svg", FAVICON)
     write("404.html", PAGE_404)
     for root, _, files in sorted(os.walk(DIST)):
