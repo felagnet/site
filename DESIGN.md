@@ -194,7 +194,7 @@ Every copper light in CSS is written from the tokens `--copper-rgb`, `--hot-rgb`
 ### Hierarchy
 Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and nothing else. A new size joins the ramp as a role or does not ship.
 
-- **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
+- **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it. It arrives as a burn, ember to ash over 2 s, the same cooling as the metrics; under reduced motion it shows in ash with no animation.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
 - **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. No rule under it; the closing headline alone carries a 120 px copper rule that grows over 0.8 s.
 - **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with lining figures. A price that is a word, not a number, drops to the title role.
@@ -232,7 +232,7 @@ The system is flat by structure and lit by state. Depth comes from the three gre
 
 ### Shadow Vocabulary
 - **Ignition** (`drop-shadow(0 0 16px rgba(239,163,124,.95))` to `0`): the flash when the mark lands in the header. Starts at ember, ends with no shadow.
-- **Metric burn** (`text-shadow: 0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)` to `0`): the big numbers arrive ember and cool to ash over 2 s.
+- **Metric burn** (`text-shadow: 0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)` to `0`): the big numbers and the display line arrive ember and cool to ash over 2 s.
 - **Card bloom** (`radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)`): a copper wash from the top right corner of a proof card on hover.
 - **Hero bloom**: the rune on the canvas is drawn wide on a second canvas and blurred twice (22 px and 7 px) at 90 and 70 percent alpha while it draws and ignites, then settles over 1.6 s to a resting copper with a faint halo and no breathing. Safari has no canvas filter, so there the same glow is a canvas shadow blur; keep that fallback.
 

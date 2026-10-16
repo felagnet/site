@@ -269,7 +269,7 @@ main{position:relative;z-index:1}
 /* one headline on the page is underlined in copper: the closing one */
 .theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
 .theme-rune .scene-book h2.lit::after{width:120px}
-.theme-rune .metric .big.burn{animation:burn 2s ease-out both}
+.theme-rune .metric .big.burn,.theme-rune .sec h2.huge.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:var(--ember);text-shadow:0 0 34px rgba(var(--hot-rgb),.95),0 0 8px rgba(var(--ember-rgb),.9)}60%{color:color-mix(in srgb,var(--ember) 60%,var(--accent));text-shadow:0 0 24px rgba(var(--hot-rgb),.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(var(--hot-rgb),0)}}
 @media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:center;padding-top:var(--head);padding-bottom:10vh}}
 
@@ -834,11 +834,11 @@ SITE_JS = r'''
   });
 })();
 
-// ---- rune theme: the metrics burn in, the closing title draws its stroke
+// ---- rune theme: the metrics and the thesis line burn in, the closing title draws its stroke
 (function(){
   if (reduce || !document.getElementById('root').classList.contains('theme-rune') || !('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add(en.target.classList.contains('big') ? 'burn' : 'lit'); io.unobserve(en.target); } }); }, {threshold: 0.6});
-  document.querySelectorAll('.metric .big, .scene-book h2').forEach(function(el){ io.observe(el); });
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ var c = en.target.classList; c.add(c.contains('big') || c.contains('huge') ? 'burn' : 'lit'); io.unobserve(en.target); } }); }, {threshold: 0.6});
+  document.querySelectorAll('.metric .big, .sec h2.huge, .scene-book h2').forEach(function(el){ io.observe(el); });
 })();
 
 // ---- faq: animated open and close

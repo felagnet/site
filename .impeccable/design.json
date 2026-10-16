@@ -25,7 +25,7 @@
     },
     "shadows": [
       { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s." },
-      { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number arriving ember; cools to ash over 2 s." },
+      { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number or the display line arriving ember; cools to ash over 2 s." },
       { "name": "card-bloom", "value": "radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)", "purpose": "Copper wash from the top right of a proof card on hover." }
     ],
     "motion": [
