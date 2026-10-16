@@ -1,13 +1,13 @@
 # Review loop queue
 
-Round 1, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
+Rounds 1 and 2, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
 
 ## Design
 - design-1-1 [P1] done c617b16: Fix the launch price rendering as "$7 . 5k" (design)
 - design-1-2 [P1] done 5bf1a95: Remove the fixed ambient copper blob behind every section (design)
 - design-1-3 [P1] done 90a1f46: Retire the copper rule and the steel dash from the section openings (design)
 - design-1-4 [P1] done 77c2cf6: Unstick the offer panels: a plain list, no stacking, no lift shadow (design)
-- design-1-5 [P1] done 37d21ca: Tighten the vertical rhythm: the page is 18,060 px at 1440 and 25,552 px at 390 (design). Measured at the end of the round: 17,055 px at 1440 and 22,571 px at 390, above the targets of 16,000 and 22,000 with the prescribed values applied.
+- design-1-5 [P1] done 37d21ca: Tighten the vertical rhythm: the page is 18,060 px at 1440 and 25,552 px at 390 (design). Measured at the end of round 1: 17,055 px at 1440 and 22,571 px at 390. The 16,000 and 22,000 px targets retired with design-2-1; at the end of round 2 the page is 16,475 px at 1440 and 21,810 px at 390.
 - design-1-6 [P2] done 6e433f2: One rule for copper inside the three metrics (design)
 - design-1-7 [P2] done 383d593: Situations as a two-column hairline list instead of six slate boxes (design)
 - design-1-8 [P2] done e0e5c1f: Phone people as rows: portrait beside the name, bio below (design). The prescribed selector also caught the links div; it is excluded so the links keep their own row.
@@ -18,6 +18,8 @@ Round 1, kept current by the developer. One line per task: id, priority, status,
 - design-1-13 [P3] done 29f3e8a: Unlit pieces of the build diagram in seam, not 16 percent copper (design)
 - design-1-14 [P3] done c2df609: Fewer 75 px headlines: Names and Record take the subhead role (design)
 - design-1-15 [P3] done 086611d: Closing scene on the phone: close the empty gap above the mark (design). The mark is also kept above the text block on a phone in landscape, where it overlapped the headline before.
+- design-2-1 [P1] done aaefb7f: Offer as hairline rows: take the five panels off their slate sheets, price as the news (design). At 1440 the offer section measures 2,692 px (3,167 before) and a row 337 to 448 px; at 390 each row shows the title and then the price 4 px under it in its first screen. The list squares were already steel, as the key characteristics say, and stay steel.
+- design-2-2 [P2] done 6fa9f77: First screen: the header button stays quiet until the mark lands, then fills copper with it (design). The pending state is carried in the rune page's markup and gated on html.js: WebKit paints before the end-of-body script runs and showed a copper flash on load otherwise. Verified in Chromium and WebKit at 1440 and 390 and under reduced motion.
 
 ## Copy
 - copy-1-1 [P1] done 5b4234e: Name Opera and 1inch on the RPC proxy and give the lead number its own case (copy)
@@ -32,7 +34,7 @@ Round 1, kept current by the developer. One line per task: id, priority, status,
 - copy-1-10 [P2] done 545ac91: Record: close the Gateway.fm era and fill the empty Felag era (copy)
 - copy-1-11 [P2] done c05c430: Names wall lead: drop "the line it is allowed to carry" (copy)
 - copy-1-12 [P2] done 09dd5a6: Offer lead line: carry the model, not only the currency (copy)
-- copy-1-13 [P2] done fdae0cb: How: state the sprint outputs and the build path in steps 2 to 4 (copy). Step two's title runs five lines at 1440 against two for the others.
+- copy-1-13 [P2] done fdae0cb: How: state the sprint outputs and the build path in steps 2 to 4 (copy). Step two's title ran five lines at 1440 against two for the others; fixed in copy-2-1.
 - copy-1-14 [P2] done 150f0bf: FAQ: remove the two answers that repeat other sections word for word (copy)
 - copy-1-15 [P2] owner: FAQ: add the question a sprint buyer asks, what they keep if they stop (copy)
 - copy-1-16 [P2] owner: People: locations for Pavel and Andrey, or an even rule for all four (copy)
@@ -41,6 +43,10 @@ Round 1, kept current by the developer. One line per task: id, priority, status,
 - copy-1-19 [P3] done 9a3ee6c: People note: say who acquired Uddug (copy)
 - copy-1-20 [P3] done db73867: Header: "Offer" becomes "Prices" (copy)
 - copy-1-21 [P3] done c07ef65: Break the run of counted headlines (copy)
+- copy-2-1 [P2] done 3eef399: How: a two-line title for step two so the four steps read as one row (copy). Two lines at 1440 and at 390, measured.
+- copy-2-2 [P2] done cee9917: The ~25 people sentence attaches the two-department headcount to one department (copy)
+- copy-2-3 [P2] owner: Snark.art on the names wall: register row X keeps it out of Felag delivery lists (copy)
+- copy-2-4 [P3] done a4b9197: llms.txt people lines: lowercase the location so it reads as one sentence (copy)
 
 ## SEO
 - seo-1-1 [P0] owner: Fractional CTO price on the page is not the rate-card price (seo)
@@ -54,3 +60,4 @@ Round 1, kept current by the developer. One line per task: id, priority, status,
 - seo-1-9 [P3] skipped: Names wall says Gateway.fm, as every other mention does (seo). The Gateway entry left the wall in copy-1-5, so there is nothing to rename.
 - seo-1-10 [P3] done ea88064: Sitemap lastmod from the last source change, not the build date (seo)
 - seo-1-11 [P3] done d4c37f2: Self-host the two fonts with preload to drop two cross-origin hops from the critical path (seo). One variable Schibsted Grotesk file for 400 to 600 replaces the three per-weight files, since Google serves the same file for all three; check.py's browser pass now serves dist over local http so the fonts load.
+- seo-2-1 [P2] done 9a47a4f: Hero text rises at 1.1 s, so the largest text on the page is invisible for the first second (seo). The rise now starts at 0.2, 0.4 and 0.6 s; the h1 is at 0.999 opacity 1.0 s after load in Chromium and the rune's first stroke shows by 0.8 s.
