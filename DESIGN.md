@@ -197,7 +197,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
-- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap, with a 120 px copper rule under a section h2.
+- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap, with a 120 px copper rule that grows under a section h2 over 0.8 s.
 - **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with tabular figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
@@ -249,12 +249,12 @@ Square by default. Corners are 0, 2 px on buttons and the skip link, 4 px on car
 
 ## Components
 
-Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs with a hairline, hover is a slow lift or a warm bloom, never a bounce. Every transition uses the house ease, cubic-bezier(.2, .7, .2, 1), between 0.15 and 0.8 s.
+Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs with a hairline, hover is a warm bloom or a border, never a bounce. Arrivals use the confident ease, cubic-bezier(.16, 1, .3, 1), between 0.45 and 0.8 s; exits run faster than entrances; feedback is 0.1 to 0.15 s. The house ease, cubic-bezier(.2, .7, .2, 1), stays on the scroll-driven states.
 
 ### Buttons
 - **Shape:** near-square (2 px radius), 52 px tall, 28 px side padding; small variant 44 px tall, 20 px padding, 15 px text.
 - **Primary:** copper fill, iron text at 16 px medium with -0.005em tracking, no border, never wraps.
-- **Hover / Focus:** fill to hot copper over 0.15 s; focus-visible draws a 2 px copper outline 3 px outside the edge.
+- **Hover / Focus / Press:** fill to hot copper over 0.15 s; a press darkens the copper a step for as long as it is held, in 0.1 s; focus-visible draws a 2 px copper outline 3 px outside the edge.
 - **Text link:** the only secondary action, a 16 px medium copper link beside the button in a 36 px gap.
 
 ### Links
@@ -278,7 +278,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Style:** seam hairline between rows, mono 13 px smoke key in a 150 to 280 px column, 18/28 ash value. Pending values render in mono 14 px smoke.
 
 ### FAQ
-- **Style:** native details and summary on seam rules, 26 px vertical padding, title at clamp(20px, 1.8vw, 26px) semibold, the steel circle plus on the right. The answer area animates height over 0.45 s with the house ease.
+- **Style:** native details and summary on seam rules, 26 px vertical padding, title at the small title role, the steel circle plus on the right. The answer opens over 0.45 s and closes over 0.3 s.
 
 ### Navigation
 - **Style:** sticky 72 px header, lockup at 38 px on the left with the mark in copper and the wordmark in ash, four smoke text links and the small primary button on the right. Transparent over the hero, iron with a seam rule once the mark has landed. Under 900 px only the lockup and the button remain. A skip link appears at the top left on focus.
