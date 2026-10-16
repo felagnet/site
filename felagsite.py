@@ -239,7 +239,7 @@ def header():
     <a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a>
     <nav class="nav" aria-label="Page sections">
       <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Offer</a><a href="#how">How</a><a href="#people">People</a></div>
-      <a class="btn btn-sm" href="mailto:info@felag.net">Write to us</a>
+      <a class="btn btn-sm" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a>
     </nav>
   </div>
 </header>'''
@@ -659,7 +659,7 @@ def sections(t, theme):
     <h2 class="huge reveal">We do not bill hours.</h2>
     <p class="lead reveal">Engagements and prices, in US dollars excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
-    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net">Write to us</a></div>
+    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a></div>
   </div>
 </section>
 
@@ -705,15 +705,15 @@ def sections(t, theme):
     <div class="wrap">
       <p class="eyebrow">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
-      <p class="mail">Write to <a href="mailto:info@felag.net">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem and ends with a sprint scope or a clear no.</p>
-      <div class="cta"><a class="btn" href="mailto:info@felag.net">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+      <p class="mail">Write to <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem and ends with a sprint scope or a clear no.</p>
+      <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
   </div>
 </section>
 <footer class="foot">
   <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
-  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="mailto:info@felag.net">info@felag.net</a></div>
+  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
 </footer>'''
 
 # ---------------------------------------------------------------------------------------------- motion engine
@@ -1190,7 +1190,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
     <div class="wrap hero-inner">
       <h1 class="rise r1">{headline}</h1>
       <p class="sub rise r2">{sub}</p>
-      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {hero_statement}
   </div>

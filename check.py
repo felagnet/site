@@ -30,7 +30,7 @@ import felagsite  # noqa: E402  the copy constants: PEOPLE and STATEMENT are rea
 DIST = os.path.join(HERE, "dist")
 INDEX = os.path.join(DIST, "index.html")
 SITE = "https://felag.net/"
-MAILTO = "mailto:info@felag.net"
+MAILTO = "mailto:info@felag.net?subject=Free%20technical%20workshop"
 HERO_LINE = "Senior engineers who own the architecture and ship to production."
 BANNED = ["passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "Andrei", "Georgia",
           "four people", "Talk to a founder", "sold to"]
