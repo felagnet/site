@@ -484,7 +484,7 @@ main{position:relative;z-index:1}
   .sec{padding:64px 0}
   .scene-statement{height:auto}.scene-statement .pin{position:relative;height:auto;min-height:0;padding:80px 0}
   .scene-statement .cur{display:none}
-  .scene-book .wrap{padding-top:34vh}
+  .scene-book .wrap{padding-top:30vh}
   .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
   .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
@@ -498,7 +498,7 @@ main{position:relative;z-index:1}
   .panel{grid-template-columns:minmax(0,1fr)}.pcols{grid-template-columns:minmax(0,1fr)}
   .panel .price{text-align:left}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
-  .scene-book .pin{display:block;min-height:0;padding:96px 0 120px}
+  .scene-book .pin{display:block;min-height:0;padding:48px 0 96px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
@@ -915,7 +915,15 @@ BOOK_RUNE_JS = r"""
   var total = strokes.reduce(function(a, s){ return a + s.len; }, 0);
   var cx, cy, scale, p = 0, visible = false, t = 0, last = 0;
   function clamp(x){ return Math.max(0, Math.min(1, x)); }
-  function layout(){ var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); k = Math.min(W, H)/900; var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.32, H*0.74)/104; cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.26 : H*0.5; }
+  function layout(){
+    var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); k = Math.min(W, H)/900;
+    var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.32, H*0.74)/104; cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.20 : H*0.5;
+    if (narrow){
+      // on a phone the mark sits above the text block, never on it: it fits between the top of the scene and the headline
+      var text = canvas.parentElement.querySelector('.wrap > *'), limit = (text ? text.getBoundingClientRect().top - r.top : H*0.3) - 16;
+      scale = Math.min(scale, (limit - 8)/104); cy = Math.max(8 + 52*scale, Math.min(cy, limit - 52*scale));
+    }
+  }
   layout(); window.addEventListener('resize', layout);
   function P(x, y){ return [cx + (x - 52)*scale, cy + (y - 52)*scale]; }
   function ease(x){ return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3)/2; }
