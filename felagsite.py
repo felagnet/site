@@ -437,6 +437,7 @@ main{position:relative;z-index:1}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;font-size:var(--fs-title-sm);font-weight:600;letter-spacing:-0.02em;line-height:1.2}
 .faq summary::-webkit-details-marker{display:none}
+.faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .faq summary i{flex:0 0 28px;width:28px;height:28px;border:1px solid var(--line-strong);border-radius:50%;position:relative;transition:transform .4s,border-color .3s}
 .faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1px;background:var(--text);transform:translate(-50%,-50%)}
 .faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
@@ -466,7 +467,7 @@ main{position:relative;z-index:1}
   .sec{padding:80px 0}
   .scene-statement{height:auto}.scene-statement .pin{position:relative;height:auto;min-height:0;padding:80px 0}
   .scene-statement .cur{display:none}
-  .scene-book .wrap{padding-top:50vh}
+  .scene-book .wrap{padding-top:34vh}
   .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .furrow{display:none}
   .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
@@ -730,15 +731,15 @@ SITE_JS = r'''
   if (reduce || narrow){
     // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ hs.style.setProperty('--st', Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)).toFixed(3)); }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ var st = Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
     return;
   }
   window.onScrub('statement', function(p, el){
     var q;
     if (inHero){
       // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
-      var hp = heroProgress();
-      el.style.setProperty('--st', Math.max(0, Math.min(1, (hp - 0.3)/0.1)).toFixed(3));
+      var hp = heroProgress(), st = Math.max(0, Math.min(1, (hp - 0.3)/0.1));
+      el.style.setProperty('--st', st.toFixed(3)); el.style.pointerEvents = st >= 0.9 ? 'auto' : '';
       q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
     } else {
       // progress from the moment the scene enters at the bottom to the end of its runway, so the words light while the text rises
@@ -889,7 +890,7 @@ BOOK_RUNE_JS = r"""
   var total = strokes.reduce(function(a, s){ return a + s.len; }, 0);
   var cx, cy, scale, p = 0, visible = false, t = 0, last = 0;
   function clamp(x){ return Math.max(0, Math.min(1, x)); }
-  function layout(){ var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); k = Math.min(W, H)/900; var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.32, H*0.74)/104; cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.22 : H*0.5; }
+  function layout(){ var r = canvas.getBoundingClientRect(); W = Math.round(r.width); H = Math.round(r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); k = Math.min(W, H)/900; var narrow = W < 900; scale = narrow ? Math.min(W, H)*0.5/104 : Math.min(W*0.32, H*0.74)/104; cx = narrow ? W*0.5 : W*0.72; cy = narrow ? H*0.26 : H*0.5; }
   layout(); window.addEventListener('resize', layout);
   function P(x, y){ return [cx + (x - 52)*scale, cy + (y - 52)*scale]; }
   function ease(x){ return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3)/2; }
