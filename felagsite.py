@@ -248,7 +248,6 @@ SITE_CSS = '''
 .hero-inner{padding-bottom:0}
 @media (max-width:900px){.hero-inner{padding-bottom:40px}}
 main{position:relative;z-index:1}
-.ambient{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sec{position:relative;padding:clamp(96px,12vh,160px) 0}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
@@ -1019,14 +1018,13 @@ BOOK_HARVEST_JS = r"""
 """
 
 # ambient layers
-AMBIENT_RUNE = dict(
-    markup='<div class="ambient warm" aria-hidden="true"></div>',
-    css='.ambient.warm{background:radial-gradient(50% 45% at 78% 30%,rgba(var(--copper-rgb),.09),transparent 70%)}',
-    js='')
+# the rune page carries no ambient wash outside the hero canvas; the halo there is the one resting light
+AMBIENT_RUNE = dict(markup='', css='', js='')
 
 AMBIENT_HARVEST = dict(
     markup='<div class="ambient grain" aria-hidden="true"></div><div class="ambient warm" aria-hidden="true"></div>',
-    css=('.ambient.grain{opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'220\' height=\'220\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'.9\' numOctaves=\'2\' stitchTiles=\'stitch\'/><feColorMatrix values=\'0 0 0 0 1 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .9 0\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\'/></svg>");mix-blend-mode:screen}'
+    css=('.ambient{position:fixed;inset:0;z-index:0;pointer-events:none}'
+         '.ambient.grain{opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'220\' height=\'220\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'.9\' numOctaves=\'2\' stitchTiles=\'stitch\'/><feColorMatrix values=\'0 0 0 0 1 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .9 0\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\'/></svg>");mix-blend-mode:screen}'
          '.ambient.warm{background:radial-gradient(60% 50% at 80% 20%,rgba(223,142,99,.08),transparent 70%);animation:warm 18s ease-in-out infinite alternate}'
          '@keyframes warm{to{transform:translate(-8%,12%) scale(1.15)}}'
          '.sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 30%,rgba(239,163,124,.08) 50%,transparent 70%);background-size:300% 100%;animation:sheen 9s linear infinite;mix-blend-mode:screen}'

@@ -229,7 +229,7 @@ Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinn
 
 ## Elevation & Depth
 
-The system is flat by structure and lit by state. Depth comes from the three greys (iron, slate, seam) and from copper light, not from grey shadows on resting surfaces. Text selection is copper with iron text, and the scrollbar is steel on iron.
+The system is flat by structure and lit by state. Depth comes from the three greys (iron, slate, seam) and from copper light, not from grey shadows on resting surfaces. The page carries no ambient wash outside the hero canvas: no fixed gradient, no warm blob behind the sections, iron all the way down. Text selection is copper with iron text, and the scrollbar is steel on iron.
 
 ### Shadow Vocabulary
 - **Panel lift** (`box-shadow: 0 -20px 60px rgba(14,17,20,.6)`): an iron shadow above each sticky offer panel so the stack reads as sheets sliding over each other. The only grey shadow in the system.
