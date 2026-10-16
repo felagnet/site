@@ -1,6 +1,6 @@
 # Review loop queue
 
-Rounds 1 to 4, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
+Rounds 1 to 5, kept current by the developer and closed after the loop. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
 
 ## Design
 - design-1-1 [P1] done c617b16: Fix the launch price rendering as "$7 . 5k" (design)
@@ -21,6 +21,7 @@ Rounds 1 to 4, kept current by the developer. One line per task: id, priority, s
 - design-2-1 [P1] done aaefb7f: Offer as hairline rows: take the five panels off their slate sheets, price as the news (design). At 1440 the offer section measures 2,692 px (3,167 before) and a row 337 to 448 px; at 390 each row shows the title and then the price 4 px under it in its first screen. The list squares were already steel, as the key characteristics say, and stay steel.
 - design-2-2 [P2] done 6fa9f77: First screen: the header button stays quiet until the mark lands, then fills copper with it (design). The pending state is carried in the rune page's markup and gated on html.js: WebKit paints before the end-of-body script runs and showed a copper flash on load otherwise. Verified in Chromium and WebKit at 1440 and 390 and under reduced motion.
 - design-4-1 [P2] done 5e5583f: Offer rows on the phone: word prices read as a second line of the title (design). Measured at 390: Free and Quote per scope at 21 px in smoke 4 px under the 24 px ash title; number prices unchanged at 30 px, $7.5k copper. At 1440 the word prices stay right-aligned at 32 px, now in smoke.
+- design-5-1 [P2] done ec4697d: Cases strip: the links follow the body, the air sits at the bottom of the card (design). Queued in round 5 after all three reviewers approved; implemented after the loop. Body to links 18 px at 1440 and 390.
 
 ## Copy
 - copy-1-1 [P1] done 5b4234e: Name Opera and 1inch on the RPC proxy and give the lead number its own case (copy)
