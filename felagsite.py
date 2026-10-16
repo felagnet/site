@@ -392,7 +392,7 @@ main{position:relative;z-index:1}
 .panel > div > p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:12px;max-width:30em}
 .panel .price{text-align:right}
 .panel .price b{display:block;font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--text);font-variant-numeric:lining-nums;text-wrap:balance}
-.panel .price b.word{font-size:var(--fs-title)}
+.panel .price b.word{font-size:var(--fs-title);color:var(--text-secondary)}
 .panel.launch .price b{color:var(--accent)}
 .panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:12px}
@@ -503,6 +503,7 @@ main{position:relative;z-index:1}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
+  .panel .price b.word{font-size:var(--fs-title-sm);line-height:1.25;letter-spacing:-0.015em}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
   .scene-book .pin{display:block;min-height:0;padding:48px 0 96px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
