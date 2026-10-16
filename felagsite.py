@@ -56,17 +56,17 @@ Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella'
 R_LINE = "Uddug won and delivered Web3 Foundation and Protocol Labs grants and RFPs."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
-# the lead cases: numbers first on the page, then these seven, every one named
+# the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
 PROOF_CARDS = [
     dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
     dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", body=B_NAMED, links=[], era="Gateway.fm, 2021 to 2022"),
-    dict(kicker="2019 to 2020, then a Uddug client", title="Snark.art", body=SNARK_LINE, links=[("snark.art", "https://snark.art")], era="Andrew, then Uddug"),
-    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
+    dict(kicker="Enterprise single sign-on and agent identity, 2025", title="Identity for a global technology company", body=D_LINE + " " + E_LINE, links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025"),
     dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
     dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
-    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
     dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
+    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
     dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew with the Gateway.fm Platform department, 2025 to 2026"),
+    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
     dict(kicker="2017 to 2018, told as it was", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
 
@@ -528,7 +528,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">0{i+1} / 0{len(PROOF_CARDS)}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -610,7 +610,7 @@ def sections(t, theme):
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
-  <div class="wrap"><p class="lead" style="margin-top:0">Nine cases, each in the words the record allows, with the public record linked where one exists.</p></div>
+  <div class="wrap"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p></div>
   <div class="track" id="track">{cards}</div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
