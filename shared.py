@@ -51,7 +51,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px;padding-bottom:110px;pointer-events:none;will-change:opacity,transform}
 .hero-inner > *{pointer-events:auto}
-.hero h1{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:13ch;text-wrap:balance}
+.hero h1{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .hero .sub{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:27em}
 .cta{display:flex;align-items:center;gap:36px;flex-wrap:wrap}
 

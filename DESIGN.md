@@ -162,7 +162,7 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 A near-black ground with two grey steps, two text greys, and a copper family that runs from deep to ember.
 
 ### Primary
-- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the title rule under a headline, the copper half of progress rules, prices, lit markers, the "em" inside a metric, the open capability title and the selected name on the wall.
+- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the title rule under a headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the "em" inside a metric, the open capability title and the selected name on the wall.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, and the word that is lighting in the statement. Also the colour of the ignition glows.
 - **Deep copper** (#8C4E2C): the cold end of the copper gradient on title rules, and the border and wash of the turn-down block.
 - **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, title rule, metric, fire path) and the bright end of the names-wall underline. Never a resting colour.
@@ -197,8 +197,8 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof.
-- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1, every section h2 and the prices in the offer panels, max 15ch, balanced wrap, with a 120 px copper rule under a section h2.
-- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record and offer panel titles.
+- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap, with a 120 px copper rule under a section h2.
+- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with tabular figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
 - **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
@@ -272,7 +272,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **The cases strip:** the proof cards sit in a strip that scrolls on its own axis with mandatory snap to each card's left edge, padded by the page gutter, with a thin steel scrollbar as the cue. It never pins the page or takes over the wheel; the next card peeking at the right edge is the invitation.
 
 ### Offer panels
-- **Style:** slate sheets that stick under the header at a 12 px per-panel offset so they stack, with the panel lift shadow. Two columns: title and body on the left, the price right-aligned in copper at display scale with a mono note under it, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
+- **Style:** slate sheets that stick under the header at a 12 px per-panel offset so they stack, with the panel lift shadow. Two columns: title and body on the left, the price right-aligned in ash at subhead scale with a mono note under it, copper on the launch price alone, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
 
 ### Key-value rows
 - **Style:** seam hairline between rows, mono 13 px smoke key in a 150 to 280 px column, 18/28 ash value. Pending values render in mono 14 px smoke.

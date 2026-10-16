@@ -373,7 +373,9 @@ main{position:relative;z-index:1}
 .panel h3{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .panel > div > p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:18px;max-width:30em}
 .panel .price{text-align:right}
-.panel .price b{display:block;font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--accent);font-variant-numeric:tabular-nums}
+.panel .price b{display:block;font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--text);font-variant-numeric:tabular-nums lining-nums;text-wrap:balance}
+.panel .price b.word{font-size:var(--fs-title)}
+.panel.launch .price b{color:var(--accent)}
 .panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:22px}
 .offer-note{margin-top:32px;max-width:52em;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
@@ -539,7 +541,9 @@ def sections(t, theme):
         cols = (f'<div class="pcol"><div class="pk">What you get</div><ul>{"".join(f"<li>{x}</li>" for x in o["what"])}</ul></div>'
                 f'<div class="pcol"><div class="pk">Terms</div><ul>{"".join(f"<li>{x}</li>" for x in o["terms"])}</ul></div>'
                 f'<div class="pcol"><div class="pk">Who delivers</div><p>{o["who"]}</p></div>')
-        panels += f'<article class="panel" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
+        launch = " launch" if "launch" in o["note"] else ""
+        word = ' class="word"' if not any(ch.isdigit() for ch in o["price"]) else ""
+        panels += f'<article class="panel{launch}" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b{word}>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
     steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}<span>{h}</span></div><h3>{o}</h3><p>{b}</p></div>' for i, (h, o, b) in enumerate(HOW))
     if theme == "rune":
         how_art = ('<svg class="furrow fire" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
