@@ -68,3 +68,8 @@ Rounds 1 to 5, kept current by the developer and closed after the loop. One line
 - seo-1-11 [P3] done d4c37f2: Self-host the two fonts with preload to drop two cross-origin hops from the critical path (seo). One variable Schibsted Grotesk file for 400 to 600 replaces the three per-weight files, since Google serves the same file for all three; check.py's browser pass now serves dist over local http so the fonts load.
 - seo-2-1 [P2] done 9a47a4f: Hero text rises at 1.1 s, so the largest text on the page is invisible for the first second (seo). The rise now starts at 0.2, 0.4 and 0.6 s; the h1 is at 0.999 opacity 1.0 s after load in Chromium and the rune's first stroke shows by 0.8 s.
 - seo-3-1 [P2] done f8846f4: Anchor landings clear the sticky header on the phone (seo). Eyebrow lands at 162 px at 1440 and 136 px at 390 for the four nav links and See prices, measured in headless Chromium.
+
+## After the loop, Andrew's reversals of 16 October 2026
+- design-1-3 reversed in 4075771: the 120 px copper rule grows under every section headline again.
+- design-1-4 and design-2-1 reversed in 01bb3c6: the five offers are stacking slate panels again, with the loop's price fixes kept inside them.
+- New in c00cb92: every block rises and fades in as it enters, staggered inside a group; off under reduced motion.
