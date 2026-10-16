@@ -4,7 +4,9 @@ Standard library only. Run after build_site.py. The harvest page is a kept proto
 
 import datetime
 import os
+import re
 import shutil
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -73,6 +75,17 @@ a:focus-visible{{outline:2px solid var(--accent);outline-offset:3px}}
 """
 
 
+def last_change():
+    """The sitemap's lastmod: the commit date of the last change to the page sources, today if git is unavailable."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", "felagsite.py", "shared.py", "build_site.py",
+                              "hero8-rune.js", "static", "photo/people"], cwd=HERE, capture_output=True, text=True, timeout=10)
+        d = out.stdout.strip()
+        return d if re.fullmatch(r"\d{4}-\d{2}-\d{2}", d) else datetime.date.today().isoformat()
+    except Exception:
+        return datetime.date.today().isoformat()
+
+
 def llms_txt():
     """A plain-text summary for answer engines, built from the page constants so it cannot drift from the page."""
     lines = ["# Felag", "", f"> {STATEMENT}", "",
@@ -130,7 +143,7 @@ def main():
     write("CNAME", DOMAIN)
     write(".nojekyll", "")
     write("robots.txt", ROBOTS)
-    write("sitemap.xml", SITEMAP.format(site=SITE, date=datetime.date.today().isoformat()))
+    write("sitemap.xml", SITEMAP.format(site=SITE, date=last_change()))
     write("llms.txt", llms_txt())
     write("favicon.svg", FAVICON)
     write("404.html", PAGE_404)
