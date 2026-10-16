@@ -10,6 +10,7 @@ link pass needs network access."""
 
 import argparse
 import concurrent.futures
+import json
 import os
 import pathlib
 import re
@@ -240,6 +241,31 @@ def static_checks(html, page):
     if touch != ["/apple-touch-icon.png"]:
         bad.append("apple-touch-icon")
     row("Head: Open Graph, Twitter and touch icon", not bad, ", ".join(bad))
+
+    bad = []
+    m = re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+    try:
+        graph = json.loads(m.group(1))["@graph"] if m else []
+    except (ValueError, KeyError, TypeError) as e:
+        graph, bad = [], [f"does not parse: {e}"]
+    if not m:
+        bad.append("no JSON-LD script")
+    by_type = {}
+    for node in graph:
+        by_type.setdefault(node.get("@type"), []).append(node)
+    orgs = by_type.get("Organization", [])
+    if len(orgs) != 1 or orgs[0].get("name") != "Felag" or orgs[0].get("sameAs") != felagsite.COMPANY_PAGES:
+        bad.append("Organization")
+    if [p.get("name") for p in by_type.get("Person", [])] != [p["name"] for p in felagsite.PEOPLE]:
+        bad.append("Person nodes")
+    faqs = by_type.get("FAQPage", [])
+    qa = [(q.get("name"), q.get("acceptedAnswer", {}).get("text")) for q in faqs[0].get("mainEntity", [])] if len(faqs) == 1 else None
+    if qa != list(felagsite.FAQ):
+        bad.append("FAQPage")
+    offers = orgs[0].get("makesOffer", []) if orgs else []
+    if [o.get("name") for o in offers] != [o["name"] for o in felagsite.OFFERS]:
+        bad.append("Offers")
+    row("Head: JSON-LD", not bad, ", ".join(bad))
 
 
 def dist_checks():

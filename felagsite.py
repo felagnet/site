@@ -2,6 +2,7 @@
 below it (statement, proof, offer, how, who, people, contracting, FAQ, closing, footer) and the motion engine.
 Two themes: "rune" (fire and light) and "harvest" (land and seasons). Copy is the reviewed first-pass copy."""
 
+import json
 import os
 from shared import LOCKUP, CSS, COMMON_JS
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -1035,6 +1036,65 @@ AMBIENT_HARVEST = dict(
     js='')
 
 
+SITE = "https://felag.net/"
+COMPANY_PAGES = ["https://www.linkedin.com/company/felagnet/", "https://github.com/felagnet", "https://x.com/felagnet"]
+
+
+def _offer(o, price=None, spec=None):
+    d = {"@type": "Offer", "name": o["name"], "description": o["body"], "priceCurrency": "USD"}
+    if price is not None:
+        d["price"] = price
+    if spec:
+        d["priceSpecification"] = dict({"@type": "PriceSpecification", "priceCurrency": "USD", "valueAddedTaxIncluded": False}, **spec)
+    d["itemOffered"] = {"@type": "Service", "name": o["name"], "provider": {"@id": SITE + "#org"}}
+    return d
+
+
+def ld_json(title, description):
+    """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
+    No headcount, no address or country, no relation to Gateway.fm beyond the verbatim bios."""
+    people_ids = ["andrew", "mike", "pavel", "andrey"]
+    homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus"}
+    persons = []
+    for pid, p in zip(people_ids, PEOPLE):
+        d = {"@type": "Person", "@id": SITE + "#" + pid, "name": p["name"], "jobTitle": p["role"],
+             "worksFor": {"@id": SITE + "#org"}, "image": SITE + "people/" + pid + ".jpg"}
+        if p["name"] in homes:
+            d["homeLocation"] = {"@type": "Place", "name": homes[p["name"]]}
+        d["description"] = p["bio"]
+        d["sameAs"] = [u for _, u in p["links"]]
+        persons.append(d)
+    # the Fractional CTO minPrice waits on the owner's decision about the price on the page, so that offer carries no figure
+    offers = [
+        _offer(OFFERS[0], price="0"),
+        _offer(OFFERS[1], price="7500", spec={"price": "7500", "description": "launch price, list $15k"}),
+        _offer(OFFERS[2], spec={"description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}),
+        _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
+        _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start"}),
+    ]
+    org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "url": SITE,
+           "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
+           "image": SITE + "og.png",
+           "slogan": "Senior engineers who own the architecture and ship to production.",
+           "description": STATEMENT + " Felag is the 2026 restart of Uddug, acquired in 2024.",
+           "foundingDate": "2026-07", "email": "info@felag.net",
+           "contactPoint": {"@type": "ContactPoint", "email": "info@felag.net", "contactType": "sales", "availableLanguage": "en"},
+           "sameAs": COMPANY_PAGES,
+           "founder": [{"@id": SITE + "#andrew"}, {"@id": SITE + "#mike"}],
+           "knowsAbout": ["Backend and infrastructure at scale", "Payments rails", "Identity and SSO", "Distributed ledgers"],
+           "makesOffer": offers}
+    graph = [org,
+             {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "Felag", "inLanguage": "en", "publisher": {"@id": SITE + "#org"}},
+             {"@type": "WebPage", "@id": SITE + "#page", "url": SITE, "name": title, "description": description, "inLanguage": "en",
+              "isPartOf": {"@id": SITE + "#website"}, "about": {"@id": SITE + "#org"},
+              "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "og.png", "width": 1200, "height": 630}},
+             *persons,
+             {"@type": "FAQPage", "@id": SITE + "#faq",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}]
+    data = {"@context": "https://schema.org", "@graph": graph}
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
     t = THEMES[theme]
     amb = AMBIENT_RUNE if theme == "rune" else AMBIENT_HARVEST
@@ -1063,6 +1123,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Felagnet">
 <meta name="theme-color" content="#0E1114">
+<script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
