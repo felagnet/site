@@ -797,6 +797,20 @@ SITE_JS = r'''
   });
 })();
 
+// ---- the header knows where the reader is: the link for the section in view goes ash, the rest stay smoke
+(function(){
+  var links = document.querySelectorAll('.nav .links a[href]'); if (!links.length || !('IntersectionObserver' in window)) return;
+  var map = {top: '', proof: '#proof', 'proof-cases': '#proof', names: '#proof', record: '#proof', offer: '#offer', how: '#how', who: '#how', people: '#people', faq: '#people'};
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var href = map[en.target.id];
+      links.forEach(function(a){ a.classList.toggle('cur', !!href && a.getAttribute('href') === href); });
+    });
+  }, {rootMargin: '-40% 0px -55% 0px'});
+  Object.keys(map).forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+})();
+
 // ---- the cases strip: previous and next move it one card at a time, for readers without a trackpad
 (function(){
   var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn'); if (!track || !btns.length) return;

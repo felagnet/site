@@ -42,7 +42,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .mark-fill{fill:var(--accent)}.word-fill{fill:var(--text)}
 .nav{display:flex;align-items:center;gap:36px}
 .nav a{font-size:var(--fs-small);font-weight:500;color:var(--text-secondary);text-decoration:none}
-.nav a:hover{color:var(--text)}
+.nav a:hover,.nav a.cur{color:var(--text)}
 .nav a.btn,.nav a.btn:hover{color:var(--on-accent)}
 
 /* Hero: a pinned scene with a scroll runway under it; the rest of the page is styled in felagsite.py */
