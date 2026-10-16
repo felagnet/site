@@ -1,0 +1,56 @@
+# Review loop queue
+
+Round 1, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
+
+## Design
+- design-1-1 [P1] done c617b16: Fix the launch price rendering as "$7 . 5k" (design)
+- design-1-2 [P1] done 5bf1a95: Remove the fixed ambient copper blob behind every section (design)
+- design-1-3 [P1] done 90a1f46: Retire the copper rule and the steel dash from the section openings (design)
+- design-1-4 [P1] done 77c2cf6: Unstick the offer panels: a plain list, no stacking, no lift shadow (design)
+- design-1-5 [P1] done 37d21ca: Tighten the vertical rhythm: the page is 18,060 px at 1440 and 25,552 px at 390 (design). Measured at the end of the round: 17,055 px at 1440 and 22,571 px at 390, above the targets of 16,000 and 22,000 with the prescribed values applied.
+- design-1-6 [P2] done 6e433f2: One rule for copper inside the three metrics (design)
+- design-1-7 [P2] done 383d593: Situations as a two-column hairline list instead of six slate boxes (design)
+- design-1-8 [P2] done e0e5c1f: Phone people as rows: portrait beside the name, bio below (design). The prescribed selector also caught the links div; it is excluded so the links keep their own row.
+- design-1-9 [P2] done 4974767: Burn the thesis line in: "We do not bill hours." arrives as ember and cools (design)
+- design-1-10 [P2] done 221ecb4: Cases strip: previous and next controls for readers without a trackpad (design)
+- design-1-11 [P2] done 16650dd: Header reflects the section in view (design)
+- design-1-12 [P3] done f377eb8: Hero rune at rest: cooled metal, not a neon tube (design). Checked in Chromium and WebKit through Playwright, not in Safari itself.
+- design-1-13 [P3] done 29f3e8a: Unlit pieces of the build diagram in seam, not 16 percent copper (design)
+- design-1-14 [P3] done c2df609: Fewer 75 px headlines: Names and Record take the subhead role (design)
+- design-1-15 [P3] done 086611d: Closing scene on the phone: close the empty gap above the mark (design). The mark is also kept above the text block on a phone in landscape, where it overlapped the headline before.
+
+## Copy
+- copy-1-1 [P1] done 5b4234e: Name Opera and 1inch on the RPC proxy and give the lead number its own case (copy)
+- copy-1-2 [P1] done 1c13fad: Swap the centre metric from the NFT raise to $1B+ locked in staking (copy)
+- copy-1-3 [P1] done e43e52d: Take Snark.art out of the lead cases, add the identity case, and order the strip as the register prescribes (copy)
+- copy-1-4 [P1] owner: DeepNode: confirm or remove the Platform department claim, and decide whether row L belongs in the lead cases (copy)
+- copy-1-5 [P1] done bebbeb3: Remove Gateway and Parity from the names wall (copy)
+- copy-1-6 [P1] done 3cdc1d5: Closing: replace "Let's talk." with the workshop promise and tell the reader what to write (copy)
+- copy-1-7 [P1] owner: Fractional CTO price on the page disagrees with rate-card.md (copy)
+- copy-1-8 [P2] done 83f3ac9: FAQ: "the principals" are not all in the Netherlands and Cyprus (copy)
+- copy-1-9 [P2] done f72c591: Put a subject on every mailto so the reader does not face a blank message (copy)
+- copy-1-10 [P2] done 545ac91: Record: close the Gateway.fm era and fill the empty Felag era (copy)
+- copy-1-11 [P2] done c05c430: Names wall lead: drop "the line it is allowed to carry" (copy)
+- copy-1-12 [P2] done 09dd5a6: Offer lead line: carry the model, not only the currency (copy)
+- copy-1-13 [P2] done fdae0cb: How: state the sprint outputs and the build path in steps 2 to 4 (copy). Step two's title runs five lines at 1440 against two for the others.
+- copy-1-14 [P2] done 150f0bf: FAQ: remove the two answers that repeat other sections word for word (copy)
+- copy-1-15 [P2] owner: FAQ: add the question a sprint buyer asks, what they keep if they stop (copy)
+- copy-1-16 [P2] owner: People: locations for Pavel and Andrey, or an even rule for all four (copy)
+- copy-1-17 [P2] owner: Footer: one entity line for the diligence reader (copy)
+- copy-1-18 [P2] owner: Fold the three tellings of the proof: wall details point to the record (copy)
+- copy-1-19 [P3] done 9a3ee6c: People note: say who acquired Uddug (copy)
+- copy-1-20 [P3] done db73867: Header: "Offer" becomes "Prices" (copy)
+- copy-1-21 [P3] done c07ef65: Break the run of counted headlines (copy)
+
+## SEO
+- seo-1-1 [P0] owner: Fractional CTO price on the page is not the rate-card price (seo)
+- seo-1-2 [P1] done cc299e4: Add a JSON-LD graph: Organization, WebSite, WebPage, four Person entities, the offers and the FAQPage (seo). The Fractional CTO offer carries no minPrice until seo-1-1 is decided.
+- seo-1-3 [P1] done 97fa6fb: Meta description at 152 characters instead of the 255-character statement (seo)
+- seo-1-4 [P2] done 45a89e5: Title under 60 characters with the category noun (seo). The title is 60 characters.
+- seo-1-5 [P2] done 1d29442: Publish /llms.txt, a plain-text summary built from the page constants (seo)
+- seo-1-6 [P2] done e566b22: Footer links the X profile that twitter:site already names (seo)
+- seo-1-7 [P3] done 2737da5: Complete the social preview tags: og:locale, og:image:alt, twitter:title, twitter:description, twitter:image (seo)
+- seo-1-8 [P3] done 30d94e8: Portrait alt text names the role, not only the name (seo)
+- seo-1-9 [P3] skipped: Names wall says Gateway.fm, as every other mention does (seo). The Gateway entry left the wall in copy-1-5, so there is nothing to rename.
+- seo-1-10 [P3] done ea88064: Sitemap lastmod from the last source change, not the build date (seo)
+- seo-1-11 [P3] done d4c37f2: Self-host the two fonts with preload to drop two cross-origin hops from the critical path (seo). One variable Schibsted Grotesk file for 400 to 600 replaces the three per-weight files, since Google serves the same file for all three; check.py's browser pass now serves dist over local http so the fonts load.
