@@ -297,7 +297,7 @@ main{position:relative;z-index:1}
 .cap:not(.on) p{margin-top:0;transition-duration:.35s,.25s,.3s}
 .mark-col{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
 .bigmark{width:min(100%,340px);height:auto;display:block;overflow:visible}
-.bigmark path{fill:rgba(var(--copper-rgb),.16);transition:fill .5s}
+.bigmark path{fill:var(--line);transition:fill .5s}
 .bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .skills-foot{margin-top:40px;max-width:46em;font-size:var(--fs-label);line-height:var(--lh-label)}
