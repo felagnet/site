@@ -657,7 +657,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
     <h2 class="huge reveal">We do not bill hours.</h2>
-    <p class="lead reveal">Engagements and prices, in US dollars excluding VAT.</p>
+    <p class="lead reveal">A named principal scopes the work and the price is on the outcome. Engagements and prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
     <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a></div>
   </div>
