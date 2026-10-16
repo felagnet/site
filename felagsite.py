@@ -42,7 +42,6 @@ E_LINE = "We built an identity system for AI agents on a major cloud platform fo
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
-B_DEFAULT = "We designed the RPC proxy that served 140k+ requests per second in production for a major browser wallet and a leading DEX aggregator."
 W_LINE = "NFT launches by our team that collectively raised $100M+."
 DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
@@ -61,6 +60,7 @@ Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 # the lead cases: numbers first on the page, then these seven, every one named
 PROOF_CARDS = [
     dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
+    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", body=B_NAMED, links=[], era="Gateway.fm, 2021 to 2022"),
     dict(kicker="2019 to 2020, then a Uddug client", title="Snark.art", body=SNARK_LINE, links=[("snark.art", "https://snark.art")], era="Andrew, then Uddug"),
     dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
     dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
@@ -74,6 +74,8 @@ PROOF_CARDS = [
 # the names wall: every name the register and the history allow, each with its one line and its era
 WALL = [
     ("Wirex Pay", "client", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
+    ("Opera", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
+    ("1inch", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
     ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
     ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
     ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew with the Gateway.fm Platform department, 2025 to 2026"),
@@ -117,7 +119,7 @@ ERAS = [
     dict(name="Gateway.fm", years="2021 to 2026",
          intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments.",
          cases=[
-             ("2021 to 2022", "The RPC proxy", B_DEFAULT, []),
+             ("2021 to 2022", "The RPC proxy for Opera and 1inch", B_NAMED, []),
              ("2023 to 2025", "Presto", K_LINE, []),
              ("2023 to 2025", "The indexing platform", J_LINE, []),
              ("2023 to 2025", "Oracles", I_NAMED, []),
@@ -602,7 +604,7 @@ def sections(t, theme):
     <h2 class="reveal">What we have shipped.</h2>
     <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
     <div class="metrics stagger">
-      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second in production, for a major browser wallet and a leading DEX aggregator</div></article>
+      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
       <article class="metric reveal" style="--i:1"><div class="big"><em>$</em>100M+</div><div class="label">raised, collectively, by NFT launches by our team</div></article>
       <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
     </div>
