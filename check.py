@@ -235,7 +235,8 @@ def static_checks(html, page):
         f"theme-color is {page.meta('theme-color')!r}")
     want = {"og:type": "website", "og:site_name": "Felag", "og:title": norm(page.title), "og:description": desc,
             "og:url": SITE, "og:image:width": "1200", "og:image:height": "630",
-            "twitter:card": "summary_large_image", "twitter:site": "@Felagnet"}
+            "twitter:card": "summary_large_image", "twitter:site": "@Felagnet", "og:locale": "en_GB",
+            "twitter:title": norm(page.title), "twitter:description": desc, "twitter:image": SITE + "og.png"}
     bad = [k for k, v in want.items() if page.meta(k) != v]
     touch = [l.get("href") for l in page.link("apple-touch-icon")]
     if touch != ["/apple-touch-icon.png"]:

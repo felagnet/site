@@ -1181,6 +1181,11 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Felagnet">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image:alt" content="The Felag mark beside the line Senior engineers who own the architecture and ship to production.">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{DESCRIPTION}">
+<meta name="twitter:image" content="https://felag.net/og.png">
 <meta name="theme-color" content="#0E1114">
 <script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
