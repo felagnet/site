@@ -73,7 +73,7 @@
       "kind": "nav",
       "refersTo": "nav-link",
       "description": "Smoke text links and the small button, on the sticky iron header.",
-      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\">Proof</a><a href=\"#\">Offer</a><a href=\"#\">How</a><a href=\"#\">People</a></div><a class=\"ds-nav-btn\" href=\"#\">Write to us</a></nav>",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\">Proof</a><a href=\"#\">Prices</a><a href=\"#\">How</a><a href=\"#\">People</a></div><a class=\"ds-nav-btn\" href=\"#\">Write to us</a></nav>",
       "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 36px; height: 72px; padding: 0 24px; background: var(--bg, #0E1114); border-bottom: 1px solid var(--line, #262C31); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-nav-links { display: flex; gap: 36px; } .ds-nav-links a { font-size: 15px; font-weight: 500; color: var(--text-secondary, #98A1A8); text-decoration: none; transition: color .15s; } .ds-nav-links a:hover, .ds-nav-links a.cur { color: var(--text, #E9ECEE); } .ds-nav-links a:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; } .ds-nav-btn { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border-radius: 2px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background-color .15s; } .ds-nav-btn:hover { background: var(--accent-hover, #EFA37C); }"
     },
     {

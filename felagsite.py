@@ -237,7 +237,7 @@ def header():
   <div class="wrap">
     <a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a>
     <nav class="nav" aria-label="Page sections">
-      <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Offer</a><a href="#how">How</a><a href="#people">People</a></div>
+      <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Prices</a><a href="#how">How</a><a href="#people">People</a></div>
       <a class="btn btn-sm" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a>
     </nav>
   </div>
