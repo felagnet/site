@@ -160,7 +160,7 @@ OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Arch
 # each step: its name, the output it ends with, one short line
 HOW = [
     ("Workshop", "The problem, framed.", "Free, with a founder. Ends with a sprint scope or a clear no."),
-    ("Architecture Sprint", "A spec, the architecture decisions and costed build options.", "One to two weeks with a named principal, paid in advance and credited against the build."),
+    ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a named principal, paid in advance and credited against the build."),
     ("Decision", "A build decision on a fixed scope.", "Taken together on the sprint output: a fixed-price build or a pod."),
     ("Pod", "The build, led by a named principal.", "On defined outcomes, monthly in advance, the principal named in the SOW."),
 ]
