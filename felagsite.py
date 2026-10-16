@@ -641,7 +641,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
     <h2 class="reveal">The names on the record.</h2>
-    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for the line it is allowed to carry.</p>
+    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
 </section>
