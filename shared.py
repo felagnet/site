@@ -72,7 +72,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav{gap:20px}
   .nav .links a:not([href="#people"]):not([href="#proof"]){display:none}
 }
-@media (max-width:380px){
+@media (max-width:460px){
   .nav .links a[href="#proof"]{display:none}
 }
 @media (max-width:400px){

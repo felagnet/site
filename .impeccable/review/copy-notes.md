@@ -15,3 +15,15 @@ The proof is told three times with the same sentences: the cases strip, the name
 - The middle headline metric is "$100M+ raised, collectively, by NFT launches by our team". For a vendor to fintech, a reliability or scale number would carry more.
 - The Stack line in What we build names EVM, Solana, Cosmos and six more chains inside the capability layer; PRODUCT.md keeps chain words in the proof layer.
 - The meta description is the 255-character statement; search engines cut at about 155 characters.
+
+## 16 October 2026, from the second critique
+
+Design-side fixes are done; these need Andrew's words or links:
+
+- A "Led by" line on each proof card and record row, naming the principal, so the proof carries the product. The era notes already hold the fact for some cases.
+- The names wall's detail lines repeat the record rows; folding them into the record removes visible text, so it waits on Andrew.
+- The founders' faces beside "Write to us" in the closing scene would need alt text, which is copy.
+- A subject on the mailto, so the reader does not face a blank message (a link change).
+- The centre metric is the NFT raise; a reliability or scale number would carry more for a fintech reader.
+- "Based in" is given for two of the four people; all four or none.
+- No legal entity, country or address appears anywhere; a one-line entity line in the footer would answer the diligence reader.

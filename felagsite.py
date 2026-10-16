@@ -269,7 +269,7 @@ main{position:relative;z-index:1}
 .theme-rune .sec h2.reveal.in::after,.theme-rune .scene-book h2.lit::after,.theme-rune .scene-build h2.lit::after{width:120px}
 .theme-rune .metric .big.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:var(--ember);text-shadow:0 0 34px rgba(var(--hot-rgb),.95),0 0 8px rgba(var(--ember-rgb),.9)}60%{color:color-mix(in srgb,var(--ember) 60%,var(--accent));text-shadow:0 0 24px rgba(var(--hot-rgb),.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(var(--hot-rgb),0)}}
-@media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:flex-start;padding-top:calc(var(--head) + 24px)}}
+@media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:center;padding-top:var(--head);padding-bottom:10vh}}
 
 /* ---- statement scene */
 .scene-statement{height:230vh}
@@ -330,7 +330,7 @@ main{position:relative;z-index:1}
 .wall{display:flex;flex-wrap:wrap;gap:0 14px;margin-top:40px;align-items:baseline}
 .name{appearance:none;background:none;border:0;padding:6px 0;margin:0;color:var(--text);font-family:var(--sans);font-weight:600;letter-spacing:-0.03em;line-height:1;cursor:pointer;position:relative;transition:color .25s}
 .name.client{font-size:var(--fs-title)}
-.name.protocol{font-size:var(--fs-lead);color:var(--text-secondary);font-weight:500;align-self:center;padding-top:6px}
+.name.protocol{font-size:var(--fs-lead);color:var(--text-secondary);font-weight:500;align-self:center;padding:13px 0}
 .name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .name:hover,.name:focus-visible{color:var(--accent-hover)}
 .name.on{color:var(--accent)}
