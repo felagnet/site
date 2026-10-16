@@ -712,7 +712,7 @@ def sections(t, theme):
 </section>
 <footer class="foot">
   <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
-  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
+  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="https://x.com/felagnet" rel="noopener">X</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
 </footer>'''
 
 # ---------------------------------------------------------------------------------------------- motion engine
