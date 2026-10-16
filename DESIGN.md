@@ -161,7 +161,7 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 A near-black ground with two grey steps, two text greys, and a copper family that runs from deep to ember.
 
 ### Primary
-- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the rule under the closing headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the unit suffix inside a metric (k+, M+, B+), never the currency sign, the open capability title and the selected name on the wall.
+- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the rule under every section headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the unit suffix inside a metric (k+, M+, B+), never the currency sign, the open capability title and the selected name on the wall.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, and the word that is lighting in the statement. Also the colour of the ignition glows.
 - **Deep copper** (#8C4E2C): the border and wash of the turn-down block.
 - **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, metric) and the bright end of the names-wall underline. Never a resting colour.
@@ -196,7 +196,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it. It arrives as a burn, ember to ash over 2 s, the same cooling as the metrics; under reduced motion it shows in ash with no animation.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
-- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. No rule under it; the closing headline alone carries a 120 px copper rule that grows over 0.8 s. Exception: the index sections, Names and Record, use the subhead role at 20ch, so the page is not a staircase of equal steps and the display line has room to feel larger.
+- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. Under every section headline and the closing headline a 120 px copper rule grows from nothing over 0.8 s as the headline enters, 26 px below the last line. Exception: the index sections, Names and Record, use the subhead role at 20ch, so the page is not a staircase of equal steps and the display line has room to feel larger.
 - **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record and the prices in the offer rows, in ash with lining figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, offer row titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles (hot copper on hover), the turn-down title and the questions.

@@ -278,8 +278,8 @@ html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubi
 html.js .reveal.in{opacity:1;transform:none}
 .sec h2.reveal{--i:1}.sec .lead.reveal{--i:2}
 @media (prefers-reduced-motion: reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
-.theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
-.theme-rune .scene-book h2.lit::after{width:120px}
+.theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
+.theme-rune .sec h2.reveal.in::after,.theme-rune .scene-book h2.lit::after{width:120px}
 .theme-rune .metric .big.burn,.theme-rune .sec h2.huge.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:var(--ember);text-shadow:0 0 34px rgba(var(--hot-rgb),.95),0 0 8px rgba(var(--ember-rgb),.9)}60%{color:color-mix(in srgb,var(--ember) 60%,var(--accent));text-shadow:0 0 24px rgba(var(--hot-rgb),.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(var(--hot-rgb),0)}}
 @media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:center;padding-top:var(--head);padding-bottom:10vh}}
@@ -526,7 +526,7 @@ html.js .reveal.in{opacity:1;transform:none}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
-  .theme-rune .scene-book h2::after{width:120px;transition:none}
+  .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
