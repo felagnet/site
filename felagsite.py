@@ -17,6 +17,9 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 STATEMENT = ("Felag is a boutique engineering studio whose principal-led pods design and ship production systems for funded "
              "fintech and technology companies, from backend and infrastructure at scale to payments and identity, with every "
              "engagement priced on the outcome.")
+# the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
+DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
+               "priced on outcomes rather than hours.")
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
@@ -1045,14 +1048,14 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{STATEMENT}">
+<meta name="description" content="{DESCRIPTION}">
 <link rel="canonical" href="https://felag.net/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Felag">
 <meta property="og:title" content="{title}">
-<meta property="og:description" content="{STATEMENT}">
+<meta property="og:description" content="{DESCRIPTION}">
 <meta property="og:url" content="https://felag.net/">
 <meta property="og:image" content="https://felag.net/og.png">
 <meta property="og:image:width" content="1200">

@@ -191,8 +191,8 @@ def static_checks(html, page):
     row("Hero line appears exactly once", n == 1, f"found {n} times")
 
     desc = page.meta("description")
-    row("Statement matches the description meta", desc == felagsite.STATEMENT,
-        "description meta differs from felagsite.STATEMENT")
+    row("Description meta is DESCRIPTION and under 160 characters", desc == felagsite.DESCRIPTION and len(desc or "") <= 160,
+        f"description meta is {len(desc or '')} characters")
     row("Statement appears in visible text", felagsite.STATEMENT in text, "STATEMENT not found in the page text")
 
     stale = re.findall(r"href\s*=\s*[\"']?#book\b", html)
