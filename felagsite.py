@@ -606,7 +606,7 @@ def sections(t, theme):
     <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
     <div class="metrics stagger">
       <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
-      <article class="metric reveal" style="--i:1"><div class="big"><em>$</em>1B+</div><div class="label">locked in staking on the infrastructure we ran, serving Lido, Gnosis, Stellar and Canton</div></article>
+      <article class="metric reveal" style="--i:1"><div class="big">$1<em>B+</em></div><div class="label">locked in staking on the infrastructure we ran, serving Lido, Gnosis, Stellar and Canton</div></article>
       <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
     </div>
   </div>

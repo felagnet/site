@@ -162,7 +162,7 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 A near-black ground with two grey steps, two text greys, and a copper family that runs from deep to ember.
 
 ### Primary
-- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the rule under the closing headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the "em" inside a metric, the open capability title and the selected name on the wall.
+- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the rule under the closing headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the unit suffix inside a metric (k+, M+, B+), never the currency sign, the open capability title and the selected name on the wall.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, and the word that is lighting in the statement. Also the colour of the ignition glows.
 - **Deep copper** (#8C4E2C): the border and wash of the turn-down block.
 - **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, metric) and the bright end of the names-wall underline. Never a resting colour.
