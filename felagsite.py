@@ -248,7 +248,7 @@ SITE_CSS = '''
 .hero-inner{padding-bottom:0}
 @media (max-width:900px){.hero-inner{padding-bottom:40px}}
 main{position:relative;z-index:1}
-.sec{position:relative;padding:clamp(96px,12vh,160px) 0}
+.sec{position:relative;padding:clamp(80px,10vh,128px) 0}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
@@ -303,12 +303,12 @@ main{position:relative;z-index:1}
 .skills{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 /* ---- proof: metrics, then the cases as a strip that scrolls on its own axis */
-.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
 .metric{padding:28px 0 0;border-top:1px solid var(--line-strong);display:flex;flex-direction:column;gap:12px}
 .metric .big{font-size:var(--fs-metric);line-height:.92;font-weight:600;letter-spacing:-0.045em;font-variant-numeric:tabular-nums lining-nums;min-height:1em;white-space:nowrap}
 .metric .big em{font-style:normal;color:var(--accent)}
 .metric .label{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--text-secondary)}
-.scene-proof{position:relative;padding:72px 0 clamp(96px,12vh,160px)}
+.scene-proof{position:relative;padding:56px 0 clamp(72px,9vh,112px)}
 .track{display:flex;gap:24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 .card{flex:0 0 clamp(440px,38vw,600px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
 .card .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
@@ -344,26 +344,26 @@ main{position:relative;z-index:1}
 .wall-detail-inner .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:var(--fs-small)}
 
 /* ---- the record, three eras along a line */
-.eras{position:relative;margin-top:64px;padding-left:40px}
+.eras{position:relative;margin-top:48px;padding-left:40px}
 .era-line{position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:var(--line)}
 .era-line i{display:block;width:100%;height:0;background:var(--accent)}
-.era-block{position:relative;padding-bottom:72px}
+.era-block{position:relative;padding-bottom:48px}
 .era-block:last-child{padding-bottom:0}
 .era-block::before{content:"";position:absolute;left:-37px;top:14px;width:11px;height:11px;background:var(--bg);border:1px solid var(--line-strong);transform:rotate(45deg);transition:background-color .4s,border-color .4s}
 .era-block.lit::before{background:var(--accent);border-color:var(--accent)}
 .era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
 .era-name{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.era-intro{color:var(--text-secondary);font-size:var(--fs-lead);line-height:1.45;margin-top:10px;max-width:46em}
-.era-cases{margin-top:28px;border-top:1px solid var(--line)}
-.rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.era-intro{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:10px;max-width:52em}
+.era-cases{margin-top:20px;border-top:1px solid var(--line)}
+.rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .rec h4{font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;margin:0}
-.rec p{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);margin-top:6px;max-width:56em}
+.rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:56em}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
 /* ---- offer: a plain list of panels, one under the other */
-.stack{margin-top:64px}
+.stack{margin-top:48px}
 .panel{position:static;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
@@ -382,7 +382,7 @@ main{position:relative;z-index:1}
 
 /* ---- how */
 .how-line{margin-top:28px}
-.how-stage{position:relative;margin-top:64px}
+.how-stage{position:relative;margin-top:48px}
 .how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
 .step .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text);display:flex;align-items:center;gap:12px}
 .step .k span{color:var(--text-secondary)}
@@ -402,7 +402,7 @@ main{position:relative;z-index:1}
 .how-note{margin-top:48px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- who */
-.who-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.who-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
 .sit{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:14px;position:relative;transition:border-color .4s}
 .sit:hover{border-color:var(--line-strong)}
 .sit h3{font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;text-wrap:balance}
@@ -413,7 +413,7 @@ main{position:relative;z-index:1}
 .turn p{color:var(--text)}
 
 /* ---- people */
-.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:64px}
+.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
 .person{display:flex;flex-direction:column;gap:18px}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .portrait svg,.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -435,7 +435,7 @@ main{position:relative;z-index:1}
 .facts .v.todo{color:var(--text-secondary);font-family:var(--mono);font-size:var(--fs-small)}
 
 /* ---- faq */
-.faq{margin-top:56px;border-top:1px solid var(--line)}
+.faq{margin-top:40px;border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;font-size:var(--fs-title-sm);font-weight:600;letter-spacing:-0.02em;line-height:1.2}
 .faq summary::-webkit-details-marker{display:none}
@@ -467,7 +467,7 @@ main{position:relative;z-index:1}
   .how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
-  .sec{padding:80px 0}
+  .sec{padding:64px 0}
   .scene-statement{height:auto}.scene-statement .pin{position:relative;height:auto;min-height:0;padding:80px 0}
   .scene-statement .cur{display:none}
   .scene-book .wrap{padding-top:34vh}

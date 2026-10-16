@@ -92,7 +92,7 @@ spacing:
   xl: "32px"
   2xl: "48px"
   3xl: "64px"
-  section: "clamp(96px, 12vh, 160px)"
+  section: "clamp(80px, 10vh, 128px)"
 components:
   button-primary:
     backgroundColor: "{colors.copper}"
@@ -223,7 +223,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 
 The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics and situations, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
 
-Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
+Vertical rhythm is on a 4 px base. Sections pad clamp(80px, 10vh, 128px) top and bottom, 64 px on a phone; blocks within a section start 40 to 48 px below the headline; record rows sit 14 px apart on seam hairlines, other rows and list items 20 to 28 px apart. Scenes that pin (statement, build) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
 Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps Proof and People beside the Write to us button, and under 460 px People alone; at 600 px everything is one column. A phone's hero runway is 520 px past the viewport, enough for the rune's flight and the statement and nothing more. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
