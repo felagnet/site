@@ -677,7 +677,7 @@ def sections(t, theme):
 <section class="sec" id="who">
   <div class="wrap">
     <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
-    <h2 class="reveal">Six situations we see most often.</h2>
+    <h2 class="reveal">The situations we see most often.</h2>
     <div class="who-grid stagger">{who}</div>
     <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
   </div>
