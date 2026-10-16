@@ -24,7 +24,6 @@
       "label": { "displayName": "Label", "purpose": "Mono eyebrows, kickers, years, counts, identifiers and the skills line." }
     },
     "shadows": [
-      { "name": "panel-lift", "value": "0 -20px 60px rgba(14,17,20,.6)", "purpose": "Iron shadow above each sticky offer panel so the stack reads as sheets. The only grey shadow in the system." },
       { "name": "ignition", "value": "drop-shadow(0 0 16px rgba(239,163,124,.95))", "purpose": "First frame of the mark landing in the header; cools to none over 1.1 s." },
       { "name": "metric-burn", "value": "0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)", "purpose": "Text shadow on a big number arriving ember; cools to ash over 2 s." },
       { "name": "card-bloom", "value": "radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)", "purpose": "Copper wash from the top right of a proof card on hover." }
@@ -125,7 +124,7 @@
       "Dark only on the site. Iron ground, slate surfaces, seam hairlines.",
       "Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.",
       "Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.",
-      "Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, a proof card blooms on hover, and the soft iron shadow separates stacked panels.",
+      "Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, and a proof card blooms on hover.",
       "Nothing moves unless the scroll asks it to: no rise on reveal, no count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
     ],
     "rules": [
@@ -135,7 +134,7 @@
       { "name": "The Tabular Rule", "body": "Every metric and every column of numbers sets tabular lining figures; a single price inside a panel sets lining figures only, so a decimal point keeps its natural width.", "section": "typography" },
       { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
       { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
-      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo and the panel lift that separates a stack.", "section": "elevation" },
+      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo. The system has no grey shadow at all.", "section": "elevation" },
       { "name": "The Copper Light Rule", "body": "Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.", "section": "elevation" }
     ],
     "dos": [
@@ -148,7 +147,7 @@
       "Do collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens."
     ],
     "donts": [
-      "Don't put a glow, a grey shadow or a gradient on a surface at rest. The panel lift that separates stacked sheets is the one exception.",
+      "Don't put a glow, a grey shadow or a gradient on a surface at rest.",
       "Don't add a second accent, a status colour, purple, neon green, or any white glow.",
       "Don't rotate the mark, recolour a piece, round its corners, fill a channel, or place it on a photograph.",
       "Don't use runic alphabets as decoration, Norse imagery, hexagons, chains and nodes, circuit patterns, isometric cubes, stock photography or emoji.",

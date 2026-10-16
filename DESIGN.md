@@ -154,7 +154,7 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 - Dark only on the site. Iron ground, slate surfaces, seam hairlines.
 - Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.
 - Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.
-- Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, a proof card blooms on hover, and the soft iron shadow separates stacked panels.
+- Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, and a proof card blooms on hover.
 - Nothing moves unless the scroll asks it to: no rise on reveal, no count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion.
 
 ## Colors
@@ -168,7 +168,7 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 - **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, metric) and the bright end of the names-wall underline. Never a resting colour.
 
 ### Neutral
-- **Iron** (#0E1114): the page background, the text on copper buttons, the fill of unlit era markers, and the colour of the shadow that lifts a stacked panel.
+- **Iron** (#0E1114): the page background, the text on copper buttons and the fill of unlit era markers.
 - **Slate** (#151A1E): cards, offer panels, situation cards, portrait wells, the skip link.
 - **Seam** (#262C31): every hairline: section rules, card borders, table and row rules, the era line, the cold half of a progress rule.
 - **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, the hover border of a situation card, list bullets.
@@ -223,7 +223,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 
 The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics and situations, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
 
-Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
+Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
 Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps Proof and People beside the Write to us button, and under 460 px People alone; at 600 px everything is one column. A phone's hero runway is 520 px past the viewport, enough for the rune's flight and the statement and nothing more. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
@@ -232,14 +232,13 @@ Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinn
 The system is flat by structure and lit by state. Depth comes from the three greys (iron, slate, seam) and from copper light, not from grey shadows on resting surfaces. The page carries no ambient wash outside the hero canvas: no fixed gradient, no warm blob behind the sections, iron all the way down. Text selection is copper with iron text, and the scrollbar is steel on iron.
 
 ### Shadow Vocabulary
-- **Panel lift** (`box-shadow: 0 -20px 60px rgba(14,17,20,.6)`): an iron shadow above each sticky offer panel so the stack reads as sheets sliding over each other. The only grey shadow in the system.
 - **Ignition** (`drop-shadow(0 0 16px rgba(239,163,124,.95))` to `0`): the flash when the mark lands in the header. Starts at ember, ends with no shadow.
 - **Metric burn** (`text-shadow: 0 0 34px rgba(239,163,124,.95), 0 0 8px rgba(255,225,194,.9)` to `0`): the big numbers arrive ember and cool to ash over 2 s.
 - **Card bloom** (`radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%)`): a copper wash from the top right corner of a proof card on hover.
 - **Hero bloom**: the rune on the canvas is drawn wide on a second canvas and blurred twice (22 px and 7 px) at 90 and 70 percent alpha while it draws and ignites, then settles over 1.6 s to a resting copper with a faint halo and no breathing. Safari has no canvas filter, so there the same glow is a canvas shadow blur; keep that fallback.
 
 ### Named Rules
-**The Lit-by-State Rule.** Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo and the panel lift that separates a stack.
+**The Lit-by-State Rule.** Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo. The system has no grey shadow at all.
 
 **The Copper Light Rule.** Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.
 
@@ -272,7 +271,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **The cases strip:** the proof cards sit in a strip that scrolls on its own axis with mandatory snap to each card's left edge, padded by the page gutter, with a thin steel scrollbar as the cue. It never pins the page or takes over the wheel; the next card peeking at the right edge is the invitation.
 
 ### Offer panels
-- **Style:** slate sheets that stick under the header at a 12 px per-panel offset so they stack, with the panel lift shadow and nothing else: no shrink, no veil. Two columns: title and body on the left, the price right-aligned in ash at subhead scale with a mono note under it, copper on the launch price alone, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
+- **Style:** slate sheets in a plain list, 24 px apart, static in the flow: no sticking, no stacking, no shadow, no shrink, no veil. Two columns: title and body on the left, the price right-aligned in ash at subhead scale with a mono note under it, copper on the launch price alone, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
 
 ### Key-value rows
 - **Style:** seam hairline between rows, mono 13 px smoke key in a 150 to 280 px column, 18/28 ash value. Pending values render in mono 14 px smoke.
@@ -304,7 +303,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Do** collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens.
 
 ### Don't:
-- **Don't** put a glow, a grey shadow or a gradient on a surface at rest. The panel lift that separates stacked sheets is the one exception.
+- **Don't** put a glow, a grey shadow or a gradient on a surface at rest.
 - **Don't** add a second accent, a status colour, purple, neon green, or any white glow.
 - **Don't** rotate the mark, recolour a piece, round its corners, fill a channel, or place it on a photograph.
 - **Don't** use runic alphabets as decoration, Norse imagery, hexagons, chains and nodes, circuit patterns, isometric cubes, stock photography or emoji.

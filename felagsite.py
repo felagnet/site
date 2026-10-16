@@ -362,9 +362,9 @@ main{position:relative;z-index:1}
 .rec p{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);margin-top:6px;max-width:56em}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
-/* ---- offer: stacking panels */
+/* ---- offer: a plain list of panels, one under the other */
 .stack{margin-top:64px}
-.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
+.panel{position:static;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -480,7 +480,7 @@ main{position:relative;z-index:1}
   .name{padding:10px 0}
   .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
   .card{flex-basis:min(86vw,420px);padding:28px}
-  .panel{grid-template-columns:minmax(0,1fr);position:relative;top:auto}.pcols{grid-template-columns:minmax(0,1fr)}
+  .panel{grid-template-columns:minmax(0,1fr)}.pcols{grid-template-columns:minmax(0,1fr)}
   .panel .price{text-align:left}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
   .scene-book .pin{display:block;min-height:0;padding:96px 0 120px}
