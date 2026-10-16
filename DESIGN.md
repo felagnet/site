@@ -126,11 +126,10 @@ components:
     textColor: "{colors.ash}"
     rounded: "{rounded.md}"
     padding: "36px"
-  situation-card:
-    backgroundColor: "{colors.slate}"
+  situation-row:
     textColor: "{colors.ash}"
-    rounded: "{rounded.md}"
-    padding: "32px"
+    rounded: "{rounded.none}"
+    padding: "28px 0"
   panel:
     backgroundColor: "{colors.slate}"
     textColor: "{colors.ash}"
@@ -169,9 +168,9 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 
 ### Neutral
 - **Iron** (#0E1114): the page background, the text on copper buttons and the fill of unlit era markers.
-- **Slate** (#151A1E): cards, offer panels, situation cards, portrait wells, the skip link.
+- **Slate** (#151A1E): cards, offer panels, portrait wells, the skip link.
 - **Seam** (#262C31): every hairline: section rules, card borders, table and row rules, the era line, the cold half of a progress rule.
-- **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, the hover border of a situation card, list bullets.
+- **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, list bullets.
 - **Ash** (#E9ECEE): primary text and the wordmark.
 - **Smoke** (#98A1A8): secondary text, lead paragraphs, labels, eyebrows, kickers, indices, era years, roles under the people, nav links at rest, protocol names on the wall.
 
@@ -200,7 +199,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. No rule under it; the closing headline alone carries a 120 px copper rule that grows over 0.8 s.
 - **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with lining figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
-- **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
+- **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles (hot copper on hover), the turn-down title and the questions.
 - **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
 - **Prose** (400, 17px/28px): long paragraphs set for reading: card and panel bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
 - **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
@@ -221,11 +220,11 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 
 ## Layout
 
-The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics and situations, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
+The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics, two for the situations list, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
 
 Vertical rhythm is on a 4 px base. Sections pad clamp(80px, 10vh, 128px) top and bottom, 64 px on a phone; blocks within a section start 40 to 48 px below the headline; record rows sit 14 px apart on seam hairlines, other rows and list items 20 to 28 px apart. Scenes that pin (statement, build) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
-Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps Proof and People beside the Write to us button, and under 460 px People alone; at 600 px everything is one column. A phone's hero runway is 520 px past the viewport, enough for the rune's flight and the statement and nothing more. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
+Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations list, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps Proof and People beside the Write to us button, and under 460 px People alone; at 600 px everything is one column. A phone's hero runway is 520 px past the viewport, enough for the rune's flight and the statement and nothing more. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
 ## Elevation & Depth
 
@@ -265,10 +264,13 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 ### Cards / Containers
 - **Corner Style:** 4 px.
 - **Background:** slate with a 1 px seam border.
-- **Shadow Strategy:** none at rest; the proof card blooms copper from its top right corner on hover; the situation card's border goes steel over 0.4 s.
-- **Internal Padding:** 36 px on proof cards (440 to 600 px wide, 86vw up to 420 px on a phone), 32 px on situation cards, clamp(28px, 3.4vw, 48px) on offer panels.
+- **Shadow Strategy:** none at rest; the proof card blooms copper from its top right corner on hover.
+- **Internal Padding:** 36 px on proof cards (440 to 600 px wide, 86vw up to 420 px on a phone), clamp(28px, 3.4vw, 48px) on offer panels.
 - **Anatomy:** a header row with the mono kicker in smoke on the left and the mono index on the right, title, smoke body at 17/27, a footer row with links on the left and a mono era note on the right.
 - **The cases strip:** the proof cards sit in a strip that scrolls on its own axis with mandatory snap to each card's left edge, padded by the page gutter, with a thin steel scrollbar as the cue. It never pins the page or takes over the wheel; the next card peeking at the right edge is the invitation.
+
+### Situations list
+- **Style:** not cards. Two columns of hairline rows on a seam top rule, 48 px apart, each row 28 px of vertical padding over a seam rule: a mono index in a 48 px column, the title at the small title role, the body in smoke at 34em. Hover turns the title hot copper over 0.25 s; no border changes. Two columns down to 600 px, then one. The turn-down block under the list keeps its deep copper border and wash as the one emphasis in the section.
 
 ### Offer panels
 - **Style:** slate sheets in a plain list, 24 px apart, static in the flow: no sticking, no stacking, no shadow, no shrink, no veil. Two columns: title and body on the left, the price right-aligned in ash at subhead scale with a mono note under it, copper on the launch price alone, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.

@@ -405,12 +405,13 @@ main{position:relative;z-index:1}
 .how-note{margin-top:48px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- who */
-.who-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
-.sit{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:14px;position:relative;transition:border-color .4s}
-.sit:hover{border-color:var(--line-strong)}
-.sit h3{font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;text-wrap:balance}
-.sit p{color:var(--text-secondary);font-size:var(--fs-body)}
-.sit .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
+/* the situations as a two-column hairline list, the house way to list things: index, title, body, seam rule */
+.who-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:48px;border-top:1px solid var(--line)}
+.sit{background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:28px 0;display:grid;grid-template-columns:48px minmax(0,1fr);gap:6px 12px;align-content:start}
+.sit .n{grid-row:1 / span 2;padding-top:4px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
+.sit h3{grid-column:2;font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;text-wrap:balance;transition:color .25s}
+.sit p{grid-column:2;max-width:34em;color:var(--text-secondary);font-size:var(--fs-body)}
+.sit:hover h3{color:var(--accent-hover)}
 .turn{margin-top:24px;border:1px solid var(--copper-deep);border-radius:4px;padding:32px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;background:linear-gradient(90deg,rgba(var(--deep-rgb),.14),rgba(var(--deep-rgb),0) 60%)}
 .turn h3{font-size:var(--fs-title-sm);font-weight:600;letter-spacing:-0.015em}
 .turn p{color:var(--text)}

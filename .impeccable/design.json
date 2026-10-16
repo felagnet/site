@@ -33,7 +33,7 @@
       { "name": "ease-arrive", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Arrivals: the closing rule, the wall detail, an answer opening. Exits run faster." },
       { "name": "ease-in-out-cubic", "value": "x < 0.5 ? 4x^3 : 1 - (-2x + 2)^3 / 2", "purpose": "The hero canvas: stroke drawing and the flight of the rune to the header." },
       { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons; a press answers in .1s." },
-      { "name": "lift", "value": "border-color .4s", "purpose": "Situation card hover: the border goes steel." },
+      { "name": "lift", "value": "color .25s", "purpose": "Situation row hover: the title goes hot copper." },
       { "name": "underline", "value": "transform .45s ease-house, scaleX from 0 at the left", "purpose": "Names wall hover underline." },
       { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Hero ignition that settles over 1.6 s to a faint resting halo, mark landing, metric burn." },
       { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no reveal." }
@@ -93,12 +93,12 @@
       "css": ".ds-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; max-width: 520px; min-height: 360px; padding: 36px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 40% at 100% 0%, rgba(223,142,99,.16), transparent 70%); opacity: 0; transition: opacity .5s; pointer-events: none; } .ds-card:hover::before { opacity: 1; } .ds-card-idx { position: absolute; right: 28px; top: 28px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-card-kicker { margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .02em; color: var(--text-secondary, #98A1A8); } .ds-card-title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; } .ds-card-body { margin: 0; font-size: 17px; line-height: 27px; color: var(--text-secondary, #98A1A8); } .ds-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; gap: 16px; } .ds-card-link { font-size: 15px; color: var(--accent, #DF8E63); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; } .ds-card-link:hover { color: var(--accent-hover, #EFA37C); } .ds-card-era { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); }"
     },
     {
-      "name": "Situation card",
-      "kind": "card",
-      "refersTo": "situation-card",
-      "description": "A numbered slate card that lifts 6 px on hover.",
+      "name": "Situation row",
+      "kind": "custom",
+      "refersTo": "situation-row",
+      "description": "A hairline row in the two-column situations list: mono index, title, body on a seam rule; the title goes hot copper on hover.",
       "html": "<article class=\"ds-sit\"><span class=\"ds-sit-n\">03</span><h3 class=\"ds-sit-title\">A regulated payments or asset issuer rebuilding for a new regime</h3><p class=\"ds-sit-body\">The regime has changed what the system must record and prove, and the team needs engineers who have built for one before.</p></article>",
-      "css": ".ds-sit { display: flex; flex-direction: column; gap: 14px; max-width: 400px; padding: 32px; background: var(--surface, #151A1E); border: 1px solid var(--line, #262C31); border-radius: 4px; color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: border-color .4s; } .ds-sit:hover { border-color: var(--line-strong, #616A71); } .ds-sit-n { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-secondary, #98A1A8); } .ds-sit-title { margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; } .ds-sit-body { margin: 0; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
+      "css": ".ds-sit { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 6px 12px; align-content: start; max-width: 560px; padding: 28px 0; border-top: 1px solid var(--line, #262C31); border-bottom: 1px solid var(--line, #262C31); color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-sit-n { grid-row: 1 / span 2; padding-top: 4px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-sit-title { grid-column: 2; margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; transition: color .25s; } .ds-sit:hover .ds-sit-title { color: var(--accent-hover, #EFA37C); } .ds-sit-body { grid-column: 2; margin: 0; max-width: 34em; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
     },
     {
       "name": "Key-value row",
