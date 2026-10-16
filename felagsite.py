@@ -325,6 +325,15 @@ main{position:relative;z-index:1}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 
 .card .era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);text-align:right}
+.strip-head{display:flex;justify-content:space-between;align-items:end;gap:24px}
+.strip-nav{display:flex;gap:12px;flex:0 0 auto}
+.strip-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--line-strong);border-radius:2px;background:none;color:var(--text);cursor:pointer;transition:border-color .15s,color .15s}
+.strip-btn svg{display:block}
+.strip-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
+.strip-btn:active{color:var(--accent)}
+.strip-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.strip-btn[disabled]{opacity:var(--dim);cursor:default}
+.strip-btn[disabled]:hover{border-color:var(--line-strong);color:var(--text)}
 
 .links a{padding:6px 8px;margin:-6px -8px}
 
@@ -483,6 +492,7 @@ main{position:relative;z-index:1}
   .scene-proof{padding:56px 0 80px}
   .name{padding:10px 0}
   .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
+  .strip-nav{display:none}
   .card{flex-basis:min(86vw,420px);padding:28px}
   .panel{grid-template-columns:minmax(0,1fr)}.pcols{grid-template-columns:minmax(0,1fr)}
   .panel .price{text-align:left}
@@ -579,6 +589,10 @@ def sections(t, theme):
     facts = "".join(f'<div class="row reveal" style="--i:{i}"><div class="k">{k}</div><div class="v{" todo" if v.startswith("[") else ""}">{v}</div></div>' for i, (k, v) in enumerate(CONTRACT))
     faq = "".join(f'<details><summary><span>{q}</span><i></i></summary><div class="a"><p>{a}</p></div></details>' for q, a in FAQ)
     book_art = '<canvas class="art" id="book-art" aria-hidden="true"></canvas>'
+    chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{d}"/></svg>'
+    strip_nav = ('<div class="strip-nav">'
+                 f'<button type="button" class="strip-btn" data-dir="-1" aria-label="Previous case">{chevron.format(d="M10 3L5 8l5 5")}</button>'
+                 f'<button type="button" class="strip-btn" data-dir="1" aria-label="Next case">{chevron.format(d="M6 3l5 5-5 5")}</button></div>')
 
     statement_scene = "" if theme == "rune" else f'''
 <section class="scene-statement" id="statement" data-scrub="statement">
@@ -620,7 +634,7 @@ def sections(t, theme):
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
-  <div class="wrap"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p></div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p>{strip_nav}</div>
   <div class="track" id="track">{cards}</div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
@@ -781,6 +795,20 @@ SITE_JS = r'''
     pieces.forEach(function(pc){ pc.classList.toggle('on', pc.getAttribute('data-piece') === piece); });
     if (count) count.textContent = '0' + (idx + 1) + ' / 0' + caps.length;
   });
+})();
+
+// ---- the cases strip: previous and next move it one card at a time, for readers without a trackpad
+(function(){
+  var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn'); if (!track || !btns.length) return;
+  function update(){
+    var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
+    btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){
+    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + 24;
+    track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
+  }); });
+  track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
 })();
 
 // ---- the names wall: a name opens its line right under its own row
