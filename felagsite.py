@@ -273,6 +273,11 @@ main{position:relative;z-index:1}
 .mark-arrived .site-header .mark-fill{animation:markflash 1.1s ease-out}
 @keyframes markflash{0%{fill:var(--ember);filter:drop-shadow(0 0 16px rgba(var(--hot-rgb),.95))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(var(--hot-rgb),0))}}
 /* one headline on the page is underlined in copper: the closing one */
+/* ---- blocks rise in as they enter: 24 px and a fade over .7 s, 60 ms later for each item in a group (--i), nothing under reduced motion */
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0) * 60ms)}
+html.js .reveal.in{opacity:1;transform:none}
+.sec h2.reveal{--i:1}.sec .lead.reveal{--i:2}
+@media (prefers-reduced-motion: reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
 .theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
 .theme-rune .scene-book h2.lit::after{width:120px}
 .theme-rune .metric .big.burn,.theme-rune .sec h2.huge.burn{animation:burn 2s ease-out both}
@@ -557,7 +562,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -574,7 +579,7 @@ def sections(t, theme):
                 f'<div class="pcol"><div class="pk">Who delivers</div><p>{o["who"]}</p></div>')
         launch = " launch" if "launch" in o["note"] else ""
         word = ' class="word"' if not any(ch.isdigit() for ch in o["price"]) else ""
-        panels += f'<article class="panel{launch}" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b{word}>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
+        panels += f'<article class="panel reveal{launch}" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b{word}>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
     steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}<span>{h}</span></div><h3>{o}</h3><p>{b}</p></div>' for i, (h, o, b) in enumerate(HOW))
     if theme == "rune":
         how_art = ""

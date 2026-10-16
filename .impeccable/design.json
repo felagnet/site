@@ -133,7 +133,7 @@
       "Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.",
       "Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.",
       "Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, and a proof card blooms on hover.",
-      "Nothing moves unless the scroll asks it to: no rise on reveal, no count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
+      "Blocks arrive as the scroll reaches them: a 24 px rise and fade over 0.7 s, 60 ms later for each item in a group. No count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
     ],
     "rules": [
       { "name": "The One Metal Rule", "body": "Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.", "section": "colors" },

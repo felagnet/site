@@ -154,7 +154,7 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 - Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.
 - Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.
 - Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, and a proof card blooms on hover.
-- Nothing moves unless the scroll asks it to: no rise on reveal, no count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion.
+- Blocks arrive as the scroll reaches them: a 24 px rise and fade over 0.7 s on the ease-out curve, 60 ms later for each item in a group (metrics, cards, offers, situations, people, rows), the eyebrow, headline and lead of a section 60 ms apart. No count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion.
 
 ## Colors
 
