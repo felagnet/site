@@ -251,7 +251,8 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 
 ### Buttons
 - **Shape:** near-square (2 px radius), 52 px tall, 28 px side padding; small variant 44 px tall, 20 px padding, 15 px text.
-- **Primary:** copper fill, iron text at 16 px medium with -0.005em tracking, no border, never wraps.
+- **Primary:** copper fill, iron text at 16 px medium with -0.005em tracking, a 1 px transparent border so the hairline variant keeps the same height, never wraps.
+- **Hairline:** the header button over the hero while the mark is still in flight: transparent fill, ash text, a 1 px steel border, hover to a smoke border. It fills copper over 0.5 s on the house ease in the moment the mark lands in the header, so the hero button is the only copper button on the first screen. The pending state is in the markup and acts only once scripts run; without them the button is copper from the start, as it is under reduced motion.
 - **Hover / Focus / Press:** fill to hot copper over 0.15 s; a press darkens the copper a step for as long as it is held, in 0.1 s; focus-visible draws a 2 px copper outline 3 px outside the edge.
 - **Text link:** the only secondary action, a 16 px medium copper link beside the button in a 36 px gap.
 
@@ -282,7 +283,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Style:** native details and summary on seam rules, 26 px vertical padding, title at the small title role, the steel circle plus on the right. The answer opens over 0.45 s and closes over 0.3 s.
 
 ### Navigation
-- **Style:** sticky 72 px header, lockup at 38 px on the left with the mark in copper and the wordmark in ash, four smoke text links and the small primary button on the right. Transparent over the hero, iron with a seam rule once the mark has landed. Under 900 px only the lockup and the button remain. A skip link appears at the top left on focus.
+- **Style:** sticky 72 px header, lockup at 38 px on the left with the mark in copper and the wordmark in ash, four smoke text links and the small button on the right. Transparent over the hero, iron with a seam rule once the mark has landed. The button is a hairline button over the hero and fills copper as the mark lands (see Buttons). Under 700 px the links thin to Proof and People beside the button, under 460 px to People alone; the lockup and the button stay at every width. A skip link appears at the top left on focus.
 - **Current section:** the header reflects where the reader is. An observer over the sections (the proof, names and record map to Proof; offer maps to Prices; how and who map to How; people and the questions map to People) sets the matching link to ash and leaves the rest smoke; over the hero no link is current. No underline, no copper: ash is the only mark of the current section, and hover is ash too.
 
 ### The mark

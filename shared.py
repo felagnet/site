@@ -32,14 +32,14 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .wrap{padding:0 var(--side);max-width:1440px;margin:0 auto}
 .skip{position:absolute;left:16px;top:-80px;padding:8px 12px;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;color:var(--text);z-index:30}
 .skip:focus{top:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;background:var(--accent);color:var(--on-accent);border-radius:2px;font-size:var(--fs-body);font-weight:500;letter-spacing:-0.005em;text-decoration:none;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;background:var(--accent);color:var(--on-accent);border:1px solid transparent;border-radius:2px;font-size:var(--fs-body);font-weight:500;letter-spacing:-0.005em;text-decoration:none;white-space:nowrap}
 .btn:hover{background:var(--accent-hover);color:var(--on-accent)}
 .btn:active{background:color-mix(in srgb,var(--accent) 86%,var(--on-accent));transition-duration:.1s}
 .btn-sm{height:44px;padding:0 20px;font-size:var(--fs-small)}
 .textlink{font-size:var(--fs-body);font-weight:500}
 .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);transition:background-color .4s,border-color .4s}
 .over-hero .site-header{background:linear-gradient(180deg,rgba(var(--iron-rgb),.92) 0%,rgba(var(--iron-rgb),.55) 70%,rgba(var(--iron-rgb),0) 100%);border-color:transparent}
-.mark-pending .site-header .mark-fill{opacity:0;transition:opacity .5s}
+.js .mark-pending .site-header .mark-fill{opacity:0;transition:opacity .5s}
 .mark-arrived .site-header .mark-fill{opacity:1}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--head)}
 .lockup{display:inline-flex;color:var(--text)}

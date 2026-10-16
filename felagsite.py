@@ -264,6 +264,10 @@ main{position:relative;z-index:1}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
+/* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
+.site-header .btn{transition:background-color .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1)}
+.js .theme-rune.mark-pending .site-header .btn{background:transparent;color:var(--text);border:1px solid var(--line-strong)}
+.js .theme-rune.mark-pending .site-header .btn:hover{background:transparent;color:var(--text);border-color:var(--text-secondary)}
 .lockup svg{overflow:visible}
 .mark-arrived .site-header .mark-fill{animation:markflash 1.1s ease-out}
 @keyframes markflash{0%{fill:var(--ember);filter:drop-shadow(0 0 16px rgba(var(--hot-rgb),.95))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(var(--hot-rgb),0))}}
@@ -518,6 +522,7 @@ main{position:relative;z-index:1}
 @media (prefers-reduced-motion:reduce){
   .theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
+  .site-header .btn{transition:none}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
   .statement .w{opacity:1}
 }
@@ -1194,7 +1199,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>
 </head>
 <body>
-<div class="theme-{theme}" id="root">
+<div class="theme-{theme}{" mark-pending" if theme == "rune" else ""}" id="root">
 {amb["markup"]}
 {header()}
 <main id="main">
