@@ -1,6 +1,6 @@
 # Review loop queue
 
-Rounds 1 to 3, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
+Rounds 1 to 4, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
 
 ## Design
 - design-1-1 [P1] done c617b16: Fix the launch price rendering as "$7 . 5k" (design)
@@ -20,6 +20,7 @@ Rounds 1 to 3, kept current by the developer. One line per task: id, priority, s
 - design-1-15 [P3] done 086611d: Closing scene on the phone: close the empty gap above the mark (design). The mark is also kept above the text block on a phone in landscape, where it overlapped the headline before.
 - design-2-1 [P1] done aaefb7f: Offer as hairline rows: take the five panels off their slate sheets, price as the news (design). At 1440 the offer section measures 2,692 px (3,167 before) and a row 337 to 448 px; at 390 each row shows the title and then the price 4 px under it in its first screen. The list squares were already steel, as the key characteristics say, and stay steel.
 - design-2-2 [P2] done 6fa9f77: First screen: the header button stays quiet until the mark lands, then fills copper with it (design). The pending state is carried in the rune page's markup and gated on html.js: WebKit paints before the end-of-body script runs and showed a copper flash on load otherwise. Verified in Chromium and WebKit at 1440 and 390 and under reduced motion.
+- design-4-1 [P2] done 5e5583f: Offer rows on the phone: word prices read as a second line of the title (design). Measured at 390: Free and Quote per scope at 21 px in smoke 4 px under the 24 px ash title; number prices unchanged at 30 px, $7.5k copper. At 1440 the word prices stay right-aligned at 32 px, now in smoke.
 
 ## Copy
 - copy-1-1 [P1] done 5b4234e: Name Opera and 1inch on the RPC proxy and give the lead number its own case (copy)
@@ -50,6 +51,7 @@ Rounds 1 to 3, kept current by the developer. One line per task: id, priority, s
 - copy-3-1 [P2] done 252ae37: How: the eyebrow repeats the headline word for word (copy). The rune eyebrow reads How we work; the h2, the nav label and the llms.txt heading stay.
 - copy-3-2 [P2] done 3156133: Metric strip: date the $1B+ locked figure, as the rule requires (copy). The label stays two lines at 1440 and runs three at 390, measured.
 - copy-3-3 [P2] done b3a81ed: Offer rows: the body restates the Terms column, and Pods lists the fixed-price build as a pod deliverable (copy). llms.txt and the JSON-LD Offer descriptions followed from the constants; make_dist.py needed no change.
+- copy-4-1 [P2] owner: Proof register row C: the XIP-9 artefact URL is dead, so the Infinex case carries no public link (copy)
 
 ## SEO
 - seo-1-1 [P0] owner: Fractional CTO price on the page is not the rate-card price (seo)
