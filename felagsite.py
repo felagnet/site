@@ -252,8 +252,7 @@ main{position:relative;z-index:1}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
-.eyebrow{display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";display:inline-block;width:22px;height:1px;background:var(--line-strong)}
+.eyebrow{font-size:12px;line-height:20px;letter-spacing:.06em;color:var(--text-secondary);margin-bottom:20px}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
 
 /* ---- rune theme: the rune lands in the header, fire on titles and numbers */
@@ -264,8 +263,9 @@ main{position:relative;z-index:1}
 .lockup svg{overflow:visible}
 .mark-arrived .site-header .mark-fill{animation:markflash 1.1s ease-out}
 @keyframes markflash{0%{fill:var(--ember);filter:drop-shadow(0 0 16px rgba(var(--hot-rgb),.95))}100%{fill:var(--accent);filter:drop-shadow(0 0 0 rgba(var(--hot-rgb),0))}}
-.theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after,.theme-rune .scene-build h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
-.theme-rune .sec h2.reveal.in::after,.theme-rune .scene-book h2.lit::after,.theme-rune .scene-build h2.lit::after{width:120px}
+/* one headline on the page is underlined in copper: the closing one */
+.theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
+.theme-rune .scene-book h2.lit::after{width:120px}
 .theme-rune .metric .big.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:var(--ember);text-shadow:0 0 34px rgba(var(--hot-rgb),.95),0 0 8px rgba(var(--ember-rgb),.9)}60%{color:color-mix(in srgb,var(--ember) 60%,var(--accent));text-shadow:0 0 24px rgba(var(--hot-rgb),.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(var(--hot-rgb),0)}}
 @media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:center;padding-top:var(--head);padding-bottom:10vh}}
@@ -492,7 +492,7 @@ main{position:relative;z-index:1}
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
-  .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after,.theme-rune .scene-build h2::after{width:120px;transition:none}
+  .theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
   .statement .w{opacity:1}
@@ -827,7 +827,7 @@ SITE_JS = r'''
 (function(){
   if (reduce || !document.getElementById('root').classList.contains('theme-rune') || !('IntersectionObserver' in window)) return;
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add(en.target.classList.contains('big') ? 'burn' : 'lit'); io.unobserve(en.target); } }); }, {threshold: 0.6});
-  document.querySelectorAll('.metric .big, .scene-book h2, .scene-build h2').forEach(function(el){ io.observe(el); });
+  document.querySelectorAll('.metric .big, .scene-book h2').forEach(function(el){ io.observe(el); });
 })();
 
 // ---- faq: animated open and close

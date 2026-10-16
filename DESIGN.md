@@ -162,16 +162,16 @@ Recorded 15 October 2026 from the shipped page on the impeccable-refine branch a
 A near-black ground with two grey steps, two text greys, and a copper family that runs from deep to ember.
 
 ### Primary
-- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the title rule under a headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the "em" inside a metric, the open capability title and the selected name on the wall.
+- **Copper** (#DF8E63): the accent. The mark at rest, every link, the primary button, the rule under the closing headline, the copper half of progress rules, one price in the offer (the launch price), lit markers, the "em" inside a metric, the open capability title and the selected name on the wall.
 - **Hot copper** (#EFA37C): hover and pressed state of anything copper, and the word that is lighting in the statement. Also the colour of the ignition glows.
-- **Deep copper** (#8C4E2C): the cold end of the copper gradient on title rules, and the border and wash of the turn-down block.
-- **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, title rule, metric, fire path) and the bright end of the names-wall underline. Never a resting colour.
+- **Deep copper** (#8C4E2C): the border and wash of the turn-down block.
+- **Ember** (#FFE1C2, `--ember`): the flash colour. The first frame of every ignition (mark, metric) and the bright end of the names-wall underline. Never a resting colour.
 
 ### Neutral
 - **Iron** (#0E1114): the page background, the text on copper buttons, the fill of unlit era markers, and the colour of the shadow that lifts a stacked panel.
 - **Slate** (#151A1E): cards, offer panels, situation cards, portrait wells, the skip link.
 - **Seam** (#262C31): every hairline: section rules, card borders, table and row rules, the era line, the cold half of a progress rule.
-- **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, the hover border of a situation card, the eyebrow dash, list bullets.
+- **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, the hover border of a situation card, list bullets.
 - **Ash** (#E9ECEE): primary text and the wordmark.
 - **Smoke** (#98A1A8): secondary text, lead paragraphs, labels, eyebrows, kickers, indices, era years, roles under the people, nav links at rest, protocol names on the wall.
 
@@ -197,7 +197,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
-- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap, with a 120 px copper rule that grows under a section h2 over 0.8 s.
+- **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. No rule under it; the closing headline alone carries a 120 px copper rule that grows over 0.8 s.
 - **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with lining figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
@@ -205,7 +205,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Prose** (400, 17px/28px): long paragraphs set for reading: card and panel bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
 - **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
 - **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer.
-- **Label** (400 mono, 13px/20px, 0.04em on eyebrows): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
+- **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
 
 ### Dim states
 Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph or index label borrows ash for the same reason and settles to smoke once its step or capability lights.
@@ -261,7 +261,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Style:** copper, 1 px underline offset 4 px, hover to hot copper. Nav links are 15 px medium smoke with no underline, ash on hover, 36 px apart.
 
 ### Eyebrow
-- **Style:** mono 12 px smoke with 0.04em tracking, preceded by a 22 px by 1 px steel dash, 24 px above the headline.
+- **Style:** mono 12 px smoke with 0.06em tracking, 20 px above the headline. No dash, no rule: the headline opens the section on its own.
 
 ### Cards / Containers
 - **Corner Style:** 4 px.
@@ -295,11 +295,11 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.
+- **Do** keep copper as the only hue: mark, links, primary button, lit markers, one emphasis per section.
 - **Do** build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.
 - **Do** use tabular lining figures on every metric and every column of numbers; a lone price sets lining figures only.
 - **Do** let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.
-- **Do** use the house ease, cubic-bezier(.2, .7, .2, 1), for the transitions that remain: the title rule, the open capability, the wall detail, the questions.
+- **Do** use the house ease, cubic-bezier(.2, .7, .2, 1), for the transitions that remain: the closing rule, the open capability, the wall detail, the questions.
 - **Do** show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.
 - **Do** collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens.
 

@@ -17,7 +17,7 @@
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "The one huge statement per page, max 11ch." },
-      "headline": { "displayName": "Headline", "purpose": "Every section h2 and the hero h1, max 15ch, with the 120 px copper rule under it in the rune theme." },
+      "headline": { "displayName": "Headline", "purpose": "Every section h2 and the hero h1, max 15ch, no rule under it; the closing headline alone carries the 120 px copper rule." },
       "title": { "displayName": "Title", "purpose": "Card titles; panels, capabilities, people and situations scale it up or down." },
       "metric": { "displayName": "Metric", "purpose": "The big numbers in proof, always tabular lining figures; the prices in offer panels take lining figures only." },
       "body": { "displayName": "Body", "purpose": "Reading text at 16/26, 34 to 56em; cards and panels at 17/27." },
@@ -31,7 +31,7 @@
     ],
     "motion": [
       { "name": "ease-house", "value": "cubic-bezier(.2, .7, .2, 1)", "purpose": "Scroll-driven states: the open capability, the lit step." },
-      { "name": "ease-arrive", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Arrivals: the title rule, the wall detail, an answer opening. Exits run faster." },
+      { "name": "ease-arrive", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Arrivals: the closing rule, the wall detail, an answer opening. Exits run faster." },
       { "name": "ease-in-out-cubic", "value": "x < 0.5 ? 4x^3 : 1 - (-2x + 2)^3 / 2", "purpose": "The hero canvas: stroke drawing and the flight of the rune to the header." },
       { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons; a press answers in .1s." },
       { "name": "lift", "value": "border-color .4s", "purpose": "Situation card hover: the border goes steel." },
@@ -83,7 +83,7 @@
       "refersTo": "eyebrow",
       "description": "Mono label with a copper dash, 24 px above every headline.",
       "html": "<p class=\"ds-eyebrow\">What we build</p>",
-      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 14px; margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; letter-spacing: .04em; color: var(--text-secondary, #98A1A8); } .ds-eyebrow::before { content: ''; display: inline-block; width: 22px; height: 1px; background: var(--line-strong, #616A71); }"
+      "css": ".ds-eyebrow { margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 20px; letter-spacing: .06em; color: var(--text-secondary, #98A1A8); }"
     },
     {
       "name": "Proof card",
@@ -139,7 +139,7 @@
       { "name": "The Copper Light Rule", "body": "Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.",
+      "Do keep copper as the only hue: mark, links, primary button, lit markers, one emphasis per section.",
       "Do build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.",
       "Do use tabular lining figures on every metric and every column of numbers; a lone price sets lining figures only.",
       "Do let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.",
