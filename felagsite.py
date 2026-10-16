@@ -494,6 +494,13 @@ main{position:relative;z-index:1}
 }
 @media (max-width:600px){
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
+  /* a person is a row on a phone: the portrait beside the name and role, the bio and links under both */
+  .person{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px 16px;align-items:center}
+  .person .portrait{grid-row:1;width:120px;aspect-ratio:4/5}
+  .person > div:not(.portrait):not(.links){grid-column:2;grid-row:1}
+  .person p.bio,.person .links{grid-column:1 / -1}
+  .person .links{margin-top:0}
+  .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
   .theme-rune .scene-book h2::after{width:120px;transition:none}
