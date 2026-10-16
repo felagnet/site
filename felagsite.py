@@ -678,8 +678,8 @@ def sections(t, theme):
     {book_art}
     <div class="wrap">
       <p class="eyebrow">{t["book_eyebrow"]}</p>
-      <h2>Let’s talk.</h2>
-      <p class="mail">Start with a free technical workshop with a founder. Write to <a href="mailto:info@felag.net">info@felag.net</a>.</p>
+      <h2>Start with the workshop.</h2>
+      <p class="mail">Write to <a href="mailto:info@felag.net">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem and ends with a sprint scope or a clear no.</p>
       <div class="cta"><a class="btn" href="mailto:info@felag.net">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
