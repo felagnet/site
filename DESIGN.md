@@ -208,7 +208,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Label** (400 mono, 13px/20px, 0.04em on eyebrows): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
 
 ### Dim states
-Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph borrows ash for the same reason and settles to smoke once its step lights.
+Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph or index label borrows ash for the same reason and settles to smoke once its step or capability lights.
 
 ### Named Rules
 **The Mono Rule.** Mono sets what dates, numbers and names things: labels, years, indices, identifiers, the stack. A sentence is never set in mono.
@@ -225,7 +225,7 @@ The page is a single column of full-width sections inside a 1440 px wrap with si
 
 Vertical rhythm is on a 4 px base. Sections pad clamp(96px, 12vh, 160px) top and bottom; blocks within a section start 40 to 64 px below the headline; rows and list items sit 20 to 28 px apart on seam hairlines. Scenes that pin (statement, build, proof, offer stack) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
-Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps only the People link beside the Write to us button; at 600 px everything is one column. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
+Breakpoints: at 1100 px three- and four-column grids drop to two; at 900 px pinned scenes unpin, the metrics and the record go to one column, the situations, people and steps stay at two, the fire line under the how heading goes, the cases strip keeps scrolling sideways with narrower cards, the hero shortens, and the header gap tightens; at 700 px the header keeps Proof and People beside the Write to us button, and under 380 px People alone; at 600 px everything is one column. A phone's hero runway is 520 px past the viewport, enough for the rune's flight and the statement and nothing more. The sticky header is 72 px tall and transparent over the hero, iron with a seam rule after it.
 
 ## Elevation & Depth
 
@@ -287,7 +287,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Signature component.** Four copper pieces, three channels, the geometry fixed. Draws itself stroke by stroke in the hero canvas, ignites once, settles to copper, and lands in the header with a 1.1 s ember flash. In the build scene it is the diagram: pieces at 16 percent copper fill light to full copper one at a time as the matching capability opens. In the closing scene it reassembles on a canvas. Reduced motion shows every mark finished and still. Never rotate it, recolour a piece, round a corner or fill a channel; its glow follows the Elevation rules above.
 
 ### Names wall
-- **Style:** a quiet index: names as borderless buttons in semibold ash at clamp(22px, 2.6vw, 36px) for clients and clamp(16px, 1.5vw, 20px) smoke for protocols, wrapped with an 8 by 14 px gap. Hover or selection turns the name hot copper and draws a 2 px copper underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
+- **Style:** a quiet index: names as borderless buttons in semibold ash at the title role for clients and the lead role in smoke for protocols, each at least 44 px tall to the finger, wrapped with a 14 px gap. Hover or selection turns the name hot copper and draws a 2 px copper underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
 
 ### Record line
 - **Style:** a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper when lit, era names at headline scale, cases as key-value rows with the year in mono.

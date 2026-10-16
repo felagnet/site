@@ -269,7 +269,7 @@ main{position:relative;z-index:1}
 .theme-rune .sec h2.reveal.in::after,.theme-rune .scene-book h2.lit::after,.theme-rune .scene-build h2.lit::after{width:120px}
 .theme-rune .metric .big.burn{animation:burn 2s ease-out both}
 @keyframes burn{0%{color:var(--ember);text-shadow:0 0 34px rgba(var(--hot-rgb),.95),0 0 8px rgba(var(--ember-rgb),.9)}60%{color:color-mix(in srgb,var(--ember) 60%,var(--accent));text-shadow:0 0 24px rgba(var(--hot-rgb),.5)}100%{color:var(--text);text-shadow:0 0 0 rgba(var(--hot-rgb),0)}}
-@media (max-width:900px){.theme-rune .hero{height:calc(100vh + 1000px);min-height:1700px}.hero-statement{justify-content:flex-start;padding-top:calc(var(--head) + 24px)}}
+@media (max-width:900px){.theme-rune .hero{height:calc(100vh + 520px);min-height:0}.hero-statement{justify-content:flex-start;padding-top:calc(var(--head) + 24px)}}
 
 /* ---- statement scene */
 .scene-statement{height:230vh}
@@ -287,7 +287,8 @@ main{position:relative;z-index:1}
 .caps-left{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
 .cap{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px 12px;opacity:var(--dim);transition:opacity .5s}
 .cap.on{opacity:1}
-.cap .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:6px}
+.cap .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:6px;transition:color .5s}
+.cap:not(.on) .k{color:var(--text)}
 .cap h3{font-size:var(--fs-title);line-height:1.05;font-weight:600;letter-spacing:-0.025em;transition:color .4s}
 .cap.on h3{color:var(--accent-hover)}
 .cap p{grid-column:2;color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);margin-top:8px;max-width:34em;max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .5s,margin .4s}
@@ -326,8 +327,8 @@ main{position:relative;z-index:1}
 .links a{padding:6px 8px;margin:-6px -8px}
 
 /* ---- the names wall */
-.wall{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:40px;align-items:baseline}
-.name{appearance:none;background:none;border:0;padding:4px 0;margin:0;color:var(--text);font-family:var(--sans);font-weight:600;letter-spacing:-0.03em;line-height:1;cursor:pointer;position:relative;transition:color .25s}
+.wall{display:flex;flex-wrap:wrap;gap:0 14px;margin-top:40px;align-items:baseline}
+.name{appearance:none;background:none;border:0;padding:6px 0;margin:0;color:var(--text);font-family:var(--sans);font-weight:600;letter-spacing:-0.03em;line-height:1;cursor:pointer;position:relative;transition:color .25s}
 .name.client{font-size:var(--fs-title)}
 .name.protocol{font-size:var(--fs-lead);color:var(--text-secondary);font-weight:500;align-self:center;padding-top:6px}
 .name::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
@@ -474,6 +475,7 @@ main{position:relative;z-index:1}
   .eras{padding-left:28px}.era-block::before{left:-25px}
   .metrics{grid-template-columns:minmax(0,1fr)}
   .scene-proof{padding:56px 0 80px}
+  .name{padding:10px 0}
   .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
   .card{flex-basis:min(86vw,420px);padding:28px}
   .panel{grid-template-columns:minmax(0,1fr);position:relative;top:auto}.pcols{grid-template-columns:minmax(0,1fr)}
