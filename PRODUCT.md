@@ -52,7 +52,7 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 - Wording rules enforced by check.py: never "passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "four people", "Talk to a founder", "sold to", "Andrei" or "Georgia". No em dashes and no exclamation marks anywhere, including comments and commit messages. Sentence case.
 - Felag's headcount is never stated: no count of founders, principals or people. The site shows the four people without counting them.
 - The legal entity is stated as "Felag, incorporated in 2026" with no country. Andrew's location is stated as "Netherlands".
-- The page carries no analytics, cookie banner, chat widget, third-party script, new font or new dependency. Google Fonts serves Schibsted Grotesk and IBM Plex Mono; the rune page loads nothing else external.
+- The page carries no analytics, cookie banner, chat widget, third-party script, new font or new dependency. Schibsted Grotesk and IBM Plex Mono are self-hosted under static/fonts as OFL woff2 files with their licences beside them; the rune page loads nothing external.
 - Delivery runs on an internal AI-assisted development framework under the named principal's review. AI is internal capability, never the headline, and productivity multiples are not published.
 
 Open decisions, recorded, not invented:

@@ -4,7 +4,7 @@ Two themes: "rune" (fire and light) and "harvest" (land and seasons). Copy is th
 
 import json
 import os
-from shared import LOCKUP, CSS, COMMON_JS
+from shared import LOCKUP, CSS, COMMON_JS, FONT_LINKS
 _HERE = os.path.dirname(os.path.abspath(__file__))
 def _photo(name):
     # the portraits ship as files under people/, copied there by build_site.py and make_dist.py
@@ -1188,9 +1188,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="twitter:image" content="https://felag.net/og.png">
 <meta name="theme-color" content="#0E1114">
 <script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+{FONT_LINKS}
 <style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>
 </head>
 <body>

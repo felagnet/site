@@ -1,5 +1,5 @@
 """Assemble dist/, the folder GitHub Pages serves: the rune page as index.html, plus CNAME, .nojekyll,
-robots.txt, sitemap.xml, llms.txt, favicon.svg, apple-touch-icon.png, og.png, 404.html and the portraits under people/.
+robots.txt, sitemap.xml, llms.txt, favicon.svg, apple-touch-icon.png, og.png, 404.html, the fonts under fonts/ and the portraits under people/.
 Standard library only. Run after build_site.py. The harvest page is a kept prototype and is not copied."""
 
 import datetime
@@ -12,16 +12,14 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from felagsite import FAQ, HOW, MARK_PATH, OFFERS, PEOPLE, PEOPLE_NOTE, STATEMENT, TURN_DOWN  # noqa: E402
-from shared import LOCKUP  # noqa: E402
+from shared import FONT_FACE, FONT_LINKS, LOCKUP  # noqa: E402
 
 DOMAIN = "felag.net"
 SITE = f"https://{DOMAIN}/"
 OUT = os.path.join(HERE, "out")
 STATIC = os.path.join(HERE, "static")
 DIST = os.path.join(HERE, "dist")
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;500;600&display=swap">')
+FONTS = FONT_LINKS
 
 FAVICON = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104"><path fill="#DF8E63" d="{MARK_PATH}"/></svg>\n'
 
@@ -47,6 +45,7 @@ PAGE_404 = f"""<!doctype html>
 <meta name="theme-color" content="#0E1114">
 {FONTS}
 <style>
+{FONT_FACE}
 :root{{--bg:#0E1114;--line:#262C31;--text:#E9ECEE;--accent:#DF8E63;--accent-hover:#EFA37C;
   --sans:"Schibsted Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;--side:clamp(16px,6vw,120px);color-scheme:dark}}
 *{{box-sizing:border-box}}
@@ -140,6 +139,7 @@ def main():
     if not os.path.isdir(people):
         sys.exit("out/people is missing; run python3 build_site.py first")
     shutil.copytree(people, os.path.join(DIST, "people"))
+    shutil.copytree(os.path.join(STATIC, "fonts"), os.path.join(DIST, "fonts"))
     write("CNAME", DOMAIN)
     write(".nojekyll", "")
     write("robots.txt", ROBOTS)

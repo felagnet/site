@@ -5,17 +5,19 @@ checks and exits non-zero on any failure.
   python3 check.py --no-browser   skip the Playwright pass
   python3 check.py --no-links     skip the external link pass
 
-The static checks need only the standard library, the browser pass needs Playwright with Chromium, and the
-link pass needs network access."""
+The static checks need only the standard library, the browser pass needs Playwright with Chromium and serves dist/
+over a local http server so the self-hosted fonts load, and the link pass needs network access."""
 
 import argparse
 import concurrent.futures
+import functools
+import http.server
 import json
 import os
-import pathlib
 import re
 import struct
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -42,7 +44,8 @@ PEOPLE_LINKS = {
     "Andrey Solovov": ["LinkedIn", "GitHub"],
 }
 DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "llms.txt", "favicon.svg",
-              "apple-touch-icon.png", "og.png", "404.html"] + [
+              "apple-touch-icon.png", "og.png", "404.html", "fonts/schibsted-grotesk.woff2", "fonts/ibm-plex-mono-400.woff2",
+              "fonts/schibsted-grotesk-OFL.txt", "fonts/ibm-plex-mono-OFL.txt"] + [
               f"people/{n}.{ext}" for n in ("andrew", "mike", "pavel", "andrey") for ext in ("jpg", "webp")]
 VIEWPORTS = [(1440, 900), (1728, 1117), (390, 844)]
 GL_NOISE = re.compile(r"GL Driver Message|GPU stall|GroupMarkerNotSet|swiftshader|ANGLE|WebGL", re.I)
@@ -369,13 +372,25 @@ def scroll_to_bottom(page):
     return widths
 
 
+class _Quiet(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
+
+
+def serve_dist():
+    """dist/ over a local http server, as Pages serves it: a file:// page cannot load its own fonts in Chromium."""
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(_Quiet, directory=DIST))
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    return server, f"http://127.0.0.1:{server.server_address[1]}/index.html"
+
+
 def browser_pass():
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
         row("Browser pass", False, "Playwright is not installed, see README.md")
         return
-    url = pathlib.Path(INDEX).as_uri()
+    server, url = serve_dist()
     with sync_playwright() as p:
         browser = p.chromium.launch()
         try:
@@ -429,6 +444,7 @@ def browser_pass():
             ctx.close()
         finally:
             browser.close()
+            server.shutdown()
 
 
 # ---------------------------------------------------------------------------------------------- links

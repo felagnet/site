@@ -189,7 +189,7 @@ Every copper light in CSS is written from the tokens `--copper-rgb`, `--hot-rgb`
 **Body Font:** Schibsted Grotesk
 **Label/Mono Font:** IBM Plex Mono (with ui-monospace, Menlo, Consolas, monospace), for eyebrows, kickers, years, counts, identifiers and the skills line
 
-**Character:** one grotesk at two extremes, very large and semibold for headings, modest and regular for reading, with a mono face doing the dating and numbering in the margins. Sentence case everywhere, never all caps. Both faces load from Google Fonts in weights 400, 500 and 600.
+**Character:** one grotesk at two extremes, very large and semibold for headings, modest and regular for reading, with a mono face doing the dating and numbering in the margins. Sentence case everywhere, never all caps. Both faces are self-hosted under static/fonts as OFL woff2 files: Schibsted Grotesk as one variable file covering weights 400 to 600, preloaded, and IBM Plex Mono at 400, both with font-display swap.
 
 ### Hierarchy
 Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and nothing else. A new size joins the ramp as a role or does not ship.
