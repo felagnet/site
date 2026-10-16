@@ -253,6 +253,8 @@ main{position:relative;z-index:1}
 .sec{position:relative;padding:clamp(80px,10vh,128px) 0}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
+/* the two index sections, names and record, are lists, not statements: their headlines take the subhead role */
+#names h2,#record h2{font-size:var(--fs-subhead);line-height:1;letter-spacing:-0.03em;max-width:20ch}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
 .eyebrow{font-size:12px;line-height:20px;letter-spacing:.06em;color:var(--text-secondary);margin-bottom:20px}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
