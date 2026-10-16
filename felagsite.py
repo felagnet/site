@@ -46,7 +46,7 @@ E_LINE = "We built an identity system for AI agents on a major cloud platform fo
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
-DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
+DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure, and the Gateway.fm Platform department built the platform, through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
@@ -118,7 +118,7 @@ ERAS = [
              ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
-         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments. In 2026 the departments closed and we left.",
+         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
              ("2021 to 2022", "The RPC proxy for Opera and 1inch", B_NAMED, []),
              ("2023 to 2025", "Presto", K_LINE, []),
