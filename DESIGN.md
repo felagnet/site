@@ -198,7 +198,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
 - **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap, with a 120 px copper rule that grows under a section h2 over 0.8 s.
-- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with tabular figures. A price that is a word, not a number, drops to the title role.
+- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with lining figures. A price that is a word, not a number, drops to the title role.
 - **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles, the turn-down title and the questions.
 - **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
@@ -213,7 +213,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 ### Named Rules
 **The Mono Rule.** Mono sets what dates, numbers and names things: labels, years, indices, identifiers, the stack. A sentence is never set in mono.
 
-**The Tabular Rule.** Every number, price and metric sets tabular lining figures.
+**The Tabular Rule.** Every metric and every column of numbers sets tabular lining figures; a single price inside a panel sets lining figures only, so a decimal point keeps its natural width.
 
 **The Sentence Case Rule.** No uppercase styling anywhere, including labels and buttons.
 
@@ -297,7 +297,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 ### Do:
 - **Do** keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.
 - **Do** build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.
-- **Do** use tabular lining figures on every number, price and metric.
+- **Do** use tabular lining figures on every metric and every column of numbers; a lone price sets lining figures only.
 - **Do** let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.
 - **Do** use the house ease, cubic-bezier(.2, .7, .2, 1), for the transitions that remain: the title rule, the open capability, the wall detail, the questions.
 - **Do** show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.

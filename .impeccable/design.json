@@ -19,7 +19,7 @@
       "display": { "displayName": "Display", "purpose": "The one huge statement per page, max 11ch." },
       "headline": { "displayName": "Headline", "purpose": "Every section h2 and the hero h1, max 15ch, with the 120 px copper rule under it in the rune theme." },
       "title": { "displayName": "Title", "purpose": "Card titles; panels, capabilities, people and situations scale it up or down." },
-      "metric": { "displayName": "Metric", "purpose": "The big numbers in proof and the prices in offer panels, always tabular lining figures." },
+      "metric": { "displayName": "Metric", "purpose": "The big numbers in proof, always tabular lining figures; the prices in offer panels take lining figures only." },
       "body": { "displayName": "Body", "purpose": "Reading text at 16/26, 34 to 56em; cards and panels at 17/27." },
       "label": { "displayName": "Label", "purpose": "Mono eyebrows, kickers, years, counts, identifiers and the skills line." }
     },
@@ -132,7 +132,7 @@
       { "name": "The One Metal Rule", "body": "Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.", "section": "colors" },
       { "name": "The Cooling Rule", "body": "Ember appears only as the start of a transition that ends in copper or ash. If an element is ember or glowing after two seconds, it is a defect.", "section": "colors" },
       { "name": "The Text-on-Copper Rule", "body": "Text on a copper fill is always iron, never ash and never white.", "section": "colors" },
-      { "name": "The Tabular Rule", "body": "Every number, price and metric sets tabular lining figures.", "section": "typography" },
+      { "name": "The Tabular Rule", "body": "Every metric and every column of numbers sets tabular lining figures; a single price inside a panel sets lining figures only, so a decimal point keeps its natural width.", "section": "typography" },
       { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
       { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
       { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo and the panel lift that separates a stack.", "section": "elevation" },
@@ -141,7 +141,7 @@
     "dos": [
       "Do keep copper as the only hue: mark, links, primary button, eyebrow dashes, lit markers, one emphasis per section.",
       "Do build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.",
-      "Do use tabular lining figures on every number, price and metric.",
+      "Do use tabular lining figures on every metric and every column of numbers; a lone price sets lining figures only.",
       "Do let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.",
       "Do use the house ease, cubic-bezier(.2, .7, .2, 1), for the transitions that remain: the title rule, the open capability, the wall detail, the questions.",
       "Do show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.",
