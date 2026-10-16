@@ -208,6 +208,7 @@ FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
     ("Who actually works on our system?", "A named principal, one of the people above, leads every engagement and is written into the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
     ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint; if there is not, it ends with a clear no."),
+    ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited against a pod or fixed-price build signed within 30 days."),
     ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
     ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under the named principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
