@@ -1,6 +1,6 @@
 # Review loop queue
 
-Rounds 1 and 2, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
+Rounds 1 to 3, kept current by the developer. One line per task: id, priority, status, title, and for done tasks the commit on the review-loop branch. Tasks marked owner wait for Andrew and are never implemented in the loop.
 
 ## Design
 - design-1-1 [P1] done c617b16: Fix the launch price rendering as "$7 . 5k" (design)
@@ -47,6 +47,9 @@ Rounds 1 and 2, kept current by the developer. One line per task: id, priority, 
 - copy-2-2 [P2] done cee9917: The ~25 people sentence attaches the two-department headcount to one department (copy)
 - copy-2-3 [P2] owner: Snark.art on the names wall: register row X keeps it out of Felag delivery lists (copy)
 - copy-2-4 [P3] done a4b9197: llms.txt people lines: lowercase the location so it reads as one sentence (copy)
+- copy-3-1 [P2] done 252ae37: How: the eyebrow repeats the headline word for word (copy). The rune eyebrow reads How we work; the h2, the nav label and the llms.txt heading stay.
+- copy-3-2 [P2] done 3156133: Metric strip: date the $1B+ locked figure, as the rule requires (copy). The label stays two lines at 1440 and runs three at 390, measured.
+- copy-3-3 [P2] done b3a81ed: Offer rows: the body restates the Terms column, and Pods lists the fixed-price build as a pod deliverable (copy). llms.txt and the JSON-LD Offer descriptions followed from the constants; make_dist.py needed no change.
 
 ## SEO
 - seo-1-1 [P0] owner: Fractional CTO price on the page is not the rate-card price (seo)
@@ -61,3 +64,4 @@ Rounds 1 and 2, kept current by the developer. One line per task: id, priority, 
 - seo-1-10 [P3] done ea88064: Sitemap lastmod from the last source change, not the build date (seo)
 - seo-1-11 [P3] done d4c37f2: Self-host the two fonts with preload to drop two cross-origin hops from the critical path (seo). One variable Schibsted Grotesk file for 400 to 600 replaces the three per-weight files, since Google serves the same file for all three; check.py's browser pass now serves dist over local http so the fonts load.
 - seo-2-1 [P2] done 9a47a4f: Hero text rises at 1.1 s, so the largest text on the page is invisible for the first second (seo). The rise now starts at 0.2, 0.4 and 0.6 s; the h1 is at 0.999 opacity 1.0 s after load in Chromium and the rune's first stroke shows by 0.8 s.
+- seo-3-1 [P2] done f8846f4: Anchor landings clear the sticky header on the phone (seo). Eyebrow lands at 162 px at 1440 and 136 px at 390 for the four nav links and See prices, measured in headless Chromium.
