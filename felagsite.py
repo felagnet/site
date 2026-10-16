@@ -217,7 +217,7 @@ FAQ = [
 THEMES = {
     "rune": dict(
         statement_eyebrow="The studio", build_eyebrow="What we build", proof_eyebrow="Proof", wall_eyebrow="Names", more_eyebrow="The record", offer_eyebrow="What it costs",
-        how_eyebrow="How an engagement runs", how_line="Four steps, each with a clear output.",
+        how_eyebrow="How we work", how_line="Four steps, each with a clear output.",
         who_eyebrow="Who we work with", people_eyebrow="Who we are", contracting_eyebrow="Contracting and security",
         faq_eyebrow="Questions we are asked", book_eyebrow="Next step",
         book_line="",
