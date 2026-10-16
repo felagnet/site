@@ -128,7 +128,7 @@
     var flare = t > T_IGNITE ? Math.exp(-(t - T_IGNITE)*2.2) : 0;
     // the forge at rest: after the ignition the light settles over 1.6 s to a resting copper and the breathing stops
     var rest = t > T_IGNITE ? clamp((t - T_IGNITE - 1.3)/1.6) : 0;
-    var glow = lit*(1 - 0.8*rest);
+    var glow = lit*(1 - 0.88*rest);
     var breathe = 1 + 0.05*Math.sin(t*1.2)*(1 - rest) - 0.05*(1 - rest);
     // flight: the rune shrinks and travels to the header mark
     var fl = easeIO(clamp((p - 0.04)/0.22)), land = landing();
@@ -153,7 +153,7 @@
     }
     // bloom: the rune drawn wide on a separate canvas, blurred twice
     var k = scale/S;
-    var glowA = ((0.35 + 0.65*lit)*(1 - 0.55*rest)*breathe + flare*0.8)*alive*(1 - fl*0.6);
+    var glowA = ((0.35 + 0.65*lit)*(1 - 0.78*rest)*breathe + flare*0.8)*alive*(1 - fl*0.6);
     if (hasFilter){
       gctx.clearRect(0, 0, W, H);
       gctx.save(); gctx.translate(ox, oy); gctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); gctx.scale(scale, scale);
