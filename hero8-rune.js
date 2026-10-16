@@ -102,7 +102,6 @@
   }
 
   var t0 = performance.now(), last = t0, mouse = {x:0, y:0}, target = {x:0, y:0}, arrived = false;
-  window.addEventListener('pointermove', function(e){ var r = pin.getBoundingClientRect(); target.x = (e.clientX - r.left)/r.width*2 - 1; target.y = (e.clientY - r.top)/r.height*2 - 1; }, {passive: true});
   function setArrived(v){ if (v === arrived) return; arrived = v; root.classList.toggle('mark-arrived', v); root.classList.toggle('mark-pending', !v); }
   root.classList.add('mark-pending');
   if (reduce) setArrived(true);
@@ -112,7 +111,6 @@
   function schedule(){ if (running) return; running = true; if (pausedAt){ t0 += performance.now() - pausedAt; pausedAt = 0; } last = performance.now(); requestAnimationFrame(frame); }
   function onScroll(){ if (!reduce){ var pp = heroProgress(); setArrived(pp >= 0.29); root.classList.toggle('over-hero', pp < 0.3); } schedule(); }
   window.addEventListener('scroll', onScroll, {passive: true}); window.addEventListener('resize', schedule); document.addEventListener('visibilitychange', schedule);
-  window.addEventListener('pointermove', schedule, {passive: true});
   function frame(now){
     running = false;
     var dt = Math.min(0.05, (now - last)/1000); last = now;
@@ -200,7 +198,7 @@
       ctx.beginPath(); ctx.moveTo(x0 - svx[i]*dt*2.2, y0 - svy[i]*dt*2.2); ctx.lineTo(sx[i], sy[i]); ctx.stroke();
     }
     ctx.restore();
-    // a rune at rest is still: once the light has settled and the pointer tilt is done, no more frames until scroll or pointer
+    // a rune at rest is still: once the light has settled, no more frames until the scroll asks
     var settling = Math.abs(target.x - mouse.x) + Math.abs(target.y - mouse.y) > 0.002;
     var atRest = reduce || (rest >= 1 && pg.active < 0 && fl === 0);
     if (!atRest || settling){ running = true; requestAnimationFrame(frame); }

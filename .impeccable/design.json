@@ -32,11 +32,10 @@
     "motion": [
       { "name": "ease-house", "value": "cubic-bezier(.2, .7, .2, 1)", "purpose": "Every transition and reveal on the page." },
       { "name": "ease-in-out-cubic", "value": "x < 0.5 ? 4x^3 : 1 - (-2x + 2)^3 / 2", "purpose": "The hero canvas: stroke drawing and the flight of the rune to the header." },
-      { "name": "reveal", "value": "opacity .7s ease, transform .7s ease-house, from translateY(28px)", "purpose": "Section content arriving; staggered 90 ms per item." },
       { "name": "hover", "value": ".15s", "purpose": "Colour changes on links and buttons." },
       { "name": "lift", "value": "border-color .4s", "purpose": "Situation card hover: the border goes steel." },
       { "name": "underline", "value": "transform .45s ease-house, scaleX from 0 at the left", "purpose": "Names wall hover underline." },
-      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Hero ignition that settles over 1.6 s, mark landing, metric burn." },
+      { "name": "ignite", "value": "1.1s to 2s ease-out, ember to copper or ash, glow to none", "purpose": "Hero ignition that settles over 1.6 s to a faint resting halo, mark landing, metric burn." },
       { "name": "reduced-motion", "value": "none", "purpose": "Every mark finished, every section static, no reveal." }
     ],
     "breakpoints": [
@@ -125,8 +124,8 @@
       "Dark only on the site. Iron ground, slate surfaces, seam hairlines.",
       "Copper is the single accent and it is spent sparingly: the mark, links, the primary button, prices, the lit marker and one emphasis per section. Labels, bullets, kickers and indices are smoke or steel.",
       "Type does the structure. Headings at 78 to 132 px with tight tracking, body at 16/26, mono labels at 12 to 13 px.",
-      "Copper light is part of the system and always cools: the rune ignites once and settles to copper, the mark flashes as it lands, a metric burns in and cools, a proof card blooms on hover, and the soft iron shadow separates stacked panels. Nothing glows at rest.",
-      "Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
+      "Copper light is part of the system and always cools: the rune ignites once and settles to copper with a faint resting halo, the one light the page keeps at rest; the mark flashes as it lands, a metric burns in and cools, a proof card blooms on hover, and the soft iron shadow separates stacked panels.",
+      "Nothing moves unless the scroll asks it to: no rise on reveal, no count-up, no panel that shrinks or dims, no pointer-following light or tilt. Scroll-driven scenes on desktop become static, single-column sections under 900 px and under prefers-reduced-motion."
     ],
     "rules": [
       { "name": "The One Metal Rule", "body": "Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.", "section": "colors" },
@@ -135,7 +134,7 @@
       { "name": "The Tabular Rule", "body": "Every number, price and metric sets tabular lining figures.", "section": "typography" },
       { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
       { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
-      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the panel lift that separates a stack.", "section": "elevation" },
+      { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo and the panel lift that separates a stack.", "section": "elevation" },
       { "name": "The Copper Light Rule", "body": "Every glow is copper, hot copper or ember at some alpha. There is no white glow and no coloured shadow of any other hue.", "section": "elevation" }
     ],
     "dos": [
@@ -143,7 +142,7 @@
       "Do build structure from type and hairlines: headlines at 78 px and up, seam rules between rows, no boxes around text.",
       "Do use tabular lining figures on every number, price and metric.",
       "Do let copper light mark a transition only: ignite at ember, cool to copper or ash within two seconds, bloom on hover. Held states are marked by colour.",
-      "Do use the house ease, cubic-bezier(.2, .7, .2, 1), and reveal with a 28 px rise over 0.7 s, staggered 90 ms.",
+      "Do use the house ease, cubic-bezier(.2, .7, .2, 1), for the transitions that remain: the title rule, the open capability, the wall detail, the questions.",
       "Do show every mark finished and every section static under prefers-reduced-motion, and check Safari after any canvas change.",
       "Do collapse to one column at 900 px, drop three- and four-column grids to two at 1100 px, and unpin every scene on small screens."
     ],

@@ -255,7 +255,6 @@ main{position:relative;z-index:1}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
 .eyebrow{display:flex;align-items:center;gap:14px}
 .eyebrow::before{content:"";display:inline-block;width:22px;height:1px;background:var(--line-strong)}
-.stagger .reveal{transition-delay:calc(var(--i,0) * 90ms)}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
 
 /* ---- rune theme: the rune lands in the header, fire on titles and numbers */
@@ -363,8 +362,7 @@ main{position:relative;z-index:1}
 
 /* ---- offer: stacking panels */
 .stack{margin-top:64px}
-.panel::after{content:"";position:absolute;inset:0;border-radius:4px;background:var(--bg);opacity:var(--cover,0);pointer-events:none;transition:opacity .1s linear}
-.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;transform-origin:50% 0;will-change:transform,opacity;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
+.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -392,6 +390,7 @@ main{position:relative;z-index:1}
 .step{opacity:var(--dim);transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
 .step.on{opacity:1;transform:none}
 .furrow{width:100%;height:120px;display:block}
+.how-grid:first-child{margin-top:0}
 .furrow .soil{fill:none;stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:6 8}
 .furrow .path{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
 .furrow .sprout{fill:none;stroke:var(--accent-hover);stroke-width:2;stroke-linecap:round;opacity:0;transition:opacity .4s}
@@ -417,7 +416,6 @@ main{position:relative;z-index:1}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .portrait svg,.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .portrait img{filter:contrast(1.02)}
-.portrait .light{position:absolute;inset:-40%;background:radial-gradient(40% 40% at var(--lx,70%) var(--ly,20%),rgba(var(--hot-rgb),.34),transparent 70%);transition:opacity .4s;mix-blend-mode:screen}
 .portrait .ini{position:absolute;left:18px;bottom:14px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.06em}
 .portrait .slot{position:absolute;right:18px;bottom:14px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);opacity:.7}
 .person h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em}
@@ -471,7 +469,6 @@ main{position:relative;z-index:1}
   .scene-statement .cur{display:none}
   .scene-book .wrap{padding-top:34vh}
   .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .furrow{display:none}
   .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
   .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
   .eras{padding-left:28px}.era-block::before{left:-25px}
@@ -546,11 +543,7 @@ def sections(t, theme):
         panels += f'<article class="panel{launch}" style="--i:{i}"><div><div class="n">0{i+1} / 0{len(OFFERS)}</div><h3>{o["name"]}</h3><p>{o["body"]}</p></div><div class="price"><b{word}>{o["price"]}</b>{note}</div><div class="pcols">{cols}</div></article>'
     steps = "".join(f'<div class="step" data-step="{i}"><div class="k">0{i+1}<span>{h}</span></div><h3>{o}</h3><p>{b}</p></div>' for i, (h, o, b) in enumerate(HOW))
     if theme == "rune":
-        how_art = ('<svg class="furrow fire" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
-                   '<path class="soil" d="M0 80 L1200 80"/>'
-                   '<path class="path" d="M0 80 L1200 80"/>'
-                   + "".join(f'<path class="sprout" d="M{x} 80 L{x} 46"></path>' for x in (150, 450, 750, 1050)) +
-                   '</svg>')
+        how_art = ""
     else:
         how_art = ('<svg class="furrow" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">'
                    '<path class="soil" d="M0 78 C150 70 250 92 400 82 C550 72 650 94 800 84 C950 74 1050 92 1200 82"/>'
@@ -564,7 +557,7 @@ def sections(t, theme):
         where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
         pic = (f'<picture><source type="image/webp" srcset="people/{p["photo"]}.webp"><img src="people/{p["photo"]}.jpg" width="800" height="1000" alt="{p["name"]}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
         tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
-        people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait" data-tilt>{pic}<div class="light"></div>'
+        people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait">{pic}'
                    f'{tag}</div>'
                    f'<div><h3>{p["name"]}</h3><div class="role">{p["role"]}</div>{where}</div><p class="bio">{p["bio"]}</p>'
                    f'{("<div class=links>" + links + "</div>") if links else ""}</article>')
@@ -810,24 +803,6 @@ SITE_JS = r'''
   });
 })();
 
-// ---- offer stack: panels shrink and dim as the next one covers them
-(function(){
-  var panels = document.querySelectorAll('#stack .panel'); if (!panels.length) return;
-  function update(){
-    if (window.innerWidth < 900){ panels.forEach(function(p){ p.style.transform = ''; p.style.removeProperty('--cover'); }); return; }
-    var head = 96;
-    for (var i = 0; i < panels.length - 1; i++){
-      var next = panels[i+1].getBoundingClientRect(), me = panels[i].getBoundingClientRect();
-      var covered = Math.max(0, Math.min(1, (me.bottom - next.top) / Math.max(1, me.height)));
-      panels[i].style.transform = 'scale(' + (1 - covered*0.06).toFixed(4) + ') translateY(' + (-covered*8).toFixed(1) + 'px)';
-      panels[i].style.setProperty('--cover', (covered*0.6).toFixed(3));
-    }
-  }
-  var ticking = false;
-  function req(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; update(); }); } }
-  window.addEventListener('scroll', req, {passive: true}); window.addEventListener('resize', req); update();
-})();
-
 // ---- how: steps and their art follow the scroll through the section
 (function(){
   var steps = document.querySelectorAll('#how .step'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
@@ -849,18 +824,6 @@ SITE_JS = r'''
   if (reduce || !document.getElementById('root').classList.contains('theme-rune') || !('IntersectionObserver' in window)) return;
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add(en.target.classList.contains('big') ? 'burn' : 'lit'); io.unobserve(en.target); } }); }, {threshold: 0.6});
   document.querySelectorAll('.metric .big, .scene-book h2, .scene-build h2').forEach(function(el){ io.observe(el); });
-})();
-
-// ---- people: the light on the portrait follows the pointer
-(function(){
-  if (!window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('[data-tilt]').forEach(function(card){
-    card.addEventListener('pointermove', function(e){
-      var r = card.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
-      card.style.setProperty('--lx', (x*100).toFixed(1) + '%'); card.style.setProperty('--ly', (y*100).toFixed(1) + '%');
-    });
-    card.addEventListener('pointerleave', function(){ card.style.removeProperty('--lx'); card.style.removeProperty('--ly'); });
-  });
 })();
 
 // ---- faq: animated open and close
