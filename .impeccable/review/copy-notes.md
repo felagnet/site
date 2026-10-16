@@ -27,3 +27,7 @@ Design-side fixes are done; these need Andrew's words or links:
 - The centre metric is the NFT raise; a reliability or scale number would carry more for a fintech reader.
 - "Based in" is given for two of the four people; all four or none.
 - No legal entity, country or address appears anywhere; a one-line entity line in the footer would answer the diligence reader.
+
+## 16 October 2026, after the review loop
+
+The copy lock was lifted on the review-loop branch within felag-core rules. Of the notes above: the mailto subject, the centre metric, the strip order, the meta description, the two-department sentence and the locations are done on the branch; the wall fold, the entity line, the Led by line and the founders' faces are declined or left by Andrew (see .impeccable/review/queue.md). The Stack line in What we build is unchanged.

@@ -42,12 +42,12 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 - Copy lives in the data constants at the top of felagsite.py; the hero line and sub-line in build_site.py; the page chrome in shared.py. `python3 build_site.py` writes out/felag-rune.html, `python3 make_dist.py` assembles dist/, and `python3 check.py` runs the wording rules, the hero line, the calls to action, the portraits and People links, the head tags, the dist file list, a browser pass at 1440, 1728 and 390 px wide and with reduced motion, and every external link. A failed check stops the deploy.
 - The harvest page (out/felag-harvest.html, hero6-field.js, lib/three.min.js) is a kept prototype that is not deployed.
 - Company pages: linkedin.com/company/felagnet, github.com/felagnet, x.com/felagnet. Public contact on the site is info@felag.net.
-- The people on the page: Andrew Skurlatov (co-founder and CTO, Netherlands), Mikhail Manko (co-founder and CEO, Cyprus), Pavel Dodonov (Principal Engineer, Infrastructure and ZK, partner), Andrey Solovov (Principal Engineer, Web3 Systems, partner). Bios are copied verbatim from team-and-history.md.
+- The people on the page: Andrew Skurlatov (co-founder and CTO, Netherlands), Mikhail Manko (co-founder and CEO, Cyprus), Pavel Dodonov (Principal Engineer, Infrastructure and ZK, partner, Finland), Andrey Solovov (Principal Engineer, Web3 Systems, partner, Armenia; both locations from Andrew, 16 October 2026, to be added to team-and-history.md). Bios are copied verbatim from team-and-history.md.
 
 ## Capabilities and Constraints
 
 - One page, in this order: hero, the studio statement, what we build (four capabilities mapped to the four pieces of the mark), proof, names wall, the record in three eras, what it costs, how an engagement runs, who we work with, who we are, questions, next step, footer.
-- Offers and prices on the page come from rate-card.md: free technical workshop; Architecture Sprint $7.5k launch price, list $15k; Fractional CTO from $4k a month; pods $10k to $60k a month; technical due diligence quoted per scope. Prices in USD excluding VAT.
+- Offers and prices on the page come from rate-card.md: free technical workshop; Architecture Sprint $7.5k launch price, list $15k; Fractional CTO from $4k a month (a deliberate price Andrew confirmed on 16 October 2026; rate-card.md still says $8k and is to be updated to match); pods $10k to $60k a month; technical due diligence quoted per scope. Prices in USD excluding VAT.
 - Copy is locked for agents. A suggested copy change goes to .impeccable/review/copy-notes.md, not to the source.
 - Wording rules enforced by check.py: never "passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "four people", "Talk to a founder", "sold to", "Andrei" or "Georgia". No em dashes and no exclamation marks anywhere, including comments and commit messages. Sentence case.
 - Felag's headcount is never stated: no count of founders, principals or people. The site shows the four people without counting them.
@@ -61,6 +61,7 @@ Open decisions, recorded, not invented:
 - positioning.md is draft 0.3.2 and unlocked: the supporting paragraph, the three verb-phrase families and their order, and the three sprint scopes in offers.md are not on the site until both founders lock them.
 - The rate-card review (two-principal pod as default, sprint at the top of its band) is open; the site follows the published card.
 - An EU contracting wrapper (NL BV) is undecided; nothing on the site promises EU establishment.
+- Decided by Andrew on 16 October 2026 in the review loop: no legal entity line in the footer; the proof stays told three times (strip, wall, record); Snark.art stays on the names wall and DeepNode in the lead cases, both in the register's wording for Andrew's personal rows; the Infinex and XIP-9 case stays unlinked until proof-register.md row C carries a live artefact; the FAQ carries the sprint-ownership term from positioning.md.
 - The bridge case (the Uddug-era consumer high-load backend) enters the proof once its number is confirmed, target 31 January 2027. No non-fintech technology-company case is published yet.
 
 ## Brand Commitments
