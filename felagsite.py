@@ -118,7 +118,7 @@ ERAS = [
              ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
-         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments.",
+         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department, ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
              ("2021 to 2022", "The RPC proxy for Opera and 1inch", B_NAMED, []),
              ("2023 to 2025", "Presto", K_LINE, []),
@@ -133,7 +133,7 @@ ERAS = [
              ("2025 to 2026", "Gateway Yield", G_NAMED, []),
          ]),
     dict(name="Felag", years="From July 2026",
-         intro="Felag was founded in July 2026 as the restart of Uddug.",
+         intro="Felag was founded in July 2026 as the restart of Uddug. Pavel Dodonov and Andrey Solovov joined as principal engineers and partners.",
          cases=[]),
 ]
 
