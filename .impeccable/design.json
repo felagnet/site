@@ -18,9 +18,9 @@
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "The one huge statement per page, max 11ch." },
       "headline": { "displayName": "Headline", "purpose": "Every section h2 and the hero h1, max 15ch, no rule under it; the closing headline alone carries the 120 px copper rule." },
-      "title": { "displayName": "Title", "purpose": "Card titles; panels, capabilities, people and situations scale it up or down." },
-      "metric": { "displayName": "Metric", "purpose": "The big numbers in proof, always tabular lining figures; the prices in offer panels take lining figures only." },
-      "body": { "displayName": "Body", "purpose": "Reading text at 16/26, 34 to 56em; cards and panels at 17/27." },
+      "title": { "displayName": "Title", "purpose": "Card titles; offer rows, capabilities, people and situations scale it up or down." },
+      "metric": { "displayName": "Metric", "purpose": "The big numbers in proof, always tabular lining figures; the prices in the offer rows take lining figures only." },
+      "body": { "displayName": "Body", "purpose": "Reading text at 16/26, 34 to 56em; cards and offer rows at 17/27." },
       "label": { "displayName": "Label", "purpose": "Mono eyebrows, kickers, years, counts, identifiers and the skills line." }
     },
     "shadows": [
@@ -101,6 +101,14 @@
       "css": ".ds-sit { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 6px 12px; align-content: start; max-width: 560px; padding: 28px 0; border-top: 1px solid var(--line, #262C31); border-bottom: 1px solid var(--line, #262C31); color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-sit-n { grid-row: 1 / span 2; padding-top: 4px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-sit-title { grid-column: 2; margin: 0; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; transition: color .25s; } .ds-sit:hover .ds-sit-title { color: var(--accent-hover, #EFA37C); } .ds-sit-body { grid-column: 2; margin: 0; max-width: 34em; font-size: 16px; line-height: 26px; color: var(--text-secondary, #98A1A8); }"
     },
     {
+      "name": "Offer row",
+      "kind": "custom",
+      "refersTo": "offer-row",
+      "description": "One offer as a hairline row in the price list: mono index, title, body on the left, the price at subhead scale on the right, copper on the launch price alone, then what, terms and who in three columns.",
+      "html": "<article class=\"ds-offer ds-offer-launch\"><div><span class=\"ds-offer-n\">02 / 05</span><h3 class=\"ds-offer-title\">Architecture Sprint</h3><p class=\"ds-offer-body\">One to two weeks with a named principal: spec, architecture decisions, risk register, costed build options and a build decision.</p></div><div class=\"ds-offer-price\"><b>$7.5k</b><span>launch price, list $15k</span></div><div class=\"ds-offer-cols\"><div><div class=\"ds-offer-k\">What you get</div><ul><li>Spec and architecture decisions</li><li>Costed build options</li></ul></div><div><div class=\"ds-offer-k\">Terms</div><ul><li>One to two weeks</li><li>Paid in advance</li></ul></div><div><div class=\"ds-offer-k\">Who delivers</div><p>A named principal</p></div></div></article>",
+      "css": ".ds-offer { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px 40px; align-items: start; padding: 40px 0; border-top: 1px solid var(--line, #262C31); border-bottom: 1px solid var(--line, #262C31); color: var(--text, #E9ECEE); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-offer-n { display: block; margin-bottom: 12px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-offer-title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; } .ds-offer-body { margin: 12px 0 0; max-width: 30em; font-size: 17px; line-height: 28px; color: var(--text-secondary, #98A1A8); } .ds-offer-price { text-align: right; } .ds-offer-price b { display: block; font-size: 52px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: lining-nums; } .ds-offer-launch .ds-offer-price b { color: var(--accent, #DF8E63); } .ds-offer-price span { display: block; margin-top: 12px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-offer-cols { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 4px; } .ds-offer-k { margin-bottom: 10px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-secondary, #98A1A8); } .ds-offer-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; } .ds-offer-cols li, .ds-offer-cols p { margin: 0; font-size: 15px; line-height: 22px; } .ds-offer-cols li::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 10px; vertical-align: 3px; background: var(--line-strong, #616A71); }"
+    },
+    {
       "name": "Key-value row",
       "kind": "custom",
       "refersTo": "body",
@@ -131,7 +139,7 @@
       { "name": "The One Metal Rule", "body": "Copper is the only hue on the page. Status colours from the master system (success, warning, error) are reserved for documents and tools and do not appear on the site.", "section": "colors" },
       { "name": "The Cooling Rule", "body": "Ember appears only as the start of a transition that ends in copper or ash. If an element is ember or glowing after two seconds, it is a defect.", "section": "colors" },
       { "name": "The Text-on-Copper Rule", "body": "Text on a copper fill is always iron, never ash and never white.", "section": "colors" },
-      { "name": "The Tabular Rule", "body": "Every metric and every column of numbers sets tabular lining figures; a single price inside a panel sets lining figures only, so a decimal point keeps its natural width.", "section": "typography" },
+      { "name": "The Tabular Rule", "body": "Every metric and every column of numbers sets tabular lining figures; a single price inside an offer row sets lining figures only, so a decimal point keeps its natural width.", "section": "typography" },
       { "name": "The Sentence Case Rule", "body": "No uppercase styling anywhere, including labels and buttons.", "section": "typography" },
       { "name": "The Measure Rule", "body": "Headings stop at 15ch, display at 11ch, reading text between 34 and 56em. Use max-width in ch or em, not pixels.", "section": "typography" },
       { "name": "The Lit-by-State Rule", "body": "Glow belongs to a transition: arrival, ignition, a hover bloom. A held state (the open capability, the selected name, the lit word) is marked by colour alone. Nothing at rest shows a glow or a grey shadow, except the hero rune's faint resting halo. The system has no grey shadow at all.", "section": "elevation" },

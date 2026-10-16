@@ -130,11 +130,11 @@ components:
     textColor: "{colors.ash}"
     rounded: "{rounded.none}"
     padding: "28px 0"
-  panel:
-    backgroundColor: "{colors.slate}"
+  offer-row:
+    backgroundColor: "none"
     textColor: "{colors.ash}"
-    rounded: "{rounded.md}"
-    padding: "clamp(28px, 3.4vw, 48px)"
+    rounded: "{rounded.none}"
+    padding: "40px 0"
 ---
 
 # Design System: Felag
@@ -168,7 +168,7 @@ A near-black ground with two grey steps, two text greys, and a copper family tha
 
 ### Neutral
 - **Iron** (#0E1114): the page background, the text on copper buttons and the fill of unlit era markers.
-- **Slate** (#151A1E): cards, offer panels, portrait wells, the skip link.
+- **Slate** (#151A1E): cards, portrait wells, the skip link.
 - **Seam** (#262C31): every hairline: section rules, card borders, table and row rules, the era line, the cold half of a progress rule.
 - **Steel** (#616A71): control borders and markers that need 3:1 against iron: the FAQ circle, era diamonds, metric top rules, list bullets.
 - **Ash** (#E9ECEE): primary text and the wordmark.
@@ -197,11 +197,11 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Display** (600, clamp(52px, 8vw, 132px), 0.95, -0.035em): one statement per page, "We do not bill hours.", max 11ch, balanced wrap. Its rule carries heading specificity so nothing outranks it. It arrives as a burn, ember to ash over 2 s, the same cooling as the metrics; under reduced motion it shows in ash with no animation.
 - **Metric** (600, clamp(52px, 6.4vw, 108px), 0.92, -0.045em, tabular lining figures): the three big numbers in proof, shown as measured, never counted up.
 - **Headline** (600, clamp(40px, 5.2vw, 78px), 1, -0.03em): the hero h1 and every section h2, max 15ch, balanced wrap. No rule under it; the closing headline alone carries a 120 px copper rule that grows over 0.8 s. Exception: the index sections, Names and Record, use the subhead role at 20ch, so the page is not a staircase of equal steps and the display line has room to feel larger.
-- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record, offer panel titles and the prices, in ash with lining figures. A price that is a word, not a number, drops to the title role.
-- **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, step titles, the people's names and the client names on the wall.
+- **Subhead** (600, clamp(30px, 3.4vw, 52px), 1, -0.03em): the studio statement (max 24ch, revealed word by word), era names in the record and the prices in the offer rows, in ash with lining figures. A price that is a word, not a number, drops to the title role.
+- **Title** (600, clamp(24px, 2.2vw, 32px), 1.1, -0.025em): capability titles, proof card titles, offer row titles, step titles, the people's names and the client names on the wall.
 - **Title small** (600, 21px, 1.25, -0.015em): record case titles, situation titles (hot copper on hover), the turn-down title and the questions.
 - **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
-- **Prose** (400, 17px/28px): long paragraphs set for reading: card and panel bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
+- **Prose** (400, 17px/28px): long paragraphs set for reading: card and offer row bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
 - **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
 - **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer.
 - **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
@@ -212,7 +212,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 ### Named Rules
 **The Mono Rule.** Mono sets what dates, numbers and names things: labels, years, indices, identifiers, the stack. A sentence is never set in mono.
 
-**The Tabular Rule.** Every metric and every column of numbers sets tabular lining figures; a single price inside a panel sets lining figures only, so a decimal point keeps its natural width.
+**The Tabular Rule.** Every metric and every column of numbers sets tabular lining figures; a single price inside an offer row sets lining figures only, so a decimal point keeps its natural width.
 
 **The Sentence Case Rule.** No uppercase styling anywhere, including labels and buttons.
 
@@ -220,7 +220,7 @@ Content that has not yet lit in a scroll scene (statement words, inactive capabi
 
 ## Layout
 
-The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics, two for the situations list, four for people and the how steps, two for the build diagram and the offer panel, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
+The page is a single column of full-width sections inside a 1440 px wrap with side padding of clamp(16px, 6vw, 120px), which yields the master system's 1200 px content width at desktop. Grids inside sections are 12-column in spirit and expressed as repeat(n, minmax(0, 1fr)) with a 24 px gutter: three columns for metrics, two for the situations list, four for people and the how steps, two for the build diagram and the offer rows, and two-column key-value rows at 150 to 280 px for the record, the facts and the wall detail.
 
 Vertical rhythm is on a 4 px base. Sections pad clamp(80px, 10vh, 128px) top and bottom, 64 px on a phone; blocks within a section start 40 to 48 px below the headline; record rows sit 14 px apart on seam hairlines, other rows and list items 20 to 28 px apart. Scenes that pin (statement, build) take 110 to 230 vh of runway so the scroll drives them. The pinned frame itself is 100dvh, with 100vh as the fallback, so it fills the visible viewport while a phone toolbar collapses.
 
@@ -243,7 +243,7 @@ The system is flat by structure and lit by state. Depth comes from the three gre
 
 ## Shapes
 
-Square by default. Corners are 0, 2 px on buttons and the skip link, 4 px on cards, panels, portraits and the turn-down block, and never more. Borders are 1 px hairlines in seam, stepping up to steel for controls and markers, to copper when lit and to deep copper for the turn-down block. The only circle on the page is the 28 px FAQ disclosure icon, a steel ring whose plus turns 45 degrees and goes copper when open. Markers are small squares: 5 to 7 px copper squares before list items, an 11 px square rotated 45 degrees on the era line. Progress rules are 1 px lines that fill from seam to copper. Portraits are 4:5 wells with a 4 px radius; they hold still.
+Square by default. Corners are 0, 2 px on buttons and the skip link, 4 px on cards, portraits and the turn-down block, and never more. Borders are 1 px hairlines in seam, stepping up to steel for controls and markers, to copper when lit and to deep copper for the turn-down block. The only circle on the page is the 28 px FAQ disclosure icon, a steel ring whose plus turns 45 degrees and goes copper when open. Markers are small squares: 5 to 7 px copper squares before list items, an 11 px square rotated 45 degrees on the era line. Progress rules are 1 px lines that fill from seam to copper. Portraits are 4:5 wells with a 4 px radius; they hold still.
 
 ## Components
 
@@ -265,15 +265,15 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Corner Style:** 4 px.
 - **Background:** slate with a 1 px seam border.
 - **Shadow Strategy:** none at rest; the proof card blooms copper from its top right corner on hover.
-- **Internal Padding:** 36 px on proof cards (440 to 600 px wide, 86vw up to 420 px on a phone), clamp(28px, 3.4vw, 48px) on offer panels.
+- **Internal Padding:** 36 px on proof cards (440 to 600 px wide, 86vw up to 420 px on a phone).
 - **Anatomy:** a header row with the mono kicker in smoke on the left and the mono index on the right, title, smoke body at 17/27, a footer row with links on the left and a mono era note on the right.
 - **The cases strip:** the proof cards sit in a strip that scrolls on its own axis with mandatory snap to each card's left edge, padded by the page gutter, with a thin steel scrollbar as the cue. It never pins the page or takes over the wheel; the next card peeking at the right edge is the invitation. At the right end of the lead line above the strip sit two 44 px square controls, Previous case and Next case: a steel hairline border with 2 px corners, a 16 px chevron in ash at 1.5 px stroke, 12 px apart. Hover turns the border copper and the chevron hot copper, a press copper, focus the 2 px copper outline; the control at the end of the strip dims to 0.5. A click moves the strip one card plus the gutter, smoothly, or at once under reduced motion. Under 900 px the controls are hidden and the thumb does the work.
 
 ### Situations list
 - **Style:** not cards. Two columns of hairline rows on a seam top rule, 48 px apart, each row 28 px of vertical padding over a seam rule: a mono index in a 48 px column, the title at the small title role, the body in smoke at 34em. Hover turns the title hot copper over 0.25 s; no border changes. Two columns down to 600 px, then one. The turn-down block under the list keeps its deep copper border and wash as the one emphasis in the section.
 
-### Offer panels
-- **Style:** slate sheets in a plain list, 24 px apart, static in the flow: no sticking, no stacking, no shadow, no shrink, no veil. Two columns: title and body on the left, the price right-aligned in ash at subhead scale with a mono note under it, copper on the launch price alone, then a three-column row of what, terms and who on a seam rule, each list item marked with a 5 px copper square.
+### Offer rows
+- **Style:** a price list, not cards: no slate, no border radius, no shadow, static in the flow. Each offer is a row with a seam rule above it and one below the last, 40 px of vertical padding and no side padding, so the rules run the full content width. Two columns: the mono index, the title at the title role and the body in smoke at 30em on the left; the price right-aligned in ash at the subhead role with a mono note under it, copper on the launch price alone, a word price (Free, Quote per scope) at the title role. Under them a three-column row of what, terms and who, 24 px apart, the lists at the small role with 5 px steel squares. Under 900 px the row is one column and the price reads directly under the title, 4 px below it, before the body.
 
 ### Key-value rows
 - **Style:** seam hairline between rows, mono 13 px smoke key in a 150 to 280 px column, 18/28 ash value. Pending values render in mono 14 px smoke.
