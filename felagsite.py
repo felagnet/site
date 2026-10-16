@@ -380,23 +380,22 @@ main{position:relative;z-index:1}
 .rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:56em}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
-/* ---- offer: a price list, hairline rows on seam rules, the price as the news */
-.stack{margin-top:48px}
-.panel{position:static;background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:40px 0;margin:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 40px;align-items:start}
-.stack .panel:last-child{border-bottom:1px solid var(--line)}
-.pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:0;padding-top:0;margin-top:4px}
+/* ---- offer: stacking panels. Each sticks under the header 12 px lower than the one before, so the list stacks as the reader scrolls */
+.stack{margin-top:64px}
+.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
+.pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .pcol li,.pcol p{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--text);margin:0;max-width:none}
 .pcol li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--line-strong);margin-right:10px;vertical-align:3px}
-.panel h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em}
-.panel > div > p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:12px;max-width:30em}
+.panel h3{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
+.panel > div > p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:18px;max-width:30em}
 .panel .price{text-align:right}
 .panel .price b{display:block;font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--text);font-variant-numeric:lining-nums;text-wrap:balance}
 .panel .price b.word{font-size:var(--fs-title);color:var(--text-secondary)}
 .panel.launch .price b{color:var(--accent)}
 .panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:12px}
+.panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:22px}
 .offer-note{margin-top:32px;max-width:52em;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- how */
@@ -502,7 +501,7 @@ main{position:relative;z-index:1}
   .strip-nav{display:none}
   .card{flex-basis:min(86vw,420px);padding:28px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
-  .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
+  .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
   .panel .price b.word{font-size:var(--fs-title-sm);line-height:1.25;letter-spacing:-0.015em}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
