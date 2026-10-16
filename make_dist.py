@@ -101,7 +101,7 @@ def llms_txt():
         lines.append(f"- {name}: {output} {line}")
     lines += ["", "## What we turn down", "", TURN_DOWN, "", "## The people who lead the work", ""]
     for p in PEOPLE:
-        where = f", {p['where']}" if p["where"] else ""
+        where = f", {p['where'][0].lower() + p['where'][1:]}" if p["where"] else ""
         lines.append(f"- {p['name']}, {p['role']}{where}. {p['bio']}")
     lines += ["", "## Questions", ""]
     for q, a in FAQ:
