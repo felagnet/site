@@ -168,11 +168,12 @@
       softGlow(Math.max(2, 22*Math.min(1.2, k))/dpr, 0.9, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
       softGlow(Math.max(1, 7*Math.min(1.2, k))/dpr, 0.7, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
     }
-    // the rune itself: a deep copper underlay, the copper stroke, a warm inner light
+    // the rune itself: a deep copper underlay, the copper stroke, a warm inner light while it is hot.
+    // At rest the inner line has faded out and the underlay has thinned, so the rune reads as cooled metal, not a lit tube.
     ctx.save(); ctx.translate(ox, oy); ctx.transform(tiltX, skew*0.3, skew, tiltY, 0, 0); ctx.scale(scale, scale);
-    drawRune(ctx, upto, wBase*1.3, '#8C4E2C', 0.95*alive*(1 - fl*0.8));
+    drawRune(ctx, upto, wBase*1.3, '#8C4E2C', (0.95 - 0.35*rest)*alive*(1 - fl*0.8));
     drawRune(ctx, upto, wBase, rest >= 1 ? '#DF8E63' : (lit > 0 ? '#E8996D' : '#DF8E63'), (0.9 + 0.1*lit)*alive);
-    drawRune(ctx, upto, wBase*0.45, '#FFD9B4', (0.12 + 0.2*glow*breathe + flare*0.6)*alive, 'lighter');
+    drawRune(ctx, upto, wBase*0.45, '#FFD9B4', (0.12*(1 - rest) + 0.2*glow*breathe + flare*0.6)*alive, 'lighter');
     // the ignition pulse: one bright segment runs the length of the rune
     if (ig > 0 && ig < 1){
       var seg = total*0.16, head = ig*(total + seg);
