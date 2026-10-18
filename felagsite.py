@@ -348,6 +348,10 @@ html.js .reveal.in{opacity:1;transform:none}
 .strip-btn[disabled]:hover{border-color:var(--line-strong);color:var(--text)}
 
 .links a{padding:6px 8px;margin:-6px -8px}
+/* the strip takes focus so the arrow keys scroll it in every engine; it runs edge to edge, so the outline sits just inside it */
+.track:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+/* read out, not shown: the strip status after a press of Previous or Next */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ---- the names wall */
 .wall{display:flex;flex-wrap:wrap;gap:0 14px;margin-top:40px;align-items:baseline}
@@ -699,7 +703,8 @@ def sections(t, theme):
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
   <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p>{strip_nav}</div>
-  <div class="track" id="track">{cards}</div>
+  <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
+  <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
   <div class="wrap">
@@ -908,7 +913,15 @@ SITE_JS = r'''
     var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
   }
+  // after a press the card now at the left edge is read out in its own words, its counter and its title, once the strip has settled
+  var status = document.getElementById('strip-status'), say = 0;
+  function announce(){
+    var tr = track.getBoundingClientRect(), cards = track.querySelectorAll('.card'), c = null;
+    for (var i = 0; i < cards.length; i++){ if (cards[i].getBoundingClientRect().left >= tr.left - 2){ c = cards[i]; break; } }
+    if (c && status) status.textContent = c.querySelector('.idx').textContent + ', ' + c.querySelector('h3').textContent;
+  }
   btns.forEach(function(b){ b.addEventListener('click', function(){
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450);
     // one card plus the gap between cards, which is 24 px on a desktop and 16 px on a phone
     var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + (parseFloat(getComputedStyle(track).columnGap) || 24);
     track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
