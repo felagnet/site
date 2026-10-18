@@ -694,8 +694,8 @@ def sections(t, theme):
 <section class="sec" id="offer">
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
-    <h2 class="huge reveal">Engagements and fees.</h2>
-    <p class="lead reveal">Fixed-price sprints and technical reviews. Monthly retainers for delivery pods and fractional CTO work. Every engagement has agreed scope and deliverables. Prices in US dollars, excluding VAT.</p>
+    <h2 class="huge reveal">We sell outcomes, not hours.</h2>
+    <p class="lead reveal">Fixed-price sprints, builds and technical reviews. Monthly retainers for pods and fractional CTO work, with deliverables agreed in the SOW. Prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
     <p class="offer-note reveal">{OFFER_NOTE}</p>
     <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a></div>
