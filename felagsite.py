@@ -636,6 +636,15 @@ def sections(t, theme):
     return f'''
 {statement_scene}
 
+<section class="sec" id="who">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
+    <h2 class="reveal">The situations we see most often.</h2>
+    <div class="who-grid stagger">{who}</div>
+    <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
+  </div>
+</section>
+
 <section class="scene-build" id="build" data-scrub="build">
   <div class="pin">
     <div class="wrap">
@@ -696,19 +705,10 @@ def sections(t, theme):
 <section class="sec" id="how" data-scrub="how">
   <div class="wrap">
     <p class="eyebrow reveal">{t["how_eyebrow"]}</p>
-    <h2 class="reveal">How an engagement runs.</h2>
+    <h2 class="reveal">How delivery starts.</h2>
     <p class="lead reveal">{t["how_line"]}</p>
     <div class="how-stage">{how_art}<div class="how-grid">{steps}</div></div>
     <p class="how-note reveal">{HOW_NOTE}</p>
-  </div>
-</section>
-
-<section class="sec" id="who">
-  <div class="wrap">
-    <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
-    <h2 class="reveal">The situations we see most often.</h2>
-    <div class="who-grid stagger">{who}</div>
-    <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
   </div>
 </section>
 
@@ -830,7 +830,7 @@ SITE_JS = r'''
 // ---- the header knows where the reader is: the link for the section in view goes ash, the rest stay smoke
 (function(){
   var links = document.querySelectorAll('.nav .links a[href]'); if (!links.length || !('IntersectionObserver' in window)) return;
-  var map = {top: '', proof: '#proof', 'proof-cases': '#proof', names: '#proof', record: '#proof', offer: '#offer', how: '#how', who: '#how', people: '#people', faq: '#people'};
+  var map = {top: '', proof: '#proof', 'proof-cases': '#proof', names: '#proof', record: '#proof', offer: '#offer', how: '#how', people: '#people', faq: '#people'};
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if (!en.isIntersecting) return;
