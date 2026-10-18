@@ -152,7 +152,7 @@ HOW = [
     ("Workshop", "The problem, framed.", "Free, with a founder. If a sprint is useful, we agree its scope."),
     ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a principal, paid in advance and credited against the build."),
     ("Decision", "A build decision on a fixed scope.", "Taken together on the sprint output: a fixed-price build or a pod."),
-    ("Pod", "The build, led by a principal.", "On defined outcomes, monthly in advance."),
+    ("Build", "The build, led by a principal.", "A pod with deliverables agreed each month, or a fixed-price build."),
 ]
 HOW_NOTE = "Fractional CTO work and due diligence start from the same workshop and go straight to a scoped proposal."
 
@@ -323,7 +323,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .card .cfacts{display:grid;gap:14px;flex:1}
 .card .cfacts div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:baseline}
 .card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.card .cfacts dd{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.card .cfacts dd{margin:0;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 .card .cfoot{margin-top:0;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
