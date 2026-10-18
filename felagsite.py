@@ -15,9 +15,8 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 # ---------------------------------------------------------------------------------------------- content
 
-STATEMENT = ("Felag is a boutique engineering studio whose principal-led pods design and ship production systems for funded "
-             "fintech and technology companies, from backend and infrastructure at scale to payments and identity, with every "
-             "engagement priced on the outcome.")
+STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
+             "the architecture and delivery of backends, payment systems and identity infrastructure.")
 # the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
 DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
                "priced on outcomes rather than hours.")
@@ -71,7 +70,7 @@ PROOF_CARDS = [
     dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
     dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
     dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
-    dict(kicker="2017 to 2018, told as it was", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
+    dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
 
 # the names wall: every name the register and the history allow, each with its one line and its era
@@ -139,42 +138,42 @@ ERAS = [
 
 OFFERS = [
     dict(name="Free technical workshop", price="Free", note="",
-         body="A time-boxed session with a founder that frames the problem, constraints and options and ends with a sprint scope or a clear no. It produces a decision, not a spec.",
-         what=["The problem, the constraints and the options, framed", "A sprint scope, or a clear no"], terms=["Free", "Time-boxed", "No spec, no design, no estimate"], who="A founder"),
+         body="A time-boxed session with a founder that frames the problem, constraints and options. If an Architecture Sprint is useful, we agree its scope.",
+         what=["The problem, the constraints and the options, framed", "A sprint scope, if a sprint is useful"], terms=["Free", "Time-boxed", "No spec, no design, no estimate"], who="A founder"),
     dict(name="Architecture Sprint", price="$7.5k", note="launch price, list $15k",
-         body="One to two weeks with a named principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
-         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited against a pod or fixed-price build signed within 30 days"], who="A named principal"),
+         body="One to two weeks with a principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
+         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited against a pod or fixed-price build signed within 30 days"], who="A principal"),
     dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
-         body="A named principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
+         body="A principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
          what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "Three-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
     dict(name="Pods", price="$10k to $60k a month", note="by size",
-         body="The build after the sprint, on a monthly retainer with defined outcomes: from one senior engineer with principal oversight to a named principal leading a team of two to three, sized to the scope.",
-         what=["Outcomes defined in the SOW", "From one senior with principal oversight to a principal-led team of two to three"], terms=["Monthly in advance", "Cancel with two weeks' notice", "Principal named in the SOW; substitution needs the client's consent"], who="A named principal, with senior and specialist engineers as the scope needs"),
+         body="The build after the sprint, on a monthly retainer with defined outcomes: from one senior engineer with principal oversight to a principal leading a team of two to three, sized to the scope.",
+         what=["Outcomes defined in the SOW", "From one senior with principal oversight to a principal-led team of two to three"], terms=["Monthly in advance", "Cancel with two weeks' notice", "Principal identified in the SOW"], who="A principal, with senior and specialist engineers as the scope needs"),
     dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
          body="A review of the system and the team behind it against a scope fixed in advance, for investors and acquirers who need findings they can act on.",
-         what=["A fixed-scope review of the system and the team", "Findings an investor or acquirer can act on"], terms=["Fixed price", "Half paid on start"], who="A named principal"),
+         what=["A fixed-scope review of the system and the team", "Findings an investor or acquirer can act on"], terms=["Fixed price", "Half paid on start"], who="A principal"),
 ]
 OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a "
               "completed sprint. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price.")
 
 # each step: its name, the output it ends with, one short line
 HOW = [
-    ("Workshop", "The problem, framed.", "Free, with a founder. Ends with a sprint scope or a clear no."),
-    ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a named principal, paid in advance and credited against the build."),
+    ("Workshop", "The problem, framed.", "Free, with a founder. If a sprint is useful, we agree its scope."),
+    ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a principal, paid in advance and credited against the build."),
     ("Decision", "A build decision on a fixed scope.", "Taken together on the sprint output: a fixed-price build or a pod."),
-    ("Pod", "The build, led by a named principal.", "On defined outcomes, monthly in advance, the principal named in the SOW."),
+    ("Pod", "The build, led by a principal.", "On defined outcomes, monthly in advance."),
 ]
-HOW_NOTE = "The principal who leads the work is named in the SOW and changes only with the client's consent."
+HOW_NOTE = "Your engagement is led by one of our principals, identified in the statement of work. Any replacement requires your consent."
 
 WHO = [
     ("A post-raise CTO with a hard integration and no senior hire in time", "The Series A or B roadmap has an integration nobody on the team has shipped before, and the senior hire will not land in time. We take the integration as a defined outcome and hand it back documented."),
     ("A funded technology company with a performance, scale or reliability problem", "The product works until it is busy. We measure the problem first, then fix the cause, and we say so when the answer is a smaller change than the team expected."),
     ("A regulated payments or asset issuer rebuilding for a new regime", "MiCA, DORA, the UK regime, GENIUS, VARA, HKMA or MAS has changed what the system must record and prove, and the team needs engineers who have built for one of these regimes before."),
-    ("A licensed fintech replacing a failed offshore vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest under a named principal."),
+    ("A licensed fintech taking over a codebase from a previous vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest."),
     ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the hiring bar and the technical decisions until a full-time hire makes sense."),
     ("A product agency without a senior backend bench", "The agency has the design and the client, and needs a principal behind the backend for the length of the engagement without building that bench itself."),
 ]
-TURN_DOWN = "Hourly billing without a spend cap, a dedicated eight-person team as a product, public-sector tenders scored on headcount, and any work that would turn us back into a fifteen-person shop."
+TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and public-sector tenders scored on headcount."
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
@@ -191,7 +190,7 @@ PEOPLE = [
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
 PEOPLE_NOTE = ("The founders have worked together since 2015. Felag is the 2026 restart of Uddug, which Gateway.fm acquired in June 2024. "
-               "A named principal leads every engagement; contractors join on demand and are never sold as principals.")
+               "Contractors join on demand and are never sold as principals.")
 
 CONTRACT = [
     ("Legal entity", "Felag, incorporated in 2026."),
@@ -206,12 +205,12 @@ CONTRACT = [
 
 FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
-    ("Who actually works on our system?", "A named principal, one of the people above, leads every engagement and is written into the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
-    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint; if there is not, it ends with a clear no."),
+    ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
+    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited against a pod or fixed-price build signed within 30 days."),
     ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
-    ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under the named principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
+    ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
 ]
 
 # eyebrows and small story lines per theme
@@ -660,7 +659,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["proof_eyebrow"]}</p>
     <h2 class="reveal">What we have shipped.</h2>
-    <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
+    <p class="lead reveal">Selected work by Felag's founders and principals at Uddug and Gateway.fm.</p>
     <div class="metrics stagger">
       <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
       <article class="metric reveal" style="--i:1"><div class="big">$1<em>B+</em></div><div class="label">locked in staking on the infrastructure we ran in 2025 and 2026, serving Lido, Gnosis, Stellar and Canton</div></article>
@@ -669,13 +668,13 @@ def sections(t, theme):
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
-  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p>{strip_nav}</div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
   <div class="track" id="track">{cards}</div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
-    <h2 class="reveal">The names on the record.</h2>
+    <h2 class="reveal">Names we have worked with.</h2>
     <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
@@ -692,7 +691,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
     <h2 class="huge reveal">We do not bill hours.</h2>
-    <p class="lead reveal">A named principal scopes the work and the price is on the outcome. Engagements and prices in US dollars, excluding VAT.</p>
+    <p class="lead reveal">A principal scopes the work. Engagements and prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
     <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a></div>
   </div>
@@ -740,7 +739,7 @@ def sections(t, theme):
     <div class="wrap">
       <p class="eyebrow">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
-      <p class="mail">Write to <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem and ends with a sprint scope or a clear no.</p>
+      <p class="mail">Write to <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem.</p>
       <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
