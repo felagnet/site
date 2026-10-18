@@ -19,7 +19,7 @@ pip install -r requirements.txt && python -m playwright install chromium
 python3 check.py
 ```
 
-`check.py` runs on `dist/` and prints a table of checks: the wording rules, the hero line and the statement, the calls to action, the portraits and People links, the head tags, the files in `dist/`, a browser pass at three window sizes and with reduced motion, and every external link. It exits non-zero on any failure. `--no-browser` and `--no-links` skip the slower parts for a quick run.
+`check.py` runs on `dist/` and prints a table of checks: the wording rules, the hero line and the statement, the calls to action, the portraits and People links, the head tags, the files in `dist/`, a browser pass at three window sizes, with reduced motion and without JavaScript, and every external link. It exits non-zero on any failure. `--no-browser` and `--no-links` skip the slower parts for a quick run.
 
 ## Copy
 
