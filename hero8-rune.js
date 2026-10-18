@@ -3,7 +3,9 @@
 (function(){
   var canvas = document.getElementById('scene'), ctx = canvas.getContext('2d');
   var pin = canvas.parentElement, W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-  var glowC = document.createElement('canvas'), gctx = glowC.getContext('2d');
+  // the bloom is drawn and blurred at half the CSS resolution, then laid over the full-resolution rune: a blur hides the
+  // lost detail, and a full-viewport blur at device resolution was most of the page's main-thread work on a phone
+  var GQ = 0.5, glowC = document.createElement('canvas'), gctx = glowC.getContext('2d'), blurC = document.createElement('canvas'), bctx = blurC.getContext('2d');
   var hasFilter = ('filter' in ctx) && (function(){ try { ctx.filter = 'blur(1px)'; var ok = ctx.filter === 'blur(1px)'; ctx.filter = 'none'; return ok; } catch(e){ return false; } })();
   try { ctx.imageSmoothingQuality = 'high'; gctx.imageSmoothingQuality = 'high'; } catch(e){}
   // Safari has no canvas filter, so there the glow is blurred with a canvas shadow instead, on a canvas at CSS resolution
@@ -77,7 +79,8 @@
   function layout(){
     W = pin.clientWidth; H = pin.clientHeight;
     canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    glowC.width = Math.round(W*dpr); glowC.height = Math.round(H*dpr); gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    glowC.width = Math.max(1, Math.round(W*GQ)); glowC.height = Math.max(1, Math.round(H*GQ)); gctx.setTransform(GQ, 0, 0, GQ, 0, 0);
+    blurC.width = glowC.width; blurC.height = glowC.height;
     softC.width = Math.max(1, Math.round(W)); softC.height = Math.max(1, Math.round(H));
     narrow = W < 900;
     S = narrow ? Math.min(W*0.62, H*0.30)/110 : Math.min(H*0.62, W*0.30)/110;
@@ -160,10 +163,13 @@
       drawRune(gctx, upto, wBase*3.0, '#DF8E63', 0.5*glowA, 'lighter');
       drawRune(gctx, upto, wBase*1.3, '#EFA37C', 0.55*glowA, 'lighter');
       gctx.restore();
-      ctx.save(); ctx.globalCompositeOperation = 'lighter';
-      ctx.filter = 'blur(' + Math.max(2, Math.round(22*Math.min(1.2, k))) + 'px)'; ctx.globalAlpha = 0.9; ctx.drawImage(glowC, 0, 0, glowC.width, glowC.height, 0, 0, W, H);
-      ctx.filter = 'blur(' + Math.max(1, Math.round(7*Math.min(1.2, k))) + 'px)'; ctx.globalAlpha = 0.7; ctx.drawImage(glowC, 0, 0, glowC.width, glowC.height, 0, 0, W, H);
-      ctx.restore();
+      // the radii are device pixels at full resolution, as before; GQ/dpr turns them into pixels of the half-size canvas
+      bctx.setTransform(1, 0, 0, 1, 0, 0); bctx.globalCompositeOperation = 'source-over'; bctx.clearRect(0, 0, blurC.width, blurC.height);
+      bctx.globalCompositeOperation = 'lighter';
+      bctx.filter = 'blur(' + (Math.max(2, Math.round(22*Math.min(1.2, k)))*GQ/dpr).toFixed(2) + 'px)'; bctx.globalAlpha = 0.9; bctx.drawImage(glowC, 0, 0);
+      bctx.filter = 'blur(' + (Math.max(1, Math.round(7*Math.min(1.2, k)))*GQ/dpr).toFixed(2) + 'px)'; bctx.globalAlpha = 0.7; bctx.drawImage(glowC, 0, 0);
+      bctx.filter = 'none';
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(blurC, 0, 0, blurC.width, blurC.height, 0, 0, W, H); ctx.restore();
     } else {
       softGlow(Math.max(2, 22*Math.min(1.2, k))/dpr, 0.9, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
       softGlow(Math.max(1, 7*Math.min(1.2, k))/dpr, 0.7, ox, oy, scale, tiltX, skew, tiltY, upto, wBase, glowA);
