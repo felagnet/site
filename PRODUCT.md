@@ -75,7 +75,7 @@ Open decisions, recorded, not invented:
 ## Evidence on Hand
 
 - Proof wording as constants in felagsite.py (A_NAMED through Y_LINE, PROOF_CARDS, WALL, ERAS), taken from proof-register.md and portfolio.md. Named clients include Wirex Pay, Infinex and Synthetix, Humanity Protocol, DeepNode, EY Nightfall, LUKSO, Lumia, ApeChain, Presto, Gnosis, Ethereum Foundation, Web3 Foundation, Protocol Labs, Parity, OG:Crystals, Marscatsvoyage, Arsnl.art, Metazoku, Snark.art. Opera and 1inch are named on the RPC proxy case.
-- External references linked from the page: L2BEAT listing for Wirex, the Wirex partnership announcement, the Gateway.fm agentic identity case study, the KuCoin DeepNode listing, snark.art.
+- External references linked from the page: L2BEAT listing for Wirex, the Gateway.fm Wirex partnership announcement (the Wirex blog post now returns 404), the Gateway.fm agentic identity case study, the KuCoin DeepNode listing, snark.art.
 - Portraits of the four people in photo/people/ (andrew, mike, pavel, andrey, with the source files and base64 copies). og.png and apple-touch-icon.png in static/, drawn by make_images.py.
 - Not on hand, and not to be fabricated: client testimonials, client logos, a case for a non-fintech technology company, a system taken through a MiCA audit, any AI productivity multiple, any headcount, any price not on the rate card.
 

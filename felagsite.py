@@ -35,7 +35,7 @@ SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nu
           "Postgres, Redis, ScyllaDB/Cassandra, ClickHouse, Kafka, NATS, RabbitMQ, gRPC, GraphQL, REST, websockets, The Graph and custom indexers.")
 
 L2B = "https://l2beat.com/layer2s/projects/wirex"
-WIREX_PR = "https://wirexapp.com/blog/post/wirex-partners-with-gatewayfm-to-elevate-its-zk-powered-wirex-pay-decentralised-payment-network-0868"
+WIREX_PR = "https://gateway.fm/blog/gateway-wirex-partnership/"
 GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure/"
 
 A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
