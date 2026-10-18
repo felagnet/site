@@ -548,10 +548,14 @@ html:not(.js) .hero-statement{position:relative;opacity:1;transform:none;pointer
 html:not(.js) .statement .w{opacity:1}
 html:not(.js) .scene-build{height:auto}
 html:not(.js) .scene-build .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}
-html:not(.js) .cap{opacity:1}
-html:not(.js) .cap p{max-height:none;opacity:1;margin-top:8px}
-html:not(.js) .bigmark path{fill:var(--accent)}
-html:not(.js) .mark-count{display:none}
+html:not(.js) .cap,.scene-build.flow .cap{opacity:1}
+html:not(.js) .cap p,.scene-build.flow .cap p{max-height:none;opacity:1;margin-top:8px}
+html:not(.js) .bigmark path,.scene-build.flow .bigmark path{fill:var(--accent)}
+html:not(.js) .mark-count,.scene-build.flow .mark-count{display:none}
+/* ---- the build scene pins only when its whole composition fits the viewport; when it does not (a short window, zoom, larger text)
+   the script sets .flow and it reads as the no-script section: every line open, every piece lit, nothing held. Under 900 px it already flows */
+.scene-build.flow .cap h3{color:var(--text)}
+@media (min-width:901px){.scene-build.flow{height:auto}.scene-build.flow .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}}
 html:not(.js) .step{opacity:1;transform:none}
 html:not(.js) .faq .a{height:auto}
 '''
@@ -779,6 +783,7 @@ SITE_JS = r'''
     });
   }
   function request(){ if (!ticking){ ticking = true; requestAnimationFrame(tick); } }
+  window.scrubRequest = request;
   window.addEventListener('scroll', request, {passive: true});
   window.addEventListener('resize', request);
   window.addEventListener('load', request);
@@ -819,10 +824,32 @@ SITE_JS = r'''
 
 // ---- what we build: the scroll lights one piece of the mark at a time, and the thing it stands for
 (function(){
-  var caps = document.querySelectorAll('#build .cap'), pieces = document.querySelectorAll('#build .bigmark path'), count = document.getElementById('mark-count'); if (!caps.length) return;
-  var current = -1, narrow = window.innerWidth < 900;
-  if (narrow){ caps.forEach(function(c){ c.classList.add('on'); }); pieces.forEach(function(pc){ pc.classList.add('on'); }); return; }
+  var scene = document.getElementById('build'), caps = document.querySelectorAll('#build .cap'), pieces = document.querySelectorAll('#build .bigmark path'), count = document.getElementById('mark-count'); if (!scene || !caps.length) return;
+  var wrap = scene.querySelector('.pin > .wrap'), markmap = scene.querySelector('.markmap'), capsCol = scene.querySelector('.caps-left'), markCol = scene.querySelector('.mark-col'), header = document.querySelector('.site-header');
+  var current = -1, flow = null, narrowQ = window.matchMedia('(max-width:900px)');
+  // the height the pinned frame needs with its longest line open. The lines as they are drawn now are taken out and the longest put back,
+  // so the answer is the same pinned or static, at rest or mid-transition
+  function needed(){
+    var shown = 0, longest = 0;
+    caps.forEach(function(c){ var p = c.querySelector('p'); shown += p.getBoundingClientRect().height + parseFloat(getComputedStyle(p).marginTop); longest = Math.max(longest, p.scrollHeight + 8); });
+    var capsH = capsCol.getBoundingClientRect().height - shown + longest, markH = markCol.getBoundingClientRect().height + (count && count.offsetParent ? 0 : 38);
+    return (header ? header.getBoundingClientRect().height : 72) + wrap.getBoundingClientRect().height - markmap.getBoundingClientRect().height + Math.max(capsH, markH) + 24;
+  }
+  function decide(){
+    // a little slack before pinning again, so a window at the edge does not flip on every pixel
+    var f = narrowQ.matches || needed() > window.innerHeight - (flow ? 8 : 0);
+    if (f === flow) return;
+    flow = f; scene.classList.toggle('flow', f); current = -1;
+    // static: every capability and every piece is on, as the phone has always shown them; pinned again, the next scrub pass picks the one in view
+    if (f){ caps.forEach(function(c){ c.classList.add('on'); }); pieces.forEach(function(pc){ pc.classList.add('on'); }); }
+    if (window.scrubRequest) window.scrubRequest();
+  }
+  decide();
+  window.addEventListener('resize', decide);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(decide);
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ decide(); }).observe(wrap);
   window.onScrub('build', function(p){
+    if (flow) return;
     var idx = Math.min(caps.length - 1, Math.floor(Math.max(0, p - 0.02) / 0.96 * caps.length));
     if (idx === current) return;
     current = idx;
