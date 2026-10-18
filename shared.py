@@ -139,11 +139,21 @@ var heroFlow = false;
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(decide);
   if ('ResizeObserver' in window){ var ro = new ResizeObserver(function(){ decide(); }); Array.prototype.forEach.call(heroInner.children, function(e){ ro.observe(e); }); Array.prototype.forEach.call(st.children, function(e){ ro.observe(e); }); }
 })();
+// what can be seen and what the keyboard can reach agree: once the hero text has mostly faded it is inert, out of the tab order and the
+// pointer's reach, and it comes back as it returns. A keyboard reader already inside it when the scroll begins holds it: the text stays
+// in full view, the statement waits, and both resume the moment focus moves on
+var heroHeld = false;
 function fadeText(p){
-  if (heroFlow) return;
-  var o = 1 - Math.max(0, Math.min(1, (p-0.12)/0.3));
+  heroHeld = !heroFlow && !!heroInner.querySelector(':focus-visible');
+  if (heroFlow){ heroInner.inert = false; return; }
+  var o = heroHeld ? 1 : 1 - Math.max(0, Math.min(1, (p-0.12)/0.3));
   heroInner.style.opacity = o; heroInner.style.transform = 'translateY(' + (-40*(1-o)).toFixed(1) + 'px)';
   heroInner.style.pointerEvents = o < 0.3 ? 'none' : '';
+  heroInner.inert = o < 0.75;
+}
+if (heroInner){
+  // a focus change inside the hero redraws the scene at once, so the hold starts and ends with it
+  ['focusin', 'focusout'].forEach(function(t){ heroInner.addEventListener(t, function(){ setTimeout(function(){ window.dispatchEvent(new Event('scroll')); }, 0); }); });
 }
 // scroll progress inside the hero runway, 0 to 1
 function headerOver(p){ rootEl.classList.toggle('over-hero', p < 0.06); }

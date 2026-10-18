@@ -807,7 +807,7 @@ SITE_JS = r'''
   if (reduce || narrow){
     // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = heroHeld ? 0 : Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
     return;
   }
   window.onScrub('statement', function(p, el){
@@ -816,7 +816,7 @@ SITE_JS = r'''
     if (inHero && heroFlow){ for (var j = 0; j < n; j++){ words[j].style.opacity = 1; words[j].classList.remove('hot'); } return; }
     if (inHero){
       // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
-      var hp = heroProgress(), st = Math.max(0, Math.min(1, (hp - 0.3)/0.1));
+      var hp = heroProgress(), st = heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.3)/0.1));
       el.style.setProperty('--st', st.toFixed(3)); el.style.pointerEvents = st >= 0.9 ? 'auto' : '';
       q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
     } else {
