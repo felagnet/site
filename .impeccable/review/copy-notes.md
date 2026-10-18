@@ -40,3 +40,20 @@ Andrew chose each fix in the chat and had the agent apply it on the review-loop 
 - C-02, OG:Crystals: the "$10M+ at launch" figure is gone. OG.Art reports $4.2M primary and $9M secondary, and secondary sales are not money raised. The line now gives Uddug's engineering role, with Snark.art. No figure.
 - C-01, grants: "won and delivered" became "took on grant work", naming JuniDB, and the dates are now 2020 to 2023 to cover GitSEC. Open risk: the W3F register shows JuniDB as terminated, and the only Protocol Labs application the auditor found (GitSEC) was declined. Unless a Protocol Labs award other than GitSEC can be cited, a re-audit may still flag the Protocol Labs name.
 - Not in the audit, same pattern: P_LINE says "Marscatsvoyage, $2M+ at launch" and may draw the same primary versus secondary question.
+
+## 18 October 2026, SEO audit S-02 to S-10
+
+From the auditor's five remaining changes. S-05 is done on the seo-audit branch with no copy change, and S-03 merged in C-03 above. These need Andrew's facts or words:
+
+- S-03, Wirex card, wall line and 2024 record row: the Gateway.fm post of 5 February 2024 supports the private zkEVM rollup, the smart contracts, the backend oracles between off-chain KYC and the contracts, the card integration and MiCA. It does not mention the indexer or account abstraction, and it does not say "end to end"; the August 2024 launch rests on the L2BEAT link. Either cite a source for the indexer and account abstraction, or mark those parts as the team's account.
+- S-04, proof claims that need evidence beside them: the 140k+ requests per second RPC figure (Opera and 1inch), the Humanity Protocol application layer, the shared prover (EY Nightfall, Polygon zkEVM, Miden, Iden3) and the XIP-9 contribution for Infinex. Where nothing public corroborates the team's specific work, say it is the team's account; project pages show context, not the team's part.
+- S-02 and S-04, focused pages: the auditor proposes four pages with their own title, h1, canonical and sitemap entry: Architecture Sprint, Fractional CTO, payments infrastructure engineering, and the Wirex Pay contribution. Each needs new copy (who it is for, deliverables, who leads, price basis, how to begin; for the case: problem, contribution, period, team, evidence). This is new visible text, so it waits on Andrew's words.
+- S-08 and S-09, People: Pavel's card says Finland and his GitHub profile says Belgrade, Serbia; Andrey's card says Armenia and his GitHub says Helsinki and Freelance, spelled Andrei. The site carries Andrew's decision of 16 October 2026. The profiles are theirs to update, or the cards change.
+- S-10, contracting entity: "The contract is with Felag" names the brand only. The auditor wants the registered counterparty, jurisdiction and registration number, the same on the page, the JSON-LD and llms.txt, and kept apart from where the founders live. Andrew declined a footer entity line on 16 October 2026 (copy-1-17); the audit asks again.
+
+Andrew's decisions, 18 October 2026, in the chat:
+- S-03: the Wirex line stays as it is; the indexer and account abstraction are the team's work whatever the Gateway.fm post mentions.
+- S-04 evidence: the RPC figure, Humanity Protocol, the shared prover and XIP-9 stay as they are, with no added links or labels.
+- S-02 and S-04 pages: none for now; felag.net stays one page.
+- S-08 and S-09: Pavel is based in Serbia (Belgrade) and Andrey in Finland. Applied in d788bf8, by the agent on Andrew's word. The name stays spelled Andrey.
+- S-10: the contract stays with the brand, as decided on 16 October 2026 (copy-1-17).

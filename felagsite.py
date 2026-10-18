@@ -183,10 +183,10 @@ PEOPLE = [
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail Manko is co-founder and CEO of Felag. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew Skurlatov in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product. At Felag he runs partnerships and deals, from the first call to the signed contract.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
-    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Finland", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
+    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
          bio="Pavel Dodonov is Principal Engineer for infrastructure and ZK at Felag and a partner. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the shared prover architecture for L2 ecosystems, GPU and CPU autoscaling for the prover fleets, and an EVM event-indexing platform that most of the company's projects reused. Before that he spent a decade in scientific R&D, with 20+ published papers.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
-    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Armenia", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
+    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
          bio="Andrey Solovov is Principal Engineer for Web3 systems at Felag and a partner. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients, among them a push oracle that delivered multi-asset prices every 500 ms and a pull-based feed at about 1,000 requests per second. Before Gateway he built smart contracts and payments architecture at Uddug.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
@@ -365,6 +365,13 @@ html.js .reveal.in{opacity:1;transform:none}
 .wall-detail-inner .wall-era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .wall-detail-inner p{font-size:var(--fs-lead);line-height:1.45;max-width:40em}
 .wall-detail-inner .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:var(--fs-small)}
+/* each name's line sits in the page after it; the script opens a copy in the detail row, and without the script the line shows under its name */
+html.js .wall-line{display:none}
+.wall-line{flex:0 0 100%;display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 24px;align-items:start;padding:4px 0 24px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.wall-line .wall-era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
+.wall-line p{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);max-width:40em}
+.wall-line .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
+html:not(.js) .name{cursor:default}
 
 /* ---- the record, three eras along a line */
 .eras{position:relative;margin-top:48px;padding-left:40px}
@@ -497,7 +504,7 @@ html.js .reveal.in{opacity:1;transform:none}
   .scene-book .wrap{padding-top:30vh}
   .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
-  .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
+  .wall-detail-inner,.wall-line,.rec{grid-template-columns:minmax(0,1fr)}
   .eras{padding-left:28px}.era-block::before{left:-25px}
   .metrics{grid-template-columns:minmax(0,1fr)}
   .scene-proof{padding:56px 0 80px}
@@ -532,6 +539,20 @@ html.js .reveal.in{opacity:1;transform:none}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
   .statement .w{opacity:1}
 }
+/* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
+html:not(.js) .theme-rune .hero{height:auto;min-height:0}
+html:not(.js) .theme-rune .hero-pin{position:relative;height:auto;min-height:0;overflow:visible}
+html:not(.js) .theme-rune .hero-inner{height:auto;min-height:100vh;min-height:100dvh}
+html:not(.js) .hero-statement{position:relative;opacity:1;transform:none;pointer-events:auto;padding-bottom:64px}
+html:not(.js) .statement .w{opacity:1}
+html:not(.js) .scene-build{height:auto}
+html:not(.js) .scene-build .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}
+html:not(.js) .cap{opacity:1}
+html:not(.js) .cap p{max-height:none;opacity:1;margin-top:8px}
+html:not(.js) .bigmark path{fill:var(--accent)}
+html:not(.js) .mark-count{display:none}
+html:not(.js) .step{opacity:1;transform:none}
+html:not(.js) .faq .a{height:auto}
 '''
 
 # ---------------------------------------------------------------------------------------------- markup
@@ -566,7 +587,7 @@ def sections(t, theme):
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
-        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><template id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></template>'
+        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
@@ -850,8 +871,7 @@ SITE_JS = r'''
     if (open === btn){ close(); return; }
     if (open){ open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); }
     open = btn; btn.classList.add('on'); btn.setAttribute('aria-expanded', 'true');
-    var tpl = document.getElementById('wall-' + btn.getAttribute('data-i'));
-    inner.innerHTML = ''; inner.appendChild(tpl.content.cloneNode(true));
+    inner.innerHTML = document.getElementById('wall-' + btn.getAttribute('data-i')).innerHTML;
     // find the last name on the same visual row and place the detail after it
     var top = btn.offsetTop, names = wall.querySelectorAll('.name'), last = btn;
     names.forEach(function(n){ if (Math.abs(n.offsetTop - top) < 6 && n.offsetLeft > last.offsetLeft) last = n; });
@@ -1200,6 +1220,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="twitter:description" content="{DESCRIPTION}">
 <meta name="twitter:image" content="https://felag.net/og.png">
 <meta name="theme-color" content="#0E1114">
+<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
 {FONT_LINKS}
 <style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>

@@ -42,7 +42,7 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 - Copy lives in the data constants at the top of felagsite.py; the hero line and sub-line in build_site.py; the page chrome in shared.py. `python3 build_site.py` writes out/felag-rune.html, `python3 make_dist.py` assembles dist/, and `python3 check.py` runs the wording rules, the hero line, the calls to action, the portraits and People links, the head tags, the dist file list, a browser pass at 1440, 1728 and 390 px wide and with reduced motion, and every external link. A failed check stops the deploy.
 - The harvest page (out/felag-harvest.html, hero6-field.js, lib/three.min.js) is a kept prototype that is not deployed.
 - Company pages: linkedin.com/company/felagnet, github.com/felagnet, x.com/felagnet. Public contact on the site is info@felag.net.
-- The people on the page: Andrew Skurlatov (co-founder and CTO, Netherlands), Mikhail Manko (co-founder and CEO, Cyprus), Pavel Dodonov (Principal Engineer, Infrastructure and ZK, partner, Finland), Andrey Solovov (Principal Engineer, Web3 Systems, partner, Armenia; both locations from Andrew, 16 October 2026, to be added to team-and-history.md). Bios are copied verbatim from team-and-history.md.
+- The people on the page: Andrew Skurlatov (co-founder and CTO, Netherlands), Mikhail Manko (co-founder and CEO, Cyprus), Pavel Dodonov (Principal Engineer, Infrastructure and ZK, partner, Serbia), Andrey Solovov (Principal Engineer, Web3 Systems, partner, Finland; both locations from Andrew, 18 October 2026, matching their GitHub profiles, replacing Finland and Armenia of 16 October, to be added to team-and-history.md). Bios are copied verbatim from team-and-history.md.
 
 ## Capabilities and Constraints
 

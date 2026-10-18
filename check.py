@@ -347,6 +347,27 @@ CANVAS_STATS = """sel => {
   return {ink, copper, hash};
 }"""
 
+# what a reader without JavaScript must see: the statement, the build descriptions, the proof, the names wall lines,
+# the record, the prices, the steps, the bios and the FAQ answers once opened
+NO_JS_READS = ["#statement-text", "#build .cap p", ".metric .label", ".card p", ".wall-line p", ".rec p",
+               ".panel .price", "#how .step", ".person p", ".faq .a p"]
+NO_JS_HIDDEN = """sels => {
+  const out = {};
+  for (const s of sels) {
+    const els = [...document.querySelectorAll(s)];
+    const n = els.length ? els.filter(e => {
+      let o = 1, flat = false;
+      for (let a = e; a && a.nodeType === 1; a = a.parentElement) {
+        o *= parseFloat(getComputedStyle(a).opacity);
+        if (a.getBoundingClientRect().height === 0) flat = true;
+      }
+      return o < 0.99 || flat;
+    }).length : 'none found';
+    if (n) out[s] = n;
+  }
+  return out;
+}"""
+
 SCROLL_STEP = """r => {
   window.scrollTo({top: window.scrollY + Math.round(window.innerHeight * r), behavior: 'instant'});
   return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -442,6 +463,16 @@ def browser_pass():
             row("Reduced motion: no errors", not errors,
                 f"{len(errors)} error(s), first: {errors[0][:160]}" if errors else "")
             ctx.close()
+
+            for w, h in ((1440, 900), (390, 844)):
+                ctx = browser.new_context(viewport={"width": w, "height": h}, java_script_enabled=False)
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.evaluate("document.querySelectorAll('.faq details').forEach(function(d){ d.open = true; })")
+                hidden = page.evaluate(NO_JS_HIDDEN, NO_JS_READS)
+                row(f"Without JavaScript at {w}: every description, price, bio and line reads", not hidden,
+                    "hidden: " + ", ".join(f"{s} ({n})" for s, n in hidden.items()) if hidden else "")
+                ctx.close()
         finally:
             browser.close()
             server.shutdown()

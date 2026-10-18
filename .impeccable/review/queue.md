@@ -73,3 +73,11 @@ Rounds 1 to 5, kept current by the developer and closed after the loop. One line
 - design-1-3 reversed in 4075771: the 120 px copper rule grows under every section headline again.
 - design-1-4 and design-2-1 reversed in 01bb3c6: the five offers are stacking slate panels again, with the loop's price fixes kept inside them.
 - New in c00cb92: every block rises and fades in as it enters, staggered inside a group; off under reduced motion.
+
+## SEO audit, 18 October 2026
+On the seo-audit branch, from main after the review-loop merge.
+- seo-4-1 [P1] done 5d75060, 78ec122 and 07a322d: Essential copy reads without JavaScript (S-05). The js class is set in the head. Without it the hero statement, the four build descriptions, the steps, the FAQ answers and all 27 names wall lines show at rest; with it the page is unchanged. check.py now fails on any hidden description, price, bio or line without JavaScript, at 1440 and 390. Verified in Chromium and WebKit.
+- seo-4-2 [P1] done in C-03 (45bccfa, merged): Wirex evidence link (S-03). The content check is in copy-notes.
+- seo-4-3 [P1] done (S-07, Andrew, 18 October 2026: build the half-resolution bloom), 0a32cf8: Mobile Lighthouse 12, local, headless with no GPU, three runs each: baseline 74 to 75, TBT 1,274 to 1,498 ms, 10.1 s main-thread work; reduced motion 99, TBT 0 to 12 ms. The two full-viewport ctx.filter blurs of the bloom are about 90 percent of the work: without the bloom 0.7 s and TBT 0. Rendering the bloom at half CSS resolution, with the radius kept in CSS pixels and the rune strokes at full resolution, gives 99 and TBT 0 in all three runs, 4.1 s of work, and the rune at rest within 3/255 of the original on every pixel at 1440 and 390. Capping the whole canvas at 1x also gives TBT 0 but softens the strokes. Shipped as measured: 99 and TBT 0 in three runs. WebKit takes the shadow-blur fallback and renders as before. A real-device check is still open.
+- seo-4-4 [P2] closed (Andrew, 18 October 2026: one page for now; the claims stand as the team's statements with no added links or labels): Focused service and case pages, and evidence beside the claims (S-02, S-04).
+- seo-4-5 [P2] done d788bf8 (Andrew, 18 October 2026: Pavel in Serbia, Andrey in Finland; the contract stays with the brand, no entity line): People locations against GitHub, and the contracting entity (S-08 to S-10).
