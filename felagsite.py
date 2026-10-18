@@ -138,23 +138,24 @@ ERAS = [
 
 OFFERS = [
     dict(name="Free technical workshop", price="Free", note="",
-         body="A time-boxed session with a founder that frames the problem, constraints and options. If an Architecture Sprint is useful, we agree its scope.",
-         what=["The problem, the constraints and the options, framed", "A sprint scope, if a sprint is useful"], terms=["Free", "Time-boxed", "No spec, no design, no estimate"], who="A founder"),
-    dict(name="Architecture Sprint", price="$7.5k", note="launch price, list $15k",
+         body="A 60-minute session with a founder to understand your system, priorities and constraints. If an Architecture Sprint is useful, we agree its scope. Detailed specification and costed build options are part of the paid sprint.",
+         what=["Your system, priorities and constraints, understood", "A sprint scope, if a sprint is useful"], terms=["Free", "60 minutes", "A reply within two working days of your email"], who="A founder"),
+    dict(name="Architecture Sprint", price="From $10k", note="",
          body="One to two weeks with a principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
-         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited against a pod or fixed-price build signed within 30 days"], who="A principal"),
+         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited in full against a pod or fixed-price build signed within 30 days of the sprint's delivery"], who="A principal"),
     dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
          body="A principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
-         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "Three-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
-    dict(name="Pods", price="$10k to $60k a month", note="by size",
-         body="The build after the sprint, on a monthly retainer with defined outcomes: from one senior engineer with principal oversight to a principal leading a team of two to three, sized to the scope.",
-         what=["Outcomes defined in the SOW", "From one senior with principal oversight to a principal-led team of two to three"], terms=["Monthly in advance", "Cancel with two weeks' notice", "Principal identified in the SOW"], who="A principal, with senior and specialist engineers as the scope needs"),
+         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
+    dict(name="Pods", price="$10k to $60k a month", note="by team",
+         body="The build after the sprint, on a monthly retainer with deliverables agreed each month in the SOW, and a team sized to the scope.",
+         what=["From $10k: one senior engineer, with a principal reviewing the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
+         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice"], who="A principal, with senior and specialist engineers as the scope needs"),
     dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
          body="A review of the system and the team behind it against a scope fixed in advance, for investors and acquirers who need findings they can act on.",
-         what=["A fixed-scope review of the system and the team", "Findings an investor or acquirer can act on"], terms=["Fixed price", "Half paid on start"], who="A principal"),
+         what=["A written report on architecture, code quality, security, infrastructure and the team", "Findings ranked by risk", "Delivered one to two weeks from access"], terms=["Fixed price", "Half paid on start"], who="A principal"),
 ]
-OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a "
-              "completed sprint. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price.")
+OFFER_NOTE = ("Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a completed sprint. "
+              "Your engagement is led by one of our principals, identified in the statement of work. Any replacement requires your consent.")
 
 # each step: its name, the output it ends with, one short line
 HOW = [
@@ -163,7 +164,7 @@ HOW = [
     ("Decision", "A build decision on a fixed scope.", "Taken together on the sprint output: a fixed-price build or a pod."),
     ("Pod", "The build, led by a principal.", "On defined outcomes, monthly in advance."),
 ]
-HOW_NOTE = "Your engagement is led by one of our principals, identified in the statement of work. Any replacement requires your consent."
+HOW_NOTE = "Fractional CTO work and due diligence start from the same workshop and go straight to a scoped proposal."
 
 WHO = [
     ("A post-raise CTO with a hard integration and no senior hire in time", "The Series A or B roadmap has an integration nobody on the team has shipped before, and the senior hire will not land in time. We take the integration as a defined outcome and hand it back documented."),
@@ -207,10 +208,10 @@ FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
     ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
-    ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited against a pod or fixed-price build signed within 30 days."),
+    ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
-    ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
+    ("Do you use AI in delivery?", "Yes, on our own AI development framework, which we will describe publicly later. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
 ]
 
 # eyebrows and small story lines per theme
@@ -690,9 +691,10 @@ def sections(t, theme):
 <section class="sec" id="offer">
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
-    <h2 class="huge reveal">We do not bill hours.</h2>
-    <p class="lead reveal">A principal scopes the work. Engagements and prices in US dollars, excluding VAT.</p>
+    <h2 class="huge reveal">Engagements and fees.</h2>
+    <p class="lead reveal">Fixed-price sprints and technical reviews. Monthly retainers for delivery pods and fractional CTO work. Every engagement has agreed scope and deliverables. Prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
+    <p class="offer-note reveal">{OFFER_NOTE}</p>
     <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a></div>
   </div>
 </section>
@@ -1158,10 +1160,10 @@ def ld_json(title, description):
     # the Fractional CTO minPrice waits on the owner's decision about the price on the page, so that offer carries no figure
     offers = [
         _offer(OFFERS[0], price="0"),
-        _offer(OFFERS[1], price="7500", spec={"price": "7500", "description": "launch price, list $15k"}),
+        _offer(OFFERS[1], spec={"minPrice": 10000, "description": "from $10k"}),
         _offer(OFFERS[2], spec={"description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}),
         _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
-        _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start"}),
+        _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
     org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "url": SITE,
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
