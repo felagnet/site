@@ -417,11 +417,15 @@ html:not(.js) .name{cursor:default}
 .how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
 .step .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text);display:flex;align-items:center;gap:12px}
 .step .k span{color:var(--text-secondary)}
-.step h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--text);text-wrap:balance}
-.step p{color:var(--text-secondary);margin-top:12px;font-size:var(--fs-body);line-height:var(--lh-body);transition:color .5s}
-.step:not(.on) p{color:var(--text)}
-.step{opacity:var(--dim);transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
-.step.on{opacity:1;transform:none}
+/* a step still to come keeps every word at full contrast: progress is the 1 px rule above it, filling seam to copper as the step lights,
+   and the title stepping from smoke to ash. The text is never dimmed, so the label holds its 7:1 in every state and mid-transition */
+.step{position:relative;border-top:1px solid var(--line);padding-top:20px;transform:translateY(16px);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.step::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.step.on{transform:none}
+.step.on::before{transform:none}
+.step h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--text-secondary);text-wrap:balance;transition:color .5s}
+.step.on h3{color:var(--text)}
+.step p{color:var(--text-secondary);margin-top:12px;font-size:var(--fs-body);line-height:var(--lh-body)}
 .furrow{width:100%;height:120px;display:block}
 .how-grid:first-child{margin-top:0}
 .furrow .soil{fill:none;stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:6 8}
@@ -521,7 +525,7 @@ html:not(.js) .name{cursor:default}
   .scene-book .pin{display:block;min-height:0;padding:48px 0 96px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
-  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
+  .step{transform:none}
 }
 @media (max-width:600px){
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
@@ -537,7 +541,7 @@ html:not(.js) .name{cursor:default}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
-  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
+  .step{transform:none;transition:none}.step::before,.step h3{transition:none}
   .statement .w{opacity:1}
 }
 /* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
@@ -556,7 +560,9 @@ html:not(.js) .mark-count,.scene-build.flow .mark-count{display:none}
    the script sets .flow and it reads as the no-script section: every line open, every piece lit, nothing held. Under 900 px it already flows */
 .scene-build.flow .cap h3{color:var(--text)}
 @media (min-width:901px){.scene-build.flow{height:auto}.scene-build.flow .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}}
-html:not(.js) .step{opacity:1;transform:none}
+html:not(.js) .step{transform:none}
+html:not(.js) .step::before{transform:none}
+html:not(.js) .step h3{color:var(--text)}
 html:not(.js) .faq .a{height:auto}
 /* ---- the hero as a plain section, when its text does not fit the pinned frame (heroFlow in the common script): the no-script layout,
    with room under the buttons on a phone for the rune, which draws in place there instead of flying to the header */

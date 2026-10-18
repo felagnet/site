@@ -207,7 +207,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
 
 ### Dim states
-Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph or index label borrows ash for the same reason and settles to smoke once its step or capability lights.
+Content that has not yet lit in a scroll scene (statement words, inactive capabilities) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph or index label borrows ash for the same reason and settles to smoke once its step or capability lights. Steps still to come in How are the exception, because their labels are small smoke text that would fall to 2.7:1: they never dim. Each step carries a 1 px seam rule above it that fills to copper from the left as the step lights, and its title steps from smoke to ash; the number, label and line stay at full contrast in every state.
 
 ### Named Rules
 **The Mono Rule.** Mono sets what dates, numbers and names things: labels, years, indices, identifiers, the stack. A sentence is never set in mono.
