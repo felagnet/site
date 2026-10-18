@@ -538,6 +538,9 @@ html:not(.js) .name{cursor:default}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
+  /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
+  .panel{position:relative;top:auto;box-shadow:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
@@ -854,11 +857,12 @@ SITE_JS = r'''
   }
   function decide(){
     // a little slack before pinning again, so a window at the edge does not flip on every pixel
-    var f = narrowQ.matches || needed() > window.innerHeight - (flow ? 8 : 0);
+    var f = reduce || narrowQ.matches || needed() > window.innerHeight - (flow ? 8 : 0);
     if (f === flow) return;
     flow = f; scene.classList.toggle('flow', f); current = -1;
     // static: every capability and every piece is on, as the phone has always shown them; pinned again, the next scrub pass picks the one in view
-    if (f){ caps.forEach(function(c){ c.classList.add('on'); }); pieces.forEach(function(pc){ pc.classList.add('on'); }); }
+    caps.forEach(function(c){ c.classList.toggle('on', f); }); pieces.forEach(function(pc){ pc.classList.toggle('on', f); });
+    if (!f && count) count.textContent = '01 / 0' + caps.length;
     if (window.scrubRequest) window.scrubRequest();
   }
   decide();
@@ -910,7 +914,10 @@ SITE_JS = r'''
   var wall = document.getElementById('wall'), detail = document.getElementById('wall-detail'), inner = document.getElementById('wall-detail-inner');
   if (!wall || !detail) return;
   var open = null;
-  function close(){ if (!open) return; open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); open = null; detail.classList.add('closing'); detail.style.height = detail.scrollHeight + 'px'; requestAnimationFrame(function(){ detail.style.height = '0px'; }); detail.addEventListener('transitionend', function h(){ detail.hidden = true; detail.classList.remove('closing'); detail.removeEventListener('transitionend', h); }); }
+  function close(){ if (!open) return; open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); open = null;
+    // under reduced motion there is no transition to wait for, so the row closes in the same moment
+    if (reduce){ detail.hidden = true; detail.style.height = '0px'; return; }
+    detail.classList.add('closing'); detail.style.height = detail.scrollHeight + 'px'; requestAnimationFrame(function(){ detail.style.height = '0px'; }); detail.addEventListener('transitionend', function h(){ detail.hidden = true; detail.classList.remove('closing'); detail.removeEventListener('transitionend', h); }); }
   wall.addEventListener('click', function(e){
     var btn = e.target.closest('.name'); if (!btn) return;
     if (open === btn){ close(); return; }
@@ -920,7 +927,9 @@ SITE_JS = r'''
     // find the last name on the same visual row and place the detail after it
     var top = btn.offsetTop, names = wall.querySelectorAll('.name'), last = btn;
     names.forEach(function(n){ if (Math.abs(n.offsetTop - top) < 6 && n.offsetLeft > last.offsetLeft) last = n; });
-    detail.hidden = false; detail.style.height = '0px'; last.insertAdjacentElement('afterend', detail);
+    last.insertAdjacentElement('afterend', detail); detail.hidden = false; detail.classList.remove('closing');
+    if (reduce){ detail.style.height = 'auto'; return; }
+    detail.style.height = '0px';
     requestAnimationFrame(function(){ detail.style.height = detail.scrollHeight + 'px'; });
     detail.addEventListener('transitionend', function h(){ if (!detail.hidden) detail.style.height = 'auto'; detail.removeEventListener('transitionend', h); });
   });
@@ -930,6 +939,7 @@ SITE_JS = r'''
 // ---- the record: the era line draws as the reader moves down it, each era lighting its marker
 (function(){
   var fill = document.getElementById('era-line-fill'), blocks = document.querySelectorAll('.era-block'); if (!fill) return;
+  if (reduce){ fill.style.height = '100%'; blocks.forEach(function(b){ b.classList.add('lit'); }); return; }
   window.onScrub('record', function(p, el){
     var r = el.getBoundingClientRect(), h = window.innerHeight;
     var eras = document.getElementById('eras').getBoundingClientRect();
@@ -944,12 +954,13 @@ SITE_JS = r'''
   var steps = document.querySelectorAll('#how .step'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
   var len = path ? path.getTotalLength() : 0;
   if (path){ path.style.strokeDasharray = len; path.style.strokeDashoffset = len; }
+  if (reduce) steps.forEach(function(s){ s.classList.add('on'); });
   window.onScrub('how', function(p, el){
     var r = el.getBoundingClientRect(), h = window.innerHeight;
     // local progress: 0 when the section top reaches 80% of the viewport, 1 when its bottom reaches 40%
     var q = Math.max(0, Math.min(1, (h*0.8 - r.top) / Math.max(1, r.height - h*0.4)));
     var narrow = window.innerWidth < 900;
-    steps.forEach(function(s, i){ s.classList.toggle('on', narrow || q > (i + 0.5) / (steps.length + 0.6)); });
+    steps.forEach(function(s, i){ s.classList.toggle('on', narrow || reduce || q > (i + 0.5) / (steps.length + 0.6)); });
     if (path) path.style.strokeDashoffset = (len * (1 - Math.min(1, q*1.15))).toFixed(1);
     sprouts.forEach(function(s, i){ s.classList.toggle('on', q > (i + 0.55) / (sprouts.length + 0.6)); });
   });
@@ -969,6 +980,8 @@ SITE_JS = r'''
     if (d.open) a.style.height = 'auto';
     s.addEventListener('click', function(e){
       e.preventDefault();
+      // under reduced motion the answer opens and closes at once, with no transitionend to wait for
+      if (reduce){ d.open = !d.open; a.style.height = d.open ? 'auto' : '0px'; return; }
       if (d.open){
         d.classList.add('closing'); a.style.height = a.scrollHeight + 'px'; requestAnimationFrame(function(){ a.style.height = '0px'; });
         a.addEventListener('transitionend', function h(){ d.open = false; d.classList.remove('closing'); a.removeEventListener('transitionend', h); });
