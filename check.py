@@ -349,7 +349,7 @@ CANVAS_STATS = """sel => {
 
 # what a reader without JavaScript must see: the statement, the build descriptions, the proof, the names wall lines,
 # the record, the prices, the steps, the bios and the FAQ answers once opened
-NO_JS_READS = ["#statement-text", "#build .cap p", ".metric .label", ".card dd", ".wall-line p", ".rec p",
+NO_JS_READS = ["#statement-text", "#build .cap p", ".metric .label", ".card dd", ".wall-line .wall-era", ".rec p",
                ".panel .price", "#how .step", ".person p", ".faq .a p"]
 NO_JS_HIDDEN = """sels => {
   const out = {};
