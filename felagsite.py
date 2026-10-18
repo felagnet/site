@@ -326,7 +326,8 @@ html.js .reveal.in{opacity:1;transform:none}
 .track{display:flex;gap:24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 .card{flex:0 0 clamp(440px,38vw,600px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
 .card .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s}
+/* the hover glow is paint only: it covers the whole card, so it takes no pointer input and the links under it stay live */
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
 .card:hover::before{opacity:1}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
