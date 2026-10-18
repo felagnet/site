@@ -57,7 +57,7 @@ K_LINE = "We led the Presto tokenised-finance product to revenue and built its s
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
 P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
 Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
-R_LINE = "Uddug won and delivered Web3 Foundation and Protocol Labs grants and RFPs."
+R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
 # the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
@@ -89,8 +89,8 @@ WALL = [
     ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
     ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
     ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
-    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2021"),
-    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2021"),
+    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2023"),
+    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2023"),
     ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
     ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
     ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
@@ -110,7 +110,7 @@ ERAS = [
     dict(name="Uddug", years="2018 to 2024",
          intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
          cases=[
-             ("2020 to 2021", "Web3 Foundation and Protocol Labs", R_LINE, []),
+             ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
              ("From 2022", "Arsnl.art", Q_LINE, []),
