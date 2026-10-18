@@ -50,3 +50,10 @@ From the auditor's five remaining changes. S-05 is done on the seo-audit branch 
 - S-02 and S-04, focused pages: the auditor proposes four pages with their own title, h1, canonical and sitemap entry: Architecture Sprint, Fractional CTO, payments infrastructure engineering, and the Wirex Pay contribution. Each needs new copy (who it is for, deliverables, who leads, price basis, how to begin; for the case: problem, contribution, period, team, evidence). This is new visible text, so it waits on Andrew's words.
 - S-08 and S-09, People: Pavel's card says Finland and his GitHub profile says Belgrade, Serbia; Andrey's card says Armenia and his GitHub says Helsinki and Freelance, spelled Andrei. The site carries Andrew's decision of 16 October 2026. The profiles are theirs to update, or the cards change.
 - S-10, contracting entity: "The contract is with Felag" names the brand only. The auditor wants the registered counterparty, jurisdiction and registration number, the same on the page, the JSON-LD and llms.txt, and kept apart from where the founders live. Andrew declined a footer entity line on 16 October 2026 (copy-1-17); the audit asks again.
+
+Andrew's decisions, 18 October 2026, in the chat:
+- S-03: the Wirex line stays as it is; the indexer and account abstraction are the team's work whatever the Gateway.fm post mentions.
+- S-04 evidence: the RPC figure, Humanity Protocol, the shared prover and XIP-9 stay as they are, with no added links or labels.
+- S-02 and S-04 pages: none for now; felag.net stays one page.
+- S-08 and S-09: Pavel is based in Serbia (Belgrade) and Andrey in Finland. Applied in d788bf8, by the agent on Andrew's word. The name stays spelled Andrey.
+- S-10: the contract stays with the brand, as decided on 16 October 2026 (copy-1-17).
