@@ -35,7 +35,7 @@ SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nu
           "Postgres, Redis, ScyllaDB/Cassandra, ClickHouse, Kafka, NATS, RabbitMQ, gRPC, GraphQL, REST, websockets, The Graph and custom indexers.")
 
 L2B = "https://l2beat.com/layer2s/projects/wirex"
-WIREX_PR = "https://wirexapp.com/blog/post/wirex-partners-with-gatewayfm-to-elevate-its-zk-powered-wirex-pay-decentralised-payment-network-0868"
+WIREX_PR = "https://gateway.fm/blog/gateway-wirex-partnership/"
 GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure/"
 
 A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
@@ -54,10 +54,10 @@ ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughl
 I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
-O_LINE = "Uddug launched OG:Crystals, which raised $10M+ at launch."
+O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
 P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
 Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
-R_LINE = "Uddug won and delivered Web3 Foundation and Protocol Labs grants and RFPs."
+R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
 # the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
@@ -89,8 +89,8 @@ WALL = [
     ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
     ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
     ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
-    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2021"),
-    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2021"),
+    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2023"),
+    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2023"),
     ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
     ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
     ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
@@ -110,7 +110,7 @@ ERAS = [
     dict(name="Uddug", years="2018 to 2024",
          intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
          cases=[
-             ("2020 to 2021", "Web3 Foundation and Protocol Labs", R_LINE, []),
+             ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
              ("From 2022", "Arsnl.art", Q_LINE, []),
