@@ -31,3 +31,12 @@ Design-side fixes are done; these need Andrew's words or links:
 ## 16 October 2026, after the review loop
 
 The copy lock was lifted on the review-loop branch within felag-core rules. Of the notes above: the mailto subject, the centre metric, the strip order, the meta description, the two-department sentence and the locations are done on the branch; the wall fold, the entity line, the Led by line and the founders' faces are declined or left by Andrew (see .impeccable/review/queue.md). The Stack line in What we build is unchanged.
+
+## 18 October 2026, the audit's three P0 issues
+
+Andrew chose each fix in the chat and had the agent apply it on the review-loop branch, one commit per issue.
+
+- C-03, Wirex partnership link: the Wirex blog post returned 404. WIREX_PR now points to the Gateway.fm post of 5 February 2024 (gateway.fm/blog/gateway-wirex-partnership), on the case card, the names wall and the 2024 record row. The label stays "Partnership announcement". Wirex's own PR Newswire release (ANP persportaal) and a Wayback copy of the blog post were the alternatives.
+- C-02, OG:Crystals: the "$10M+ at launch" figure is gone. OG.Art reports $4.2M primary and $9M secondary, and secondary sales are not money raised. The line now gives Uddug's engineering role, with Snark.art. No figure.
+- C-01, grants: "won and delivered" became "took on grant work", naming JuniDB, and the dates are now 2020 to 2023 to cover GitSEC. Open risk: the W3F register shows JuniDB as terminated, and the only Protocol Labs application the auditor found (GitSEC) was declined. Unless a Protocol Labs award other than GitSEC can be cited, a re-audit may still flag the Protocol Labs name.
+- Not in the audit, same pattern: P_LINE says "Marscatsvoyage, $2M+ at launch" and may draw the same primary versus secondary question.
