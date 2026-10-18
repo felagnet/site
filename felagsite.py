@@ -365,6 +365,13 @@ html.js .reveal.in{opacity:1;transform:none}
 .wall-detail-inner .wall-era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .wall-detail-inner p{font-size:var(--fs-lead);line-height:1.45;max-width:40em}
 .wall-detail-inner .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:var(--fs-small)}
+/* each name's line sits in the page after it; the script opens a copy in the detail row, and without the script the line shows under its name */
+html.js .wall-line{display:none}
+.wall-line{flex:0 0 100%;display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 24px;align-items:start;padding:4px 0 24px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.wall-line .wall-era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
+.wall-line p{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);max-width:40em}
+.wall-line .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
+html:not(.js) .name{cursor:default}
 
 /* ---- the record, three eras along a line */
 .eras{position:relative;margin-top:48px;padding-left:40px}
@@ -497,7 +504,7 @@ html.js .reveal.in{opacity:1;transform:none}
   .scene-book .wrap{padding-top:30vh}
   .who-grid,.people-grid,.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .scene-build{height:auto}.scene-build .pin{position:relative;height:auto;min-height:0;padding:80px 0 0;display:block}.markmap{grid-template-columns:minmax(0,1fr);gap:32px}.mark-col{order:-1}.bigmark{width:min(60vw,260px)}.cap{opacity:1}.cap p{max-height:none;opacity:1}.cap h3,.cap.on h3{color:var(--text)}.mark-count{display:none}
-  .wall-detail-inner,.rec{grid-template-columns:minmax(0,1fr)}
+  .wall-detail-inner,.wall-line,.rec{grid-template-columns:minmax(0,1fr)}
   .eras{padding-left:28px}.era-block::before{left:-25px}
   .metrics{grid-template-columns:minmax(0,1fr)}
   .scene-proof{padding:56px 0 80px}
@@ -580,7 +587,7 @@ def sections(t, theme):
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
-        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><template id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></template>'
+        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
@@ -864,8 +871,7 @@ SITE_JS = r'''
     if (open === btn){ close(); return; }
     if (open){ open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); }
     open = btn; btn.classList.add('on'); btn.setAttribute('aria-expanded', 'true');
-    var tpl = document.getElementById('wall-' + btn.getAttribute('data-i'));
-    inner.innerHTML = ''; inner.appendChild(tpl.content.cloneNode(true));
+    inner.innerHTML = document.getElementById('wall-' + btn.getAttribute('data-i')).innerHTML;
     // find the last name on the same visual row and place the detail after it
     var top = btn.offsetTop, names = wall.querySelectorAll('.name'), last = btn;
     names.forEach(function(n){ if (Math.abs(n.offsetTop - top) < 6 && n.offsetLeft > last.offsetLeft) last = n; });
