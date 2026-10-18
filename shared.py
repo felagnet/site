@@ -92,7 +92,6 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 '''
 
 COMMON_JS = '''
-document.documentElement.classList.add('js');
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // reveal on scroll
 (function(){

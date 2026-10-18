@@ -532,6 +532,20 @@ html.js .reveal.in{opacity:1;transform:none}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
   .statement .w{opacity:1}
 }
+/* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
+html:not(.js) .theme-rune .hero{height:auto;min-height:0}
+html:not(.js) .theme-rune .hero-pin{position:relative;height:auto;min-height:0;overflow:visible}
+html:not(.js) .theme-rune .hero-inner{height:auto;min-height:100vh;min-height:100dvh}
+html:not(.js) .hero-statement{position:relative;opacity:1;transform:none;pointer-events:auto;padding-bottom:64px}
+html:not(.js) .statement .w{opacity:1}
+html:not(.js) .scene-build{height:auto}
+html:not(.js) .scene-build .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}
+html:not(.js) .cap{opacity:1}
+html:not(.js) .cap p{max-height:none;opacity:1;margin-top:8px}
+html:not(.js) .bigmark path{fill:var(--accent)}
+html:not(.js) .mark-count{display:none}
+html:not(.js) .step{opacity:1;transform:none}
+html:not(.js) .faq .a{height:auto}
 '''
 
 # ---------------------------------------------------------------------------------------------- markup
@@ -1200,6 +1214,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="twitter:description" content="{DESCRIPTION}">
 <meta name="twitter:image" content="https://felag.net/og.png">
 <meta name="theme-color" content="#0E1114">
+<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
 {FONT_LINKS}
 <style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>
