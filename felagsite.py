@@ -515,7 +515,13 @@ html:not(.js) .name{cursor:default}
   .scene-proof{padding:56px 0 80px}
   .name{padding:10px 0}
   .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
-  .strip-nav{display:none}
+  /* the controls stay on a phone, under the strip and to the right, where the thumb meets them after the card it has read; the head
+     dissolves so the lead line, the strip and the controls can be ordered in one column */
+  .scene-proof{display:flex;flex-direction:column}
+  .strip-head{display:contents}
+  .strip-head > .lead{padding:0 var(--side)}
+  .track{order:1}
+  .strip-nav{order:2;align-self:flex-end;margin:16px var(--side) 0}
   .card{flex-basis:min(86vw,420px);padding:28px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
@@ -903,7 +909,8 @@ SITE_JS = r'''
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
   }
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + 24;
+    // one card plus the gap between cards, which is 24 px on a desktop and 16 px on a phone
+    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + (parseFloat(getComputedStyle(track).columnGap) || 24);
     track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
