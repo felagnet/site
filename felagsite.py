@@ -997,12 +997,14 @@ SITE_JS = r'''
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
 
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
-  // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll; Stop scrolling ends it. Never under reduced motion
+  // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll, and holds while a
+  // case's details are open, so the card a reader is reading stays put; Stop scrolling ends it. Never under reduced motion
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
   var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
   play.hidden = false; track.classList.add('drift');
   hold = function(ms){ until = Math.max(until, performance.now() + ms); };
-  function running(){ return !stopped && !hover && !focused && seen && !document.hidden; }
+  function reading(){ return !!track.querySelector('details[open]'); }
+  function running(){ return !stopped && !hover && !focused && !reading() && seen && !document.hidden; }
   function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
   // leaving the strip, by pointer or by focus, sets it going again at once from where it stands
   function resume(){ until = 0; pos = track.scrollLeft; kick(); }
@@ -1038,6 +1040,8 @@ SITE_JS = r'''
   track.addEventListener('touchstart', function(){ until = performance.now() + 60000; }, {passive: true});
   track.addEventListener('touchend', function(){ until = performance.now() + 4000; }, {passive: true});
   track.addEventListener('wheel', function(){ hold(4000); }, {passive: true});
+  // details opening or closing: closing the last one sets the drift going again after a short rest
+  track.addEventListener('toggle', function(){ if (!reading()){ pos = track.scrollLeft; hold(1500); } kick(); }, true);
   document.addEventListener('visibilitychange', kick);
   new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
 })();
