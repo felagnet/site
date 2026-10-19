@@ -37,30 +37,38 @@ L2B = "https://l2beat.com/layer2s/projects/wirex"
 WIREX_PR = "https://gateway.fm/blog/gateway-wirex-partnership/"
 GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure/"
 
+A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
+B_NAMED = "We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting, at 140k+ requests per second at peak and 50 ms average latency on the heavy requests."
 C_LINE = "We built the event infrastructure and backend for Infinex, the Synthetix front-end, under governance proposal XIP-9."
+D_LINE = "We designed and built account-abstraction wallets with enterprise single sign-on for a global technology company."
+E_LINE = "We built an identity system for AI agents on a major cloud platform for the same global technology company, as a pilot."
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
+DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
+DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
+ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
 P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
+Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
-# the three lead cases: payments, the NFT platform, identity; each says what was delivered, the constraint or status, and the result
+# the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
 PROOF_CARDS = [
-    dict(kicker="Live since August 2024", title="Wirex Pay", links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024",
-         facts=[("Delivered", "The L2 chain on Polygon CDK, the application layer, the indexer, the push oracle and the account abstraction behind its non-custodial debit cards."),
-                ("Constraint", "Built for MiCA alignment."),
-                ("Result", "The chain launched in August 2024 and is listed on L2BEAT.")]),
-    dict(kicker="NFT platform and launches", title="Arsnl.art", links=[], era="Uddug, from 2022",
-         facts=[("Delivered", "The whole NFT platform behind Arsnl.art and the NFT launches on it."),
-                ("Result", "Frank Stella's 'Geometries' released on the platform.")]),
-    dict(kicker="Pilot and proof of concept, 2025", title="Identity for a global technology company", links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025",
-         facts=[("Delivered", "Account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform."),
-                ("Status", "Both built as a pilot and proof of concept, not taken to production.")]),
+    dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
+    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", body=B_NAMED, links=[], era="Gateway.fm, 2021 to 2022"),
+    dict(kicker="Enterprise single sign-on and agent identity, 2025", title="Identity for a global technology company", body=D_LINE + " " + E_LINE, links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025"),
+    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
+    dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
+    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
+    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
+    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
+    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
+    dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
 
 # the names wall: every name the register and the history allow, each with its era and any public record; the story lives in the cases and the record
@@ -320,10 +328,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .card:hover::before{opacity:1}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
-.card .cfacts{display:grid;gap:14px;flex:1}
-.card .cfacts div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:baseline}
-.card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.card .cfacts dd{margin:0;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.card p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 .card .cfoot{margin-top:0;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
@@ -516,7 +521,6 @@ html:not(.js) .name{cursor:default}
   .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
 }
 @media (max-width:600px){
-  .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
   /* a person is a row on a phone: the portrait beside the name and role, the bio and links under both */
   .person{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px 16px;align-items:center}
@@ -577,7 +581,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
