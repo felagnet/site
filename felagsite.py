@@ -552,6 +552,22 @@ html:not(.js) .name{cursor:default}
 .scene-book h2{max-width:10ch}
 .scene-book .mail{margin-top:28px;font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:24em}
 .scene-book .cta{margin-top:36px}
+.brief{margin-top:36px;max-width:560px;display:flex;flex-direction:column;gap:20px}
+.brief .cta{margin-top:4px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.fld input,.fld textarea{width:100%;height:52px;padding:0 16px;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;color:var(--text);font-family:var(--sans);font-size:var(--fs-body);line-height:var(--lh-body);transition:border-color .15s}
+.fld textarea{height:auto;min-height:128px;padding:12px 16px;resize:vertical}
+.fld input:hover,.fld textarea:hover{border-color:var(--accent)}
+.fld input:focus,.fld textarea:focus{outline:none}
+.fld input:focus-visible,.fld textarea:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:3px}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+button.btn{cursor:pointer;font-family:var(--sans)}
+button.btn:disabled{cursor:default;opacity:var(--dim)}
+.gotcha{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fmsg{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--text-secondary)}
+.fmsg.ok{color:var(--text)}
+.brief.sent .fld,.brief.sent .cta button{display:none}
 .scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);max-width:34em;text-align:right}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
@@ -838,7 +854,16 @@ def sections(t, theme):
       <p class="eyebrow">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
       <p class="mail">Email <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.</p>
-      <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
+      <form class="brief" action="https://formspree.io/f/mppqeyyd" method="POST" data-form>
+        <div class="fld"><label for="brief-message">The system and your deadline</label><textarea id="brief-message" name="message" rows="4" required></textarea></div>
+        <div class="fld"><label for="brief-email">Email</label><input id="brief-email" name="email" type="email" autocomplete="email" required></div>
+        <input type="hidden" name="_subject" value="felag.net: Free technical workshop">
+        <!-- where Formspree sends a browser that posted the form without scripts; absolute, so change it with the domain -->
+        <input type="hidden" name="_next" value="https://felag.net/?sent=1#book">
+        <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="cta"><button class="btn" type="submit">Discuss your project</button><a class="textlink" href="#offer">See prices</a></div>
+        <p class="fmsg" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
   </div>
@@ -1126,6 +1151,48 @@ SITE_JS = r'''
         a.addEventListener('transitionend', function h(){ a.style.height = 'auto'; a.removeEventListener('transitionend', h); });
       }
     });
+  });
+})();
+// ---- closing form: posts to Formspree in place; without scripts the browser posts it and Formspree returns to #book with ?sent=1
+(function(){
+  var f = document.querySelector('form[data-form]');
+  if (!f) return;
+  var MAIL = 'info@felag.net', MAILTO = 'mailto:info@felag.net?subject=Free%20technical%20workshop';
+  var btn = f.querySelector('button[type="submit"]'), msg = f.querySelector('.fmsg');
+  var endpoint = f.getAttribute('action') || '';
+  function say(kind){
+    if (!msg) return;
+    msg.className = 'fmsg ' + kind; msg.hidden = false; msg.textContent = '';
+    if (kind === 'ok'){ msg.textContent = "Sent. We'll reply to the address you gave."; return; }
+    var a = document.createElement('a'); a.href = MAILTO; a.textContent = MAIL;
+    msg.appendChild(document.createTextNode("That didn't send. Email us directly at "));
+    msg.appendChild(a); msg.appendChild(document.createTextNode('.'));
+  }
+  if (/[?&]sent=1/.test(location.search)){
+    f.classList.add('sent'); say('ok');
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  }
+  // until the real form id is set, open the visitor's mail client rather than post into a 404
+  if (endpoint.indexOf('REPLACE-ME') > -1){
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if (f._gotcha && f._gotcha.value) return;
+      var body = (f.message.value || '').trim() + '\n\n' + (f.email.value || '').trim();
+      location.href = MAILTO + '&body=' + encodeURIComponent(body);
+    });
+    return;
+  }
+  f.addEventListener('submit', function(ev){
+    if (!window.fetch || !window.FormData) return;
+    ev.preventDefault();
+    if (f._gotcha && f._gotcha.value) return;
+    var label = btn ? btn.textContent : '';
+    if (btn){ btn.disabled = true; btn.textContent = 'Sending'; }
+    if (msg) msg.hidden = true;
+    fetch(endpoint, {method: 'POST', body: new FormData(f), headers: {Accept: 'application/json'}})
+      .then(function(r){ if (!r.ok) throw new Error(String(r.status)); f.classList.add('sent'); say('ok'); })
+      .catch(function(){ say('bad'); })
+      .then(function(){ if (btn && !f.classList.contains('sent')){ btn.disabled = false; btn.textContent = label; } });
   });
 })();
 '''
