@@ -57,7 +57,3 @@ Andrew's decisions, 18 October 2026, in the chat:
 - S-02 and S-04 pages: none for now; felag.net stays one page.
 - S-08 and S-09: Pavel is based in Serbia (Belgrade) and Andrey in Finland. Applied in d788bf8, by the agent on Andrew's word. The name stays spelled Andrey.
 - S-10: the contract stays with the brand, as decided on 16 October 2026 (copy-1-17).
-
-## 18 October 2026, the audit's recheck
-
-The auditor raised S-04 (evidence beside the RPC, Humanity Protocol, shared prover and XIP-9 claims) and S-10 (the contracting counterparty) again at P1, and S-08 for Andrey's GitHub profile. Andrew kept both earlier decisions and left Andrey's profile to him. A re-audit is expected to flag all three again.
