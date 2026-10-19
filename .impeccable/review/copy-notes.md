@@ -132,3 +132,9 @@ Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" fo
 ## 19 October 2026, the cases strip drift: labels for its stop control
 
 Andrew asked for the strip to scroll on its own, as a constant slow drift. The control that stops and restarts it is new spoken text; Andrew chose the strings in the chat: "Stop scrolling" while it drifts and "Start scrolling" once it is stopped. Applied on the strip-autoscroll branch. The control shows only an icon, so nothing visible changes.
+
+## 19 October 2026, SEO metadata: title and description
+
+The auditor proposed "Felag | Backend, Payments & Identity Engineering" and a description that names the audience and the services, both without outcome pricing. Andrew chose versions that keep it, in sentence case. Applied on the seo-metadata branch, with Open Graph, Twitter and WebPage taking the same values.
+- Title: "Felag | Backend, payments and identity engineering, priced on outcomes" (70 characters; was "Felag, a principal-led engineering studio priced on outcomes").
+- Description: "Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, priced on outcomes rather than hours." (148 characters; was the hero line and the sub-line).

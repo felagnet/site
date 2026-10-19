@@ -15,7 +15,7 @@ def js(name):
 pages = {
   "felag-rune.html": full_page(
     theme="rune",
-    title="Felag, a principal-led engineering studio priced on outcomes",
+    title="Felag | Backend, payments and identity engineering, priced on outcomes",
     description_line="A single rune. It draws itself, then ignites. Then scroll.",
     headline="Senior engineers who own the architecture and ship to production.",
     sub="A principal-led studio for technology companies, priced on outcomes rather than hours.",

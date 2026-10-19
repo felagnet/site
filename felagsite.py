@@ -17,8 +17,8 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
              "the architecture and delivery of backends, payment systems and identity infrastructure.")
-# the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
-DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
+# the search snippet: who we serve, what we build and how we price, as Andrew chose it on 19 October 2026, 148 characters
+DESCRIPTION = ("Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, "
                "priced on outcomes rather than hours.")
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
