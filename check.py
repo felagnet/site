@@ -34,7 +34,7 @@ INDEX = os.path.join(DIST, "index.html")
 SITE = "https://felag.net/"
 MAILTO = "mailto:info@felag.net?subject=Free%20technical%20workshop"
 HERO_LINE = "Senior engineers who own the architecture and ship to production."
-BANNED = ["passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "Andrei", "Georgia",
+BANNED = ["passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "Andrei",
           "four people", "Talk to a founder", "sold to"]
 # which links each People card carries; the addresses come from felagsite.PEOPLE
 PEOPLE_LINKS = {

@@ -174,12 +174,12 @@ OFFERS = [
          body="One to two weeks with a principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
          what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited in full against a pod or fixed-price build signed within 30 days of the sprint's delivery"], who="A principal"),
     dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
-         body="A principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
-         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
+         body="A principal in the CTO seat for agreed days each week, spread across Monday to Friday, until a full-time hire makes sense. The CTO owns the architecture and the engineering roadmap, runs engineering process and delivery with your team, and represents the technology to the board and investors.",
+         what=["Agreed days each week, spread across Monday to Friday", "The architecture and the engineering roadmap", "Engineering process and delivery with your team", "The technology represented to the board and investors"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
     dict(name="Pods", price="$10k to $60k a month", note="by team",
          body="The build after the sprint, on a monthly retainer with deliverables agreed each month in the SOW, and a team sized to the scope.",
-         what=["From $10k: one senior engineer, with a principal reviewing the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
-         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice"], who="A principal, with senior and specialist engineers as the scope needs"),
+         what=["From $10k: one senior engineer who plans the work with your team, with a principal reviewing the plan and the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
+         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice", "Fees for the unused part of a prepaid month refunded pro rata after the notice period"], who="A principal, with senior and specialist engineers as the scope needs"),
     dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
          body="A review of the system and the team behind it against a scope fixed in advance, for investors and acquirers who need findings they can act on.",
          what=["A written report on architecture, code quality, security, infrastructure and the team", "Findings ranked by risk", "Delivered one to two weeks from access"], terms=["Fixed price", "Half paid on start"], who="A principal"),
@@ -201,7 +201,7 @@ WHO = [
     ("A funded technology company with a performance, scale or reliability problem", "The product works until it is busy. We measure the problem first, then fix the cause, and we say so when the answer is a smaller change than the team expected."),
     ("A regulated payments or asset issuer rebuilding for a new regime", "MiCA, DORA, the UK regime, GENIUS, VARA, HKMA or MAS has changed what the system must record and prove, and the team needs engineers who have built for one of these regimes before."),
     ("A licensed fintech taking over a codebase from a previous vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest."),
-    ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the hiring bar and the technical decisions until a full-time hire makes sense."),
+    ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the roadmap and delivery with the team until a full-time hire makes sense."),
     ("A product agency without a senior backend bench", "The agency has the design and the client, and needs a principal behind the backend for the length of the engagement without building that bench itself."),
 ]
 TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and public-sector tenders scored on headcount."
@@ -222,8 +222,12 @@ PEOPLE = [
 ]
 PEOPLE_NOTE = "Contractors join on demand and are never sold as principals."
 
+# the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
+ENTITY = ("FELAG LLC, a Georgian limited liability company with identification number 426561829 and registered office at "
+          "Georgia, Gardabani Municipality, Poladaant Kari Village, 4th Street, Lane II, N 11")
+
 CONTRACT = [
-    ("Legal entity", "Felag, incorporated in 2026."),
+    ("Legal entity", ENTITY + "."),
     ("Principals", "Netherlands and Cyprus."),
     ("Named principal", "Every contract names the principal who leads the work. Substitution needs the client's consent."),
     ("Contractors", "QA, DevOps and additional development on demand, never sold as principals."),
@@ -238,7 +242,8 @@ FAQ = [
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
     ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
-    ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
+    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
+    ("How are deliverables accepted and scope changes agreed?", "Deliverables are reviewed and accepted with you at the monthly review, against the SOW. Scope changes are agreed there and go into the next month's SOW."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme, engineering that supported the client's MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
     ("Do you use AI in delivery?", "Yes. We use AI tools and our own development framework. A principal reviews the work and remains responsible for the agreed deliverables."),
 ]
@@ -541,6 +546,7 @@ html:not(.js) .name{cursor:default}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
+.foot .legal{grid-column:1 / -1;order:3;max-width:60em;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 @media (max-width:1100px){
   .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -828,6 +834,7 @@ def sections(t, theme):
 </section>
 <footer class="foot">
   <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
+  <p class="legal">{ENTITY}.</p>
   <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="https://x.com/felagnet" rel="noopener">X</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
 </footer>'''
 
@@ -1288,7 +1295,7 @@ def ld_json(title, description):
         _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
         _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
-    org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "url": SITE,
+    org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "legalName": "FELAG LLC", "url": SITE,
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
            "image": SITE + "og.png",
            "slogan": "Senior engineers who own the architecture and ship to production.",

@@ -203,7 +203,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Lead** (400, clamp(18px, 1.5vw, 22px), 1.45, smoke): the paragraph under a headline, era intros, the wall detail line, the closing invitation and the protocol names on the wall. Max 34em.
 - **Prose** (400, 17px/28px): long paragraphs set for reading: card and offer row bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
 - **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
-- **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer.
+- **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer links. The legal entity line under the footer is Label size in smoke, kept to 60em.
 - **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the technical capabilities list, which is kept to 46em.
 
 ### Dim states
