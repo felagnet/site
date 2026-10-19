@@ -414,7 +414,8 @@ html:not(.js) .name{cursor:default}
 .how-stage{position:relative;margin-top:48px}
 .how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
 .step .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text);display:flex;align-items:center;gap:12px}
-.step .k span{color:var(--text-secondary)}
+.step .k span{color:var(--text-secondary);transition:color .5s}
+.step:not(.on) .k span{color:var(--text)}
 .step h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--text);text-wrap:balance}
 .step p{color:var(--text-secondary);margin-top:12px;font-size:var(--fs-body);line-height:var(--lh-body);transition:color .5s}
 .step:not(.on) p{color:var(--text)}
@@ -519,7 +520,7 @@ html:not(.js) .name{cursor:default}
   .scene-book .pin{display:block;min-height:0;padding:48px 0 96px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
-  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
+  .step{opacity:1;transform:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}
 }
 @media (max-width:600px){
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
@@ -535,7 +536,7 @@ html:not(.js) .name{cursor:default}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
-  .step{opacity:1;transform:none}.step:not(.on) p{color:var(--text-secondary)}
+  .step{opacity:1;transform:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}
   .statement .w{opacity:1}
 }
 /* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
@@ -551,6 +552,7 @@ html:not(.js) .cap p{max-height:none;opacity:1;margin-top:8px}
 html:not(.js) .bigmark path{fill:var(--accent)}
 html:not(.js) .mark-count{display:none}
 html:not(.js) .step{opacity:1;transform:none}
+html:not(.js) .step:not(.on) p,html:not(.js) .step:not(.on) .k span{color:var(--text-secondary)}
 html:not(.js) .faq .a{height:auto}
 '''
 
