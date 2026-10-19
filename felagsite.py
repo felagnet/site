@@ -311,8 +311,15 @@ html.js .reveal.in{opacity:1;transform:none}
 .bigmark path{fill:var(--line);transition:fill .5s}
 .bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.skills-foot{margin-top:40px;max-width:46em;font-size:var(--fs-label);line-height:var(--lh-label)}
-.skills-foot .n{color:var(--text);margin-right:12px}
+.skills-foot{margin-top:32px;max-width:46em}
+.skills-foot .skills{margin-top:4px}
+/* ---- disclosure: a quiet mono summary with a copper plus that turns to a cross when open */
+.more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text);transition:color .15s}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+";display:inline-block;width:12px;color:var(--accent);font-size:16px;line-height:1;text-align:center;transition:transform .3s}
+.more[open]>summary::before{transform:rotate(45deg)}
+.more summary:hover{color:var(--accent-hover)}
+.more summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .skills{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 /* ---- proof: metrics, then the cases as a strip that scrolls on its own axis */
@@ -546,7 +553,7 @@ html:not(.js) .name{cursor:default}
 @media (prefers-reduced-motion:reduce){
   /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
   .panel{position:relative;top:auto;box-shadow:none}
-  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn{transition:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
@@ -688,7 +695,7 @@ def sections(t, theme):
         <div class="caps-left">{caps}</div>
         <div class="mark-col">{bigmark}<div class="mark-count" id="mark-count">01 / 04</div></div>
       </div>
-      <p class="skills skills-foot"><span class="n">Stack</span>{SKILLS}</p>
+      <details class="more skills-foot"><summary>Technical capabilities</summary><p class="skills">{SKILLS}</p></details>
     </div>
   </div>
 </section>

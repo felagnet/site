@@ -204,7 +204,7 @@ Eleven roles, each a token on the root (`--fs-display` to `--fs-label`), and not
 - **Prose** (400, 17px/28px): long paragraphs set for reading: card and offer row bodies, the notes under offers, how and people, and the answers in the questions. 34 to 56em.
 - **Body** (400, 16px/26px): compact reading text: capability lines, record cases, step lines, situations and the bios.
 - **Small** (400, 15px/22px): nav links, the small button, text links in cards and under the people, metric labels, offer term lists, roles under the people, the footer.
-- **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the Stack line, which is kept to 46em.
+- **Label** (400 mono, 13px/20px; eyebrows at 12px/20px with 0.06em): everything in IBM Plex Mono: eyebrows, kickers, indices, counts, years, locations, the era labels and the technical capabilities list, which is kept to 46em.
 
 ### Dim states
 Content that has not yet lit in a scroll scene (statement words, inactive capabilities, steps still to come) sits at the `--dim` token, 0.5 opacity, which keeps ash and hot copper above 3:1 on iron. It never goes lower. A dimmed paragraph or index label borrows ash for the same reason and settles to smoke once its step or capability lights.
@@ -291,6 +291,9 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 
 ### Names wall
 - **Style:** a quiet index: names as borderless buttons in semibold ash at the title role for clients and the lead role in smoke for protocols, each at least 44 px tall to the finger, wrapped with a 14 px gap. Hover or selection turns the name hot copper and draws a 2 px copper underline from the left over 0.45 s. The selected name opens a detail row with a mono copper era, a lead-size line and links.
+
+### Disclosure
+- **Style:** a native details element with a mono summary in ash, at least 44 px tall to the finger, led by a copper plus that turns to a cross over 0.3 s when open; hover turns the summary light copper, focus draws the 2 px copper outline. It holds what a reader can ask for but need not read: the technical capabilities under the build scene, the details and evidence on each case, and the company background under the record. Closed by default; without JavaScript it still opens.
 
 ### Record line
 - **Style:** a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper when lit, era names at headline scale, cases as key-value rows with the year in mono.

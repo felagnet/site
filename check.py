@@ -349,7 +349,7 @@ CANVAS_STATS = """sel => {
 
 # what a reader without JavaScript must see: the statement, the build descriptions, the proof, the names wall lines,
 # the record, the prices, the steps, the bios and the FAQ answers once opened
-NO_JS_READS = ["#statement-text", "#build .cap p", ".metric .label", ".card p", ".wall-line p", ".rec p",
+NO_JS_READS = ["#statement-text", "#build .cap p", ".skills-foot .skills", ".metric .label", ".card p", ".wall-line p", ".rec p",
                ".panel .price", "#how .step", ".person p", ".faq .a p"]
 NO_JS_HIDDEN = """sels => {
   const out = {};
@@ -468,7 +468,7 @@ def browser_pass():
                 ctx = browser.new_context(viewport={"width": w, "height": h}, java_script_enabled=False)
                 page = ctx.new_page()
                 page.goto(url, wait_until="load")
-                page.evaluate("document.querySelectorAll('.faq details').forEach(function(d){ d.open = true; })")
+                page.evaluate("document.querySelectorAll('details').forEach(function(d){ d.open = true; })")
                 hidden = page.evaluate(NO_JS_HIDDEN, NO_JS_READS)
                 row(f"Without JavaScript at {w}: every description, price, bio and line reads", not hidden,
                     "hidden: " + ", ".join(f"{s} ({n})" for s, n in hidden.items()) if hidden else "")
