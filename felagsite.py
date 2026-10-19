@@ -40,16 +40,12 @@ GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure
 A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
 B_NAMED = "We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting, at 140k+ requests per second at peak and 50 ms average latency on the heavy requests."
 C_LINE = "We built the event infrastructure and backend for Infinex, the Synthetix front-end, under governance proposal XIP-9."
-D_LINE = "We designed and built account-abstraction wallets with enterprise single sign-on for a global technology company."
-E_LINE = "We built an identity system for AI agents on a major cloud platform for the same global technology company, as a pilot."
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
-DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
 SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
-ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
 I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
@@ -59,18 +55,60 @@ Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella'
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
-# the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
+# the ten cases, one structure each: the contribution, then the result, the delivery status and any attributed context,
+# the details and evidence behind a disclosure, the public record and the employer and date; no person is named
 PROOF_CARDS = [
-    dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
-    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", body=B_NAMED, links=[], era="Gateway.fm, 2021 to 2022"),
-    dict(kicker="Enterprise single sign-on and agent identity, 2025", title="Identity for a global technology company", body=D_LINE + " " + E_LINE, links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025"),
-    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
-    dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
-    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
-    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
-    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
-    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
-    dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
+    dict(kicker="Launched August 2024", title="Wirex Pay", links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024",
+         body="We delivered the Wirex Pay platform end to end: the L2 chain, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.",
+         facts=[("Result", "The chain launched in August 2024 and is listed on L2BEAT."),
+                ("Status", "Launched to production.")],
+         details="The engineering was built to support Wirex's MiCA alignment. We have not taken the system through an audit under MiCA. The L2BEAT listing and the partnership announcement are the public record."),
+    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", links=[], era="Gateway.fm, 2021 to 2022",
+         body="We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting.",
+         facts=[("Result", "140k+ requests per second at peak, with 50 ms average latency on the heavy requests."),
+                ("Status", "Ran in production, 2021 to 2022.")],
+         details="Both figures are the peak observed in production, aggregate across all clients of the proxy, during 2021 to 2022. The latency is the average over the heavy requests only."),
+    dict(kicker="Proof of concept, 2025", title="Identity for a global technology company", links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025",
+         body="We designed and built account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform.",
+         facts=[("Result", "Both workstreams delivered as working proofs of concept."),
+                ("Status", "Proof of concept, both workstreams. Neither was taken to production.")],
+         details="The client is not named. The linked case study is published by Gateway.fm and covers the agent identity workstream."),
+    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", links=[], era="Uddug with Gateway.fm, 2023 to 2024",
+         body=C_LINE,
+         facts=[("Result", "The scope set by governance proposal XIP-9, approved in December 2023, delivered."),
+                ("Status", "Delivered, 2023 to 2024.")],
+         details="Uddug did the work together with Gateway.fm. Infinex is the Synthetix front-end."),
+    dict(kicker="Identity network, application layer", title="Humanity Protocol", links=[], era="Gateway.fm, 2024 to 2025",
+         body="We built the application layer for Humanity Protocol, an identity network.",
+         facts=[("Status", "Delivered, 2024 to 2025."),
+                ("Context", "Humanity Protocol reports 9M+ users. The figure is the network's own, not a measure of our work.")],
+         details=""),
+    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", links=[], era="Gateway.fm, 2024 to 2025",
+         body="We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3.",
+         facts=[("Result", "One prover served several ZK protocols, with GPU and CPU autoscaling on AWS spot capacity."),
+                ("Status", "In use, 2024 to 2025.")],
+         details=""),
+    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", links=[], era="Gateway.fm, 2024 to 2026",
+         body="In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments.",
+         facts=[("Result", "The departments' work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."),
+                ("Status", "Closed in 2026, when the founders left to start Felag.")],
+         details=""),
+    dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN)], era="Independent engagement, 2025 to 2026",
+         body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
+         facts=[("Result", "The network measured at about 5,000 requests per second."),
+                ("Status", "Completed in 2026."),
+                ("Context", "DeepNode listed at $140M+ fully diluted valuation at launch. That is market context, not an engineering result.")],
+         details="The request rate is the peak observed in production, aggregate across the network, during the engagement. The KuCoin announcement is the public record of the listing."),
+    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", links=[], era="Uddug, from 2022",
+         body="Uddug built the whole NFT platform behind Arsnl.art and the NFT launches on it.",
+         facts=[("Result", "Frank Stella's 'Geometries' released on the platform."),
+                ("Status", "Delivered, from 2022.")],
+         details=""),
+    dict(kicker="Exchange prototype and oracle development", title="ICEX", links=[], era="The founders, before Uddug",
+         body="The founders' own exchange project of 2017 to 2018, and the push oracle first developed for it.",
+         facts=[("Result", "The push oracle later shipped for Wirex Pay, Infinex, LUKSO and Lumia started here."),
+                ("Status", "Prototype, not launched.")],
+         details="The exchange was roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and the project ended there."),
 ]
 
 # the names wall: every name the register and the history allow, each with its one line and its era
@@ -209,7 +247,7 @@ FAQ = [
     ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
-    ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
+    ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme, engineering that supported the client's MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
     ("Do you use AI in delivery?", "Yes, on our own AI development framework, which we will describe publicly later. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
 ]
 
@@ -338,6 +376,11 @@ html.js .reveal.in{opacity:1;transform:none}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
 .card p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.card .cfacts{display:grid;gap:12px;flex:1;align-content:start}
+.card .cfacts div{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline}
+.card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
+.card .cfacts dd{margin:0;color:var(--text);font-size:var(--fs-small);line-height:var(--lh-small)}
+.card .evidence p{margin-top:4px;font-size:var(--fs-small);line-height:var(--lh-small)}
 .card .cfoot{margin-top:0;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
@@ -530,6 +573,7 @@ html:not(.js) .name{cursor:default}
   .track{order:1}
   .strip-nav{order:2;align-self:flex-end;margin:16px var(--side) 0}
   .card{flex-basis:min(86vw,420px);padding:28px}
+  .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
@@ -618,7 +662,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -703,17 +747,17 @@ def sections(t, theme):
 <section class="sec" id="proof" style="padding-bottom:0">
   <div class="wrap">
     <p class="eyebrow reveal">{t["proof_eyebrow"]}</p>
-    <h2 class="reveal">What we have shipped.</h2>
-    <p class="lead reveal">Selected work by Felag's founders and principals at Uddug and Gateway.fm.</p>
+    <h2 class="reveal">Selected engineering work.</h2>
+    <p class="lead reveal">Work by Felag's founders and principals at Uddug and Gateway.fm, with prototypes and proofs of concept marked as such.</p>
     <div class="metrics stagger">
-      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
+      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak in production, aggregate across clients, for Opera and 1inch</div></article>
       <article class="metric reveal" style="--i:1"><div class="big">$1<em>B+</em></div><div class="label">locked in staking on the infrastructure we ran in 2025 and 2026, serving Lido, Gnosis, Stellar and Canton</div></article>
-      <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
+      <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users reported by Humanity Protocol, whose application layer we built</div></article>
     </div>
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
-  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">Each case gives the contribution, the result and the delivery status, with details and evidence under it.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
