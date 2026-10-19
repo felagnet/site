@@ -96,3 +96,9 @@ Worked on the ux-audit branch from origin/main, one commit per issue, in the aud
 - ux-d05 [P1] done 0406cd4: Reduced motion below the hero: every section in its final state
 - ux-d09 [P1] done f8be15a and db94444; owner: the carousel and slide strings in copy-notes.md. On a phone the controls come before the strip in the tab order, though they show under it.
 - ux-strip-drift [P2] done (Andrew, 19 October 2026: constant drift, about 30 px a second, back to the first card after the last; a Stop scrolling control plus a hold on hover and keyboard focus; the carousel and slide words applied, the status in the 3 of 10 form). Never under reduced motion. Checked in Chromium and WebKit through Playwright at 1440 and 390.
+
+## SEO metadata, 19 October 2026
+Worked on the seo-metadata branch from origin/main. Andrew chose the title and description in the chat; the structured-data items follow facts already on the page.
+- seo-6-1 [P1] done 4a082df: Title and description name the services and the audience, outcome pricing kept (copy-notes.md, 19 October 2026)
+- seo-6-2 [P2] done: Organization carries the registration number as an identifier and the registered office as a PostalAddress in GE, read from the same constants as the footer
+- seo-6-3 [P2] done: Fractional CTO (from 4000 USD) and Pods (10000 to 60000 USD) as unit prices per month; the one-day-a-week note stays in the description

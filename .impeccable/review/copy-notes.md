@@ -133,6 +133,12 @@ Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" fo
 
 Andrew asked for the strip to scroll on its own, as a constant slow drift. The control that stops and restarts it is new spoken text; Andrew chose the strings in the chat: "Stop scrolling" while it drifts and "Start scrolling" once it is stopped. Applied on the strip-autoscroll branch. The control shows only an icon, so nothing visible changes.
 
+## 19 October 2026, SEO metadata: title and description
+
+The auditor proposed "Felag | Backend, Payments & Identity Engineering" and a description that names the audience and the services, both without outcome pricing. Andrew chose versions that keep it, in sentence case. Applied on the seo-metadata branch, with Open Graph, Twitter and WebPage taking the same values.
+- Title: "Felag | Backend, payments and identity engineering, priced on outcomes" (70 characters; was "Felag, a principal-led engineering studio priced on outcomes").
+- Description: "Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, priced on outcomes rather than hours." (148 characters; was the hero line and the sub-line).
+
 ## 19 October 2026, the closing scene: a contact form like andskur.com's
 
 Andrew asked for the contact form from andskur.com on felag.net and settled the gaps in the chat. The form sits in the closing scene under the mail paragraph and takes the place of the closing "Discuss your project" mailto button; See prices stays beside the submit button, and the header, hero and footer mailto links stay as they were. New visible strings, in Felag wording by Andrew's choice: the labels "The system and your deadline" and "Email", the submit button "Discuss your project", "Sending" while it posts, "Sent. We'll reply to the address you gave." on success, and "That didn't send. Email us directly at info@felag.net." on failure. The email subject Formspree sends is "felag.net: Free technical workshop".
