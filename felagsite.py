@@ -23,10 +23,10 @@ DESCRIPTION = ("Senior engineers who own the architecture and ship to production
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
-    dict(piece=0, name="Backend and infrastructure at scale", line="The services, queues and data stores that hold at production load, the cloud under them written as code, and the front ends on top, measured on load and interaction time."),
-    dict(piece=3, name="Payments rails", line="Card programmes, account ledgers, settlement and the integrations with issuers, processors and banks, with the audit trail a regulated business is asked to produce."),
-    dict(piece=2, name="Identity and SSO", line="Enterprise single sign-on, account models and the permission layer between them, and identity for the software agents that act on a person's behalf."),
-    dict(piece=1, name="Distributed ledgers, where they fit", line="Where a product needs a ledger that several parties have to trust, we design and ship it; where it does not, the sprint says so."),
+    dict(piece=0, name="Backends and infrastructure", line="We build production backends and their cloud infrastructure. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
+    dict(piece=3, name="Payment rails", line="We build account ledgers, settlement services and card integrations with banks, issuers and processors. The scope includes transaction records and audit trails."),
+    dict(piece=2, name="Identity and access", line="We integrate enterprise sign-on and build account and permission systems for people and software agents."),
+    dict(piece=1, name="Distributed ledgers", line="We build systems that share and verify records across organisations. The Architecture Sprint establishes where a shared ledger is useful and where a conventional database is sufficient."),
 ]
 
 SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nuxt, React Native/Expo, Flutter; AWS, GCP, Kubernetes, "
@@ -1247,7 +1247,7 @@ def ld_json(title, description):
            "contactPoint": {"@type": "ContactPoint", "email": "info@felag.net", "contactType": "sales", "availableLanguage": "en"},
            "sameAs": COMPANY_PAGES,
            "founder": [{"@id": SITE + "#andrew"}, {"@id": SITE + "#mike"}],
-           "knowsAbout": ["Backend and infrastructure at scale", "Payments rails", "Identity and SSO", "Distributed ledgers"],
+           "knowsAbout": ["Backends and infrastructure", "Payment rails", "Identity and access", "Distributed ledgers"],
            "makesOffer": offers}
     graph = [org,
              {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "Felag", "inLanguage": "en", "publisher": {"@id": SITE + "#org"}},
