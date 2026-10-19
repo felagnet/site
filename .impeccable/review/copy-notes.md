@@ -95,6 +95,38 @@ Andrew's decisions in the chat: after a press of Previous or Next the strip read
 - Each case card (`article.card`): add `role="group"`, `aria-roledescription="slide"` and `aria-label="3 of 10"` (the number and total from the card's position). Heard as "3 of 10, slide".
 - Optional, if the spoken counter "zero three slash ten" reads poorly: the status line could use the same "3 of 10" form instead of the card's visible "03 / 10", for example "3 of 10, Identity for a global technology company".
 
+Until then the source carries none of these.
+
+## 19 October 2026, copy round 3
+
+The auditor's six focused changes. Andrew settled the gaps in the chat; the agent applied them on worktree-copy-round-3, one commit per change.
+
+Done:
+- Cases: all ten kept under "Selected engineering work", each with the contribution, Result, Status and, where a figure is the client's own, Context (the Humanity user count, the DeepNode valuation), a Details and evidence disclosure for measurement definitions, and the employer and date. ICEX reads "Exchange prototype and oracle development", its ending told in the details. The identity work is a proof of concept on both workstreams. The MiCA answer describes supported engineering and keeps the audit limit. Performance figures carry Andrew's generic qualifier: peak observed in production, aggregate across clients, during the period shown.
+- Repetition: the wall lines are short relationships that point to the case; the record is a six-row lineage with the company background collapsed under it, keeping only the projects without a card; the bios start with what each person leads today and drop the project catalogues; the people note keeps only the contractor line.
+- AI answer: the auditor's starting answer, nothing added.
+- Terms: the footer and the contract answer name FELAG LLC in full; unused prepaid pod fees are refunded pro rata after notice; a new answer has deliverables accepted and scope changed at the monthly review; the entry pod's senior engineer plans the work; the fractional CTO works agreed days spread across Monday to Friday and owns the architecture and roadmap, engineering process and delivery, and board and investor representation (hiring is not listed, by Andrew's choice).
+- Sentences: the four services in the auditor's copy, Payment rails, the questions heading, and the stack under a Technical capabilities disclosure.
+
+Departures from the auditor, by Andrew's decision:
+- The hero keeps the locked sub-line ("priced on outcomes rather than hours"); the statement stays in its own section, so it is not shown twice.
+- No person is named on the cases; employer and date only. The DeepNode era reads "Independent engagement".
+- Protocol Labs stays in the grants line.
+- Pavel's "20+ published papers" stays without a bibliography link.
+- No sentence on client code handling yet in the AI answer.
+
+Resolved the same day:
+- Statuses: all ten confirmed by Andrew as written.
+- Andrew's bio opens "sets the technical direction at Felag, leads the architecture on its engagements and takes fractional CTO seats" (Andrew).
+- Humanity Protocol result: a high-load application layer on the L2 chain at about 1,000 transactions per second (Andrew), with the generic measurement qualifier.
+- Marscatsvoyage: "Uddug helped with the launch of Marscatsvoyage", the $2M+ figure dropped (Andrew).
+- Arsnl.art links to arsnl.art (Andrew).
+- Details and evidence for the shared prover, the Platform department and Arsnl.art, taken from the Notion proof register and felag-core team-and-history within their do-not-say rules. Every case now has a disclosure.
+
+Still open:
+- rate-card.md and core.md still need the sprint price, pod tiers, the one-month CTO term, the refund and the acceptance terms. Andrew: not now.
+- The Notion proof register (master for proof) is behind the site on two rows: Humanity Protocol has no transaction figure, and Marscatsvoyage's wording still carries $2M+. A founder updates the rows.
+
 Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" form. Applied on the strip-autoscroll branch.
 
 ## 19 October 2026, the cases strip drift: labels for its stop control

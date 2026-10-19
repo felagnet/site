@@ -11,7 +11,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from felagsite import FAQ, HOW, MARK_PATH, OFFERS, PEOPLE, PEOPLE_NOTE, STATEMENT, TURN_DOWN  # noqa: E402
+from felagsite import CAPS, FAQ, HOW, LINEAGE, MARK_PATH, OFFERS, PEOPLE, PEOPLE_NOTE, STATEMENT, TURN_DOWN  # noqa: E402
 from shared import FONT_FACE, FONT_LINKS, LOCKUP  # noqa: E402
 
 DOMAIN = "felag.net"
@@ -90,9 +90,11 @@ def llms_txt():
     lines = ["# Felag", "", f"> {STATEMENT}", "",
              "Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
              "priced on outcomes rather than hours.", "", PEOPLE_NOTE, "",
-             "## What we build", "", "- Backend and infrastructure at scale", "- Payments rails", "- Identity and SSO",
-             "- Distributed ledgers, where they fit", "",
-             "## What it costs", "", "Prices in USD, excluding VAT.", ""]
+             "## What we build", ""]
+    lines += [f"- {c['name']}: {c['line']}" for c in CAPS]
+    lines += ["", "## Where the team comes from", ""]
+    lines += [f"- {y}: {tx}" for y, tx in LINEAGE]
+    lines += ["", "## What it costs", "", "Prices in USD, excluding VAT.", ""]
     for o in OFFERS:
         note = f", {o['note']}" if o["note"] else ""
         lines.append(f"- {o['name']}: {o['price']}{note}. {o['body']}")

@@ -23,10 +23,10 @@ DESCRIPTION = ("Senior engineers who own the architecture and ship to production
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
-    dict(piece=0, name="Backend and infrastructure at scale", line="The services, queues and data stores that hold at production load, the cloud under them written as code, and the front ends on top, measured on load and interaction time."),
-    dict(piece=3, name="Payments rails", line="Card programmes, account ledgers, settlement and the integrations with issuers, processors and banks, with the audit trail a regulated business is asked to produce."),
-    dict(piece=2, name="Identity and SSO", line="Enterprise single sign-on, account models and the permission layer between them, and identity for the software agents that act on a person's behalf."),
-    dict(piece=1, name="Distributed ledgers, where they fit", line="Where a product needs a ledger that several parties have to trust, we design and ship it; where it does not, the sprint says so."),
+    dict(piece=0, name="Backends and infrastructure", line="We build production backends and their cloud infrastructure. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
+    dict(piece=3, name="Payment rails", line="We build account ledgers, settlement services and card integrations with banks, issuers and processors. The scope includes transaction records and audit trails."),
+    dict(piece=2, name="Identity and access", line="We integrate enterprise sign-on and build account and permission systems for people and software agents."),
+    dict(piece=1, name="Distributed ledgers", line="We build systems that share and verify records across organisations. The Architecture Sprint establishes where a shared ledger is useful and where a conventional database is sufficient."),
 ]
 
 SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nuxt, React Native/Expo, Flutter; AWS, GCP, Kubernetes, "
@@ -40,99 +40,131 @@ GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure
 A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
 B_NAMED = "We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting, at 140k+ requests per second at peak and 50 ms average latency on the heavy requests."
 C_LINE = "We built the event infrastructure and backend for Infinex, the Synthetix front-end, under governance proposal XIP-9."
-D_LINE = "We designed and built account-abstraction wallets with enterprise single sign-on for a global technology company."
-E_LINE = "We built an identity system for AI agents on a major cloud platform for the same global technology company, as a pilot."
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
-DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
-SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
-ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
-I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
-P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
-Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
+P_LINE = "Uddug helped with the launch of Marscatsvoyage."
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
-# the lead cases, in the register's order: payments, load and identity first, then the rest, ICEX last as the honest close
+# the ten cases, one structure each: the contribution, then the result, the delivery status and any attributed context,
+# the details and evidence behind a disclosure, the public record and the employer and date; no person is named
 PROOF_CARDS = [
-    dict(kicker="Launched August 2024", title="Wirex Pay", body=A_NAMED, links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024"),
-    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", body=B_NAMED, links=[], era="Gateway.fm, 2021 to 2022"),
-    dict(kicker="Enterprise single sign-on and agent identity, 2025", title="Identity for a global technology company", body=D_LINE + " " + E_LINE, links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025"),
-    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", body=C_LINE, links=[], era="Uddug with Gateway.fm, 2023 to 2024"),
-    dict(kicker="9M+ users", title="Humanity Protocol", body=F_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
-    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", body=H_NAMED, links=[], era="Gateway.fm, 2024 to 2025"),
-    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
-    dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
-    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
-    dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
+    dict(kicker="Launched August 2024", title="Wirex Pay", links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024",
+         body="We delivered the Wirex Pay platform end to end: the L2 chain, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.",
+         facts=[("Result", "The chain launched in August 2024 and is listed on L2BEAT."),
+                ("Status", "Launched to production.")],
+         details="The engineering was built to support Wirex's MiCA alignment. We have not taken the system through an audit under MiCA. The L2BEAT listing and the partnership announcement are the public record."),
+    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", links=[], era="Gateway.fm, 2021 to 2022",
+         body="We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting.",
+         facts=[("Result", "140k+ requests per second at peak, with 50 ms average latency on the heavy requests."),
+                ("Status", "Ran in production, 2021 to 2022.")],
+         details="Both figures are the peak observed in production, aggregate across all clients of the proxy, during 2021 to 2022. The latency is the average over the heavy requests only."),
+    dict(kicker="Proof of concept, 2025", title="Identity for a global technology company", links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025",
+         body="We designed and built account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform.",
+         facts=[("Result", "Both workstreams delivered as working proofs of concept."),
+                ("Status", "Proof of concept, both workstreams. Neither was taken to production.")],
+         details="The client is not named. The linked case study is published by Gateway.fm and covers the agent identity workstream."),
+    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", links=[], era="Uddug with Gateway.fm, 2023 to 2024",
+         body=C_LINE,
+         facts=[("Result", "The scope set by governance proposal XIP-9, approved in December 2023, delivered."),
+                ("Status", "Delivered, 2023 to 2024.")],
+         details="Uddug did the work together with Gateway.fm. Infinex is the Synthetix front-end."),
+    dict(kicker="Identity network, application layer", title="Humanity Protocol", links=[], era="Gateway.fm, 2024 to 2025",
+         body="We built the application layer for Humanity Protocol, an identity network.",
+         facts=[("Result", "A high-load application layer on the L2 chain, at about 1,000 transactions per second."),
+                ("Status", "Delivered, 2024 to 2025."),
+                ("Context", "Humanity Protocol reports 9M+ users. The figure is the network's own, not a measure of our work.")],
+         details="The transaction rate is the peak observed in production, aggregate across the chain, during 2024 to 2025."),
+    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", links=[], era="Gateway.fm, 2024 to 2025",
+         body="We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3.",
+         facts=[("Result", "One prover served several ZK protocols, with GPU and CPU autoscaling on AWS spot capacity."),
+                ("Status", "In use, 2024 to 2025.")],
+         details="The protocols served were Polygon zkEVM, Polygon Hermez, cdk-erigon, Miden and Iden3, including EY Nightfall. The cost effect of spot capacity was not measured, so no saving is claimed."),
+    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", links=[], era="Gateway.fm, 2024 to 2026",
+         body="In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments.",
+         facts=[("Result", "The departments' work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."),
+                ("Status", "Closed in 2026, when the founders left to start Felag.")],
+         details="Uddug had grown to 15 people when Gateway.fm acquired it in June 2024. The team joined as the Platform department, and with the second department the founders led, the total was ~25 people."),
+    dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN)], era="Independent engagement, 2025 to 2026",
+         body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
+         facts=[("Result", "The network measured at about 5,000 requests per second."),
+                ("Status", "Completed in 2026."),
+                ("Context", "DeepNode listed at $140M+ fully diluted valuation at launch. That is market context, not an engineering result.")],
+         details="The request rate is the peak observed in production, aggregate across the network, during the engagement. The KuCoin announcement is the public record of the listing."),
+    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", links=[("arsnl.art", "https://arsnl.art")], era="Uddug, from 2022",
+         body="Uddug built the whole NFT platform behind Arsnl.art and the NFT launches on it.",
+         facts=[("Result", "Frank Stella's 'Geometries' released on the platform."),
+                ("Status", "Delivered, from 2022.")],
+         details="Uddug built the platform and handled the technical delivery for several artist drops on it. 'Geometries' is the one artist project named here; sales figures are not stated."),
+    dict(kicker="Exchange prototype and oracle development", title="ICEX", links=[], era="The founders, before Uddug",
+         body="The founders' own exchange project of 2017 to 2018, and the push oracle first developed for it.",
+         facts=[("Result", "The push oracle later shipped for Wirex Pay, Infinex, LUKSO and Lumia started here."),
+                ("Status", "Prototype, not launched.")],
+         details="The exchange was roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and the project ended there."),
 ]
 
-# the names wall: every name the register and the history allow, each with its one line and its era
+# the names wall: every name the register and the history allow, each with a short relationship line that points to its case
 WALL = [
-    ("Wirex Pay", "client", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
-    ("Opera", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
-    ("1inch", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
-    ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
-    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew, 2025 to 2026"),
-    ("EY Nightfall", "client", H_NAMED, [], "Gateway.fm, 2024 to 2025"),
-    ("LUKSO", "client", "LUKSO received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
-    ("Lumia", "client", "Lumia received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
-    ("ApeChain", "client", "For ApeChain we designed a pull-based price feed at about 1,000 requests per second and a native verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
-    ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
-    ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
-    ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
-    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2023"),
-    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2023"),
-    ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
-    ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
-    ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
-    ("Metazoku", "client", Y_LINE, [], "Uddug, 2023"),
-    ("Snark.art", "client", SNARK_LINE, [("snark.art", "https://snark.art")], "Andrew, then Uddug"),
-    ("Synthetix", "protocol", "Infinex is the Synthetix front-end; we built its event infrastructure and backend under governance proposal XIP-9.", [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Lido", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Stellar", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Canton", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Polygon zkEVM", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
-    ("Miden", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
-    ("Iden3", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Wirex Pay", "client", "Client for the payments platform and its L2 chain. See case 01.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
+    ("Opera", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
+    ("1inch", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
+    ("Infinex", "client", "Client for the event infrastructure and backend. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Humanity Protocol", "client", "Client for the application layer. See case 05.", [], "Gateway.fm, 2024 to 2025"),
+    ("DeepNode", "client", "A fractional CTO engagement. See case 08.", [("KuCoin listing announcement", KUCOIN)], "Independent engagement, 2025 to 2026"),
+    ("EY Nightfall", "client", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("LUKSO", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
+    ("Lumia", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
+    ("ApeChain", "client", "A pull-based price feed and a verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
+    ("Presto", "client", "The tokenised-finance product we led to revenue.", [], "Gateway.fm, 2023 to 2025"),
+    ("Gnosis", "client", "Ran on the RPC proxy, and served by Gateway Yield.", [], "Gateway.fm"),
+    ("Ethereum Foundation", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022"),
+    ("Web3 Foundation", "client", "Grant work, including JuniDB.", [], "Uddug, 2020 to 2023"),
+    ("Protocol Labs", "client", "Grant work.", [], "Uddug, 2020 to 2023"),
+    ("OG:Crystals", "client", "The technology behind the launch, with Snark.art.", [], "Uddug, 2021"),
+    ("Marscatsvoyage", "client", "Uddug helped with the launch.", [], "Uddug, 2021"),
+    ("Arsnl.art", "client", "The NFT platform and its launches. See case 09.", [("arsnl.art", "https://arsnl.art")], "Uddug, from 2022"),
+    ("Metazoku", "client", "Smart contracts.", [], "Uddug, 2023"),
+    ("Snark.art", "client", "An NFT launch platform for established artists, later a Uddug client.", [("snark.art", "https://snark.art")], "2019 to 2020, then Uddug"),
+    ("Synthetix", "protocol", "The protocol behind Infinex. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Lido", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Stellar", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Canton", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Polygon zkEVM", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("Miden", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("Iden3", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
 ]
 
-# the record, three eras; the Gateway.fm era opens on the department line
+# the record: a compact lineage in the reading path, and the company background behind a disclosure,
+# which keeps only the projects that have no case card of their own
+LINEAGE = [
+    ("2015", "The founders start working together."),
+    ("2018", "Andrew Skurlatov and Mikhail Manko found Uddug."),
+    ("2021", "Andrew joins Gateway.fm as one of its first engineers."),
+    ("June 2024", "Gateway.fm acquires Uddug, and the team becomes its Platform department."),
+    ("2026", "The departments close and the team leaves."),
+    ("July 2026", "Felag starts as the restart of Uddug, with Pavel Dodonov and Andrey Solovov as principal engineers and partners."),
+]
 ERAS = [
     dict(name="Uddug", years="2018 to 2024",
-         intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
          cases=[
              ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
-             ("From 2022", "Arsnl.art", "The NFT platform and its launches, including Frank Stella's 'Geometries'.", []),
              ("2023", "Metazoku", Y_LINE, []),
-             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
-         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
-             ("2021 to 2022", "The RPC proxy for Opera and 1inch", "A cache layer and rate limiting at 140k+ requests per second at peak, with 50 ms average latency on the heavy requests.", []),
              ("2023 to 2025", "Presto", K_LINE, []),
              ("2023 to 2025", "The indexing platform", J_LINE, []),
-             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain.", []),
-             ("2024", "Wirex Pay", "The L2 chain and the application layer behind its debit cards.", []),
-             ("2024 to 2025", "Humanity Protocol", F_NAMED, []),
-             ("2024 to 2025", "The shared prover", H_NAMED, []),
-             ("2025", "Identity for a global technology company, a pilot", "Wallets with enterprise single sign-on and identity for AI agents, both a proof of concept.", []),
-             ("2025 to 2026", "DeepNode", "Fractional CTO for ten months: decentralised AI infrastructure measured at about 5,000 requests per second, through the January 2026 token launch and exchange listing at $140M+ FDV.", [("KuCoin listing announcement", KUCOIN)]),
+             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain. The figures are the peak observed in production, aggregate across clients, during 2023 to 2025.", []),
              ("2025 to 2026", "Gateway Yield", G_NAMED, []),
          ]),
-    dict(name="Felag", years="From July 2026",
-         intro="Felag was founded in July 2026 as the restart of Uddug. Pavel Dodonov and Andrey Solovov joined as principal engineers and partners.",
-         cases=[]),
 ]
 
 OFFERS = [
@@ -143,12 +175,12 @@ OFFERS = [
          body="One to two weeks with a principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
          what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited in full against a pod or fixed-price build signed within 30 days of the sprint's delivery"], who="A principal"),
     dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
-         body="A principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
-         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
+         body="A principal in the CTO seat for agreed days each week, spread across Monday to Friday, until a full-time hire makes sense. The CTO owns the architecture and the engineering roadmap, runs engineering process and delivery with your team, and represents the technology to the board and investors.",
+         what=["Agreed days each week, spread across Monday to Friday", "The architecture and the engineering roadmap", "Engineering process and delivery with your team", "The technology represented to the board and investors"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
     dict(name="Pods", price="$10k to $60k a month", note="by team",
          body="The build after the sprint, on a monthly retainer with deliverables agreed each month in the SOW, and a team sized to the scope.",
-         what=["From $10k: one senior engineer, with a principal reviewing the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
-         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice"], who="A principal, with senior and specialist engineers as the scope needs"),
+         what=["From $10k: one senior engineer who plans the work with your team, with a principal reviewing the plan and the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
+         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice", "Fees for the unused part of a prepaid month refunded pro rata after the notice period"], who="A principal, with senior and specialist engineers as the scope needs"),
     dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
          body="A review of the system and the team behind it against a scope fixed in advance, for investors and acquirers who need findings they can act on.",
          what=["A written report on architecture, code quality, security, infrastructure and the team", "Findings ranked by risk", "Delivered one to two weeks from access"], terms=["Fixed price", "Half paid on start"], who="A principal"),
@@ -170,30 +202,33 @@ WHO = [
     ("A funded technology company with a performance, scale or reliability problem", "The product works until it is busy. We measure the problem first, then fix the cause, and we say so when the answer is a smaller change than the team expected."),
     ("A regulated payments or asset issuer rebuilding for a new regime", "MiCA, DORA, the UK regime, GENIUS, VARA, HKMA or MAS has changed what the system must record and prove, and the team needs engineers who have built for one of these regimes before."),
     ("A licensed fintech taking over a codebase from a previous vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest."),
-    ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the hiring bar and the technical decisions until a full-time hire makes sense."),
+    ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the roadmap and delivery with the team until a full-time hire makes sense."),
     ("A product agency without a senior backend bench", "The agency has the design and the client, and needs a principal behind the backend for the length of the engagement without building that bench itself."),
 ]
 TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and public-sector tenders scored on headcount."
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew Skurlatov is co-founder and CTO of Felag. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. He co-founded Uddug in 2018 as its CTO and led it to its acquisition by Gateway.fm in 2024. There he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
+         bio="Andrew sets Felag's technical direction, leads the architecture on its engagements and steps in as fractional CTO. He has spent 15 years in software, ten of them in blockchain. He co-founded Uddug in 2018 and, after Gateway.fm acquired it, ran ~25 people across two departments as VP of Platform and Yield.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
-         bio="Mikhail Manko is co-founder and CEO of Felag. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew Skurlatov in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product. At Felag he runs partnerships and deals, from the first call to the signed contract.",
+         bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through the Gateway.fm acquisition, and then headed the platform team for its tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
-    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
-         bio="Pavel Dodonov is Principal Engineer for infrastructure and ZK at Felag and a partner. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the shared prover architecture for L2 ecosystems, GPU and CPU autoscaling for the prover fleets, and an EVM event-indexing platform that most of the company's projects reused. Before that he spent a decade in scientific R&D, with 20+ published papers.",
+    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer at Felag",
+         bio="Pavel leads engineering on Felag's engagements. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
-    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
-         bio="Andrey Solovov is Principal Engineer for Web3 systems at Felag and a partner. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients, among them a push oracle that delivered multi-asset prices every 500 ms and a pull-based feed at about 1,000 requests per second. Before Gateway he built smart contracts and payments architecture at Uddug.",
+    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer at Felag",
+         bio="Andrey leads delivery on Felag's engagements. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
-PEOPLE_NOTE = ("The founders have worked together since 2015. Felag is the 2026 restart of Uddug, which Gateway.fm acquired in June 2024. "
-               "Contractors join on demand and are never sold as principals.")
+PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
+
+# the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
+ENTITY = ("FELAG LLC, a Georgian limited liability company with identification number 426561829 and registered office at "
+          "Georgia, Gardabani Municipality, Poladaant Kari Village, 4th Street, Lane II, N 11")
 
 CONTRACT = [
-    ("Legal entity", "Felag, incorporated in 2026."),
+    ("Legal entity", ENTITY + "."),
     ("Principals", "Netherlands and Cyprus."),
     ("Named principal", "Every contract names the principal who leads the work. Substitution needs the client's consent."),
     ("Contractors", "QA, DevOps and additional development on demand, never sold as principals."),
@@ -208,9 +243,10 @@ FAQ = [
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
     ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
-    ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
-    ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
-    ("Do you use AI in delivery?", "Yes, on our own AI development framework, which we will describe publicly later. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
+    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
+    ("How are deliverables accepted and scope changes agreed?", "Deliverables are reviewed and accepted with you at the monthly review, against the SOW. Scope changes are agreed there and go into the next month's SOW."),
+    ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme, engineering that supported the client's MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
+    ("Do you use AI in delivery?", "Yes. We use AI tools and our own development framework. A principal reviews the work and remains responsible for the agreed deliverables."),
 ]
 
 # eyebrows and small story lines per theme
@@ -311,8 +347,15 @@ html.js .reveal.in{opacity:1;transform:none}
 .bigmark path{fill:var(--line);transition:fill .5s}
 .bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.skills-foot{margin-top:40px;max-width:46em;font-size:var(--fs-label);line-height:var(--lh-label)}
-.skills-foot .n{color:var(--text);margin-right:12px}
+.skills-foot{margin-top:32px;max-width:46em}
+.skills-foot .skills{margin-top:4px}
+/* ---- disclosure: a quiet mono summary with a copper plus that turns to a cross when open */
+.more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text);transition:color .15s}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+";display:inline-block;width:12px;color:var(--accent);font-size:16px;line-height:1;text-align:center;transition:transform .3s}
+.more[open]>summary::before{transform:rotate(45deg)}
+.more summary:hover{color:var(--accent-hover)}
+.more summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .skills{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 /* ---- proof: metrics, then the cases as a strip that scrolls on its own axis */
@@ -331,6 +374,11 @@ html.js .reveal.in{opacity:1;transform:none}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
 .card p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.card .cfacts{display:grid;gap:12px;flex:1;align-content:start}
+.card .cfacts div{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline}
+.card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
+.card .cfacts dd{margin:0;color:var(--text);font-size:var(--fs-small);line-height:var(--lh-small)}
+.card .evidence p{margin-top:4px;font-size:var(--fs-small);line-height:var(--lh-small)}
 .card .cfoot{margin-top:0;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
@@ -394,7 +442,10 @@ html:not(.js) .name{cursor:default}
 .era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
 .era-name{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.era-intro{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:10px;max-width:52em}
+.lineage{margin-top:40px;border-top:1px solid var(--line)}
+.lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.background{margin-top:24px}
+.background .eras{margin-top:24px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
@@ -502,6 +553,7 @@ html:not(.js) .name{cursor:default}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
+.foot .legal{grid-column:1 / -1;order:3;max-width:60em;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 @media (max-width:1100px){
   .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -529,6 +581,7 @@ html:not(.js) .name{cursor:default}
   .track{order:1}
   .strip-nav{order:2;align-self:flex-end;margin:16px var(--side) 0}
   .card{flex-basis:min(86vw,420px);padding:28px}
+  .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
@@ -552,7 +605,7 @@ html:not(.js) .name{cursor:default}
 @media (prefers-reduced-motion:reduce){
   /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
   .panel{position:relative;top:auto;box-shadow:none}
-  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn{transition:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
@@ -617,15 +670,16 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
         wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
+    lineage = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><p>{tx}</p></div></div>' for y, tx in LINEAGE)
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
-        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
+        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div></div><div class="era-cases">{rows}</div></div>'
     panels = ""
     for i, o in enumerate(OFFERS):
         note = f'<span>{o["note"]}</span>' if o["note"] else ""
@@ -695,7 +749,7 @@ def sections(t, theme):
         <div class="caps-left">{caps}</div>
         <div class="mark-col">{bigmark}<div class="mark-count" id="mark-count">01 / 04</div></div>
       </div>
-      <p class="skills skills-foot"><span class="n">Stack</span>{SKILLS}</p>
+      <details class="more skills-foot"><summary>Technical capabilities</summary><p class="skills">{SKILLS}</p></details>
     </div>
   </div>
 </section>
@@ -703,17 +757,17 @@ def sections(t, theme):
 <section class="sec" id="proof" style="padding-bottom:0">
   <div class="wrap">
     <p class="eyebrow reveal">{t["proof_eyebrow"]}</p>
-    <h2 class="reveal">What we have shipped.</h2>
-    <p class="lead reveal">Selected work by Felag's founders and principals at Uddug and Gateway.fm.</p>
+    <h2 class="reveal">Selected engineering work.</h2>
+    <p class="lead reveal">Work by Felag's founders and principals at Uddug and Gateway.fm, with prototypes and proofs of concept marked as such.</p>
     <div class="metrics stagger">
-      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
+      <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak in production, aggregate across clients, for Opera and 1inch</div></article>
       <article class="metric reveal" style="--i:1"><div class="big">$1<em>B+</em></div><div class="label">locked in staking on the infrastructure we ran in 2025 and 2026, serving Lido, Gnosis, Stellar and Canton</div></article>
-      <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users on Humanity Protocol, whose application layer we built</div></article>
+      <article class="metric reveal" style="--i:2"><div class="big">9<em>M+</em></div><div class="label">users reported by Humanity Protocol, whose application layer we built</div></article>
     </div>
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases" aria-roledescription="carousel">
-  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">Each case gives the contribution, the result and the delivery status, with details and evidence under it.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
@@ -721,15 +775,18 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
     <h2 class="reveal">Names we have worked with.</h2>
-    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
+    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for the relationship and the case behind it.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
 </section>
 <section class="sec" id="record" data-scrub="record">
   <div class="wrap">
     <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
-    <h2 class="reveal">The record, in three eras.</h2>
-    <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+    <h2 class="reveal">Where the team comes from.</h2>
+    <div class="lineage">{lineage}</div>
+    <details class="more background reveal"><summary>Company background</summary>
+      <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+    </details>
   </div>
 </section>
 
@@ -766,7 +823,7 @@ def sections(t, theme):
 <section class="sec" id="faq">
   <div class="wrap">
     <p class="eyebrow reveal">{t["faq_eyebrow"]}</p>
-    <h2 class="reveal">The ones that come up on nearly every first call.</h2>
+    <h2 class="reveal">Questions about working with Felag.</h2>
     <div class="faq reveal">{faq}</div>
   </div>
 </section>
@@ -785,6 +842,7 @@ def sections(t, theme):
 </section>
 <footer class="foot">
   <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
+  <p class="legal">{ENTITY}.</p>
   <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="https://x.com/felagnet" rel="noopener">X</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
 </footer>'''
 
@@ -1297,7 +1355,7 @@ def ld_json(title, description):
         _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
         _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
-    org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "url": SITE,
+    org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "legalName": "FELAG LLC", "url": SITE,
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
            "image": SITE + "og.png",
            "slogan": "Senior engineers who own the architecture and ship to production.",
@@ -1306,7 +1364,7 @@ def ld_json(title, description):
            "contactPoint": {"@type": "ContactPoint", "email": "info@felag.net", "contactType": "sales", "availableLanguage": "en"},
            "sameAs": COMPANY_PAGES,
            "founder": [{"@id": SITE + "#andrew"}, {"@id": SITE + "#mike"}],
-           "knowsAbout": ["Backend and infrastructure at scale", "Payments rails", "Identity and SSO", "Distributed ledgers"],
+           "knowsAbout": ["Backends and infrastructure", "Payment rails", "Identity and access", "Distributed ledgers"],
            "makesOffer": offers}
     graph = [org,
              {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "Felag", "inLanguage": "en", "publisher": {"@id": SITE + "#org"}},
