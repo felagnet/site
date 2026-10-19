@@ -96,3 +96,10 @@ Worked on the ux-audit branch from origin/main, one commit per issue, in the aud
 - ux-d05 [P1] done 0406cd4: Reduced motion below the hero: every section in its final state
 - ux-d09 [P1] done f8be15a and db94444; owner: the carousel and slide strings in copy-notes.md. On a phone the controls come before the strip in the tab order, though they show under it.
 - ux-strip-drift [P2] done (Andrew, 19 October 2026: constant drift, about 30 px a second, back to the first card after the last; a Stop scrolling control plus a hold on hover and keyboard focus; the carousel and slide words applied, the status in the 3 of 10 form). Never under reduced motion. Checked in Chromium and WebKit through Playwright at 1440 and 390.
+
+## UX audit, 19 October 2026
+Worked on the ux-audit-1019 branch from origin/main. Andrew's decisions in the chat: phones start the strip still, the desktop keeps the drift; the mouse pauses it only while it rests on the strip, and keyboard use, a swipe, a tap or a press stops it until Start scrolling. Checked in Chromium and WebKit through Playwright, not in Safari itself.
+- ux2-d02 [P1] done: The hero contact button could take focus while its entrance group was transparent
+- ux2-d19 [P1] done: On phones the strip moved before its Stop control was on screen
+- ux2-d20 [P1] done: The strip kept drifting after keyboard use that began with a mouse click
+
