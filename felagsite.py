@@ -15,9 +15,8 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 # ---------------------------------------------------------------------------------------------- content
 
-STATEMENT = ("Felag is a boutique engineering studio whose principal-led pods design and ship production systems for funded "
-             "fintech and technology companies, from backend and infrastructure at scale to payments and identity, with every "
-             "engagement priced on the outcome.")
+STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
+             "the architecture and delivery of backends, payment systems and identity infrastructure.")
 # the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
 DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
                "priced on outcomes rather than hours.")
@@ -47,8 +46,8 @@ F_NAMED = "We built the application layer for Humanity Protocol, an identity net
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
 DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
-SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
+SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
 ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
 I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
@@ -71,7 +70,7 @@ PROOF_CARDS = [
     dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", body=DEPT_LINE, links=[], era="Gateway.fm, 2024 to 2026"),
     dict(kicker="$140M+ FDV at launch, January 2026", title="DeepNode", body=DN_LINE, links=[("KuCoin listing announcement", KUCOIN)], era="Andrew, 2025 to 2026"),
     dict(kicker="Frank Stella, Geometries", title="Arsnl.art", body=Q_LINE, links=[], era="Uddug, from 2022"),
-    dict(kicker="2017 to 2018, told as it was", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
+    dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
 
 # the names wall: every name the register and the history allow, each with its one line and its era
@@ -113,23 +112,22 @@ ERAS = [
              ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
-             ("From 2022", "Arsnl.art", Q_LINE, []),
+             ("From 2022", "Arsnl.art", "The NFT platform and its launches, including Frank Stella's 'Geometries'.", []),
              ("2023", "Metazoku", Y_LINE, []),
              ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
          intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
-             ("2021 to 2022", "The RPC proxy for Opera and 1inch", B_NAMED, []),
+             ("2021 to 2022", "The RPC proxy for Opera and 1inch", "A cache layer and rate limiting at 140k+ requests per second at peak, with 50 ms average latency on the heavy requests.", []),
              ("2023 to 2025", "Presto", K_LINE, []),
              ("2023 to 2025", "The indexing platform", J_LINE, []),
-             ("2023 to 2025", "Oracles", I_NAMED, []),
-             ("2024", "Wirex Pay", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)]),
+             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain.", []),
+             ("2024", "Wirex Pay", "The L2 chain and the application layer behind its debit cards.", []),
              ("2024 to 2025", "Humanity Protocol", F_NAMED, []),
              ("2024 to 2025", "The shared prover", H_NAMED, []),
-             ("2025", "Wallets with enterprise single sign-on", D_LINE, []),
-             ("2025", "Identity for AI agents, a pilot", E_LINE, [("Case study, by the team at Gateway.fm", GW_CASE)]),
-             ("2025 to 2026", "DeepNode", DN_LINE, [("KuCoin listing announcement", KUCOIN)]),
+             ("2025", "Identity for a global technology company, a pilot", "Wallets with enterprise single sign-on and identity for AI agents, both a proof of concept.", []),
+             ("2025 to 2026", "DeepNode", "Fractional CTO for ten months: decentralised AI infrastructure measured at about 5,000 requests per second, through the January 2026 token launch and exchange listing at $140M+ FDV.", [("KuCoin listing announcement", KUCOIN)]),
              ("2025 to 2026", "Gateway Yield", G_NAMED, []),
          ]),
     dict(name="Felag", years="From July 2026",
@@ -139,46 +137,47 @@ ERAS = [
 
 OFFERS = [
     dict(name="Free technical workshop", price="Free", note="",
-         body="A time-boxed session with a founder that frames the problem, constraints and options and ends with a sprint scope or a clear no. It produces a decision, not a spec.",
-         what=["The problem, the constraints and the options, framed", "A sprint scope, or a clear no"], terms=["Free", "Time-boxed", "No spec, no design, no estimate"], who="A founder"),
-    dict(name="Architecture Sprint", price="$7.5k", note="launch price, list $15k",
-         body="One to two weeks with a named principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
-         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited against a pod or fixed-price build signed within 30 days"], who="A named principal"),
+         body="A 60-minute session with a founder to understand your system, priorities and constraints. If an Architecture Sprint is useful, we agree its scope. Detailed specification and costed build options are part of the paid sprint.",
+         what=["Your system, priorities and constraints, understood", "A sprint scope, if a sprint is useful"], terms=["Free", "60 minutes", "A reply within two working days of your email"], who="A founder"),
+    dict(name="Architecture Sprint", price="From $10k", note="",
+         body="One to two weeks with a principal that end in a build decision: spec, architecture decisions, risk register and costed build options, with the fixed-price build or the pod that follows quoted from them.",
+         what=["Spec and architecture decisions", "Risk register", "Costed build options", "A build decision"], terms=["One to two weeks", "Paid in advance", "Credited in full against a pod or fixed-price build signed within 30 days of the sprint's delivery"], who="A principal"),
     dict(name="Fractional CTO", price="From $4k a month", note="one day a week; two days and ad hoc days priced per engagement",
-         body="A named principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
-         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "Three-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
-    dict(name="Pods", price="$10k to $60k a month", note="by size",
-         body="The build after the sprint, on a monthly retainer with defined outcomes: from one senior engineer with principal oversight to a named principal leading a team of two to three, sized to the scope.",
-         what=["Outcomes defined in the SOW", "From one senior with principal oversight to a principal-led team of two to three"], terms=["Monthly in advance", "Cancel with two weeks' notice", "Principal named in the SOW; substitution needs the client's consent"], who="A named principal, with senior and specialist engineers as the scope needs"),
+         body="A principal in the CTO seat for explicit days each week, with the decisions and the ownership that go with it, until a full-time hire makes sense.",
+         what=["Explicit days", "The architecture, the hiring bar and the technical decisions owned", "Representation with the board and investors where needed"], terms=["Monthly in advance", "One-month initial term"], who="Andrew, Pavel or Andrey, never a contractor"),
+    dict(name="Pods", price="$10k to $60k a month", note="by team",
+         body="The build after the sprint, on a monthly retainer with deliverables agreed each month in the SOW, and a team sized to the scope.",
+         what=["From $10k: one senior engineer, with a principal reviewing the architecture weekly", "From $25k: a principal part time with one or two senior engineers", "Up to $60k: a principal full time leading two to three engineers"],
+         terms=["Monthly in advance", "Deliverables agreed each month in the SOW", "A missed deliverable triggers a scope and plan review, recorded in writing", "Cancel with two weeks' notice"], who="A principal, with senior and specialist engineers as the scope needs"),
     dict(name="Technical due diligence", price="Quote per scope", note="fixed price, half paid on start",
          body="A review of the system and the team behind it against a scope fixed in advance, for investors and acquirers who need findings they can act on.",
-         what=["A fixed-scope review of the system and the team", "Findings an investor or acquirer can act on"], terms=["Fixed price", "Half paid on start"], who="A named principal"),
+         what=["A written report on architecture, code quality, security, infrastructure and the team", "Findings ranked by risk", "Delivered one to two weeks from access"], terms=["Fixed price", "Half paid on start"], who="A principal"),
 ]
-OFFER_NOTE = ("Prices in USD, excluding VAT. Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a "
-              "completed sprint. If a buyer insists on time and materials, we take it only with a monthly spend cap and weekly scope decisions, at the pod price.")
+OFFER_NOTE = ("Every build starts with a paid Architecture Sprint, and fixed-price builds are quoted from a completed sprint. "
+              "Your engagement is led by one of our principals, identified in the statement of work. Any replacement requires your consent.")
 
 # each step: its name, the output it ends with, one short line
 HOW = [
-    ("Workshop", "The problem, framed.", "Free, with a founder. Ends with a sprint scope or a clear no."),
-    ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a named principal, paid in advance and credited against the build."),
+    ("Workshop", "The problem, framed.", "Free, with a founder. If a sprint is useful, we agree its scope."),
+    ("Architecture Sprint", "A spec and costed build options.", "One to two weeks with a principal, paid in advance and credited against the build."),
     ("Decision", "A build decision on a fixed scope.", "Taken together on the sprint output: a fixed-price build or a pod."),
-    ("Pod", "The build, led by a named principal.", "On defined outcomes, monthly in advance, the principal named in the SOW."),
+    ("Build", "The build, led by a principal.", "A pod with deliverables agreed each month, or a fixed-price build."),
 ]
-HOW_NOTE = "The principal who leads the work is named in the SOW and changes only with the client's consent."
+HOW_NOTE = "Fractional CTO work and due diligence start from the same workshop and go straight to a scoped proposal."
 
 WHO = [
     ("A post-raise CTO with a hard integration and no senior hire in time", "The Series A or B roadmap has an integration nobody on the team has shipped before, and the senior hire will not land in time. We take the integration as a defined outcome and hand it back documented."),
     ("A funded technology company with a performance, scale or reliability problem", "The product works until it is busy. We measure the problem first, then fix the cause, and we say so when the answer is a smaller change than the team expected."),
     ("A regulated payments or asset issuer rebuilding for a new regime", "MiCA, DORA, the UK regime, GENIUS, VARA, HKMA or MAS has changed what the system must record and prove, and the team needs engineers who have built for one of these regimes before."),
-    ("A licensed fintech replacing a failed offshore vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest under a named principal."),
+    ("A licensed fintech taking over a codebase from a previous vendor", "The codebase arrived without the people who wrote it. We audit what is there, keep what works, and take ownership of the rest."),
     ("A founder with a co-founder gap", "The company needs a CTO for one or two days a week to own the architecture, the hiring bar and the technical decisions until a full-time hire makes sense."),
     ("A product agency without a senior backend bench", "The agency has the design and the client, and needs a principal behind the backend for the length of the engagement without building that bench itself."),
 ]
-TURN_DOWN = "Hourly billing without a spend cap, a dedicated eight-person team as a product, public-sector tenders scored on headcount, and any work that would turn us back into a fifteen-person shop."
+TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and public-sector tenders scored on headcount."
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew Skurlatov is co-founder and CTO of Felag. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. He co-founded Uddug in 2018 as its CTO and led it to its acquisition by Gateway.fm in 2024. There he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments whose work included the Wirex Pay platform, identity projects for a global technology company and the infrastructure behind $1B+ locked in staking.",
+         bio="Andrew Skurlatov is co-founder and CTO of Felag. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. He co-founded Uddug in 2018 as its CTO and led it to its acquisition by Gateway.fm in 2024. There he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail Manko is co-founder and CEO of Felag. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew Skurlatov in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product. At Felag he runs partnerships and deals, from the first call to the signed contract.",
@@ -191,7 +190,7 @@ PEOPLE = [
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
 PEOPLE_NOTE = ("The founders have worked together since 2015. Felag is the 2026 restart of Uddug, which Gateway.fm acquired in June 2024. "
-               "A named principal leads every engagement; contractors join on demand and are never sold as principals.")
+               "Contractors join on demand and are never sold as principals.")
 
 CONTRACT = [
     ("Legal entity", "Felag, incorporated in 2026."),
@@ -206,12 +205,12 @@ CONTRACT = [
 
 FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
-    ("Who actually works on our system?", "A named principal, one of the people above, leads every engagement and is written into the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
-    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint; if there is not, it ends with a clear no."),
-    ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited against a pod or fixed-price build signed within 30 days."),
+    ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
+    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
+    ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with Felag. The founders work from the Netherlands and Cyprus."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme for MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
-    ("Do you use AI in delivery?", "Yes, on our own AI-assisted development framework. It runs under the named principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
+    ("Do you use AI in delivery?", "Yes, on our own AI development framework, which we will describe publicly later. It runs under a principal's review, and the outcome in the SOW is what we are accountable for, whatever tooling produced it."),
 ]
 
 # eyebrows and small story lines per theme
@@ -239,7 +238,7 @@ def header():
     <a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a>
     <nav class="nav" aria-label="Page sections">
       <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Prices</a><a href="#how">How</a><a href="#people">People</a></div>
-      <a class="btn btn-sm" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a>
+      <a class="btn btn-sm" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a>
     </nav>
   </div>
 </header>'''
@@ -420,16 +419,13 @@ html:not(.js) .name{cursor:default}
 .how-stage{position:relative;margin-top:48px}
 .how-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:40px}
 .step .k{font-family:var(--mono);font-size:var(--fs-label);color:var(--text);display:flex;align-items:center;gap:12px}
-.step .k span{color:var(--text-secondary)}
-/* a step still to come keeps every word at full contrast: progress is the 1 px rule above it, filling seam to copper as the step lights,
-   and the title stepping from smoke to ash. The text is never dimmed, so the label holds its 7:1 in every state and mid-transition */
-.step{position:relative;border-top:1px solid var(--line);padding-top:20px;transform:translateY(16px);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.step::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.step.on{transform:none}
-.step.on::before{transform:none}
-.step h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--text-secondary);text-wrap:balance;transition:color .5s}
-.step.on h3{color:var(--text)}
-.step p{color:var(--text-secondary);margin-top:12px;font-size:var(--fs-body);line-height:var(--lh-body)}
+.step .k span{color:var(--text-secondary);transition:color .5s}
+.step:not(.on) .k span{color:var(--text)}
+.step h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;margin-top:18px;color:var(--text);text-wrap:balance}
+.step p{color:var(--text-secondary);margin-top:12px;font-size:var(--fs-body);line-height:var(--lh-body);transition:color .5s}
+.step:not(.on) p{color:var(--text)}
+.step{opacity:var(--dim);transform:translateY(16px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.step.on{opacity:1;transform:none}
 .furrow{width:100%;height:120px;display:block}
 .how-grid:first-child{margin-top:0}
 .furrow .soil{fill:none;stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:6 8}
@@ -535,7 +531,7 @@ html:not(.js) .name{cursor:default}
   .scene-book .pin{display:block;min-height:0;padding:48px 0 96px}
   .scene-book .line{position:relative;right:auto;bottom:auto;text-align:left;margin:40px var(--side) 0}
   .foot{grid-template-columns:minmax(0,1fr)}
-  .step{transform:none}
+  .step{opacity:1;transform:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}
 }
 @media (max-width:600px){
   .who-grid,.people-grid,.how-grid{grid-template-columns:minmax(0,1fr)}
@@ -554,7 +550,7 @@ html:not(.js) .name{cursor:default}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
-  .step{transform:none;transition:none}.step::before,.step h3{transition:none}
+  .step{opacity:1;transform:none;transition:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}.step p,.step .k span{transition:none}
   .statement .w{opacity:1}
 }
 /* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
@@ -573,9 +569,8 @@ html:not(.js) .mark-count,.scene-build.flow .mark-count{display:none}
    the script sets .flow and it reads as the no-script section: every line open, every piece lit, nothing held. Under 900 px it already flows */
 .scene-build.flow .cap h3{color:var(--text)}
 @media (min-width:901px){.scene-build.flow{height:auto}.scene-build.flow .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}}
-html:not(.js) .step{transform:none}
-html:not(.js) .step::before{transform:none}
-html:not(.js) .step h3{color:var(--text)}
+html:not(.js) .step{opacity:1;transform:none}
+html:not(.js) .step:not(.on) p,html:not(.js) .step:not(.on) .k span{color:var(--text-secondary)}
 html:not(.js) .faq .a{height:auto}
 /* ---- the hero as a plain section, when its text does not fit the pinned frame (heroFlow in the common script): the no-script layout,
    with room under the buttons on a phone for the rune, which draws in place there instead of flying to the header */
@@ -675,6 +670,15 @@ def sections(t, theme):
     return f'''
 {statement_scene}
 
+<section class="sec" id="who">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
+    <h2 class="reveal">The situations we see most often.</h2>
+    <div class="who-grid stagger">{who}</div>
+    <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
+  </div>
+</section>
+
 <section class="scene-build" id="build" data-scrub="build">
   <div class="pin">
     <div class="wrap">
@@ -693,7 +697,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["proof_eyebrow"]}</p>
     <h2 class="reveal">What we have shipped.</h2>
-    <p class="lead reveal">One team, three names: Uddug from 2018, the Platform department of Gateway.fm from 2024 to 2026, Felag from 2026.</p>
+    <p class="lead reveal">Selected work by Felag's founders and principals at Uddug and Gateway.fm.</p>
     <div class="metrics stagger">
       <article class="metric reveal" style="--i:0"><div class="big" data-count="140" data-suffix="k+">140<em>k+</em></div><div class="label">requests per second at peak, in production for Opera and 1inch</div></article>
       <article class="metric reveal" style="--i:1"><div class="big">$1<em>B+</em></div><div class="label">locked in staking on the infrastructure we ran in 2025 and 2026, serving Lido, Gnosis, Stellar and Canton</div></article>
@@ -702,14 +706,14 @@ def sections(t, theme):
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
-  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, told as they were, with the public record linked where one exists.</p>{strip_nav}</div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
-    <h2 class="reveal">The names on the record.</h2>
+    <h2 class="reveal">Names we have worked with.</h2>
     <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
@@ -725,29 +729,21 @@ def sections(t, theme):
 <section class="sec" id="offer">
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
-    <h2 class="huge reveal">We do not bill hours.</h2>
-    <p class="lead reveal">A named principal scopes the work and the price is on the outcome. Engagements and prices in US dollars, excluding VAT.</p>
+    <h2 class="huge reveal">We sell outcomes, not hours.</h2>
+    <p class="lead reveal">Fixed-price sprints, builds and technical reviews. Monthly retainers for pods and fractional CTO work, with deliverables agreed in the SOW. Prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
-    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a></div>
+    <p class="offer-note reveal">{OFFER_NOTE}</p>
+    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a></div>
   </div>
 </section>
 
 <section class="sec" id="how" data-scrub="how">
   <div class="wrap">
     <p class="eyebrow reveal">{t["how_eyebrow"]}</p>
-    <h2 class="reveal">How an engagement runs.</h2>
+    <h2 class="reveal">How delivery starts.</h2>
     <p class="lead reveal">{t["how_line"]}</p>
     <div class="how-stage">{how_art}<div class="how-grid">{steps}</div></div>
     <p class="how-note reveal">{HOW_NOTE}</p>
-  </div>
-</section>
-
-<section class="sec" id="who">
-  <div class="wrap">
-    <p class="eyebrow reveal">{t["who_eyebrow"]}</p>
-    <h2 class="reveal">The situations we see most often.</h2>
-    <div class="who-grid stagger">{who}</div>
-    <div class="turn reveal"><h3>What we turn down</h3><p>{TURN_DOWN}</p></div>
   </div>
 </section>
 
@@ -774,8 +770,8 @@ def sections(t, theme):
     <div class="wrap">
       <p class="eyebrow">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
-      <p class="mail">Write to <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> with the system and the deadline. A free technical workshop with a founder frames the problem and ends with a sprint scope or a clear no.</p>
-      <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+      <p class="mail">Email <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.</p>
+      <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
   </div>
@@ -895,7 +891,7 @@ SITE_JS = r'''
 // ---- the header knows where the reader is: the link for the section in view goes ash, the rest stay smoke
 (function(){
   var links = document.querySelectorAll('.nav .links a[href]'); if (!links.length || !('IntersectionObserver' in window)) return;
-  var map = {top: '', proof: '#proof', 'proof-cases': '#proof', names: '#proof', record: '#proof', offer: '#offer', how: '#how', who: '#how', people: '#people', faq: '#people'};
+  var map = {top: '', proof: '#proof', 'proof-cases': '#proof', names: '#proof', record: '#proof', offer: '#offer', how: '#how', people: '#people', faq: '#people'};
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if (!en.isIntersecting) return;
@@ -1237,10 +1233,10 @@ def ld_json(title, description):
     # the Fractional CTO minPrice waits on the owner's decision about the price on the page, so that offer carries no figure
     offers = [
         _offer(OFFERS[0], price="0"),
-        _offer(OFFERS[1], price="7500", spec={"price": "7500", "description": "launch price, list $15k"}),
+        _offer(OFFERS[1], spec={"minPrice": 10000, "description": "from $10k"}),
         _offer(OFFERS[2], spec={"description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}),
         _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
-        _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start"}),
+        _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
     org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "url": SITE,
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
@@ -1314,7 +1310,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
     <div class="wrap hero-inner">
       <h1 class="rise r1">{headline}</h1>
       <p class="sub rise r2">{sub}</p>
-      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Write to us</a><a class="textlink" href="#offer">See prices</a></div>
+      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {hero_statement}
   </div>

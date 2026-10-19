@@ -83,6 +83,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav .links a[href="#proof"]{display:none}
 }
 @media (max-width:400px){
+  .nav .links{display:none}
   .lockup svg{height:32px}
   .btn-sm{padding:0 16px}
 }
