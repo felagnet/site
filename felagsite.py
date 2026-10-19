@@ -209,19 +209,19 @@ TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and pub
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew sets the technical direction at Felag, leads the architecture on its engagements and takes fractional CTO seats. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. As CTO of Uddug from 2018 he led the company to its acquisition by Gateway.fm in 2024, where he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
+         bio="Andrew sets Felag's technical direction, leads the architecture on its engagements and steps in as fractional CTO. He has spent 15 years in software, ten of them in blockchain. He co-founded Uddug in 2018 and, after Gateway.fm acquired it, ran ~25 people across two departments as VP of Platform and Yield.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
-         bio="Mikhail runs partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product.",
+         bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through the Gateway.fm acquisition, and then headed the platform team for its tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
     dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
-         bio="Pavel leads infrastructure and ZK work at Felag. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the architecture of the shared prover. Before that he spent a decade in scientific R&D, with 20+ published papers.",
+         bio="Pavel leads infrastructure and ZK work at Felag. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
     dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
-         bio="Andrey leads Web3 systems work at Felag. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients. Before that he built smart contracts and payments architecture at Uddug.",
+         bio="Andrey leads Web3 systems work at Felag. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
-PEOPLE_NOTE = "Contractors join on demand and are never sold as principals."
+PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
 
 # the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
 ENTITY = ("FELAG LLC, a Georgian limited liability company with identification number 426561829 and registered office at "
