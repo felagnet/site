@@ -241,7 +241,7 @@ CONTRACT = [
 FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
-    ("How do we start?", "With a free technical workshop with a founder. If there is a fit, it ends with the scope of a paid Architecture Sprint."),
+    ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
     ("How are deliverables accepted and scope changes agreed?", "Deliverables are reviewed and accepted with you at the monthly review, against the SOW. Scope changes are agreed there and go into the next month's SOW."),
@@ -388,6 +388,12 @@ html.js .reveal.in{opacity:1;transform:none}
 .strip-nav{display:flex;gap:12px;flex:0 0 auto}
 .strip-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--line-strong);border-radius:2px;background:none;color:var(--text);cursor:pointer;transition:border-color .15s,color .15s}
 .strip-btn svg{display:block}
+/* the stop control shows two bars while the strip drifts and a play triangle once it is stopped */
+.strip-play .i-start,.strip-play.off .i-stop{display:none}
+.strip-play.off .i-start{display:block}
+.strip-btn[hidden]{display:none}
+/* while the strip drifts it moves freely; snap returns once a reader stops it */
+.track.drift{scroll-snap-type:none}
 .strip-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
 .strip-btn:active{color:var(--accent)}
 .strip-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -664,7 +670,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -709,6 +715,7 @@ def sections(t, theme):
     chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{d}"/></svg>'
     strip_nav = ('<div class="strip-nav">'
                  f'<button type="button" class="strip-btn" data-dir="-1" aria-label="Previous case">{chevron.format(d="M10 3L5 8l5 5")}</button>'
+                 f'<button type="button" class="strip-btn strip-play" id="strip-play" aria-label="Stop scrolling" hidden>{chevron.format(d="M6 3.5v9M10 3.5v9").replace("<svg ", "<svg class=i-stop ")}{chevron.format(d="M5.5 3.5l7 4.5-7 4.5z").replace("<svg ", "<svg class=i-start ")}</button>'
                  f'<button type="button" class="strip-btn" data-dir="1" aria-label="Next case">{chevron.format(d="M6 3l5 5-5 5")}</button></div>')
 
     statement_scene = "" if theme == "rune" else f'''
@@ -759,7 +766,7 @@ def sections(t, theme):
     </div>
   </div>
 </section>
-<section class="scene-proof" id="proof-cases" aria-label="Lead cases">
+<section class="scene-proof" id="proof-cases" aria-label="Lead cases" aria-roledescription="carousel">
   <div class="wrap strip-head"><p class="lead" style="margin-top:0">Each case gives the contribution, the result and the delivery status, with details and evidence under it.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
@@ -962,25 +969,77 @@ SITE_JS = r'''
 
 // ---- the cases strip: previous and next move it one card at a time, for readers without a trackpad
 (function(){
-  var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn'); if (!track || !btns.length) return;
+  var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn[data-dir]'); if (!track || !btns.length) return;
   function update(){
     var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
   }
-  // after a press the card now at the left edge is read out in its own words, its counter and its title, once the strip has settled
+  // after a press the card now at the left edge is read out as its slide position and its title, once the strip has settled
   var status = document.getElementById('strip-status'), say = 0;
   function announce(){
     var tr = track.getBoundingClientRect(), cards = track.querySelectorAll('.card'), c = null;
     for (var i = 0; i < cards.length; i++){ if (cards[i].getBoundingClientRect().left >= tr.left - 2){ c = cards[i]; break; } }
-    if (c && status) status.textContent = c.querySelector('.idx').textContent + ', ' + c.querySelector('h3').textContent;
+    if (c && status) status.textContent = c.getAttribute('aria-label') + ', ' + c.querySelector('h3').textContent;
   }
+  // a press brings the next or previous card's left edge to the gutter, wherever the drift has left the strip
+  function target(dir){
+    var edge = track.getBoundingClientRect().left + (parseFloat(getComputedStyle(track).paddingLeft) || 0), cards = track.querySelectorAll('.card'), x = null;
+    for (var i = 0; i < cards.length; i++){ var l = cards[i].getBoundingClientRect().left - edge;
+      if (dir > 0 && l > 2){ x = l; break; }
+      if (dir < 0 && l < -2) x = l; }
+    return x === null ? (dir > 0 ? track.scrollWidth : 0) : track.scrollLeft + x;
+  }
+  var hold = function(){}, glide = 0;
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450);
-    // one card plus the gap between cards, which is 24 px on a desktop and 16 px on a phone
-    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + (parseFloat(getComputedStyle(track).columnGap) || 24);
-    track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000); glide = performance.now();
+    track.scrollTo({left: target(parseInt(b.getAttribute('data-dir'), 10)), behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
+
+  // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
+  // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll; Stop scrolling ends it. Never under reduced motion
+  var play = document.getElementById('strip-play'); if (!play || reduce) return;
+  var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
+  play.hidden = false; track.classList.add('drift');
+  hold = function(ms){ until = Math.max(until, performance.now() + ms); };
+  function running(){ return !stopped && !hover && !focused && seen && !document.hidden; }
+  function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
+  // leaving the strip, by pointer or by focus, sets it going again at once from where it stands
+  function resume(){ until = 0; pos = track.scrollLeft; kick(); }
+  function tick(t){
+    raf = 0; if (!running()){ last = 0; return; }
+    raf = requestAnimationFrame(tick);
+    var dt = last ? Math.min(t - last, 50) : 0; last = t;
+    if (end){
+      // at the last card: rest, glide back to the first, rest again
+      if (!back && t - end > 1600){ back = true; track.scrollTo({left: 0, behavior: 'smooth'}); }
+      if (back && (track.scrollLeft < 2 || t - end > 7600)){ end = 0; back = false; pos = track.scrollLeft; until = t + 1500; }
+      return;
+    }
+    // a press's glide lands on its card edge before the drift takes over again
+    if (glide){ if (t - glide < 2000 && (t - glide < 150 || Math.abs(track.scrollLeft - pos) > 0.5)){ pos = track.scrollLeft; return; } glide = 0; pos = track.scrollLeft; }
+    if (t < until || Math.abs(track.scrollLeft - pos) > 3){ pos = track.scrollLeft; if (t >= until) until = t + 4000; return; }
+    if (pos >= track.scrollWidth - track.clientWidth - 1){ end = t; return; }
+    pos += SPEED*dt/1000; track.scrollLeft = pos;
+  }
+  play.addEventListener('click', function(){
+    stopped = !stopped; play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
+    snap(); end = 0; back = false; pos = track.scrollLeft; hold(600); kick();
+  });
+  [track, play.parentNode].forEach(function(el){
+    el.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse'){ hover = true; } });
+    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; resume(); } });
+  });
+  var sec = document.getElementById('proof-cases');
+  // keyboard focus holds the drift and gives the snap back, so the arrow keys move card by card
+  function snap(){ track.classList.toggle('drift', !stopped && !focused); }
+  sec.addEventListener('focusin', function(e){ focused = e.target.matches(':focus-visible'); snap(); kick(); });
+  sec.addEventListener('focusout', function(){ var was = focused; focused = false; snap(); if (was) resume(); else kick(); });
+  track.addEventListener('touchstart', function(){ until = performance.now() + 60000; }, {passive: true});
+  track.addEventListener('touchend', function(){ until = performance.now() + 4000; }, {passive: true});
+  track.addEventListener('wheel', function(){ hold(4000); }, {passive: true});
+  document.addEventListener('visibilitychange', kick);
+  new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
 })();
 
 // ---- the names wall: a name opens its line right under its own row

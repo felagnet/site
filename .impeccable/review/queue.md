@@ -95,3 +95,4 @@ Worked on the ux-audit branch from origin/main, one commit per issue, in the aud
 - ux-d13 [P1] done in seo-5-1 (18f149a, merged): Waiting How steps at 2.67:1. This branch's seam rule (e5f9a79) was set aside in the merge with main, by Andrew's decision on 19 October 2026: the steps keep main's dim with ash labels and body, about 4.6:1.
 - ux-d05 [P1] done 0406cd4: Reduced motion below the hero: every section in its final state
 - ux-d09 [P1] done f8be15a and db94444; owner: the carousel and slide strings in copy-notes.md. On a phone the controls come before the strip in the tab order, though they show under it.
+- ux-strip-drift [P2] done (Andrew, 19 October 2026: constant drift, about 30 px a second, back to the first card after the last; a Stop scrolling control plus a hold on hover and keyboard focus; the carousel and slide words applied, the status in the 3 of 10 form). Never under reduced motion. Checked in Chromium and WebKit through Playwright at 1440 and 390.

@@ -126,3 +126,9 @@ Resolved the same day:
 Still open:
 - rate-card.md and core.md still need the sprint price, pod tiers, the one-month CTO term, the refund and the acceptance terms. Andrew: not now.
 - The Notion proof register (master for proof) is behind the site on two rows: Humanity Protocol has no transaction figure, and Marscatsvoyage's wording still carries $2M+. A founder updates the rows.
+
+Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" form. Applied on the strip-autoscroll branch.
+
+## 19 October 2026, the cases strip drift: labels for its stop control
+
+Andrew asked for the strip to scroll on its own, as a constant slow drift. The control that stops and restarts it is new spoken text; Andrew chose the strings in the chat: "Stop scrolling" while it drifts and "Start scrolling" once it is stopped. Applied on the strip-autoscroll branch. The control shows only an icon, so nothing visible changes.
