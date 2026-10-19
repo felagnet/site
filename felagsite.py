@@ -214,11 +214,11 @@ PEOPLE = [
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through the Gateway.fm acquisition, and then headed the platform team for its tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
-    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
-         bio="Pavel leads infrastructure and ZK work at Felag. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",
+    dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer at Felag",
+         bio="Pavel leads engineering on Felag's engagements. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
-    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
-         bio="Andrey leads Web3 systems work at Felag. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
+    dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer at Felag",
+         bio="Andrey leads delivery on Felag's engagements. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
 PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
