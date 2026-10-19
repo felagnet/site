@@ -208,20 +208,19 @@ TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and pub
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew Skurlatov is co-founder and CTO of Felag. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. He co-founded Uddug in 2018 as its CTO and led it to its acquisition by Gateway.fm in 2024. There he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
+         bio="Andrew sets the technical direction at Felag and leads the architecture on its engagements. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. As CTO of Uddug from 2018 he led the company to its acquisition by Gateway.fm in 2024, where he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
-         bio="Mikhail Manko is co-founder and CEO of Felag. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew Skurlatov in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product. At Felag he runs partnerships and deals, from the first call to the signed contract.",
+         bio="Mikhail runs partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
     dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, Infrastructure and ZK, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer for infrastructure and ZK at Felag",
-         bio="Pavel Dodonov is Principal Engineer for infrastructure and ZK at Felag and a partner. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the shared prover architecture for L2 ecosystems, GPU and CPU autoscaling for the prover fleets, and an EVM event-indexing platform that most of the company's projects reused. Before that he spent a decade in scientific R&D, with 20+ published papers.",
+         bio="Pavel leads infrastructure and ZK work at Felag. In nearly four years at Gateway.fm he rose from Go backend engineer to Backend Lead and led the architecture of the shared prover. Before that he spent a decade in scientific R&D, with 20+ published papers.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
     dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, Web3 Systems, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer for Web3 systems at Felag",
-         bio="Andrey Solovov is Principal Engineer for Web3 systems at Felag and a partner. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients, among them a push oracle that delivered multi-asset prices every 500 ms and a pull-based feed at about 1,000 requests per second. Before Gateway he built smart contracts and payments architecture at Uddug.",
+         bio="Andrey leads Web3 systems work at Felag. For more than two years he was Blockchain Dev Lead at Gateway.fm, shipping production systems for DeFi, oracle, L2 and identity clients. Before that he built smart contracts and payments architecture at Uddug.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
-PEOPLE_NOTE = ("The founders have worked together since 2015. Felag is the 2026 restart of Uddug, which Gateway.fm acquired in June 2024. "
-               "Contractors join on demand and are never sold as principals.")
+PEOPLE_NOTE = "Contractors join on demand and are never sold as principals."
 
 CONTRACT = [
     ("Legal entity", "Felag, incorporated in 2026."),
