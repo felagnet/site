@@ -139,35 +139,31 @@ WALL = [
     ("Iden3", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
 ]
 
-# the record, three eras; the Gateway.fm era opens on the department line
+# the record: a compact lineage in the reading path, and the company background behind a disclosure,
+# which keeps only the projects that have no case card of their own
+LINEAGE = [
+    ("2015", "The founders start working together."),
+    ("2018", "Andrew Skurlatov and Mikhail Manko found Uddug."),
+    ("2021", "Andrew joins Gateway.fm as one of its first engineers."),
+    ("June 2024", "Gateway.fm acquires Uddug, and the team becomes its Platform department."),
+    ("2026", "The departments close and the team leaves."),
+    ("July 2026", "Felag starts as the restart of Uddug, with Pavel Dodonov and Andrey Solovov as principal engineers and partners."),
+]
 ERAS = [
     dict(name="Uddug", years="2018 to 2024",
-         intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
          cases=[
              ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
-             ("From 2022", "Arsnl.art", "The NFT platform and its launches, including Frank Stella's 'Geometries'.", []),
              ("2023", "Metazoku", Y_LINE, []),
-             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, []),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
-         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
-             ("2021 to 2022", "The RPC proxy for Opera and 1inch", "A cache layer and rate limiting at 140k+ requests per second at peak, with 50 ms average latency on the heavy requests.", []),
              ("2023 to 2025", "Presto", K_LINE, []),
              ("2023 to 2025", "The indexing platform", J_LINE, []),
-             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain.", []),
-             ("2024", "Wirex Pay", "The L2 chain and the application layer behind its debit cards.", []),
-             ("2024 to 2025", "Humanity Protocol", F_NAMED, []),
-             ("2024 to 2025", "The shared prover", H_NAMED, []),
-             ("2025", "Identity for a global technology company, a pilot", "Wallets with enterprise single sign-on and identity for AI agents, both a proof of concept.", []),
-             ("2025 to 2026", "DeepNode", "Fractional CTO for ten months: decentralised AI infrastructure measured at about 5,000 requests per second, through the January 2026 token launch and exchange listing at $140M+ FDV.", [("KuCoin listing announcement", KUCOIN)]),
+             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain. The figures are the peak observed in production, aggregate across clients, during 2023 to 2025.", []),
              ("2025 to 2026", "Gateway Yield", G_NAMED, []),
          ]),
-    dict(name="Felag", years="From July 2026",
-         intro="Felag was founded in July 2026 as the restart of Uddug. Pavel Dodonov and Andrey Solovov joined as principal engineers and partners.",
-         cases=[]),
 ]
 
 OFFERS = [
@@ -435,7 +431,10 @@ html:not(.js) .name{cursor:default}
 .era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
 .era-name{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.era-intro{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:10px;max-width:52em}
+.lineage{margin-top:40px;border-top:1px solid var(--line)}
+.lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.background{margin-top:24px}
+.background .eras{margin-top:24px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
@@ -664,10 +663,11 @@ def sections(t, theme):
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
         wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
+    lineage = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><p>{tx}</p></div></div>' for y, tx in LINEAGE)
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
-        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
+        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div></div><div class="era-cases">{rows}</div></div>'
     panels = ""
     for i, o in enumerate(OFFERS):
         note = f'<span>{o["note"]}</span>' if o["note"] else ""
@@ -769,8 +769,11 @@ def sections(t, theme):
 <section class="sec" id="record" data-scrub="record">
   <div class="wrap">
     <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
-    <h2 class="reveal">The record, in three eras.</h2>
-    <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+    <h2 class="reveal">Where the team comes from.</h2>
+    <div class="lineage">{lineage}</div>
+    <details class="more background reveal"><summary>Company background</summary>
+      <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+    </details>
   </div>
 </section>
 

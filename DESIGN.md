@@ -296,7 +296,7 @@ Machined and quiet. Flat copper button with 2 px corners, cards as slate slabs w
 - **Style:** a native details element with a mono summary in ash, at least 44 px tall to the finger, led by a copper plus that turns to a cross over 0.3 s when open; hover turns the summary light copper, focus draws the 2 px copper outline. It holds what a reader can ask for but need not read: the technical capabilities under the build scene, the details and evidence on each case, and the company background under the record. Closed by default; without JavaScript it still opens.
 
 ### Record line
-- **Style:** a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper when lit, era names at headline scale, cases as key-value rows with the year in mono.
+- **Style:** a compact lineage of six dated rows sits in the reading path, and the record proper sits under the Company background disclosure. Inside it, a 1 px seam line on the left that fills with copper as the reader scrolls, era blocks marked by an 11 px rotated square that turns copper when lit, era names at headline scale, cases as key-value rows with the year in mono.
 
 ## Do's and Don'ts
 
