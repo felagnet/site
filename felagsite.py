@@ -44,14 +44,11 @@ F_NAMED = "We built the application layer for Humanity Protocol, an identity net
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
-SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
-I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
 P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
-Q_LINE = "Uddug built the NFT platform behind Arsnl.art, including Frank Stella's 'Geometries'."
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
@@ -111,35 +108,35 @@ PROOF_CARDS = [
          details="The exchange was roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and the project ended there."),
 ]
 
-# the names wall: every name the register and the history allow, each with its one line and its era
+# the names wall: every name the register and the history allow, each with a short relationship line that points to its case
 WALL = [
-    ("Wirex Pay", "client", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
-    ("Opera", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
-    ("1inch", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
-    ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
-    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew, 2025 to 2026"),
-    ("EY Nightfall", "client", H_NAMED, [], "Gateway.fm, 2024 to 2025"),
-    ("LUKSO", "client", "LUKSO received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
-    ("Lumia", "client", "Lumia received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
-    ("ApeChain", "client", "For ApeChain we designed a pull-based price feed at about 1,000 requests per second and a native verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
-    ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
-    ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
-    ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
-    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2023"),
-    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2023"),
-    ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
-    ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
-    ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
-    ("Metazoku", "client", Y_LINE, [], "Uddug, 2023"),
-    ("Snark.art", "client", SNARK_LINE, [("snark.art", "https://snark.art")], "Andrew, then Uddug"),
-    ("Synthetix", "protocol", "Infinex is the Synthetix front-end; we built its event infrastructure and backend under governance proposal XIP-9.", [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Lido", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Stellar", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Canton", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Polygon zkEVM", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
-    ("Miden", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
-    ("Iden3", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Wirex Pay", "client", "Client for the payments platform and its L2 chain. See case 01.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
+    ("Opera", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
+    ("1inch", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
+    ("Infinex", "client", "Client for the event infrastructure and backend. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Humanity Protocol", "client", "Client for the application layer. See case 05.", [], "Gateway.fm, 2024 to 2025"),
+    ("DeepNode", "client", "A fractional CTO engagement. See case 08.", [("KuCoin listing announcement", KUCOIN)], "Independent engagement, 2025 to 2026"),
+    ("EY Nightfall", "client", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("LUKSO", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
+    ("Lumia", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
+    ("ApeChain", "client", "A pull-based price feed and a verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
+    ("Presto", "client", "The tokenised-finance product we led to revenue.", [], "Gateway.fm, 2023 to 2025"),
+    ("Gnosis", "client", "Ran on the RPC proxy, and served by Gateway Yield.", [], "Gateway.fm"),
+    ("Ethereum Foundation", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022"),
+    ("Web3 Foundation", "client", "Grant work, including JuniDB.", [], "Uddug, 2020 to 2023"),
+    ("Protocol Labs", "client", "Grant work.", [], "Uddug, 2020 to 2023"),
+    ("OG:Crystals", "client", "The technology behind the launch, with Snark.art.", [], "Uddug, 2021"),
+    ("Marscatsvoyage", "client", "A launch Uddug built.", [], "Uddug, 2021"),
+    ("Arsnl.art", "client", "The NFT platform and its launches. See case 09.", [], "Uddug, from 2022"),
+    ("Metazoku", "client", "Smart contracts.", [], "Uddug, 2023"),
+    ("Snark.art", "client", "An NFT launch platform for established artists, later a Uddug client.", [("snark.art", "https://snark.art")], "2019 to 2020, then Uddug"),
+    ("Synthetix", "protocol", "The protocol behind Infinex. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Lido", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Stellar", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Canton", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Polygon zkEVM", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("Miden", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("Iden3", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
 ]
 
 # the record, three eras; the Gateway.fm era opens on the department line
@@ -765,7 +762,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
     <h2 class="reveal">Names we have worked with.</h2>
-    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
+    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for the relationship and the case behind it.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
 </section>
