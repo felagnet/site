@@ -815,7 +815,7 @@ def sections(t, theme):
 <section class="sec" id="faq">
   <div class="wrap">
     <p class="eyebrow reveal">{t["faq_eyebrow"]}</p>
-    <h2 class="reveal">The ones that come up on nearly every first call.</h2>
+    <h2 class="reveal">Questions about working with Felag.</h2>
     <div class="faq reveal">{faq}</div>
   </div>
 </section>
