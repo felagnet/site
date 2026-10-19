@@ -340,6 +340,12 @@ html.js .reveal.in{opacity:1;transform:none}
 .strip-nav{display:flex;gap:12px;flex:0 0 auto}
 .strip-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--line-strong);border-radius:2px;background:none;color:var(--text);cursor:pointer;transition:border-color .15s,color .15s}
 .strip-btn svg{display:block}
+/* the stop control shows two bars while the strip drifts and a play triangle once it is stopped */
+.strip-play .i-start,.strip-play.off .i-stop{display:none}
+.strip-play.off .i-start{display:block}
+.strip-btn[hidden]{display:none}
+/* while the strip drifts it moves freely; snap returns once a reader stops it */
+.track.drift{scroll-snap-type:none}
 .strip-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
 .strip-btn:active{color:var(--accent)}
 .strip-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -655,6 +661,7 @@ def sections(t, theme):
     chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{d}"/></svg>'
     strip_nav = ('<div class="strip-nav">'
                  f'<button type="button" class="strip-btn" data-dir="-1" aria-label="Previous case">{chevron.format(d="M10 3L5 8l5 5")}</button>'
+                 f'<button type="button" class="strip-btn strip-play" id="strip-play" aria-label="Stop scrolling" hidden>{chevron.format(d="M6 3.5v9M10 3.5v9").replace("<svg ", "<svg class=i-stop ")}{chevron.format(d="M5.5 3.5l7 4.5-7 4.5z").replace("<svg ", "<svg class=i-start ")}</button>'
                  f'<button type="button" class="strip-btn" data-dir="1" aria-label="Next case">{chevron.format(d="M6 3l5 5-5 5")}</button></div>')
 
     statement_scene = "" if theme == "rune" else f'''
@@ -904,7 +911,7 @@ SITE_JS = r'''
 
 // ---- the cases strip: previous and next move it one card at a time, for readers without a trackpad
 (function(){
-  var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn'); if (!track || !btns.length) return;
+  var track = document.getElementById('track'), btns = document.querySelectorAll('.strip-btn[data-dir]'); if (!track || !btns.length) return;
   function update(){
     var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
@@ -916,13 +923,61 @@ SITE_JS = r'''
     for (var i = 0; i < cards.length; i++){ if (cards[i].getBoundingClientRect().left >= tr.left - 2){ c = cards[i]; break; } }
     if (c && status) status.textContent = c.getAttribute('aria-label') + ', ' + c.querySelector('h3').textContent;
   }
+  // a press brings the next or previous card's left edge to the gutter, wherever the drift has left the strip
+  function target(dir){
+    var edge = track.getBoundingClientRect().left + (parseFloat(getComputedStyle(track).paddingLeft) || 0), cards = track.querySelectorAll('.card'), x = null;
+    for (var i = 0; i < cards.length; i++){ var l = cards[i].getBoundingClientRect().left - edge;
+      if (dir > 0 && l > 2){ x = l; break; }
+      if (dir < 0 && l < -2) x = l; }
+    return x === null ? (dir > 0 ? track.scrollWidth : 0) : track.scrollLeft + x;
+  }
+  var hold = function(){};
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450);
-    // one card plus the gap between cards, which is 24 px on a desktop and 16 px on a phone
-    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + (parseFloat(getComputedStyle(track).columnGap) || 24);
-    track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000);
+    track.scrollTo({left: target(parseInt(b.getAttribute('data-dir'), 10)), behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
+
+  // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
+  // or keyboard focus is at the strip, and for a few seconds after a reader scrolls or presses; Stop scrolling ends it. Never under reduced motion
+  var play = document.getElementById('strip-play'); if (!play || reduce) return;
+  var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
+  play.hidden = false; track.classList.add('drift');
+  hold = function(ms){ until = Math.max(until, performance.now() + ms); };
+  function running(){ return !stopped && !hover && !focused && seen && !document.hidden; }
+  function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
+  function tick(t){
+    raf = 0; if (!running()){ last = 0; return; }
+    raf = requestAnimationFrame(tick);
+    var dt = last ? Math.min(t - last, 50) : 0; last = t;
+    if (end){
+      // at the last card: rest, glide back to the first, rest again
+      if (!back && t - end > 1600){ back = true; track.scrollTo({left: 0, behavior: 'smooth'}); }
+      if (back && (track.scrollLeft < 2 || t - end > 7600)){ end = 0; back = false; pos = track.scrollLeft; until = t + 1500; }
+      return;
+    }
+    if (t < until || Math.abs(track.scrollLeft - pos) > 3){ pos = track.scrollLeft; if (t >= until) until = t + 4000; return; }
+    if (pos >= track.scrollWidth - track.clientWidth - 1){ end = t; return; }
+    pos += SPEED*dt/1000; track.scrollLeft = pos;
+  }
+  play.addEventListener('click', function(){
+    stopped = !stopped; play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
+    snap(); end = 0; back = false; pos = track.scrollLeft; hold(600); kick();
+  });
+  [track, play.parentNode].forEach(function(el){
+    el.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse'){ hover = true; } });
+    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; hold(800); kick(); } });
+  });
+  var sec = document.getElementById('proof-cases');
+  // keyboard focus holds the drift and gives the snap back, so the arrow keys move card by card
+  function snap(){ track.classList.toggle('drift', !stopped && !focused); }
+  sec.addEventListener('focusin', function(e){ focused = e.target.matches(':focus-visible'); snap(); kick(); });
+  sec.addEventListener('focusout', function(){ focused = false; snap(); pos = track.scrollLeft; hold(800); kick(); });
+  track.addEventListener('touchstart', function(){ until = performance.now() + 60000; }, {passive: true});
+  track.addEventListener('touchend', function(){ until = performance.now() + 4000; }, {passive: true});
+  track.addEventListener('wheel', function(){ hold(4000); }, {passive: true});
+  document.addEventListener('visibilitychange', kick);
+  new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
 })();
 
 // ---- the names wall: a name opens its line right under its own row
