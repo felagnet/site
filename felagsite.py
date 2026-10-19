@@ -208,7 +208,7 @@ TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and pub
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew sets the technical direction at Felag and leads the architecture on its engagements. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. As CTO of Uddug from 2018 he led the company to its acquisition by Gateway.fm in 2024, where he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
+         bio="Andrew sets the technical direction at Felag, leads the architecture on its engagements and takes fractional CTO seats. He has spent 15 years in software, 10 of them in blockchain, as an engineering leader and serial founder. As CTO of Uddug from 2018 he led the company to its acquisition by Gateway.fm in 2024, where he became VP of DLT and later VP of Platform and Yield, running ~25 people across two departments.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail runs partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years in IT running teams, products and operations. He co-founded Uddug with Andrew in 2018 and led it through its acquisition by Gateway.fm in 2024, where he was Head of Platform for the tokenised-finance product.",
