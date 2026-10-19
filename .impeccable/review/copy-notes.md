@@ -82,3 +82,7 @@ Still open:
 - rate-card.md and core.md need the new sprint price, pod tiers and one-month CTO term.
 - Arsnl.art has no stated constraint and no public link.
 - P_LINE (Marscatsvoyage, "$2M+ at launch") has the same primary versus secondary question as OG:Crystals.
+
+## 19 October 2026, the proof restored
+
+Andrew chose to bring the proof back as it stood on main: the ten lead cases with their full paragraphs, and every name on the wall opening its one-line story. This replaces the three-case facts layout and the names-and-eras wall from the pass above, and with it the "no people named" rule: the DeepNode card and the Snark.art line name Andrew again. ICEX is a card again, so its record row is gone; its kicker keeps "never launched". The record's short lines and Andrew's trimmed bio stay.
