@@ -17,8 +17,8 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
              "the architecture and delivery of backends, payment systems and identity infrastructure.")
-# the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
-DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
+# the search snippet: who we serve, what we build and how we price, as Andrew chose it on 19 October 2026, 148 characters
+DESCRIPTION = ("Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, "
                "priced on outcomes rather than hours.")
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
@@ -224,8 +224,11 @@ PEOPLE = [
 PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
 
 # the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
-ENTITY = ("FELAG LLC, a Georgian limited liability company with identification number 426561829 and registered office at "
-          "Georgia, Gardabani Municipality, Poladaant Kari Village, 4th Street, Lane II, N 11")
+# the registration number and the office as parts, so the structured data reads the same facts as the footer
+ENTITY_ID = "426561829"
+ENTITY_OFFICE = dict(addressRegion="Gardabani Municipality", addressLocality="Poladaant Kari Village", streetAddress="4th Street, Lane II, N 11")
+ENTITY = (f"FELAG LLC, a Georgian limited liability company with identification number {ENTITY_ID} and registered office at "
+          f"Georgia, {ENTITY_OFFICE['addressRegion']}, {ENTITY_OFFICE['addressLocality']}, {ENTITY_OFFICE['streetAddress']}")
 
 CONTRACT = [
     ("Legal entity", ENTITY + "."),
@@ -1323,19 +1326,21 @@ SITE = "https://felag.net/"
 COMPANY_PAGES = ["https://www.linkedin.com/company/felagnet/", "https://github.com/felagnet", "https://x.com/felagnet"]
 
 
-def _offer(o, price=None, spec=None):
+def _offer(o, price=None, spec=None, monthly=False):
     d = {"@type": "Offer", "name": o["name"], "description": o["body"], "priceCurrency": "USD"}
     if price is not None:
         d["price"] = price
     if spec:
-        d["priceSpecification"] = dict({"@type": "PriceSpecification", "priceCurrency": "USD", "valueAddedTaxIncluded": False}, **spec)
+        # a monthly fee is a unit price per month, MON in UN/CEFACT
+        kind = {"@type": "UnitPriceSpecification", "unitCode": "MON", "unitText": "month"} if monthly else {"@type": "PriceSpecification"}
+        d["priceSpecification"] = dict(kind, priceCurrency="USD", valueAddedTaxIncluded=False, **spec)
     d["itemOffered"] = {"@type": "Service", "name": o["name"], "provider": {"@id": SITE + "#org"}}
     return d
 
 
 def ld_json(title, description):
     """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
-    No headcount, no address or country, no relation to Gateway.fm beyond the verbatim bios."""
+    No headcount, no relation to Gateway.fm beyond the verbatim bios; the only address is the registered office in the footer."""
     people_ids = ["andrew", "mike", "pavel", "andrey"]
     homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus"}
     persons = []
@@ -1347,15 +1352,16 @@ def ld_json(title, description):
         d["description"] = p["bio"]
         d["sameAs"] = [u for _, u in p["links"]]
         persons.append(d)
-    # the Fractional CTO minPrice waits on the owner's decision about the price on the page, so that offer carries no figure
     offers = [
         _offer(OFFERS[0], price="0"),
         _offer(OFFERS[1], spec={"minPrice": 10000, "description": "from $10k"}),
-        _offer(OFFERS[2], spec={"description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}),
-        _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
+        _offer(OFFERS[2], spec={"minPrice": 4000, "description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}, monthly=True),
+        _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}, monthly=True),
         _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
     org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "legalName": "FELAG LLC", "url": SITE,
+           "identifier": {"@type": "PropertyValue", "name": "Identification number of a Georgian limited liability company", "value": ENTITY_ID},
+           "address": dict({"@type": "PostalAddress"}, **ENTITY_OFFICE, addressCountry="GE"),
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
            "image": SITE + "og.png",
            "slogan": "Senior engineers who own the architecture and ship to production.",
