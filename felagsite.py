@@ -47,8 +47,10 @@ G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in stakin
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
 DEPT_LINE = "In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments, whose work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure through its January 2026 token launch and exchange listing at $140M+ FDV at launch, with the network measured at about 5,000 requests per second."
+SNARK_LINE = "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, from 2019 to 2020; Snark.art later became a Uddug client."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
 ICEX_LINE = "ICEX was the founders' own exchange project of 2017 to 2018, roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and it never launched. The push oracle the team later shipped was first built there."
+I_NAMED = "We designed a push oracle that delivered multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia, and, for ApeChain, a pull-based feed at about 1,000 requests per second and a native verifiable-randomness oracle."
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
@@ -71,35 +73,35 @@ PROOF_CARDS = [
     dict(kicker="2017 to 2018, never launched", title="ICEX", body=ICEX_LINE, links=[], era="The founders, before Uddug"),
 ]
 
-# the names wall: every name the register and the history allow, each with its era and any public record; the story lives in the cases and the record
+# the names wall: every name the register and the history allow, each with its one line and its era
 WALL = [
-    ('Wirex Pay', 'client', [('L2BEAT listing', L2B), ('Partnership announcement', WIREX_PR)], 'Gateway.fm, 2024'),
-    ('Opera', 'client', [], 'Gateway.fm, 2021 to 2022'),
-    ('1inch', 'client', [], 'Gateway.fm, 2021 to 2022'),
-    ('Infinex', 'client', [], 'Uddug with Gateway.fm, 2023 to 2024'),
-    ('Humanity Protocol', 'client', [], 'Gateway.fm, 2024 to 2025'),
-    ('DeepNode', 'client', [('KuCoin listing announcement', KUCOIN)], 'Andrew, 2025 to 2026'),
-    ('EY Nightfall', 'client', [], 'Gateway.fm, 2024 to 2025'),
-    ('LUKSO', 'client', [], 'Gateway.fm, 2023 to 2025'),
-    ('Lumia', 'client', [], 'Gateway.fm, 2023 to 2025'),
-    ('ApeChain', 'client', [], 'Gateway.fm, 2023 to 2025'),
-    ('Presto', 'client', [], 'Gateway.fm, 2023 to 2025'),
-    ('Gnosis', 'client', [], 'Gateway.fm'),
-    ('Ethereum Foundation', 'client', [], 'Gateway.fm, 2021 to 2022'),
-    ('Web3 Foundation', 'client', [], 'Uddug, 2020 to 2023'),
-    ('Protocol Labs', 'client', [], 'Uddug, 2020 to 2023'),
-    ('OG:Crystals', 'client', [], 'Uddug, 2021'),
-    ('Marscatsvoyage', 'client', [], 'Uddug, 2021'),
-    ('Arsnl.art', 'client', [], 'Uddug, from 2022'),
-    ('Metazoku', 'client', [], 'Uddug, 2023'),
-    ('Snark.art', 'client', [('snark.art', 'https://snark.art')], 'Andrew, then Uddug'),
-    ('Synthetix', 'protocol', [], 'Uddug with Gateway.fm, 2023 to 2024'),
-    ('Lido', 'protocol', [], 'Gateway.fm, 2025 to 2026'),
-    ('Stellar', 'protocol', [], 'Gateway.fm, 2025 to 2026'),
-    ('Canton', 'protocol', [], 'Gateway.fm, 2025 to 2026'),
-    ('Polygon zkEVM', 'protocol', [], 'Gateway.fm, 2024 to 2025'),
-    ('Miden', 'protocol', [], 'Gateway.fm, 2024 to 2025'),
-    ('Iden3', 'protocol', [], 'Gateway.fm, 2024 to 2025'),
+    ("Wirex Pay", "client", A_NAMED, [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
+    ("Opera", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
+    ("1inch", "client", B_NAMED, [], "Gateway.fm, 2021 to 2022"),
+    ("Infinex", "client", C_LINE, [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Humanity Protocol", "client", F_NAMED, [], "Gateway.fm, 2024 to 2025"),
+    ("DeepNode", "client", DN_LINE, [("KuCoin listing announcement", KUCOIN)], "Andrew, 2025 to 2026"),
+    ("EY Nightfall", "client", H_NAMED, [], "Gateway.fm, 2024 to 2025"),
+    ("LUKSO", "client", "LUKSO received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
+    ("Lumia", "client", "Lumia received the push oracle we designed, delivering multi-asset prices every 500 ms.", [], "Gateway.fm, 2023 to 2025"),
+    ("ApeChain", "client", "For ApeChain we designed a pull-based price feed at about 1,000 requests per second and a native verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
+    ("Presto", "client", K_LINE, [], "Gateway.fm, 2023 to 2025"),
+    ("Gnosis", "client", "Gnosis ran on the RPC proxy we designed at Gateway.fm, and is one of the protocols Gateway Yield served.", [], "Gateway.fm"),
+    ("Ethereum Foundation", "client", "The Ethereum Foundation ran on the RPC proxy we designed at Gateway.fm.", [], "Gateway.fm, 2021 to 2022"),
+    ("Web3 Foundation", "client", R_LINE, [], "Uddug, 2020 to 2023"),
+    ("Protocol Labs", "client", R_LINE, [], "Uddug, 2020 to 2023"),
+    ("OG:Crystals", "client", O_LINE, [], "Uddug, 2021"),
+    ("Marscatsvoyage", "client", P_LINE, [], "Uddug, 2021"),
+    ("Arsnl.art", "client", Q_LINE, [], "Uddug, from 2022"),
+    ("Metazoku", "client", Y_LINE, [], "Uddug, 2023"),
+    ("Snark.art", "client", SNARK_LINE, [("snark.art", "https://snark.art")], "Andrew, then Uddug"),
+    ("Synthetix", "protocol", "Infinex is the Synthetix front-end; we built its event infrastructure and backend under governance proposal XIP-9.", [], "Uddug with Gateway.fm, 2023 to 2024"),
+    ("Lido", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Stellar", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Canton", "protocol", "One of the protocols served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
+    ("Polygon zkEVM", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Miden", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
+    ("Iden3", "protocol", "One of the ZK protocols served by the shared prover we built, with GPU and CPU autoscaling on AWS spot capacity.", [], "Gateway.fm, 2024 to 2025"),
 ]
 
 # the record, three eras; the Gateway.fm era opens on the department line
@@ -107,7 +109,6 @@ ERAS = [
     dict(name="Uddug", years="2018 to 2024",
          intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018; the two have worked together since 2015.",
          cases=[
-             ("2017 to 2018", "ICEX, before Uddug", "The founders' own exchange, about 70 percent built when the investor withdrew in the 2018 crypto winter; it never launched. The push oracle started there.", []),
              ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
              ("2021", "OG:Crystals", O_LINE, []),
              ("2021", "Marscatsvoyage", P_LINE, []),
@@ -583,9 +584,9 @@ def sections(t, theme):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
         cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
-    for i, (nm, grp, links, era) in enumerate(WALL):
+    for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
-        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div>{('<div class="links">' + lk + '</div>') if lk else ''}</div></div>'
+        wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
     eras = ""
     for e in ERAS:
         rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
@@ -683,7 +684,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["wall_eyebrow"]}</p>
     <h2 class="reveal">Names we have worked with.</h2>
-    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for its era and any public record.</p>
+    <p class="lead reveal">Clients and products we built for, and the protocols our systems served. Open a name for what we did there.</p>
     <div class="wall reveal" id="wall">{wall}<div class="wall-detail" id="wall-detail" hidden><div class="wall-detail-inner" id="wall-detail-inner"></div></div></div>
   </div>
 </section>
