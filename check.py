@@ -260,6 +260,12 @@ def static_checks(html, page):
     orgs = by_type.get("Organization", [])
     if len(orgs) != 1 or orgs[0].get("name") != "Felag" or orgs[0].get("sameAs") != felagsite.COMPANY_PAGES:
         bad.append("Organization")
+    # the registration number and the office must be the ones the footer prints
+    org = orgs[0] if orgs else {}
+    addr = org.get("address", {})
+    if org.get("identifier", {}).get("value") != felagsite.ENTITY_ID or felagsite.ENTITY_ID not in html or addr.get("addressCountry") != "GE" \
+            or any(addr.get(k) != v or v not in html for k, v in felagsite.ENTITY_OFFICE.items()):
+        bad.append("Organization identifier or address")
     if [p.get("name") for p in by_type.get("Person", [])] != [p["name"] for p in felagsite.PEOPLE]:
         bad.append("Person nodes")
     faqs = by_type.get("FAQPage", [])
@@ -269,6 +275,12 @@ def static_checks(html, page):
     offers = orgs[0].get("makesOffer", []) if orgs else []
     if [o.get("name") for o in offers] != [o["name"] for o in felagsite.OFFERS]:
         bad.append("Offers")
+    # the two monthly fees are unit prices per month, with the floor the page prints
+    monthly = {o.get("name"): o.get("priceSpecification", {}) for o in offers}
+    for name, low in (("Fractional CTO", 4000), ("Pods", 10000)):
+        ps = monthly.get(name, {})
+        if ps.get("@type") != "UnitPriceSpecification" or ps.get("unitCode") != "MON" or ps.get("minPrice") != low:
+            bad.append(f"{name} monthly price")
     row("Head: JSON-LD", not bad, ", ".join(bad))
 
 
