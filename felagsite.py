@@ -109,36 +109,40 @@ PROOF_CARDS = [
          details="The exchange was roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and the project ended there."),
 ]
 
-# the names wall: every name the register and the history allow, each with a short relationship line that points to its case
+# the names wall: every name the register and the history allow, each with a short relationship line and, where it has one, the number of its case,
+# which the line links to by name
 WALL = [
-    ("Wirex Pay", "client", "Client for the payments platform and its L2 chain. See case 01.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024"),
-    ("Opera", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
-    ("1inch", "client", "Ran on the RPC proxy we designed. See case 02.", [], "Gateway.fm, 2021 to 2022"),
-    ("Infinex", "client", "Client for the event infrastructure and backend. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Humanity Protocol", "client", "Client for the application layer. See case 05.", [], "Gateway.fm, 2024 to 2025"),
-    ("DeepNode", "client", "A fractional CTO engagement. See case 08.", [("KuCoin listing announcement", KUCOIN)], "Independent engagement, 2025 to 2026"),
-    ("EY Nightfall", "client", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
-    ("LUKSO", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
-    ("Lumia", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025"),
-    ("ApeChain", "client", "A pull-based price feed and a verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025"),
-    ("Presto", "client", "The tokenised-finance product we led to revenue.", [], "Gateway.fm, 2023 to 2025"),
-    ("Gnosis", "client", "Ran on the RPC proxy, and served by Gateway Yield.", [], "Gateway.fm"),
-    ("Ethereum Foundation", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022"),
-    ("Web3 Foundation", "client", "Grant work, including JuniDB.", [], "Uddug, 2020 to 2023"),
-    ("Protocol Labs", "client", "Grant work.", [], "Uddug, 2020 to 2023"),
-    ("OG:Crystals", "client", "The technology behind the launch, with Snark.art.", [], "Uddug, 2021"),
-    ("Marscatsvoyage", "client", "Uddug helped with the launch.", [], "Uddug, 2021"),
-    ("Arsnl.art", "client", "The NFT platform and its launches. See case 09.", [("arsnl.art", "https://arsnl.art")], "Uddug, from 2022"),
-    ("Metazoku", "client", "Smart contracts.", [], "Uddug, 2023"),
-    ("Snark.art", "client", "An NFT launch platform for established artists, later a Uddug client.", [("snark.art", "https://snark.art")], "2019 to 2020, then Uddug"),
-    ("Synthetix", "protocol", "The protocol behind Infinex. See case 04.", [], "Uddug with Gateway.fm, 2023 to 2024"),
-    ("Lido", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Stellar", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Canton", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026"),
-    ("Polygon zkEVM", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
-    ("Miden", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
-    ("Iden3", "protocol", "Served by the shared prover. See case 06.", [], "Gateway.fm, 2024 to 2025"),
+    ("Wirex Pay", "client", "Client for the payments platform and its L2 chain.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], "Gateway.fm, 2024", 1),
+    ("Opera", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022", 2),
+    ("1inch", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022", 2),
+    ("Infinex", "client", "Client for the event infrastructure and backend.", [], "Uddug with Gateway.fm, 2023 to 2024", 4),
+    ("Humanity Protocol", "client", "Client for the application layer.", [], "Gateway.fm, 2024 to 2025", 5),
+    ("DeepNode", "client", "A fractional CTO engagement.", [("KuCoin listing announcement", KUCOIN)], "Independent engagement, 2025 to 2026", 8),
+    ("EY Nightfall", "client", "Served by the shared prover.", [], "Gateway.fm, 2024 to 2025", 6),
+    ("LUKSO", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025", None),
+    ("Lumia", "client", "Received the push oracle we designed.", [], "Gateway.fm, 2023 to 2025", None),
+    ("ApeChain", "client", "A pull-based price feed and a verifiable-randomness oracle.", [], "Gateway.fm, 2023 to 2025", None),
+    ("Presto", "client", "The tokenised-finance product we led to revenue.", [], "Gateway.fm, 2023 to 2025", None),
+    ("Gnosis", "client", "Ran on the RPC proxy, and served by Gateway Yield.", [], "Gateway.fm", None),
+    ("Ethereum Foundation", "client", "Ran on the RPC proxy we designed.", [], "Gateway.fm, 2021 to 2022", None),
+    ("Web3 Foundation", "client", "Grant work, including JuniDB.", [], "Uddug, 2020 to 2023", None),
+    ("Protocol Labs", "client", "Grant work.", [], "Uddug, 2020 to 2023", None),
+    ("OG:Crystals", "client", "The technology behind the launch, with Snark.art.", [], "Uddug, 2021", None),
+    ("Marscatsvoyage", "client", "Uddug helped with the launch.", [], "Uddug, 2021", None),
+    ("Arsnl.art", "client", "The NFT platform and its launches.", [("arsnl.art", "https://arsnl.art")], "Uddug, from 2022", 9),
+    ("Metazoku", "client", "Smart contracts.", [], "Uddug, 2023", None),
+    ("Snark.art", "client", "An NFT launch platform for established artists, later a Uddug client.", [("snark.art", "https://snark.art")], "2019 to 2020, then Uddug", None),
+    ("Synthetix", "protocol", "The protocol behind Infinex.", [], "Uddug with Gateway.fm, 2023 to 2024", 4),
+    ("Lido", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026", None),
+    ("Stellar", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026", None),
+    ("Canton", "protocol", "Served by Gateway Yield, the staking infrastructure we ran.", [], "Gateway.fm, 2025 to 2026", None),
+    ("Polygon zkEVM", "protocol", "Served by the shared prover.", [], "Gateway.fm, 2024 to 2025", 6),
+    ("Miden", "protocol", "Served by the shared prover.", [], "Gateway.fm, 2024 to 2025", 6),
+    ("Iden3", "protocol", "Served by the shared prover.", [], "Gateway.fm, 2024 to 2025", 6),
 ]
+# how a wall line names the case it links to
+CASE_REFS = {1: "the Wirex Pay case", 2: "the RPC proxy case", 4: "the Infinex integration case", 5: "the Humanity Protocol case",
+             6: "the shared-prover case", 8: "the fractional CTO case", 9: "the Arsnl.art case"}
 
 # the record: a compact lineage in the reading path, and the company background behind a disclosure,
 # which keeps only the projects that have no case card of their own
@@ -374,6 +378,10 @@ html.js .reveal.in{opacity:1;transform:none}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
 .card p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.card{scroll-margin-top:calc(var(--head) + 24px);transition:border-color .6s cubic-bezier(.2,.7,.2,1)}
+.card.arrived{border-color:var(--accent)}
+.card:focus{outline:none}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .card .cfacts{display:grid;gap:12px;flex:1;align-content:start}
 .card .cfacts div{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline}
 .card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
@@ -429,6 +437,7 @@ html.js .wall-line{display:none}
 .wall-line .wall-era{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .wall-line p{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body);max-width:40em}
 .wall-line .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
+.case-ref span{display:inline-block;margin-left:10px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 html:not(.js) .name{cursor:default}
 
 /* ---- the record, three eras along a line */
@@ -670,10 +679,10 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
-    for i, (nm, grp, txt, links, era) in enumerate(WALL):
-        lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
+    for i, (nm, grp, txt, links, era, case) in enumerate(WALL):
+        lk = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
         wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
     lineage = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><p>{tx}</p></div></div>' for y, tx in LINEAGE)
     eras = ""
@@ -989,22 +998,44 @@ SITE_JS = r'''
       if (dir < 0 && l < -2) x = l; }
     return x === null ? (dir > 0 ? track.scrollWidth : 0) : track.scrollLeft + x;
   }
-  var hold = function(){}, glide = 0;
+  var hold = function(){}, pin = function(){}, glide = 0;
   btns.forEach(function(b){ b.addEventListener('click', function(){
     clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000); glide = performance.now();
     track.scrollTo({left: target(parseInt(b.getAttribute('data-dir'), 10)), behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
 
+  // ---- a case link elsewhere on the page, the names wall's, brings its card into view: the strip to the middle of the screen,
+  // the card to the strip's left edge, a moment's light on its border and focus on it; the drift holds on it until the reader moves on
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a.case-ref'); if (!a) return;
+    var card = document.getElementById(a.getAttribute('href').slice(1)); if (!card || card.parentNode !== track) return;
+    e.preventDefault(); pin();
+    var how = reduce ? 'auto' : 'smooth', head = document.querySelector('.site-header'), top = head ? head.offsetHeight : 0;
+    var tr = track.getBoundingClientRect(), room = window.innerHeight - top;
+    window.scrollTo({top: Math.max(0, window.scrollY + tr.top - top - Math.max(16, (room - tr.height) / 2)), behavior: how});
+    var edge = tr.left + (parseFloat(getComputedStyle(track).paddingLeft) || 0);
+    glide = performance.now();
+    track.scrollTo({left: track.scrollLeft + card.getBoundingClientRect().left - edge, behavior: how});
+    card.focus({preventScroll: true});
+    card.classList.add('arrived'); setTimeout(function(){ card.classList.remove('arrived'); }, 1800);
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 700);
+  });
+
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
   // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll, and holds while a
-  // case's details are open, so the card a reader is reading stays put; Stop scrolling ends it. Never under reduced motion
+  // case's details are open, so the card a reader is reading stays put, and holds on a card a case link brought into view until the reader
+  // scrolls, swipes or presses or the strip leaves the screen; Stop scrolling ends it. Never under reduced motion
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
-  var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
+  var SPEED = 30, stopped = false, hover = false, focused = false, pinned = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
   play.hidden = false; track.classList.add('drift');
   hold = function(ms){ until = Math.max(until, performance.now() + ms); };
   function reading(){ return !!track.querySelector('details[open]'); }
-  function running(){ return !stopped && !hover && !focused && !reading() && seen && !document.hidden; }
+  function running(){ return !stopped && !hover && !focused && !pinned && !reading() && seen && !document.hidden; }
+  pin = function(){ pinned = true; };
+  function unpin(){ if (pinned){ pinned = false; pos = track.scrollLeft; hold(4000); kick(); } }
+  track.addEventListener('pointerdown', unpin); track.addEventListener('wheel', unpin, {passive: true}); track.addEventListener('touchstart', unpin, {passive: true});
+  btns.forEach(function(b){ b.addEventListener('click', unpin); });
   function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
   // leaving the strip, by pointer or by focus, sets it going again at once from where it stands
   function resume(){ until = 0; pos = track.scrollLeft; kick(); }
@@ -1025,7 +1056,7 @@ SITE_JS = r'''
     pos += SPEED*dt/1000; track.scrollLeft = pos;
   }
   play.addEventListener('click', function(){
-    stopped = !stopped; play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
+    pinned = false; stopped = !stopped; play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
     snap(); end = 0; back = false; pos = track.scrollLeft; hold(600); kick();
   });
   [track, play.parentNode].forEach(function(el){
@@ -1043,7 +1074,7 @@ SITE_JS = r'''
   // details opening or closing: closing the last one sets the drift going again after a short rest
   track.addEventListener('toggle', function(){ if (!reading()){ pos = track.scrollLeft; hold(1500); } kick(); }, true);
   document.addEventListener('visibilitychange', kick);
-  new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
+  new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (was && !seen) pinned = false; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
 })();
 
 // ---- the names wall: a name opens its line right under its own row
