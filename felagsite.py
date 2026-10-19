@@ -931,21 +931,23 @@ SITE_JS = r'''
       if (dir < 0 && l < -2) x = l; }
     return x === null ? (dir > 0 ? track.scrollWidth : 0) : track.scrollLeft + x;
   }
-  var hold = function(){};
+  var hold = function(){}, glide = 0;
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000);
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000); glide = performance.now();
     track.scrollTo({left: target(parseInt(b.getAttribute('data-dir'), 10)), behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
 
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
-  // or keyboard focus is at the strip, and for a few seconds after a reader scrolls or presses; Stop scrolling ends it. Never under reduced motion
+  // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll; Stop scrolling ends it. Never under reduced motion
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
   var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
   play.hidden = false; track.classList.add('drift');
   hold = function(ms){ until = Math.max(until, performance.now() + ms); };
   function running(){ return !stopped && !hover && !focused && seen && !document.hidden; }
   function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
+  // leaving the strip, by pointer or by focus, sets it going again at once from where it stands
+  function resume(){ until = 0; pos = track.scrollLeft; kick(); }
   function tick(t){
     raf = 0; if (!running()){ last = 0; return; }
     raf = requestAnimationFrame(tick);
@@ -956,6 +958,8 @@ SITE_JS = r'''
       if (back && (track.scrollLeft < 2 || t - end > 7600)){ end = 0; back = false; pos = track.scrollLeft; until = t + 1500; }
       return;
     }
+    // a press's glide lands on its card edge before the drift takes over again
+    if (glide){ if (t - glide < 2000 && (t - glide < 150 || Math.abs(track.scrollLeft - pos) > 0.5)){ pos = track.scrollLeft; return; } glide = 0; pos = track.scrollLeft; }
     if (t < until || Math.abs(track.scrollLeft - pos) > 3){ pos = track.scrollLeft; if (t >= until) until = t + 4000; return; }
     if (pos >= track.scrollWidth - track.clientWidth - 1){ end = t; return; }
     pos += SPEED*dt/1000; track.scrollLeft = pos;
@@ -966,13 +970,13 @@ SITE_JS = r'''
   });
   [track, play.parentNode].forEach(function(el){
     el.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse'){ hover = true; } });
-    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; hold(800); kick(); } });
+    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; resume(); } });
   });
   var sec = document.getElementById('proof-cases');
   // keyboard focus holds the drift and gives the snap back, so the arrow keys move card by card
   function snap(){ track.classList.toggle('drift', !stopped && !focused); }
   sec.addEventListener('focusin', function(e){ focused = e.target.matches(':focus-visible'); snap(); kick(); });
-  sec.addEventListener('focusout', function(){ focused = false; snap(); pos = track.scrollLeft; hold(800); kick(); });
+  sec.addEventListener('focusout', function(){ var was = focused; focused = false; snap(); if (was) resume(); else kick(); });
   track.addEventListener('touchstart', function(){ until = performance.now() + 60000; }, {passive: true});
   track.addEventListener('touchend', function(){ until = performance.now() + 4000; }, {passive: true});
   track.addEventListener('wheel', function(){ hold(4000); }, {passive: true});
