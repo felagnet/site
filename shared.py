@@ -79,16 +79,19 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav{column-gap:20px}
   .nav .links a:not([href="#people"]):not([href="#proof"]){display:none}
 }
-@media (max-width:460px){
+@media (max-width:520px){
   .nav .links a[href="#proof"]{display:none}
 }
-@media (max-width:400px){
+@media (max-width:460px){
   .nav .links{display:none}
+}
+@media (max-width:400px){
   .lockup svg{height:32px}
   .btn-sm{padding:0 16px}
 }
-/* at 320 the lockup, People and the button only fit as one row with the gaps a step tighter */
+/* at 320 the lockup and contact button fit as one row with the button padding a step tighter */
 @media (max-width:340px){
+  .site-header .wrap{column-gap:8px}
   .nav{column-gap:12px}
   .btn-sm{padding:0 12px}
 }
