@@ -115,8 +115,14 @@ Departures from the auditor, by Andrew's decision:
 - Pavel's "20+ published papers" stays without a bibliography link.
 - No sentence on client code handling yet in the AI answer.
 
+Resolved the same day:
+- Statuses: all ten confirmed by Andrew as written.
+- Andrew's bio opens "sets the technical direction at Felag, leads the architecture on its engagements and takes fractional CTO seats" (Andrew).
+- Humanity Protocol result: a high-load application layer on the L2 chain at about 1,000 transactions per second (Andrew), with the generic measurement qualifier.
+- Marscatsvoyage: "Uddug helped with the launch of Marscatsvoyage", the $2M+ figure dropped (Andrew).
+- Arsnl.art links to arsnl.art (Andrew).
+- Details and evidence for the shared prover, the Platform department and Arsnl.art, taken from the Notion proof register and felag-core team-and-history within their do-not-say rules. Every case now has a disclosure.
+
 Still open:
-- Humanity Protocol, the shared prover, the Platform department and Arsnl.art have no Details and evidence; Humanity has no stated engineering result.
-- The statuses ("Launched to production", "Ran in production", "In use", "Delivered") are the agent's reading of the old copy; Andrew to confirm each.
-- Andrew's bio opening ("sets the technical direction at Felag and leads the architecture on its engagements") is the agent's wording of his current role; Andrew to confirm.
-- rate-card.md and core.md still need the sprint price, pod tiers and the one-month CTO term, and now the refund and acceptance terms.
+- rate-card.md and core.md still need the sprint price, pod tiers, the one-month CTO term, the refund and the acceptance terms. Andrew: not now.
+- The Notion proof register (master for proof) is behind the site on two rows: Humanity Protocol has no transaction figure, and Marscatsvoyage's wording still carries $2M+. A founder updates the rows.
