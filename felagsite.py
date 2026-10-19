@@ -244,7 +244,7 @@ FAQ = [
     ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
-    ("How are deliverables accepted and scope changes agreed?", "Deliverables are reviewed and accepted with you at the monthly review, against the SOW. Scope changes are agreed there and go into the next month's SOW."),
+    ("How are deliverables accepted and scope changes agreed?", "For monthly delivery pods, deliverables are reviewed and accepted with you at the monthly review, against the SOW, and scope changes agreed there go into the next month's SOW. For an Architecture Sprint or technical due diligence, the principal takes you through the output at delivery, and you accept it or return a written list of gaps within five business days. A fixed-price build is accepted milestone by milestone, against criteria agreed in the sprint, on the same five-day review after each demo. A review with no list counts as acceptance. Any change to a fixed-price scope is agreed in writing before work on it starts, with a fixed quote for its effect on the price and the timeline."),
     ("Do you work with regulated companies?", "Yes. We built the Wirex Pay platform and the application layer behind its debit card programme, engineering that supported the client's MiCA alignment. We have not taken a system through an audit under MiCA, and we say so before a sprint starts."),
     ("Do you use AI in delivery?", "Yes. We use AI tools and our own development framework. A principal reviews the work and remains responsible for the agreed deliverables."),
 ]
@@ -794,7 +794,7 @@ def sections(t, theme):
   <div class="wrap">
     <p class="eyebrow reveal">{t["offer_eyebrow"]}</p>
     <h2 class="huge reveal">We sell outcomes, not hours.</h2>
-    <p class="lead reveal">Fixed-price sprints, builds and technical reviews. Monthly retainers for pods and fractional CTO work, with deliverables agreed in the SOW. Prices in US dollars, excluding VAT.</p>
+    <p class="lead reveal">Fixed-price sprints, builds and technical reviews. Monthly retainers for pods and fractional CTO work, with deliverables agreed in the statement of work (SOW). Prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
     <p class="offer-note reveal">{OFFER_NOTE}</p>
     <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a></div>

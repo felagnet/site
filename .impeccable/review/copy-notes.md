@@ -132,3 +132,8 @@ Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" fo
 ## 19 October 2026, the cases strip drift: labels for its stop control
 
 Andrew asked for the strip to scroll on its own, as a constant slow drift. The control that stops and restarts it is new spoken text; Andrew chose the strings in the chat: "Stop scrolling" while it drifts and "Start scrolling" once it is stopped. Applied on the strip-autoscroll branch. The control shows only an icon, so nothing visible changes.
+
+## Round 4, 19 October 2026
+
+- Acceptance answer: the monthly review is now scoped to pods. Sprints and due diligence are accepted at delivery, with five business days to return a written list of gaps; fixed-price builds are accepted by milestone against the sprint's criteria on the same five-day review, and a review with no list counts as acceptance; a change to fixed-price scope is agreed in writing first, with a fixed quote for its effect on price and timeline. Taken from the UZCARD and KOLO proposals in Notion and confirmed by Andrew in the chat.
+- "Statement of work (SOW)" spelled out at its first use, the offer lead.
