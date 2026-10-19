@@ -96,3 +96,27 @@ Andrew's decisions in the chat: after a press of Previous or Next the strip read
 - Optional, if the spoken counter "zero three slash ten" reads poorly: the status line could use the same "3 of 10" form instead of the card's visible "03 / 10", for example "3 of 10, Identity for a global technology company".
 
 Until then the source carries none of these.
+
+## 19 October 2026, copy round 3
+
+The auditor's six focused changes. Andrew settled the gaps in the chat; the agent applied them on worktree-copy-round-3, one commit per change.
+
+Done:
+- Cases: all ten kept under "Selected engineering work", each with the contribution, Result, Status and, where a figure is the client's own, Context (the Humanity user count, the DeepNode valuation), a Details and evidence disclosure for measurement definitions, and the employer and date. ICEX reads "Exchange prototype and oracle development", its ending told in the details. The identity work is a proof of concept on both workstreams. The MiCA answer describes supported engineering and keeps the audit limit. Performance figures carry Andrew's generic qualifier: peak observed in production, aggregate across clients, during the period shown.
+- Repetition: the wall lines are short relationships that point to the case; the record is a six-row lineage with the company background collapsed under it, keeping only the projects without a card; the bios start with what each person leads today and drop the project catalogues; the people note keeps only the contractor line.
+- AI answer: the auditor's starting answer, nothing added.
+- Terms: the footer and the contract answer name FELAG LLC in full; unused prepaid pod fees are refunded pro rata after notice; a new answer has deliverables accepted and scope changed at the monthly review; the entry pod's senior engineer plans the work; the fractional CTO works agreed days spread across Monday to Friday and owns the architecture and roadmap, engineering process and delivery, and board and investor representation (hiring is not listed, by Andrew's choice).
+- Sentences: the four services in the auditor's copy, Payment rails, the questions heading, and the stack under a Technical capabilities disclosure.
+
+Departures from the auditor, by Andrew's decision:
+- The hero keeps the locked sub-line ("priced on outcomes rather than hours"); the statement stays in its own section, so it is not shown twice.
+- No person is named on the cases; employer and date only. The DeepNode era reads "Independent engagement".
+- Protocol Labs stays in the grants line.
+- Pavel's "20+ published papers" stays without a bibliography link.
+- No sentence on client code handling yet in the AI answer.
+
+Still open:
+- Humanity Protocol, the shared prover, the Platform department and Arsnl.art have no Details and evidence; Humanity has no stated engineering result.
+- The statuses ("Launched to production", "Ran in production", "In use", "Delivered") are the agent's reading of the old copy; Andrew to confirm each.
+- Andrew's bio opening ("sets the technical direction at Felag and leads the architecture on its engagements") is the agent's wording of his current role; Andrew to confirm.
+- rate-card.md and core.md still need the sprint price, pod tiers and the one-month CTO term, and now the refund and acceptance terms.
