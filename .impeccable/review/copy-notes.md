@@ -137,5 +137,4 @@ Andrew asked for the strip to scroll on its own, as a constant slow drift. The c
 
 Andrew asked for the contact form from andskur.com on felag.net and settled the gaps in the chat. The form sits in the closing scene under the mail paragraph and takes the place of the closing "Discuss your project" mailto button; See prices stays beside the submit button, and the header, hero and footer mailto links stay as they were. New visible strings, in Felag wording by Andrew's choice: the labels "The system and your deadline" and "Email", the submit button "Discuss your project", "Sending" while it posts, "Sent. We'll reply to the address you gave." on success, and "That didn't send. Email us directly at info@felag.net." on failure. The email subject Formspree sends is "felag.net: Free technical workshop".
 
-Still open:
-- The Formspree form id. Andrew creates a form that delivers to info@felag.net and replaces REPLACE-ME in the form action in felagsite.py. Until then a submit opens the visitor's mail client with the message and address filled in.
+Resolved the same day: Andrew created the Felag form in Formspree, id mppqeyyd, and the form action points at it.

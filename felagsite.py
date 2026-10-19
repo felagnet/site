@@ -851,7 +851,7 @@ def sections(t, theme):
       <p class="eyebrow">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
       <p class="mail">Email <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.</p>
-      <form class="brief" action="https://formspree.io/f/REPLACE-ME" method="POST" data-form>
+      <form class="brief" action="https://formspree.io/f/mppqeyyd" method="POST" data-form>
         <div class="fld"><label for="brief-message">The system and your deadline</label><textarea id="brief-message" name="message" rows="4" required></textarea></div>
         <div class="fld"><label for="brief-email">Email</label><input id="brief-email" name="email" type="email" autocomplete="email" required></div>
         <input type="hidden" name="_subject" value="felag.net: Free technical workshop">
