@@ -79,6 +79,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav{column-gap:20px}
   .nav .links a:not([href="#people"]):not([href="#proof"]){display:none}
 }
+@media (max-width:520px){
+  .nav .links a[href="#proof"]{display:none}
+}
 @media (max-width:460px){
   .nav .links{display:none}
 }
