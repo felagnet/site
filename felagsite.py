@@ -52,60 +52,61 @@ P_LINE = "Uddug helped with the launch of Marscatsvoyage."
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
-# the ten cases, one structure each: the contribution, then the result, the delivery status and any attributed context,
-# the details and evidence behind a disclosure, the public record and the employer and date; no person is named
+# the ten cases, one structure each: a stage and date label, the contribution, then only the facts that add to it (a result, the team,
+# attributed context), a disclosure named for what it holds, the public record and the employer and date; no person is named, and no
+# field is filled for its own sake
 PROOF_CARDS = [
     dict(kicker="Launched August 2024", title="Wirex Pay", links=[("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], era="Gateway.fm, 2024",
          body="We delivered the Wirex Pay platform end to end: the L2 chain, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.",
-         facts=[("Result", "The chain launched in August 2024 and is listed on L2BEAT."),
-                ("Status", "Launched to production.")],
-         details="The engineering was built to support Wirex's MiCA alignment. We have not taken the system through an audit under MiCA. The L2BEAT listing and the partnership announcement are the public record."),
-    dict(kicker="140k+ requests per second at peak", title="The RPC proxy for Opera and 1inch", links=[], era="Gateway.fm, 2021 to 2022",
+         facts=[("Context", "The chain was listed on L2BEAT, the public register of Ethereum layer-2 chains.")],
+         dlabel="Sources and evidence",
+         details="The engineering was built to support Wirex's MiCA alignment; we have not taken the system through an audit under MiCA. The L2BEAT listing and the partnership announcement below are the public record."),
+    dict(kicker="In production, 2021 to 2022", title="The RPC proxy for Opera and 1inch", links=[], era="Gateway.fm, 2021 to 2022",
          body="We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting.",
-         facts=[("Result", "140k+ requests per second at peak, with 50 ms average latency on the heavy requests."),
-                ("Status", "Ran in production, 2021 to 2022.")],
+         facts=[("Result", "140k+ requests per second at peak, with 50 ms average latency on the heavy requests.")],
+         dlabel="Measurement notes",
          details="Both figures are the peak observed in production, aggregate across all clients of the proxy, during 2021 to 2022. The latency is the average over the heavy requests only."),
     dict(kicker="Proof of concept, 2025", title="Identity for a global technology company", links=[("Case study, by the team at Gateway.fm", GW_CASE)], era="Gateway.fm, 2025",
-         body="We designed and built account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform.",
-         facts=[("Result", "Both workstreams delivered as working proofs of concept."),
-                ("Status", "Proof of concept, both workstreams. Neither was taken to production.")],
-         details="The client is not named. The linked case study is published by Gateway.fm and covers the agent identity workstream."),
-    dict(kicker="XIP-9, approved December 2023", title="Infinex and Synthetix", links=[], era="Uddug with Gateway.fm, 2023 to 2024",
-         body=C_LINE,
-         facts=[("Result", "The scope set by governance proposal XIP-9, approved in December 2023, delivered."),
-                ("Status", "Delivered, 2023 to 2024.")],
-         details="Uddug did the work together with Gateway.fm. Infinex is the Synthetix front-end."),
+         body="Two workstreams for one client. We designed and built account-abstraction wallets that people open with their company's single sign-on, and an identity system for AI agents on a major cloud platform.",
+         facts=[],
+         dlabel="Sources and evidence",
+         details="The client is not named. The linked case study is published by Gateway.fm and covers the agent identity workstream only."),
+    dict(kicker="Delivered, 2023 to 2024", title="Infinex and Synthetix", links=[], era="Uddug with Gateway.fm, 2023 to 2024",
+         body="We built the event infrastructure and backend for Infinex, the Synthetix front-end.",
+         facts=[("Context", "The scope was set by Synthetix governance proposal XIP-9, approved on 20 December 2023.")],
+         dlabel="", details=""),
     dict(kicker="Identity network, application layer", title="Humanity Protocol", links=[], era="Gateway.fm, 2024 to 2025",
          body="We built the application layer for Humanity Protocol, an identity network.",
          facts=[("Result", "A high-load application layer on the L2 chain, at about 1,000 transactions per second."),
-                ("Status", "Delivered, 2024 to 2025."),
-                ("Context", "Humanity Protocol reports 9M+ users. The figure is the network's own, not a measure of our work.")],
+                ("Context", "9M+ users, as reported by Humanity Protocol.")],
+         dlabel="Measurement notes",
          details="The transaction rate is the peak observed in production, aggregate across the chain, during 2024 to 2025."),
-    dict(kicker="GPU and CPU autoscaling on spot capacity", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", links=[], era="Gateway.fm, 2024 to 2025",
+    dict(kicker="In use, 2024 to 2025", title="A shared prover for EY Nightfall, Polygon, Miden and Iden3", links=[], era="Gateway.fm, 2024 to 2025",
          body="We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3.",
-         facts=[("Result", "One prover served several ZK protocols, with GPU and CPU autoscaling on AWS spot capacity."),
-                ("Status", "In use, 2024 to 2025.")],
+         facts=[("Result", "One prover for every protocol, with GPU and CPU capacity autoscaling on AWS spot instances.")],
+         dlabel="Technical scope",
          details="The protocols served were Polygon zkEVM, Polygon Hermez, cdk-erigon, Miden and Iden3, including EY Nightfall. The cost effect of spot capacity was not measured, so no saving is claimed."),
-    dict(kicker="~25 people across two departments", title="The Gateway.fm Platform department", links=[], era="Gateway.fm, 2024 to 2026",
-         body="In June 2024 Gateway.fm acquired Uddug and the team became its Platform department. The founders ran ~25 people across two departments.",
-         facts=[("Result", "The departments' work included Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield."),
-                ("Status", "Closed in 2026, when the founders left to start Felag.")],
-         details="Uddug had grown to 15 people when Gateway.fm acquired it in June 2024. The team joined as the Platform department, and with the second department the founders led, the total was ~25 people."),
+    dict(kicker="Engineering leadership, 2024 to 2026", title="The Gateway.fm Platform department", links=[], era="Gateway.fm, 2024 to 2026",
+         body="The founders led Gateway.fm's Platform department and a second engineering department, accountable for the architecture and the delivery of their products.",
+         facts=[("Team", "~25 people across the two departments."),
+                ("Projects", "Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield.")],
+         dlabel="Project background",
+         details="Uddug had grown to 15 people when Gateway.fm acquired it in June 2024, and the team joined as the Platform department."),
     dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN)], era="Independent engagement, 2025 to 2026",
          body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
          facts=[("Result", "The network measured at about 5,000 requests per second."),
-                ("Status", "Completed in 2026."),
-                ("Context", "DeepNode listed at $140M+ fully diluted valuation at launch. That is market context, not an engineering result.")],
-         details="The request rate is the peak observed in production, aggregate across the network, during the engagement. The KuCoin announcement is the public record of the listing."),
-    dict(kicker="Frank Stella, Geometries", title="Arsnl.art", links=[("arsnl.art", "https://arsnl.art")], era="Uddug, from 2022",
+                ("Context", "Listed in January 2026 at $140M+ fully diluted valuation at launch.")],
+         dlabel="Measurement notes",
+         details="The request rate is the peak observed in production, aggregate across the network, during the engagement."),
+    dict(kicker="NFT platform, from 2022", title="Arsnl.art", links=[("arsnl.art", "https://arsnl.art")], era="Uddug, from 2022",
          body="Uddug built the whole NFT platform behind Arsnl.art and the NFT launches on it.",
-         facts=[("Result", "Frank Stella's 'Geometries' released on the platform."),
-                ("Status", "Delivered, from 2022.")],
-         details="Uddug built the platform and handled the technical delivery for several artist drops on it. 'Geometries' is the one artist project named here; sales figures are not stated."),
-    dict(kicker="Exchange prototype and oracle development", title="ICEX", links=[], era="The founders, before Uddug",
+         facts=[("Result", "Frank Stella's 'Geometries' released on the platform.")],
+         dlabel="Project background",
+         details="Uddug also handled the technical delivery for several other artist drops on the platform. 'Geometries' is the one named here, and sales figures are not stated."),
+    dict(kicker="Prototype, not launched", title="ICEX", links=[], era="The founders, before Uddug",
          body="The founders' own exchange project of 2017 to 2018, and the push oracle first developed for it.",
-         facts=[("Result", "The push oracle later shipped for Wirex Pay, Infinex, LUKSO and Lumia started here."),
-                ("Status", "Prototype, not launched.")],
+         facts=[("Result", "The push oracle later shipped for Wirex Pay, Infinex, LUKSO and Lumia started here.")],
+         dlabel="Project background",
          details="The exchange was roughly 70 percent built when the investor withdrew in the 2018 crypto winter, and the project ended there."),
 ]
 
@@ -387,7 +388,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .card .cfacts dd{margin:0;color:var(--text);font-size:var(--fs-small);line-height:var(--lh-small)}
 .card .evidence p{margin-top:4px;font-size:var(--fs-small);line-height:var(--lh-small)}
-.card .cfoot{margin-top:0;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.card .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 
@@ -679,7 +680,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><dl class="cfacts">{"".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])}</dl>{(f'<details class="more evidence"><summary>Details and evidence</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p>{(f'<dl class="cfacts">' + "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"]) + "</dl>") if c["facts"] else ""}{(f'<details class="more evidence"><summary>{c["dlabel"]}</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era, case) in enumerate(WALL):
         lk = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -776,7 +777,7 @@ def sections(t, theme):
   </div>
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases" aria-roledescription="carousel">
-  <div class="wrap strip-head"><p class="lead" style="margin-top:0">Each case gives the contribution, the result and the delivery status, with details and evidence under it.</p>{strip_nav}</div>
+  <div class="wrap strip-head"><p class="lead" style="margin-top:0">Each case gives its stage, what we built and the facts that add to it, with the notes and sources behind it.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
@@ -1024,7 +1025,7 @@ SITE_JS = r'''
 
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
   // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll, and holds while a
-  // case's details are open, so the card a reader is reading stays put, and holds on a card a case link brought into view until the reader
+  // case's notes are open, so the card a reader is reading stays put, and holds on a card a case link brought into view until the reader
   // scrolls, swipes or presses or the strip leaves the screen; Stop scrolling ends it. Never under reduced motion
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
   var SPEED = 30, stopped = false, hover = false, focused = false, pinned = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
