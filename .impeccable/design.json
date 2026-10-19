@@ -49,7 +49,7 @@
       "kind": "button",
       "refersTo": "button-primary",
       "description": "The one action on the page, a copper slab with iron text.",
-      "html": "<a class=\"ds-btn-primary\" href=\"#\">Write to us</a>",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Discuss your project</a>",
       "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 28px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border-radius: 2px; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; transition: background-color .15s; } .ds-btn-primary:hover { background: var(--accent-hover, #EFA37C); } .ds-btn-primary:active { background: color-mix(in srgb, var(--accent, #DF8E63) 86%, var(--on-accent, #0E1114)); transition-duration: .1s; } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; }"
     },
     {
@@ -57,7 +57,7 @@
       "kind": "button",
       "refersTo": "button-small",
       "description": "The header variant of the primary button. Over the hero, while the mark is still in flight, it is a hairline button (transparent, ash text, steel border) and fills copper over 0.5 s as the mark lands.",
-      "html": "<a class=\"ds-btn-small\" href=\"#\">Write to us</a>",
+      "html": "<a class=\"ds-btn-small\" href=\"#\">Discuss your project</a>",
       "css": ".ds-btn-small { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border: 1px solid transparent; border-radius: 2px; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color .15s; } .ds-btn-small:hover { background: var(--accent-hover, #EFA37C); } .ds-btn-small.pending { background: transparent; color: var(--text, #E9ECEE); border-color: var(--line-strong, #616A71); transition: background-color .5s cubic-bezier(.2,.7,.2,1), color .5s cubic-bezier(.2,.7,.2,1), border-color .5s cubic-bezier(.2,.7,.2,1); } .ds-btn-small.pending:hover { border-color: var(--text-secondary, #98A1A8); } .ds-btn-small:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; }"
     },
     {
@@ -73,7 +73,7 @@
       "kind": "nav",
       "refersTo": "nav-link",
       "description": "Smoke text links and the small button on the sticky header: transparent over the hero with the button as a hairline until the mark lands, then iron with a seam rule and a copper button. Under 700 px the links thin to Proof and People, under 460 px to People alone. In-page links land below the header: the html element sets scroll-padding-top to the header height.",
-      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\">Proof</a><a href=\"#\">Prices</a><a href=\"#\">How</a><a href=\"#\">People</a></div><a class=\"ds-nav-btn\" href=\"#\">Write to us</a></nav>",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\">Proof</a><a href=\"#\">Prices</a><a href=\"#\">How</a><a href=\"#\">People</a></div><a class=\"ds-nav-btn\" href=\"#\">Discuss your project</a></nav>",
       "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 36px; height: 72px; padding: 0 24px; background: var(--bg, #0E1114); border-bottom: 1px solid var(--line, #262C31); font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif; } .ds-nav-links { display: flex; gap: 36px; } .ds-nav-links a { font-size: 15px; font-weight: 500; color: var(--text-secondary, #98A1A8); text-decoration: none; transition: color .15s; } .ds-nav-links a:hover, .ds-nav-links a.cur { color: var(--text, #E9ECEE); } .ds-nav-links a:focus-visible { outline: 2px solid var(--accent, #DF8E63); outline-offset: 3px; } .ds-nav-btn { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; background: var(--accent, #DF8E63); color: var(--on-accent, #0E1114); border: 1px solid transparent; border-radius: 2px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background-color .5s cubic-bezier(.2,.7,.2,1), color .5s cubic-bezier(.2,.7,.2,1), border-color .5s cubic-bezier(.2,.7,.2,1); } .ds-nav-btn:hover { background: var(--accent-hover, #EFA37C); } .ds-nav.pending .ds-nav-btn { background: transparent; color: var(--text, #E9ECEE); border-color: var(--line-strong, #616A71); } .ds-nav.pending .ds-nav-btn:hover { border-color: var(--text-secondary, #98A1A8); }"
     },
     {

@@ -57,3 +57,32 @@ Andrew's decisions, 18 October 2026, in the chat:
 - S-02 and S-04 pages: none for now; felag.net stays one page.
 - S-08 and S-09: Pavel is based in Serbia (Belgrade) and Andrey in Finland. Applied in d788bf8, by the agent on Andrew's word. The name stays spelled Andrey.
 - S-10: the contract stays with the brand, as decided on 16 October 2026 (copy-1-17).
+
+## 18 October 2026, the priority copy pass
+
+The live re-audit's priority report (C-01, C-04 to C-41, from the summary; the full 41-row table was not shared). Andrew settled every gap in the chat and approved the plan; the agent applied it on worktree-copy-pass, one commit per change.
+
+Done:
+- Opening (C-04): the statement is the auditor's two sentences, boutique engineering studio and principal-led pods kept.
+- Repetition (C-27, C-30 to C-32, C-40): no "clear no" left (was 5); "named principal" 0 (was 13), with the staffing commitment stated once under the offers; "told as it was", "One team, three names", "on the record", the offshore vendor and the fifteen-person shop are gone. Visible words 3,572 to 2,673.
+- Proof (C-06 to C-15, C-33): three lead cases, Wirex Pay, Arsnl.art and the identity work, each with Delivered, Constraint or Status, and Result. The identity work is marked as a pilot and proof of concept. The wall shows names and eras only; the record keeps one short line per row and is the home of the secondary cases and ICEX. Andrew's bio no longer retells the cases.
+- Fees (C-05, C-16 to C-20): heading "We sell outcomes, not hours." with each fee model under it; sprint from $10k with no launch or list price; three pod tiers; workshop 60 minutes with a reply within two working days; sprint credit 30 days from delivery; fractional CTO one-month initial term; a missed pod deliverable triggers a scope and plan review; diligence report one to two weeks from access; no time-and-materials exception anywhere.
+- Route (C-21, C-25, C-26, C-28, C-29): situations follow the statement; How delivery starts covers a pod or a fixed-price build, and one line routes CTO work and diligence.
+- Contact (C-22, C-24, C-41): every button reads "Discuss your project"; the mailto and the visible address are unchanged.
+
+Departures from the auditor, by Andrew's decision:
+- Outcomes over hours is kept as positioning. The locked hero sub-line, title and meta description ("priced on outcomes rather than hours") stay as they are; core.md is unchanged.
+- No people are named on the lead cases; employer and era only.
+- Grants (C-01): R_LINE stays; the Protocol Labs evidence is no longer public. A re-audit may flag it again.
+- Legal entity: the line stays "Felag, incorporated in 2026".
+- AI in delivery: the framework stays a short claim, to be described publicly later.
+- Prepaid fees on cancellation: not stated on the page.
+
+Still open:
+- rate-card.md and core.md need the new sprint price, pod tiers and one-month CTO term.
+- Arsnl.art has no stated constraint and no public link.
+- P_LINE (Marscatsvoyage, "$2M+ at launch") has the same primary versus secondary question as OG:Crystals.
+
+## 19 October 2026, the proof restored
+
+Andrew chose to bring the proof back as it stood on main: the ten lead cases with their full paragraphs, and every name on the wall opening its one-line story. This replaces the three-case facts layout and the names-and-eras wall from the pass above, and with it the "no people named" rule: the DeepNode card and the Snark.art line name Andrew again. ICEX is a card again, so its record row is gone; its kicker keeps "never launched". The record's short lines and Andrew's trimmed bio stay.
