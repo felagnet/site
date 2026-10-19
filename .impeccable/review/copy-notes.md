@@ -86,3 +86,13 @@ Still open:
 ## 19 October 2026, the proof restored
 
 Andrew chose to bring the proof back as it stood on main: the ten lead cases with their full paragraphs, and every name on the wall opening its one-line story. This replaces the three-case facts layout and the names-and-eras wall from the pass above, and with it the "no people named" rule: the DeepNode card and the Snark.art line name Andrew again. ICEX is a card again, so its record row is gone; its kicker keeps "never launched". The record's short lines and Andrew's trimmed bio stay.
+
+## 18 October 2026, UX audit D-09: words the cases strip needs for screen readers
+
+Andrew's decisions in the chat: after a press of Previous or Next the strip reads out the card now at the left edge in its own visible words, its counter and title ("03 / 10, Identity for a global technology company"), and the strip takes keyboard focus under the existing "Lead cases" label. Both are applied with no new words. He also wants the strip announced as a carousel with each card as a slide, which is new spoken text, so it waits here for his approval of the exact strings:
+
+- Lead cases section (`#proof-cases`): add `aria-roledescription="carousel"`. Heard as "Lead cases, carousel".
+- Each case card (`article.card`): add `role="group"`, `aria-roledescription="slide"` and `aria-label="3 of 10"` (the number and total from the card's position). Heard as "3 of 10, slide".
+- Optional, if the spoken counter "zero three slash ten" reads poorly: the status line could use the same "3 of 10" form instead of the card's visible "03 / 10", for example "3 of 10, Identity for a global technology company".
+
+Until then the source carries none of these.

@@ -252,7 +252,7 @@ SITE_CSS = '''
 main{position:relative;z-index:1}
 .sec{position:relative;padding:clamp(80px,10vh,128px) 0}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
-.sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance}
+.sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance;overflow-wrap:break-word}
 /* the two index sections, names and record, are lists, not statements: their headlines take the subhead role */
 #names h2,#record h2{font-size:var(--fs-subhead);line-height:1;letter-spacing:-0.03em;max-width:20ch}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
@@ -325,7 +325,8 @@ html.js .reveal.in{opacity:1;transform:none}
 .track{display:flex;gap:24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 .card{flex:0 0 clamp(440px,38vw,600px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
 .card .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s}
+/* the hover glow is paint only: it covers the whole card, so it takes no pointer input and the links under it stay live */
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
 .card:hover::before{opacity:1}
 .card .kicker{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);letter-spacing:.02em}
 .card h3{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;text-wrap:balance}
@@ -346,6 +347,10 @@ html.js .reveal.in{opacity:1;transform:none}
 .strip-btn[disabled]:hover{border-color:var(--line-strong);color:var(--text)}
 
 .links a{padding:6px 8px;margin:-6px -8px}
+/* the strip takes focus so the arrow keys scroll it in every engine; it runs edge to edge, so the outline sits just inside it */
+.track:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+/* read out, not shown: the strip status after a press of Previous or Next */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ---- the names wall */
 .wall{display:flex;flex-wrap:wrap;gap:0 14px;margin-top:40px;align-items:baseline}
@@ -510,7 +515,13 @@ html:not(.js) .name{cursor:default}
   .scene-proof{padding:56px 0 80px}
   .name{padding:10px 0}
   .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
-  .strip-nav{display:none}
+  /* the controls stay on a phone, under the strip and to the right, where the thumb meets them after the card it has read; the head
+     dissolves so the lead line, the strip and the controls can be ordered in one column */
+  .scene-proof{display:flex;flex-direction:column}
+  .strip-head{display:contents}
+  .strip-head > .lead{padding:0 var(--side)}
+  .track{order:1}
+  .strip-nav{order:2;align-self:flex-end;margin:16px var(--side) 0}
   .card{flex-basis:min(86vw,420px);padding:28px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
@@ -533,10 +544,13 @@ html:not(.js) .name{cursor:default}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
+  /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
+  .panel{position:relative;top:auto;box-shadow:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
-  .step{opacity:1;transform:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}
+  .step{opacity:1;transform:none;transition:none}.step:not(.on) p,.step:not(.on) .k span{color:var(--text-secondary)}.step p,.step .k span{transition:none}
   .statement .w{opacity:1}
 }
 /* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
@@ -547,13 +561,26 @@ html:not(.js) .hero-statement{position:relative;opacity:1;transform:none;pointer
 html:not(.js) .statement .w{opacity:1}
 html:not(.js) .scene-build{height:auto}
 html:not(.js) .scene-build .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}
-html:not(.js) .cap{opacity:1}
-html:not(.js) .cap p{max-height:none;opacity:1;margin-top:8px}
-html:not(.js) .bigmark path{fill:var(--accent)}
-html:not(.js) .mark-count{display:none}
+html:not(.js) .cap,.scene-build.flow .cap{opacity:1}
+html:not(.js) .cap p,.scene-build.flow .cap p{max-height:none;opacity:1;margin-top:8px}
+html:not(.js) .bigmark path,.scene-build.flow .bigmark path{fill:var(--accent)}
+html:not(.js) .mark-count,.scene-build.flow .mark-count{display:none}
+/* ---- the build scene pins only when its whole composition fits the viewport; when it does not (a short window, zoom, larger text)
+   the script sets .flow and it reads as the no-script section: every line open, every piece lit, nothing held. Under 900 px it already flows */
+.scene-build.flow .cap h3{color:var(--text)}
+@media (min-width:901px){.scene-build.flow{height:auto}.scene-build.flow .pin{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:64px}}
 html:not(.js) .step{opacity:1;transform:none}
 html:not(.js) .step:not(.on) p,html:not(.js) .step:not(.on) .k span{color:var(--text-secondary)}
 html:not(.js) .faq .a{height:auto}
+/* ---- the hero as a plain section, when its text does not fit the pinned frame (heroFlow in the common script): the no-script layout,
+   with room under the buttons on a phone for the rune, which draws in place there instead of flying to the header */
+.theme-rune.hero-flow .hero{height:auto;min-height:0}
+.theme-rune.hero-flow .hero-pin{position:relative;height:auto;min-height:0}
+.theme-rune.hero-flow .hero-inner{height:auto;min-height:100vh;min-height:100dvh}
+.theme-rune.hero-flow .hero-statement{position:relative;opacity:1;transform:none;pointer-events:auto;padding-bottom:64px}
+@media (max-width:900px){.theme-rune.hero-flow .hero-inner{padding-bottom:calc(min(62vw,30vh) + 48px)}}
+/* the canvas ends where the hero text does, so its light fades out over the last 96 px instead of stopping on a line */
+.theme-rune.hero-flow .scene{-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 96px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 96px),transparent)}
 '''
 
 # ---------------------------------------------------------------------------------------------- markup
@@ -680,7 +707,8 @@ def sections(t, theme):
 </section>
 <section class="scene-proof" id="proof-cases" aria-label="Lead cases">
   <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
-  <div class="track" id="track">{cards}</div>
+  <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
+  <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
 </section>
 <section class="sec" id="names" style="padding-top:0">
   <div class="wrap">
@@ -780,6 +808,7 @@ SITE_JS = r'''
     });
   }
   function request(){ if (!ticking){ ticking = true; requestAnimationFrame(tick); } }
+  window.scrubRequest = request;
   window.addEventListener('scroll', request, {passive: true});
   window.addEventListener('resize', request);
   window.addEventListener('load', request);
@@ -794,14 +823,16 @@ SITE_JS = r'''
   if (reduce || narrow){
     // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ var st = Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = heroHeld ? 0 : Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
     return;
   }
   window.onScrub('statement', function(p, el){
     var q;
+    // the hero laid out as a plain section: the statement reads whole, every word at rest
+    if (inHero && heroFlow){ for (var j = 0; j < n; j++){ words[j].style.opacity = 1; words[j].classList.remove('hot'); } return; }
     if (inHero){
       // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
-      var hp = heroProgress(), st = Math.max(0, Math.min(1, (hp - 0.3)/0.1));
+      var hp = heroProgress(), st = heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.3)/0.1));
       el.style.setProperty('--st', st.toFixed(3)); el.style.pointerEvents = st >= 0.9 ? 'auto' : '';
       q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
     } else {
@@ -820,10 +851,33 @@ SITE_JS = r'''
 
 // ---- what we build: the scroll lights one piece of the mark at a time, and the thing it stands for
 (function(){
-  var caps = document.querySelectorAll('#build .cap'), pieces = document.querySelectorAll('#build .bigmark path'), count = document.getElementById('mark-count'); if (!caps.length) return;
-  var current = -1, narrow = window.innerWidth < 900;
-  if (narrow){ caps.forEach(function(c){ c.classList.add('on'); }); pieces.forEach(function(pc){ pc.classList.add('on'); }); return; }
+  var scene = document.getElementById('build'), caps = document.querySelectorAll('#build .cap'), pieces = document.querySelectorAll('#build .bigmark path'), count = document.getElementById('mark-count'); if (!scene || !caps.length) return;
+  var wrap = scene.querySelector('.pin > .wrap'), markmap = scene.querySelector('.markmap'), capsCol = scene.querySelector('.caps-left'), markCol = scene.querySelector('.mark-col'), header = document.querySelector('.site-header');
+  var current = -1, flow = null, narrowQ = window.matchMedia('(max-width:900px)');
+  // the height the pinned frame needs with its longest line open. The lines as they are drawn now are taken out and the longest put back,
+  // so the answer is the same pinned or static, at rest or mid-transition
+  function needed(){
+    var shown = 0, longest = 0;
+    caps.forEach(function(c){ var p = c.querySelector('p'); shown += p.getBoundingClientRect().height + parseFloat(getComputedStyle(p).marginTop); longest = Math.max(longest, p.scrollHeight + 8); });
+    var capsH = capsCol.getBoundingClientRect().height - shown + longest, markH = markCol.getBoundingClientRect().height + (count && count.offsetParent ? 0 : 38);
+    return (header ? header.getBoundingClientRect().height : 72) + wrap.getBoundingClientRect().height - markmap.getBoundingClientRect().height + Math.max(capsH, markH) + 24;
+  }
+  function decide(){
+    // a little slack before pinning again, so a window at the edge does not flip on every pixel
+    var f = reduce || narrowQ.matches || needed() > window.innerHeight - (flow ? 8 : 0);
+    if (f === flow) return;
+    flow = f; scene.classList.toggle('flow', f); current = -1;
+    // static: every capability and every piece is on, as the phone has always shown them; pinned again, the next scrub pass picks the one in view
+    caps.forEach(function(c){ c.classList.toggle('on', f); }); pieces.forEach(function(pc){ pc.classList.toggle('on', f); });
+    if (!f && count) count.textContent = '01 / 0' + caps.length;
+    if (window.scrubRequest) window.scrubRequest();
+  }
+  decide();
+  window.addEventListener('resize', decide);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(decide);
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ decide(); }).observe(wrap);
   window.onScrub('build', function(p){
+    if (flow) return;
     var idx = Math.min(caps.length - 1, Math.floor(Math.max(0, p - 0.02) / 0.96 * caps.length));
     if (idx === current) return;
     current = idx;
@@ -855,8 +909,17 @@ SITE_JS = r'''
     var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
   }
+  // after a press the card now at the left edge is read out in its own words, its counter and its title, once the strip has settled
+  var status = document.getElementById('strip-status'), say = 0;
+  function announce(){
+    var tr = track.getBoundingClientRect(), cards = track.querySelectorAll('.card'), c = null;
+    for (var i = 0; i < cards.length; i++){ if (cards[i].getBoundingClientRect().left >= tr.left - 2){ c = cards[i]; break; } }
+    if (c && status) status.textContent = c.querySelector('.idx').textContent + ', ' + c.querySelector('h3').textContent;
+  }
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + 24;
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450);
+    // one card plus the gap between cards, which is 24 px on a desktop and 16 px on a phone
+    var card = track.querySelector('.card'), step = (card ? card.getBoundingClientRect().width : track.clientWidth*0.8) + (parseFloat(getComputedStyle(track).columnGap) || 24);
     track.scrollBy({left: parseInt(b.getAttribute('data-dir'), 10)*step, behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
@@ -867,7 +930,10 @@ SITE_JS = r'''
   var wall = document.getElementById('wall'), detail = document.getElementById('wall-detail'), inner = document.getElementById('wall-detail-inner');
   if (!wall || !detail) return;
   var open = null;
-  function close(){ if (!open) return; open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); open = null; detail.classList.add('closing'); detail.style.height = detail.scrollHeight + 'px'; requestAnimationFrame(function(){ detail.style.height = '0px'; }); detail.addEventListener('transitionend', function h(){ detail.hidden = true; detail.classList.remove('closing'); detail.removeEventListener('transitionend', h); }); }
+  function close(){ if (!open) return; open.classList.remove('on'); open.setAttribute('aria-expanded', 'false'); open = null;
+    // under reduced motion there is no transition to wait for, so the row closes in the same moment
+    if (reduce){ detail.hidden = true; detail.style.height = '0px'; return; }
+    detail.classList.add('closing'); detail.style.height = detail.scrollHeight + 'px'; requestAnimationFrame(function(){ detail.style.height = '0px'; }); detail.addEventListener('transitionend', function h(){ detail.hidden = true; detail.classList.remove('closing'); detail.removeEventListener('transitionend', h); }); }
   wall.addEventListener('click', function(e){
     var btn = e.target.closest('.name'); if (!btn) return;
     if (open === btn){ close(); return; }
@@ -877,7 +943,9 @@ SITE_JS = r'''
     // find the last name on the same visual row and place the detail after it
     var top = btn.offsetTop, names = wall.querySelectorAll('.name'), last = btn;
     names.forEach(function(n){ if (Math.abs(n.offsetTop - top) < 6 && n.offsetLeft > last.offsetLeft) last = n; });
-    detail.hidden = false; detail.style.height = '0px'; last.insertAdjacentElement('afterend', detail);
+    last.insertAdjacentElement('afterend', detail); detail.hidden = false; detail.classList.remove('closing');
+    if (reduce){ detail.style.height = 'auto'; return; }
+    detail.style.height = '0px';
     requestAnimationFrame(function(){ detail.style.height = detail.scrollHeight + 'px'; });
     detail.addEventListener('transitionend', function h(){ if (!detail.hidden) detail.style.height = 'auto'; detail.removeEventListener('transitionend', h); });
   });
@@ -887,6 +955,7 @@ SITE_JS = r'''
 // ---- the record: the era line draws as the reader moves down it, each era lighting its marker
 (function(){
   var fill = document.getElementById('era-line-fill'), blocks = document.querySelectorAll('.era-block'); if (!fill) return;
+  if (reduce){ fill.style.height = '100%'; blocks.forEach(function(b){ b.classList.add('lit'); }); return; }
   window.onScrub('record', function(p, el){
     var r = el.getBoundingClientRect(), h = window.innerHeight;
     var eras = document.getElementById('eras').getBoundingClientRect();
@@ -901,12 +970,13 @@ SITE_JS = r'''
   var steps = document.querySelectorAll('#how .step'), sprouts = document.querySelectorAll('.furrow .sprout'), path = document.querySelector('.furrow .path');
   var len = path ? path.getTotalLength() : 0;
   if (path){ path.style.strokeDasharray = len; path.style.strokeDashoffset = len; }
+  if (reduce) steps.forEach(function(s){ s.classList.add('on'); });
   window.onScrub('how', function(p, el){
     var r = el.getBoundingClientRect(), h = window.innerHeight;
     // local progress: 0 when the section top reaches 80% of the viewport, 1 when its bottom reaches 40%
     var q = Math.max(0, Math.min(1, (h*0.8 - r.top) / Math.max(1, r.height - h*0.4)));
     var narrow = window.innerWidth < 900;
-    steps.forEach(function(s, i){ s.classList.toggle('on', narrow || q > (i + 0.5) / (steps.length + 0.6)); });
+    steps.forEach(function(s, i){ s.classList.toggle('on', narrow || reduce || q > (i + 0.5) / (steps.length + 0.6)); });
     if (path) path.style.strokeDashoffset = (len * (1 - Math.min(1, q*1.15))).toFixed(1);
     sprouts.forEach(function(s, i){ s.classList.toggle('on', q > (i + 0.55) / (sprouts.length + 0.6)); });
   });
@@ -926,6 +996,8 @@ SITE_JS = r'''
     if (d.open) a.style.height = 'auto';
     s.addEventListener('click', function(e){
       e.preventDefault();
+      // under reduced motion the answer opens and closes at once, with no transitionend to wait for
+      if (reduce){ d.open = !d.open; a.style.height = d.open ? 'auto' : '0px'; return; }
       if (d.open){
         d.classList.add('closing'); a.style.height = a.scrollHeight + 'px'; requestAnimationFrame(function(){ a.style.height = '0px'; });
         a.addEventListener('transitionend', function h(){ d.open = false; d.classList.remove('closing'); a.removeEventListener('transitionend', h); });

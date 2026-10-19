@@ -77,7 +77,10 @@
 
   var cx = 0, cy = 0, S = 1, narrow = false;
   function layout(){
-    W = pin.clientWidth; H = pin.clientHeight;
+    // laid out as a plain section (heroFlow), the canvas covers the hero text only, not the statement under it
+    var inner = pin.querySelector('.hero-inner');
+    canvas.style.height = heroFlow && inner ? inner.offsetHeight + 'px' : '';
+    W = pin.clientWidth; H = heroFlow && inner ? inner.offsetHeight : pin.clientHeight;
     canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     glowC.width = Math.max(1, Math.round(W*GQ)); glowC.height = Math.max(1, Math.round(H*GQ)); gctx.setTransform(GQ, 0, 0, GQ, 0, 0);
     blurC.width = glowC.width; blurC.height = glowC.height;
@@ -89,11 +92,19 @@
       // on a phone the rune sits under the text block, never on it: measured from where the buttons end
       var cta = pin.querySelector('.hero-inner .cta'), pr = pin.getBoundingClientRect();
       var ib = cta ? cta.getBoundingClientRect().bottom - pr.top : H*0.55;
-      S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110));
-      cy = Math.max(H*0.71, ib + 24 + 55*S);
+      if (heroFlow){
+        // sized by the screen, not the section, and set in the room the section keeps for it under the buttons
+        S = Math.min(W*0.62, window.innerHeight*0.30)/110; S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110)); cy = ib + 24 + 55*S;
+      } else {
+        S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110));
+        cy = Math.max(H*0.71, ib + 24 + 55*S);
+      }
+    } else if (heroFlow){
+      S = Math.min(window.innerHeight*0.62, W*0.30)/110;
     }
   }
   window.addEventListener('resize', layout); layout();
+  window.addEventListener('heroflow', function(){ layout(); schedule(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ layout(); schedule(); });
 
   // where the rune lands: the mark inside the header lockup, in canvas coordinates
@@ -112,7 +123,8 @@
   // frames run only while the hero is on screen and the rune is alive; the clock pauses in between
   var running = false, pausedAt = 0;
   function schedule(){ if (running) return; running = true; if (pausedAt){ t0 += performance.now() - pausedAt; pausedAt = 0; } last = performance.now(); requestAnimationFrame(frame); }
-  function onScroll(){ if (!reduce){ var pp = heroProgress(); setArrived(pp >= 0.29); root.classList.toggle('over-hero', pp < 0.3); } schedule(); }
+  function landed(sp){ return heroFlow ? canvas.getBoundingClientRect().top + cy + 55*S < (siteHeader ? siteHeader.clientHeight : 72) : sp >= 0.29; }
+  function onScroll(){ if (!reduce){ var pp = heroProgress(); setArrived(landed(pp)); root.classList.toggle('over-hero', pp < 0.3); } schedule(); }
   window.addEventListener('scroll', onScroll, {passive: true}); window.addEventListener('resize', schedule); document.addEventListener('visibilitychange', schedule);
   function frame(now){
     running = false;
@@ -120,7 +132,7 @@
     var pr = pin.getBoundingClientRect();
     if (pr.bottom <= 0 || pr.top >= window.innerHeight || document.hidden){ pausedAt = now; return; }
     // sp drives the text fade and the header; p drives the flight, and is held at 0 under reduced motion
-    var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce ? 0 : sp;
+    var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce || heroFlow ? 0 : sp;
     root.classList.toggle('over-hero', sp < 0.3);
     fadeText(Math.min(1, sp*3.4));
     mouse.x += (target.x - mouse.x)*0.05; mouse.y += (target.y - mouse.y)*0.05;
@@ -141,7 +153,7 @@
     var ox = cx*(1 - fl) + land.ox*fl, oy = (cy + Math.sin(t*0.9)*3*lit*(1 - rest)*(1 - fl))*(1 - fl) + land.oy*fl;
     var wBase = 6.5*(1 - fl) + 24*fl;
     var tiltX = 1 - Math.abs(mouse.x)*0.06*(1 - fl), skew = -mouse.x*0.05*(1 - fl), tiltY = 1 - Math.abs(mouse.y)*0.04*(1 - fl);
-    if (!reduce) setArrived(p >= 0.29);
+    if (!reduce) setArrived(landed(sp));
 
     ctx.clearRect(0, 0, W, H);
     if (alive <= 0) return; // the rune has landed in the header; scrolling back up schedules the next frame

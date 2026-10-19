@@ -85,3 +85,13 @@ On the seo-audit branch, from main after the review-loop merge.
 - seo-5-2 [P1] closed (Andrew, 18 October 2026, second time): The four case claims without a public link (S-04) stay as they are.
 - seo-5-3 [P1] closed (Andrew, 18 October 2026, second time): The FAQ contracting answer stays with the brand (S-10).
 - seo-5-4 [P1] closed (Andrew, 18 October 2026): Andrey's GitHub shows Andrei Solovov, Freelance, with no Felag affiliation (S-08); no site change and no note.
+
+## UX audit, 18 October 2026
+Worked on the ux-audit branch from origin/main, one commit per issue, in the audit's order. Andrew's decisions in the chat: the phone strip controls go under the strip, to the right; the reduced-motion hero stays exactly as it is, so D-05 covers the sections below it; the strip status reads the card's own counter and title, the strip takes focus under the existing Lead cases label, and the carousel and slide words wait in copy-notes.md for his approval. Checked in Chromium and WebKit through Playwright, not in Safari itself.
+- ux-d08 [P0] done 193cffe: Case-card evidence links blocked by the hover glow layer
+- ux-d04-d06 [P0/P1] done eefd579 (fix-up in 0406cd4): Build scene clips at short heights and keeps the phone state after a resize. It now pins only when the composition fits, 806 to 823 px with the longest line open, so 1280x800 and 1366x768 also get the static section; they cut a few pixels before. Tightening the scene to pin again at 768 would be a separate design change.
+- ux-d03 [P0] done 40cb89b: Phone introduction loses content under WCAG text spacing
+- ux-d02 [P1] done 5d747fc: Keyboard focus lands on the invisible hero text
+- ux-d13 [P1] done in seo-5-1 (18f149a, merged): Waiting How steps at 2.67:1. This branch's seam rule (e5f9a79) was set aside in the merge with main, by Andrew's decision on 19 October 2026: the steps keep main's dim with ash labels and body, about 4.6:1.
+- ux-d05 [P1] done 0406cd4: Reduced motion below the hero: every section in its final state
+- ux-d09 [P1] done f8be15a and db94444; owner: the carousel and slide strings in copy-notes.md. On a phone the controls come before the strip in the tab order, though they show under it.

@@ -41,11 +41,12 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .over-hero .site-header{background:linear-gradient(180deg,rgba(var(--iron-rgb),.92) 0%,rgba(var(--iron-rgb),.55) 70%,rgba(var(--iron-rgb),0) 100%);border-color:transparent}
 .js .mark-pending .site-header .mark-fill{opacity:0;transition:opacity .5s}
 .mark-arrived .site-header .mark-fill{opacity:1}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--head)}
-.lockup{display:inline-flex;color:var(--text)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;min-height:72px;padding-top:12px;padding-bottom:12px}
+.lockup{display:inline-flex;color:var(--text);flex:0 0 auto}
 .lockup svg{display:block;height:38px;width:auto}
 .mark-fill{fill:var(--accent)}.word-fill{fill:var(--text)}
-.nav{display:flex;align-items:center;gap:36px}
+/* the nav may wrap onto a second row under the lockup when the labels grow, as they do with larger text spacing; at rest it is one row */
+.nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px 36px;margin-left:auto}
 .nav a{font-size:var(--fs-small);font-weight:500;color:var(--text-secondary);text-decoration:none}
 .nav a:hover,.nav a.cur{color:var(--text)}
 .nav a.btn,.nav a.btn:hover{color:var(--on-accent)}
@@ -57,7 +58,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px;padding-bottom:110px;pointer-events:none;will-change:opacity,transform}
 .hero-inner > *{pointer-events:auto}
-.hero h1{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
+.hero h1{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance;overflow-wrap:break-word}
 .hero .sub{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:27em}
 .cta{display:flex;align-items:center;gap:36px;flex-wrap:wrap}
 
@@ -69,13 +70,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 /* sections */
 .eyebrow{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary);letter-spacing:.04em;margin-bottom:24px}
 @media (max-width:900px){
-  .nav{gap:24px}
+  .nav{column-gap:24px}
   .hero{height:200vh;min-height:1400px}
   .hero-inner{padding-bottom:150px;justify-content:flex-start;padding-top:36px}
   .hero h1{max-width:none}
 }
 @media (max-width:700px){
-  .nav{gap:20px}
+  .nav{column-gap:20px}
   .nav .links a:not([href="#people"]):not([href="#proof"]){display:none}
 }
 @media (max-width:460px){
@@ -85,6 +86,11 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav .links{display:none}
   .lockup svg{height:32px}
   .btn-sm{padding:0 16px}
+}
+/* at 320 the lockup, People and the button only fit as one row with the gaps a step tighter */
+@media (max-width:340px){
+  .nav{column-gap:12px}
+  .btn-sm{padding:0 12px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -103,14 +109,54 @@ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, {threshold: 0.2});
   els.forEach(function(e){ io.observe(e); });
 })();
-var heroInner = document.querySelector('.hero-inner');
+var heroInner = document.querySelector('.hero-inner'), siteHeader = document.querySelector('.site-header'), rootEl = document.getElementById('root');
+// --head follows the header: 72 px at rest, taller when its row wraps under larger text, so every offset below the header stays true
+(function(){
+  if (!siteHeader) return;
+  function set(){ var h = siteHeader.clientHeight; document.documentElement.style.setProperty('--head', (h > 72 ? h : 72) + 'px'); }
+  set(); if ('ResizeObserver' in window) new ResizeObserver(set).observe(siteHeader);
+})();
+// the hero holds its text in a pinned frame only while that text and the statement after it fit the screen. When they do not, on a very
+// small or short screen, under zoom or with larger text spacing, the hero lays out as the page does without scripts: the hero text,
+// then the statement, in the flow of the page, and nothing fades. Measured from layout boxes, so the answer is the same in either state
+var heroFlow = false;
+(function(){
+  var st = document.getElementById('hero-statement'); if (!heroInner || !st || !rootEl || !rootEl.classList.contains('theme-rune')) return;
+  var narrowQ = window.matchMedia('(max-width:900px)');
+  function span(els){ var t = Infinity, b = -Infinity; Array.prototype.forEach.call(els, function(e){ if (!e.offsetHeight) return; t = Math.min(t, e.offsetTop); b = Math.max(b, e.offsetTop + e.offsetHeight); }); return b > t ? b - t : 0; }
+  function decide(){
+    // where each block ends in the pinned frame, which is the screen height and never under 700 px: on a phone the hero text starts under
+    // the header, on a desktop it is centred below it; the statement is centred between the header and 10vh of air on a phone
+    var head = siteHeader ? siteHeader.clientHeight : 72, h = window.innerHeight, frame = Math.max(h, 700), narrow = narrowQ.matches;
+    var a = span(heroInner.children), b = span(st.children), air = narrow ? 0.1*h : 0;
+    var heroEnd = narrow ? head + a : head + (frame - head - a)/2 + a, stEnd = head + (frame - head - air - b)/2 + b;
+    var f = Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
+    if (f !== heroFlow){ heroFlow = f; rootEl.classList.toggle('hero-flow', f); heroInner.style.opacity = ''; heroInner.style.transform = ''; heroInner.style.pointerEvents = ''; }
+    // the rune is placed from the text, so it measures again whenever the text changes size, in either state
+    window.dispatchEvent(new Event('heroflow'));
+  }
+  decide();
+  window.addEventListener('resize', decide);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(decide);
+  if ('ResizeObserver' in window){ var ro = new ResizeObserver(function(){ decide(); }); Array.prototype.forEach.call(heroInner.children, function(e){ ro.observe(e); }); Array.prototype.forEach.call(st.children, function(e){ ro.observe(e); }); }
+})();
+// what can be seen and what the keyboard can reach agree: once the hero text has mostly faded it is inert, out of the tab order and the
+// pointer's reach, and it comes back as it returns. A keyboard reader already inside it when the scroll begins holds it: the text stays
+// in full view, the statement waits, and both resume the moment focus moves on
+var heroHeld = false;
 function fadeText(p){
-  var o = 1 - Math.max(0, Math.min(1, (p-0.12)/0.3));
+  heroHeld = !heroFlow && !!heroInner.querySelector(':focus-visible');
+  if (heroFlow){ heroInner.inert = false; return; }
+  var o = heroHeld ? 1 : 1 - Math.max(0, Math.min(1, (p-0.12)/0.3));
   heroInner.style.opacity = o; heroInner.style.transform = 'translateY(' + (-40*(1-o)).toFixed(1) + 'px)';
   heroInner.style.pointerEvents = o < 0.3 ? 'none' : '';
+  heroInner.inert = o < 0.75;
+}
+if (heroInner){
+  // a focus change inside the hero redraws the scene at once, so the hold starts and ends with it
+  ['focusin', 'focusout'].forEach(function(t){ heroInner.addEventListener(t, function(){ setTimeout(function(){ window.dispatchEvent(new Event('scroll')); }, 0); }); });
 }
 // scroll progress inside the hero runway, 0 to 1
-var rootEl = document.getElementById('root');
 function headerOver(p){ rootEl.classList.toggle('over-hero', p < 0.06); }
 function heroProgress(){
   var hero = document.getElementById('top');
