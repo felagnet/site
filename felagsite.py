@@ -611,7 +611,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" style="--i:{min(i,4)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p><div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era) in enumerate(WALL):
         lk = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -705,7 +705,7 @@ def sections(t, theme):
     </div>
   </div>
 </section>
-<section class="scene-proof" id="proof-cases" aria-label="Lead cases">
+<section class="scene-proof" id="proof-cases" aria-label="Lead cases" aria-roledescription="carousel">
   <div class="wrap strip-head"><p class="lead" style="margin-top:0">The lead cases, with the public record linked where one exists.</p>{strip_nav}</div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Lead cases">{cards}</div>
   <div class="sr-only" id="strip-status" aria-live="polite" aria-atomic="true"></div>
@@ -909,12 +909,12 @@ SITE_JS = r'''
     var prev = track.scrollLeft < 2, next = track.scrollLeft + track.clientWidth > track.scrollWidth - 2;
     btns.forEach(function(b){ b.disabled = b.getAttribute('data-dir') === '-1' ? prev : next; });
   }
-  // after a press the card now at the left edge is read out in its own words, its counter and its title, once the strip has settled
+  // after a press the card now at the left edge is read out as its slide position and its title, once the strip has settled
   var status = document.getElementById('strip-status'), say = 0;
   function announce(){
     var tr = track.getBoundingClientRect(), cards = track.querySelectorAll('.card'), c = null;
     for (var i = 0; i < cards.length; i++){ if (cards[i].getBoundingClientRect().left >= tr.left - 2){ c = cards[i]; break; } }
-    if (c && status) status.textContent = c.querySelector('.idx').textContent + ', ' + c.querySelector('h3').textContent;
+    if (c && status) status.textContent = c.getAttribute('aria-label') + ', ' + c.querySelector('h3').textContent;
   }
   btns.forEach(function(b){ b.addEventListener('click', function(){
     clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450);

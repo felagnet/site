@@ -95,4 +95,4 @@ Andrew's decisions in the chat: after a press of Previous or Next the strip read
 - Each case card (`article.card`): add `role="group"`, `aria-roledescription="slide"` and `aria-label="3 of 10"` (the number and total from the card's position). Heard as "3 of 10, slide".
 - Optional, if the spoken counter "zero three slash ten" reads poorly: the status line could use the same "3 of 10" form instead of the card's visible "03 / 10", for example "3 of 10, Identity for a global technology company".
 
-Until then the source carries none of these.
+Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" form. Applied on the strip-autoscroll branch.
