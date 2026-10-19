@@ -48,7 +48,7 @@ KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kuco
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
-P_LINE = "Uddug launched Marscatsvoyage, $2M+ at launch."
+P_LINE = "Uddug helped with the launch of Marscatsvoyage."
 R_LINE = "Uddug took on grant work for Web3 Foundation and Protocol Labs, including JuniDB, an IPFS-backed data layer for Substrate."
 Y_LINE = "Uddug built the smart contracts for Metazoku in 2023."
 
@@ -127,7 +127,7 @@ WALL = [
     ("Web3 Foundation", "client", "Grant work, including JuniDB.", [], "Uddug, 2020 to 2023"),
     ("Protocol Labs", "client", "Grant work.", [], "Uddug, 2020 to 2023"),
     ("OG:Crystals", "client", "The technology behind the launch, with Snark.art.", [], "Uddug, 2021"),
-    ("Marscatsvoyage", "client", "A launch Uddug built.", [], "Uddug, 2021"),
+    ("Marscatsvoyage", "client", "Uddug helped with the launch.", [], "Uddug, 2021"),
     ("Arsnl.art", "client", "The NFT platform and its launches. See case 09.", [], "Uddug, from 2022"),
     ("Metazoku", "client", "Smart contracts.", [], "Uddug, 2023"),
     ("Snark.art", "client", "An NFT launch platform for established artists, later a Uddug client.", [("snark.art", "https://snark.art")], "2019 to 2020, then Uddug"),
