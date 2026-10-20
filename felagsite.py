@@ -479,7 +479,20 @@ html:not(.js) .name{cursor:default}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .lineage{margin-top:40px;border-top:1px solid var(--line)}
 .lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
-.background{margin-top:24px}
+.background{margin-top:32px}
+.background>summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 32px;align-items:center;width:100%;padding:28px 32px;background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;font-family:inherit;transition:border-color .2s}
+.background>summary::before{display:none}
+.background>summary:hover{border-color:var(--accent)}
+.background>summary .bg-t{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;color:var(--text);transition:color .15s}
+.background>summary:hover .bg-t{color:var(--accent-hover)}
+.background>summary .bg-s{grid-column:1;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.background>summary i{grid-column:2;grid-row:1/3;font-style:normal;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--accent)}
+.background>summary i b{font-weight:400}
+.background>summary i::after{content:"+";display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--accent);border-radius:2px;font-size:20px;line-height:1;transition:transform .3s}
+.background[open]>summary i::after{transform:rotate(45deg)}
+.background .bg-close,.background[open] .bg-open{display:none}
+.background[open] .bg-close{display:inline}
+@media (max-width:600px){.background>summary{padding:22px 20px;gap:8px 16px}.background>summary .bg-open,.background>summary .bg-close{display:none}}
 .background .eras{margin-top:24px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -640,7 +653,7 @@ html:not(.js) .name{cursor:default}
 @media (prefers-reduced-motion:reduce){
   /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
   .panel{position:relative;top:auto;box-shadow:none}
-  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before{transition:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.background>summary i::after{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
@@ -822,7 +835,7 @@ def sections(t, theme):
     <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
     <h2 class="reveal">Where the team comes from.</h2>
     <div class="lineage">{lineage}</div>
-    <details class="more background reveal"><summary>The full history, project by project</summary>
+    <details class="more background reveal"><summary><span class="bg-t">The full history, project by project</span><span class="bg-s">{len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</span><i aria-hidden="true"><b class="bg-open">Open the history</b><b class="bg-close">Close</b></i></summary>
       <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
     </details>
   </div>
