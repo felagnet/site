@@ -479,21 +479,20 @@ html:not(.js) .name{cursor:default}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .lineage{margin-top:40px;border-top:1px solid var(--line)}
 .lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
-.background{margin-top:32px}
-.background>summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 32px;align-items:center;width:100%;padding:28px 32px;background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;font-family:inherit;transition:border-color .2s}
-.background>summary::before{display:none}
-.background>summary:hover{border-color:var(--accent)}
-.background>summary .bg-t{font-size:var(--fs-title);line-height:1.1;font-weight:600;letter-spacing:-0.025em;color:var(--text);transition:color .15s}
-.background>summary:hover .bg-t{color:var(--accent-hover)}
-.background>summary .bg-s{grid-column:1;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
-.background>summary i{grid-column:2;grid-row:1/3;font-style:normal;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--accent)}
-.background>summary i b{font-weight:400}
-.background>summary i::after{content:"+";display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--accent);border-radius:2px;font-size:20px;line-height:1;transition:transform .3s}
-.background[open]>summary i::after{transform:rotate(45deg)}
-.background .bg-close,.background[open] .bg-open{display:none}
-.background[open] .bg-close{display:inline}
-@media (max-width:600px){.background>summary{padding:22px 20px;gap:8px 16px}.background>summary .bg-open,.background>summary .bg-close{display:none}}
-.background .eras{margin-top:24px}
+.history{margin-top:56px}
+.history-label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.history .eras{margin-top:28px}
+.history-body{position:relative}
+/* closed, with scripts: the first era shows and fades out under the button; without scripts all of it reads */
+.js .history.closed .history-body{max-height:520px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent);mask-image:linear-gradient(180deg,#000 45%,transparent)}
+.js .history .history-body{transition:max-height .7s cubic-bezier(.2,.7,.2,1)}
+.history-btn{display:inline-flex;align-items:center;gap:14px;height:52px;margin-top:8px;padding:0 24px 0 28px;background:none;border:1px solid var(--line-strong);border-radius:2px;color:var(--text);font-family:var(--sans);font-size:var(--fs-body);font-weight:500;letter-spacing:-0.005em;cursor:pointer;transition:border-color .15s,color .15s}
+.history-btn::after{content:"";width:9px;height:9px;border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+.history:not(.closed) .history-btn{margin-top:40px}
+.history:not(.closed) .history-btn::after{transform:translateY(2px) rotate(-135deg)}
+.history-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
+.history-btn:active{border-color:var(--accent);color:var(--accent)}
+.history-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
@@ -653,7 +652,7 @@ html:not(.js) .name{cursor:default}
 @media (prefers-reduced-motion:reduce){
   /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
   .panel{position:relative;top:auto;box-shadow:none}
-  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.background>summary i::after{transition:none}
+  .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.history-btn,.history-btn::after,.js .history .history-body{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
   .site-header .btn{transition:none}
@@ -835,9 +834,13 @@ def sections(t, theme):
     <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
     <h2 class="reveal">Where the team comes from.</h2>
     <div class="lineage">{lineage}</div>
-    <details class="more background reveal"><summary><span class="bg-t">The full history, project by project</span><span class="bg-s">{len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</span><i aria-hidden="true"><b class="bg-open">Open the history</b><b class="bg-close">Close</b></i></summary>
-      <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
-    </details>
+    <div class="history closed" id="history">
+      <p class="history-label reveal">The full history: {len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</p>
+      <div class="history-body" id="history-body">
+        <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
+      </div>
+      <button class="history-btn" id="history-btn" type="button" aria-expanded="false" aria-controls="history-body" hidden>Show the full history</button>
+    </div>
   </div>
 </section>
 
@@ -1144,6 +1147,21 @@ SITE_JS = r'''
     detail.addEventListener('transitionend', function h(){ if (!detail.hidden) detail.style.height = 'auto'; detail.removeEventListener('transitionend', h); });
   });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+// ---- the record: the full history opens from its button; closed, the faded part is inert
+(function(){
+  var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'); if (!box || !btn) return;
+  btn.hidden = false; body.inert = true;
+  btn.addEventListener('click', function(){
+    var open = box.classList.contains('closed');
+    if (open){ body.style.maxHeight = '520px'; box.classList.remove('closed'); body.inert = false;
+      requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; });
+      setTimeout(function(){ body.style.maxHeight = ''; }, reduce ? 0 : 750); }
+    else { body.style.maxHeight = ''; box.classList.add('closed'); body.inert = true;
+      box.scrollIntoView({block: 'start', behavior: reduce ? 'auto' : 'smooth'}); }
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'Close the full history' : 'Show the full history';
+  });
 })();
 
 // ---- the record: the era line draws as the reader moves down it, each era lighting its marker
