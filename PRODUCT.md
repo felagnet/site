@@ -32,7 +32,7 @@ What a neighbouring agency cannot truthfully copy:
 
 - A named principal leads every engagement, is written into the SOW, and is substituted only with the client's consent. Contractors join on demand and are never sold as principals.
 - No hourly billing. Every build starts with a paid Architecture Sprint; fixed-price builds are quoted from a completed sprint; pods and fractional CTO work are monthly retainers; the workshop is free and ends in a decision, never a spec.
-- The record: Felag is the 2026 restart of Uddug, founded 2018 and acquired by Gateway.fm in June 2024, and the founders have worked together since 2015. The proof is Gateway.fm-era and Uddug-era production work, named where the register allows.
+- The record: Felag is the 2026 restart of Uddug, founded 2018 and acquired in June 2024, and the founders have worked together since 2015. The proof is Gateway.fm-era and Uddug-era production work, named where the register allows.
 
 Positioning layers from core.md: the position layer (hero, statement, profiles) carries no Web3, chain or crypto words; the capability layer lists backend and infrastructure at scale, payment rails, identity and SSO, then distributed ledgers last; the proof layer may say everything that shipped, on-chain included. Web3 is experience carried, not the market led with.
 
@@ -46,7 +46,7 @@ Positioning layers from core.md: the position layer (hero, statement, profiles) 
 
 ## Capabilities and Constraints
 
-- One page, in this order: hero, the studio statement, what we build (four capabilities mapped to the four pieces of the mark), proof, names wall, the record as a short lineage with the company background collapsed under it, what it costs, how an engagement runs, who we work with, who we are, questions, next step, footer.
+- One page, in this order: hero, the studio statement, what we build (four capabilities mapped to the four pieces of the mark), proof, names wall, the record as a short lineage from 2014 with the full history, era by era and every project in it, collapsed under it, what it costs, how an engagement runs, who we work with, who we are, questions, next step, footer.
 - Offers and prices on the page come from rate-card.md: free technical workshop; Architecture Sprint from $10k (Andrew, 18 October 2026, replacing the $7.5k launch price; rate-card.md is to be updated to match); Fractional CTO from $4k a month (a deliberate price Andrew confirmed on 16 October 2026; rate-card.md still says $8k and is to be updated to match); pods $10k to $60k a month in three tiers (from $10k one senior with weekly principal review, from $25k a part-time principal with one or two seniors, up to $60k a full-time principal leading two to three); technical due diligence quoted per scope, report in one to two weeks from access; Fractional CTO initial term one month; sprint credit 30 days from delivery; no hourly billing and no time-and-materials exception. Prices in USD excluding VAT.
 - Copy is locked for agents. A suggested copy change goes to .impeccable/review/copy-notes.md, not to the source.
 - Wording rules enforced by check.py: never "passionate", "cutting-edge", "seamless", "empower", "world-class", "AI-first", "four people", "Talk to a founder", "sold to", "Andrei". No em dashes and no exclamation marks anywhere, including comments and commit messages. Sentence case.
