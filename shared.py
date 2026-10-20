@@ -65,6 +65,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 /* load choreography: the text is in place before the rune's first stroke begins at 0.7 s, so the largest text on the page counts for the first paint */
 .rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
 .rise.r1{animation-delay:.2s}.rise.r2{animation-delay:.4s}.rise.r3{animation-delay:.6s}
+/* focus inside an entrance group finishes its entrance at once: a transparent parent would hide the focused control and its outline */
+.rise:focus-within{animation:none}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 
 /* sections */

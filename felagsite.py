@@ -1019,23 +1019,30 @@ SITE_JS = r'''
       if (dir < 0 && l < -2) x = l; }
     return x === null ? (dir > 0 ? track.scrollWidth : 0) : track.scrollLeft + x;
   }
-  var hold = function(){}, glide = 0;
+  var hold = function(){};
   btns.forEach(function(b){ b.addEventListener('click', function(){
-    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold(5000); glide = performance.now();
+    clearTimeout(say); say = setTimeout(announce, reduce ? 50 : 450); hold();
     track.scrollTo({left: target(parseInt(b.getAttribute('data-dir'), 10)), behavior: reduce ? 'auto' : 'smooth'});
   }); });
   track.addEventListener('scroll', update, {passive: true}); window.addEventListener('resize', update); update();
 
-  // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. It holds while the pointer
-  // or keyboard focus is at the strip and goes on the moment they leave, holds a few seconds after a swipe or a scroll; Stop scrolling ends it. Never under reduced motion
+  // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. Phones start still, since the
+  // controls sit below the cards there. The mouse over the strip pauses it only while it stays; keyboard use, a swipe, a tap or a press stops it
+  // until the reader presses Start scrolling. Never under reduced motion
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
-  var SPEED = 30, stopped = false, hover = false, focused = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
-  play.hidden = false; track.classList.add('drift');
-  hold = function(ms){ until = Math.max(until, performance.now() + ms); };
-  function running(){ return !stopped && !hover && !focused && seen && !document.hidden; }
+  var narrowQ = window.matchMedia('(max-width:900px)');
+  var SPEED = 30, stopped = narrowQ.matches, chosen = false, hover = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
+  play.hidden = false;
+  function running(){ return !stopped && !hover && seen && !document.hidden; }
   function kick(){ if (running() && !raf) raf = requestAnimationFrame(tick); }
-  // leaving the strip, by pointer or by focus, sets it going again at once from where it stands
-  function resume(){ until = 0; pos = track.scrollLeft; kick(); }
+  function show(){
+    play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
+    // snap is off only while the strip drifts, so a stopped strip and the arrow keys move card by card
+    track.classList.toggle('drift', !stopped);
+  }
+  function stop(){ if (stopped) return; stopped = true; chosen = true; end = 0; back = false; show(); }
+  show();
+  hold = stop;
   function tick(t){
     raf = 0; if (!running()){ last = 0; return; }
     raf = requestAnimationFrame(tick);
@@ -1046,30 +1053,42 @@ SITE_JS = r'''
       if (back && (track.scrollLeft < 2 || t - end > 7600)){ end = 0; back = false; pos = track.scrollLeft; until = t + 1500; }
       return;
     }
-    // a press's glide lands on its card edge before the drift takes over again
-    if (glide){ if (t - glide < 2000 && (t - glide < 150 || Math.abs(track.scrollLeft - pos) > 0.5)){ pos = track.scrollLeft; return; } glide = 0; pos = track.scrollLeft; }
-    if (t < until || Math.abs(track.scrollLeft - pos) > 3){ pos = track.scrollLeft; if (t >= until) until = t + 4000; return; }
+    if (t < until){ pos = track.scrollLeft; return; }
+    // the strip moved by a hand other than the drift's: the reader has taken it, so it stays where they put it
+    if (Math.abs(track.scrollLeft - pos) > 3){ stop(); return; }
     if (pos >= track.scrollWidth - track.clientWidth - 1){ end = t; return; }
     pos += SPEED*dt/1000; track.scrollLeft = pos;
   }
   play.addEventListener('click', function(){
-    stopped = !stopped; play.classList.toggle('off', stopped); play.setAttribute('aria-label', stopped ? 'Start scrolling' : 'Stop scrolling');
-    snap(); end = 0; back = false; pos = track.scrollLeft; hold(600); kick();
+    stopped = !stopped; chosen = true; end = 0; back = false; show(); pos = track.scrollLeft; until = performance.now() + 600; kick();
   });
+  // a tap is followed by imitation mouse events, which are not a mouse resting on the strip
+  var touched = 0;
+  document.addEventListener('touchstart', function(){ touched = performance.now(); }, {passive: true, capture: true});
+  function mouse(e){ return e.pointerType === 'mouse' && performance.now() - touched > 1000; }
   [track, play.parentNode].forEach(function(el){
-    el.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse'){ hover = true; } });
-    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; resume(); } });
+    el.addEventListener('pointerenter', function(e){ if (mouse(e)) hover = true; });
+    el.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; pos = track.scrollLeft; kick(); } });
   });
   var sec = document.getElementById('proof-cases');
-  // keyboard focus holds the drift and gives the snap back, so the arrow keys move card by card
-  function snap(){ track.classList.toggle('drift', !stopped && !focused); }
-  sec.addEventListener('focusin', function(e){ focused = e.target.matches(':focus-visible'); snap(); kick(); });
-  sec.addEventListener('focusout', function(){ var was = focused; focused = false; snap(); if (was) resume(); else kick(); });
-  track.addEventListener('touchstart', function(){ until = performance.now() + 60000; }, {passive: true});
-  track.addEventListener('touchend', function(){ until = performance.now() + 4000; }, {passive: true});
-  track.addEventListener('wheel', function(){ hold(4000); }, {passive: true});
+  // keyboard focus arriving on anything but the control, or any key pressed inside the section, is keyboard use, however focus got there
+  sec.addEventListener('focusin', function(e){ if (e.target !== play && e.target.matches(':focus-visible')) stop(); });
+  sec.addEventListener('keydown', function(e){ if (e.target !== play && !/^(Shift|Control|Alt|Meta)$/.test(e.key)) stop(); });
+  // a touch on the strip stops it, unless the finger only scrolled the page past it
+  var tx = 0, ty = 0;
+  track.addEventListener('touchstart', function(e){ var p = e.touches[0]; tx = p.clientX; ty = p.clientY; until = performance.now() + 60000; }, {passive: true});
+  track.addEventListener('touchend', function(e){
+    var p = e.changedTouches[0], dx = Math.abs(p.clientX - tx), dy = Math.abs(p.clientY - ty);
+    until = 0; pos = track.scrollLeft; if (!(dy > 10 && dy > dx)) stop(); kick();
+  }, {passive: true});
+  track.addEventListener('wheel', function(e){ if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, {passive: true});
+  // until the reader has chosen, the strip follows the screen: still on a phone, drifting on a desktop
+  narrowQ.addEventListener('change', function(){ if (chosen) return; stopped = narrowQ.matches; show(); pos = track.scrollLeft; kick(); });
   document.addEventListener('visibilitychange', kick);
-  new IntersectionObserver(function(es){ var was = seen; seen = es[0].isIntersecting; if (seen && !was){ pos = track.scrollLeft; hold(1200); } kick(); }, {threshold: 0.35}).observe(track);
+  // on screen means a third of the strip, or of the screen when the cards are taller than it, as in a phone held sideways
+  new IntersectionObserver(function(es){ var e = es[0], was = seen;
+    seen = e.isIntersecting && e.intersectionRect.height >= 0.35*Math.min(e.boundingClientRect.height, innerHeight);
+    if (seen && !was){ pos = track.scrollLeft; until = performance.now() + 1200; } kick(); }, {threshold: [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1]}).observe(track);
 })();
 
 // ---- the names wall: a name opens its line right under its own row
