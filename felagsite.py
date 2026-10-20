@@ -91,7 +91,7 @@ PROOF_CARDS = [
          facts=[("Team", "~25 people across the two departments."),
                 ("Projects", "Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield.")],
          dlabel="Project background",
-         details="Uddug had grown to 15 people when Gateway.fm acquired it in June 2024, and the team joined as the Platform department."),
+         details="Uddug had grown to 15 people when it was acquired in June 2024, and the team joined Gateway.fm as its Platform department."),
     dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN)], era="Independent engagement, 2025 to 2026",
          body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
          facts=[("Result", "The network measured at about 5,000 requests per second."),
@@ -155,7 +155,7 @@ LINEAGE = [
     ("2018", "The founders start Uddug on the ICEX core team."),
     ("2019", "Andrew becomes technical lead and CTO of Snark.art, an NFT launch platform that later becomes a Uddug client."),
     ("2021", "Andrew joins Gateway.fm as one of its first engineers."),
-    ("June 2024", "Gateway.fm acquires Uddug, and the team becomes its Platform department."),
+    ("June 2024", "Uddug is acquired, and the team becomes Gateway.fm's Platform department."),
     ("2026", "The departments close and the team leaves."),
     ("July 2026", "Felag starts as the restart of Uddug, with Pavel Dodonov and Andrey Solovov as principal engineers and partners."),
 ]
@@ -179,7 +179,7 @@ ERAS = [
              ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, [], 4),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
-         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
+         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Uddug was acquired and the team became Gateway.fm's Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
              ("2021 to 2022", "The RPC proxy for Opera and 1inch", "A cache layer and rate limiting at 140k+ requests per second at peak, with 50 ms average latency on the heavy requests.", [], 2),
              ("2023 to 2025", "Presto and its fintech app kits", K_LINE, [], None),
@@ -239,10 +239,10 @@ TURN_DOWN = "Hourly billing, a dedicated eight-person team as a product, and pub
 
 PEOPLE = [
     dict(ini="AS", name="Andrew Skurlatov", role="Co-founder and CTO", where="Based in the Netherlands", alt="Andrew Skurlatov, co-founder and CTO of Felag",
-         bio="Andrew sets Felag's technical direction, leads the architecture on its engagements and steps in as fractional CTO. He has spent 15 years in software, ten of them in blockchain. He co-founded Uddug in 2018 and, after Gateway.fm acquired it, ran ~25 people across two departments as VP of Platform and Yield.",
+         bio="Andrew sets Felag's technical direction, leads the architecture on its engagements and steps in as fractional CTO. He has spent 15 years in software, ten of them in blockchain. He co-founded Uddug in 2018 and, after it was acquired, ran ~25 people across two departments as VP of Platform and Yield.",
          links=[("LinkedIn", "https://linkedin.com/in/andrew-skurlatov"), ("GitHub", "https://github.com/andskur"), ("X", "https://x.com/Andskur1")], seed=3, photo=_photo("andrew")),
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
-         bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through the Gateway.fm acquisition, and then headed the platform team for its tokenised-finance product.",
+         bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through its acquisition, and then headed the platform team for Gateway.fm's tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
     dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer at Felag",
          bio="Pavel leads engineering on Felag's engagements. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",

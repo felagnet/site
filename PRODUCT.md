@@ -32,7 +32,7 @@ What a neighbouring agency cannot truthfully copy:
 
 - A named principal leads every engagement, is written into the SOW, and is substituted only with the client's consent. Contractors join on demand and are never sold as principals.
 - No hourly billing. Every build starts with a paid Architecture Sprint; fixed-price builds are quoted from a completed sprint; pods and fractional CTO work are monthly retainers; the workshop is free and ends in a decision, never a spec.
-- The record: Felag is the 2026 restart of Uddug, founded 2018 and acquired by Gateway.fm in June 2024, and the founders have worked together since 2015. The proof is Gateway.fm-era and Uddug-era production work, named where the register allows.
+- The record: Felag is the 2026 restart of Uddug, founded 2018 and acquired in June 2024, and the founders have worked together since 2015. The proof is Gateway.fm-era and Uddug-era production work, named where the register allows.
 
 Positioning layers from core.md: the position layer (hero, statement, profiles) carries no Web3, chain or crypto words; the capability layer lists backend and infrastructure at scale, payment rails, identity and SSO, then distributed ledgers last; the proof layer may say everything that shipped, on-chain included. Web3 is experience carried, not the market led with.
 
