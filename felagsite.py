@@ -221,7 +221,7 @@ PEOPLE = [
          bio="Andrey leads delivery on Felag's engagements. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
-PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
+PEOPLE_NOTE = "We bring in specialist contractors when a project needs them, always led by one of us."
 
 # the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
 # the registration number and the office as parts, so the structured data reads the same facts as the footer

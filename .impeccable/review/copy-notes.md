@@ -148,3 +148,7 @@ Resolved the same day: Andrew created the Felag form in Formspree, id mppqeyyd, 
 ## 20 October 2026, the Discuss your project buttons go to the form
 
 Andrew asked for the header and hero buttons to scroll to the form and for the line above it to change, and settled both in the chat. All three Discuss your project buttons (header, hero and the one under the prices) now link to #contact, the closing scene's eyebrow, instead of opening an email. The footer's info@felag.net link stays an email link. The line above the form reads "Tell us about the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days." (was "Email info@felag.net a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.").
+
+## 20 October 2026, the people note
+
+Andrew asked for the note under the four people to be rephrased and chose the wording in the chat. It reads "We bring in specialist contractors when a project needs them, always led by one of us." (was "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."). The commitment in PRODUCT.md, that contractors are never sold as principals, still holds; the page no longer states it in those words.
