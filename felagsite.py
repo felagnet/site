@@ -143,33 +143,58 @@ WALL = [
 ]
 # how a wall line names the case it links to
 CASE_REFS = {1: "the Wirex Pay case", 2: "the RPC proxy case", 4: "the Infinex integration case", 5: "the Humanity Protocol case",
-             6: "the shared-prover case", 8: "the fractional CTO case", 9: "the Arsnl.art case"}
+             6: "the shared-prover case", 8: "the fractional CTO case", 9: "the Arsnl.art case",
+             3: "the identity case", 10: "the ICEX case"}
 
-# the record: a compact lineage in the reading path, and the company background behind a disclosure,
-# which keeps only the projects that have no case card of their own
+# the record: a short lineage in the reading path, and the full history behind a disclosure, era by era with every project in it;
+# a project with a case card carries the number of its case, and its row links to the card
 LINEAGE = [
-    ("2015", "The founders start working together."),
-    ("2018", "Andrew Skurlatov and Mikhail Manko found Uddug."),
+    ("2014", "Andrew builds and runs a crypto micropayment system and a network of faucets."),
+    ("2015", "Andrew Skurlatov and Mikhail Manko start working together and launch YourAdsMedia, a crypto ad network."),
+    ("2017", "The founders start ICEX, their own exchange, where the push oracle is first developed."),
+    ("2018", "The founders start Uddug on the ICEX core team."),
+    ("2019", "Andrew becomes technical lead and CTO of Snark.art, an NFT launch platform that later becomes a Uddug client."),
     ("2021", "Andrew joins Gateway.fm as one of its first engineers."),
     ("June 2024", "Gateway.fm acquires Uddug, and the team becomes its Platform department."),
     ("2026", "The departments close and the team leaves."),
     ("July 2026", "Felag starts as the restart of Uddug, with Pavel Dodonov and Andrey Solovov as principal engineers and partners."),
 ]
 ERAS = [
-    dict(name="Uddug", years="2018 to 2024",
+    dict(name="Before Uddug", years="2014 to 2018",
+         intro="Andrew and Mikhail met in Limassol in 2014 and have built companies together since 2015.",
          cases=[
-             ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, []),
-             ("2021", "OG:Crystals", O_LINE, []),
-             ("2021", "Marscatsvoyage", P_LINE, []),
-             ("2023", "Metazoku", Y_LINE, []),
+             ("2014 to 2015", "Crypto micropayments and a faucet network", "Andrew designed, built and ran a micropayment system and a network of faucets for Bitcoin, Litecoin and Dogecoin, earning about $10k a month at its peak.", [], None),
+             ("2015 to 2017", "YourAdsMedia", "The founders' crypto ad network, product and platform built by Andrew and Mikhail.", [], None),
+             ("2017 to 2018", "ICEX", "The founders' own exchange, with a team of 25. It was roughly 70 percent built when the investor withdrew in the 2018 crypto winter. The push oracle first developed for it later shipped for Wirex Pay, Infinex, LUKSO and Lumia.", [], 10),
+         ]),
+    dict(name="Uddug", years="2018 to 2024",
+         intro="Andrew Skurlatov and Mikhail Manko founded Uddug in 2018 on the ICEX core team, and it grew to 15 people. NFT launches by the team collectively raised $100M+.",
+         cases=[
+             ("2019 to 2020", "Snark.art", "Andrew was technical lead and CTO of Snark.art, an NFT launch platform for established artists, with a team of five. Snark.art later became a Uddug client.", [("snark.art", "https://snark.art")], None),
+             ("2020 to 2023", "Web3 Foundation and Protocol Labs", R_LINE, [], None),
+             ("2021", "OG:Crystals", O_LINE, [], None),
+             ("2021", "Marscatsvoyage", P_LINE, [], None),
+             ("From 2022", "Arsnl.art", "Uddug built the whole NFT platform and handled the technical delivery of several artist drops on it, including Frank Stella's 'Geometries'.", [("arsnl.art", "https://arsnl.art")], 9),
+             ("2023", "Metazoku", Y_LINE, [], None),
+             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, [], 4),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
+         intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Gateway.fm acquired Uddug and the team became its Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
          cases=[
-             ("2023 to 2025", "Presto", K_LINE, []),
-             ("2023 to 2025", "The indexing platform", J_LINE, []),
-             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain. The figures are the peak observed in production, aggregate across clients, during 2023 to 2025.", []),
-             ("2025 to 2026", "Gateway Yield", G_NAMED, []),
+             ("2021 to 2022", "The RPC proxy for Opera and 1inch", "A cache layer and rate limiting at 140k+ requests per second at peak, with 50 ms average latency on the heavy requests.", [], 2),
+             ("2023 to 2025", "Presto and its fintech app kits", K_LINE, [], None),
+             ("2023 to 2025", "The indexing platform", J_LINE, [], None),
+             ("2023 to 2025", "Oracles", "A push oracle with multi-asset prices every 500 ms for Wirex Pay, Infinex, LUKSO and Lumia; a pull feed at about 1,000 requests per second and verifiable randomness for ApeChain. The figures are the peak observed in production, aggregate across clients, during 2023 to 2025.", [], None),
+             ("2024", "Wirex Pay", "The L2 chain, launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], 1),
+             ("2024 to 2025", "Humanity Protocol", F_NAMED, [], 5),
+             ("2024 to 2025", "The shared prover", H_NAMED, [], 6),
+             ("2025", "Identity for a global technology company", "Account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform, both proofs of concept.", [("Case study, by the team at Gateway.fm", GW_CASE)], 3),
+             ("2025 to 2026", "DeepNode, Andrew's fractional CTO engagement", "Ten months designing DeepNode's decentralised AI infrastructure, measured at about 5,000 requests per second, through the January 2026 token launch and exchange listing at $140M+ fully diluted valuation at launch.", [("KuCoin listing announcement", KUCOIN)], 8),
+             ("2025 to 2026", "Gateway Yield", G_NAMED, [], None),
          ]),
+    dict(name="Felag", years="From July 2026",
+         intro="Felag was founded in July 2026 as the restart of Uddug. Pavel Dodonov and Andrey Solovov joined as principal engineers and partners.",
+         cases=[]),
 ]
 
 OFFERS = [
@@ -688,8 +713,11 @@ def sections(t, theme):
     lineage = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><p>{tx}</p></div></div>' for y, tx in LINEAGE)
     eras = ""
     for e in ERAS:
-        rows = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{"<div class=links>" + "".join(f"<a href={u!r} rel=noopener>{l}</a>" for l, u in lk) + "</div>" if lk else ""}</div></div>' for y, tt, bd, lk in e["cases"])
-        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div></div><div class="era-cases">{rows}</div></div>'
+        rows = ""
+        for y, tt, bd, lk, case in e["cases"]:
+            ln = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in lk)
+            rows += f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{f"<div class=links>{ln}</div>" if ln else ""}</div></div>'
+        eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
     panels = ""
     for i, o in enumerate(OFFERS):
         note = f'<span>{o["note"]}</span>' if o["note"] else ""
@@ -794,7 +822,7 @@ def sections(t, theme):
     <p class="eyebrow reveal">{t["more_eyebrow"]}</p>
     <h2 class="reveal">Where the team comes from.</h2>
     <div class="lineage">{lineage}</div>
-    <details class="more background reveal"><summary>Company background</summary>
+    <details class="more background reveal"><summary>The full history, project by project</summary>
       <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
     </details>
   </div>
