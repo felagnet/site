@@ -39,7 +39,8 @@ GW_CASE = "https://gateway.fm/case-studies/agentic-identity-chain-infrastructure
 
 A_NAMED = "We delivered the Wirex Pay platform end to end: an L2 chain that launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards, built for MiCA alignment."
 B_NAMED = "We designed the RPC proxy that served Opera and 1inch in production, with a cache layer and rate limiting, at 140k+ requests per second at peak and 50 ms average latency on the heavy requests."
-C_LINE = "We built the event infrastructure and backend for Infinex, the Synthetix front-end, under governance proposal XIP-9."
+C_LINE = "We built the event infrastructure and backend API behind Infinex's Synthetix PerpsV3 integration, under Infinex proposal XIP-9."
+XIP9 = "https://proposals.infinex.xyz/xips/xip-9"
 F_NAMED = "We built the application layer for Humanity Protocol, an identity network with 9M+ users."
 G_NAMED = "We ran Gateway Yield, the infrastructure behind $1B+ locked in staking, serving Lido, Gnosis, Stellar and Canton."
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
@@ -71,9 +72,9 @@ PROOF_CARDS = [
          facts=[],
          dlabel="Sources and evidence",
          details="The client is not named. The linked case study is published by Gateway.fm and covers the agent identity workstream only."),
-    dict(kicker="Delivered, 2023 to 2024", title="Infinex and Synthetix", links=[], era="Uddug with Gateway.fm, 2023 to 2024",
-         body="We built the event infrastructure and backend for Infinex, the Synthetix front-end.",
-         facts=[("Context", "The scope was set by Synthetix governance proposal XIP-9, approved on 20 December 2023.")],
+    dict(kicker="Delivered, 2023 to 2024", title="Infinex and Synthetix", links=[("XIP-9 on Infinex Proposals", XIP9)], era="Uddug with Gateway.fm, 2023 to 2024",
+         body="We built the backend API behind Infinex's Synthetix PerpsV3 integration. It takes in the PerpsV3 contract events and serves market data, order events and trading history to the app over REST and WebSocket.",
+         facts=[("Context", "The scope was set by Infinex proposal XIP-9, Synthetix PerpsV3 API, approved in December 2023.")],
          dlabel="", details=""),
     dict(kicker="Identity network, application layer", title="Humanity Protocol", links=[], era="Gateway.fm, 2024 to 2025",
          body="We built the application layer for Humanity Protocol, an identity network.",
@@ -176,7 +177,7 @@ ERAS = [
              ("2021", "Marscatsvoyage", P_LINE, [], None),
              ("From 2022", "Arsnl.art", "Uddug built the whole NFT platform and handled the technical delivery of several artist drops on it, including Frank Stella's 'Geometries'.", [("arsnl.art", "https://arsnl.art")], 9),
              ("2023", "Metazoku", Y_LINE, [], None),
-             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, [], 4),
+             ("2023 to 2024", "Infinex, with Gateway.fm", C_LINE, [("XIP-9 on Infinex Proposals", XIP9)], 4),
          ]),
     dict(name="Gateway.fm", years="2021 to 2026",
          intro="Andrew joined Gateway.fm in 2021 as one of its first engineers. In June 2024 Uddug was acquired and the team became Gateway.fm's Platform department; the founders ran ~25 people across two departments. In 2026 the departments closed and we left.",
