@@ -152,3 +152,4 @@ Andrew asked for the header and hero buttons to scroll to the form and for the l
 ## 20 October 2026, the people note
 
 Andrew asked for the note under the four people to be rephrased and chose the wording in the chat. It reads "We bring in specialist contractors when a project needs them, always led by one of us." (was "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."). The commitment in PRODUCT.md, that contractors are never sold as principals, still holds; the page no longer states it in those words.
+The FAQ answer to "Who actually works on our system?" takes the same ending, by Andrew's choice: "...Contractors join for QA, DevOps and additional development when the scope needs them, always led by one of us." (was "..., and they are never presented as principals."). The answer also feeds the FAQ structured data and llms.txt.
