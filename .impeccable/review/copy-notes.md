@@ -132,3 +132,24 @@ Approved by Andrew on 19 October 2026, all three, the status in the "3 of 10" fo
 ## 19 October 2026, the cases strip drift: labels for its stop control
 
 Andrew asked for the strip to scroll on its own, as a constant slow drift. The control that stops and restarts it is new spoken text; Andrew chose the strings in the chat: "Stop scrolling" while it drifts and "Start scrolling" once it is stopped. Applied on the strip-autoscroll branch. The control shows only an icon, so nothing visible changes.
+
+## 19 October 2026, SEO metadata: title and description
+
+The auditor proposed "Felag | Backend, Payments & Identity Engineering" and a description that names the audience and the services, both without outcome pricing. Andrew chose versions that keep it, in sentence case. Applied on the seo-metadata branch, with Open Graph, Twitter and WebPage taking the same values.
+- Title: "Felag | Backend, payments and identity engineering, priced on outcomes" (70 characters; was "Felag, a principal-led engineering studio priced on outcomes").
+- Description: "Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, priced on outcomes rather than hours." (148 characters; was the hero line and the sub-line).
+
+## 19 October 2026, the closing scene: a contact form like andskur.com's
+
+Andrew asked for the contact form from andskur.com on felag.net and settled the gaps in the chat. The form sits in the closing scene under the mail paragraph and takes the place of the closing "Discuss your project" mailto button; See prices stays beside the submit button, and the header, hero and footer mailto links stay as they were. New visible strings, in Felag wording by Andrew's choice: the labels "The system and your deadline" and "Email", the submit button "Discuss your project", "Sending" while it posts, "Sent. We'll reply to the address you gave." on success, and "That didn't send. Email us directly at info@felag.net." on failure. The email subject Formspree sends is "felag.net: Free technical workshop".
+
+Resolved the same day: Andrew created the Felag form in Formspree, id mppqeyyd, and the form action points at it.
+
+## 20 October 2026, the Discuss your project buttons go to the form
+
+Andrew asked for the header and hero buttons to scroll to the form and for the line above it to change, and settled both in the chat. All three Discuss your project buttons (header, hero and the one under the prices) now link to #contact, the closing scene's eyebrow, instead of opening an email. The footer's info@felag.net link stays an email link. The line above the form reads "Tell us about the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days." (was "Email info@felag.net a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.").
+
+## 20 October 2026, the people note
+
+Andrew asked for the note under the four people to be rephrased and chose the wording in the chat. It reads "We bring in specialist contractors when a project needs them, always led by one of us." (was "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."). The commitment in PRODUCT.md, that contractors are never sold as principals, still holds; the page no longer states it in those words.
+The FAQ answer to "Who actually works on our system?" takes the same ending, by Andrew's choice: "...Contractors join for QA, DevOps and additional development when the scope needs them, always led by one of us." (was "..., and they are never presented as principals."). The answer also feeds the FAQ structured data and llms.txt.

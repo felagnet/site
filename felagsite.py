@@ -17,8 +17,8 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
              "the architecture and delivery of backends, payment systems and identity infrastructure.")
-# the search snippet: the hero line and the sub-line, both locked in core.md, 152 characters
-DESCRIPTION = ("Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, "
+# the search snippet: who we serve, what we build and how we price, as Andrew chose it on 19 October 2026, 148 characters
+DESCRIPTION = ("Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, "
                "priced on outcomes rather than hours.")
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
@@ -221,11 +221,14 @@ PEOPLE = [
          bio="Andrey leads delivery on Felag's engagements. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
 ]
-PEOPLE_NOTE = "Specialist contractors join when a project needs them. They work under one of us and are never presented as principals."
+PEOPLE_NOTE = "We bring in specialist contractors when a project needs them, always led by one of us."
 
 # the contracting counterparty, as Andrew gave it on 19 October 2026: the footer and the contract answer
-ENTITY = ("FELAG LLC, a Georgian limited liability company with identification number 426561829 and registered office at "
-          "Georgia, Gardabani Municipality, Poladaant Kari Village, 4th Street, Lane II, N 11")
+# the registration number and the office as parts, so the structured data reads the same facts as the footer
+ENTITY_ID = "426561829"
+ENTITY_OFFICE = dict(addressRegion="Gardabani Municipality", addressLocality="Poladaant Kari Village", streetAddress="4th Street, Lane II, N 11")
+ENTITY = (f"FELAG LLC, a Georgian limited liability company with identification number {ENTITY_ID} and registered office at "
+          f"Georgia, {ENTITY_OFFICE['addressRegion']}, {ENTITY_OFFICE['addressLocality']}, {ENTITY_OFFICE['streetAddress']}")
 
 CONTRACT = [
     ("Legal entity", ENTITY + "."),
@@ -240,7 +243,7 @@ CONTRACT = [
 
 FAQ = [
     ("Do you bill by the hour?", "No. Sprints and technical due diligence are fixed price, pods and fractional CTO work are monthly retainers, and the workshop is free."),
-    ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, and they are never presented as principals."),
+    ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, always led by one of us."),
     ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
     ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
@@ -274,7 +277,7 @@ def header():
     <a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a>
     <nav class="nav" aria-label="Page sections">
       <div class="links nav"><a href="#proof">Proof</a><a href="#offer">Prices</a><a href="#how">How</a><a href="#people">People</a></div>
-      <a class="btn btn-sm" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a>
+      <a class="btn btn-sm" href="#contact">Discuss your project</a>
     </nav>
   </div>
 </header>'''
@@ -549,6 +552,24 @@ html:not(.js) .name{cursor:default}
 .scene-book h2{max-width:10ch}
 .scene-book .mail{margin-top:28px;font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:24em}
 .scene-book .cta{margin-top:36px}
+/* the Discuss your project buttons land here, a step below the header */
+#contact{scroll-margin-top:24px}
+.brief{margin-top:36px;max-width:560px;display:flex;flex-direction:column;gap:20px}
+.brief .cta{margin-top:4px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.fld input,.fld textarea{width:100%;height:52px;padding:0 16px;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;color:var(--text);font-family:var(--sans);font-size:var(--fs-body);line-height:var(--lh-body);transition:border-color .15s}
+.fld textarea{height:auto;min-height:128px;padding:12px 16px;resize:vertical}
+.fld input:hover,.fld textarea:hover{border-color:var(--accent)}
+.fld input:focus,.fld textarea:focus{outline:none}
+.fld input:focus-visible,.fld textarea:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:3px}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+button.btn{cursor:pointer;font-family:var(--sans)}
+button.btn:disabled{cursor:default;opacity:var(--dim)}
+.gotcha{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fmsg{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--text-secondary)}
+.fmsg.ok{color:var(--text)}
+.brief.sent .fld,.brief.sent .cta button{display:none}
 .scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);max-width:34em;text-align:right}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
@@ -797,7 +818,7 @@ def sections(t, theme):
     <p class="lead reveal">Fixed-price sprints, builds and technical reviews. Monthly retainers for pods and fractional CTO work, with deliverables agreed in the SOW. Prices in US dollars, excluding VAT.</p>
     <div class="stack" id="stack">{panels}</div>
     <p class="offer-note reveal">{OFFER_NOTE}</p>
-    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a></div>
+    <div class="cta reveal" style="margin-top:40px"><a class="btn" href="#contact">Discuss your project</a></div>
   </div>
 </section>
 
@@ -832,10 +853,19 @@ def sections(t, theme):
   <div class="pin">
     {book_art}
     <div class="wrap">
-      <p class="eyebrow">{t["book_eyebrow"]}</p>
+      <p class="eyebrow" id="contact">{t["book_eyebrow"]}</p>
       <h2>Start with the workshop.</h2>
-      <p class="mail">Email <a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a> a short description of the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.</p>
-      <div class="cta"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
+      <p class="mail">Tell us about the system and your deadline. We start with a free technical workshop with a founder, and reply within two working days.</p>
+      <form class="brief" action="https://formspree.io/f/mppqeyyd" method="POST" data-form>
+        <div class="fld"><label for="brief-message">The system and your deadline</label><textarea id="brief-message" name="message" rows="4" required></textarea></div>
+        <div class="fld"><label for="brief-email">Email</label><input id="brief-email" name="email" type="email" autocomplete="email" required></div>
+        <input type="hidden" name="_subject" value="felag.net: Free technical workshop">
+        <!-- where Formspree sends a browser that posted the form without scripts; absolute, so change it with the domain -->
+        <input type="hidden" name="_next" value="https://felag.net/?sent=1#book">
+        <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="cta"><button class="btn" type="submit">Discuss your project</button><a class="textlink" href="#offer">See prices</a></div>
+        <p class="fmsg" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
     {("<div class=line>" + t["book_line"] + "</div>") if t.get("book_line") else ""}
   </div>
@@ -1144,6 +1174,48 @@ SITE_JS = r'''
     });
   });
 })();
+// ---- closing form: posts to Formspree in place; without scripts the browser posts it and Formspree returns to #book with ?sent=1
+(function(){
+  var f = document.querySelector('form[data-form]');
+  if (!f) return;
+  var MAIL = 'info@felag.net', MAILTO = 'mailto:info@felag.net?subject=Free%20technical%20workshop';
+  var btn = f.querySelector('button[type="submit"]'), msg = f.querySelector('.fmsg');
+  var endpoint = f.getAttribute('action') || '';
+  function say(kind){
+    if (!msg) return;
+    msg.className = 'fmsg ' + kind; msg.hidden = false; msg.textContent = '';
+    if (kind === 'ok'){ msg.textContent = "Sent. We'll reply to the address you gave."; return; }
+    var a = document.createElement('a'); a.href = MAILTO; a.textContent = MAIL;
+    msg.appendChild(document.createTextNode("That didn't send. Email us directly at "));
+    msg.appendChild(a); msg.appendChild(document.createTextNode('.'));
+  }
+  if (/[?&]sent=1/.test(location.search)){
+    f.classList.add('sent'); say('ok');
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  }
+  // until the real form id is set, open the visitor's mail client rather than post into a 404
+  if (endpoint.indexOf('REPLACE-ME') > -1){
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if (f._gotcha && f._gotcha.value) return;
+      var body = (f.message.value || '').trim() + '\n\n' + (f.email.value || '').trim();
+      location.href = MAILTO + '&body=' + encodeURIComponent(body);
+    });
+    return;
+  }
+  f.addEventListener('submit', function(ev){
+    if (!window.fetch || !window.FormData) return;
+    ev.preventDefault();
+    if (f._gotcha && f._gotcha.value) return;
+    var label = btn ? btn.textContent : '';
+    if (btn){ btn.disabled = true; btn.textContent = 'Sending'; }
+    if (msg) msg.hidden = true;
+    fetch(endpoint, {method: 'POST', body: new FormData(f), headers: {Accept: 'application/json'}})
+      .then(function(r){ if (!r.ok) throw new Error(String(r.status)); f.classList.add('sent'); say('ok'); })
+      .catch(function(){ say('bad'); })
+      .then(function(){ if (btn && !f.classList.contains('sent')){ btn.disabled = false; btn.textContent = label; } });
+  });
+})();
 '''
 
 # the closing scene, rune theme: the rune draws itself, ignites once and becomes the mark
@@ -1342,19 +1414,21 @@ SITE = "https://felag.net/"
 COMPANY_PAGES = ["https://www.linkedin.com/company/felagnet/", "https://github.com/felagnet", "https://x.com/felagnet"]
 
 
-def _offer(o, price=None, spec=None):
+def _offer(o, price=None, spec=None, monthly=False):
     d = {"@type": "Offer", "name": o["name"], "description": o["body"], "priceCurrency": "USD"}
     if price is not None:
         d["price"] = price
     if spec:
-        d["priceSpecification"] = dict({"@type": "PriceSpecification", "priceCurrency": "USD", "valueAddedTaxIncluded": False}, **spec)
+        # a monthly fee is a unit price per month, MON in UN/CEFACT
+        kind = {"@type": "UnitPriceSpecification", "unitCode": "MON", "unitText": "month"} if monthly else {"@type": "PriceSpecification"}
+        d["priceSpecification"] = dict(kind, priceCurrency="USD", valueAddedTaxIncluded=False, **spec)
     d["itemOffered"] = {"@type": "Service", "name": o["name"], "provider": {"@id": SITE + "#org"}}
     return d
 
 
 def ld_json(title, description):
     """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
-    No headcount, no address or country, no relation to Gateway.fm beyond the verbatim bios."""
+    No headcount, no relation to Gateway.fm beyond the verbatim bios; the only address is the registered office in the footer."""
     people_ids = ["andrew", "mike", "pavel", "andrey"]
     homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus"}
     persons = []
@@ -1366,15 +1440,16 @@ def ld_json(title, description):
         d["description"] = p["bio"]
         d["sameAs"] = [u for _, u in p["links"]]
         persons.append(d)
-    # the Fractional CTO minPrice waits on the owner's decision about the price on the page, so that offer carries no figure
     offers = [
         _offer(OFFERS[0], price="0"),
         _offer(OFFERS[1], spec={"minPrice": 10000, "description": "from $10k"}),
-        _offer(OFFERS[2], spec={"description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}),
-        _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}),
+        _offer(OFFERS[2], spec={"minPrice": 4000, "description": OFFERS[2]["price"] + ", " + OFFERS[2]["note"]}, monthly=True),
+        _offer(OFFERS[3], spec={"minPrice": 10000, "maxPrice": 60000, "description": "$10k to $60k a month, by size"}, monthly=True),
         _offer(OFFERS[4], spec={"description": "Quote per scope, fixed price, half paid on start, report in one to two weeks"}),
     ]
     org = {"@type": "Organization", "@id": SITE + "#org", "name": "Felag", "legalName": "FELAG LLC", "url": SITE,
+           "identifier": {"@type": "PropertyValue", "name": "Identification number of a Georgian limited liability company", "value": ENTITY_ID},
+           "address": dict({"@type": "PostalAddress"}, **ENTITY_OFFICE, addressCountry="GE"),
            "logo": {"@type": "ImageObject", "url": SITE + "apple-touch-icon.png", "width": 180, "height": 180},
            "image": SITE + "og.png",
            "slogan": "Senior engineers who own the architecture and ship to production.",
@@ -1446,7 +1521,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
     <div class="wrap hero-inner">
       <h1 class="rise r1">{headline}</h1>
       <p class="sub rise r2">{sub}</p>
-      <div class="cta rise r3"><a class="btn" href="mailto:info@felag.net?subject=Free%20technical%20workshop">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
+      <div class="cta rise r3"><a class="btn" href="#contact">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
     {hero_statement}
   </div>
