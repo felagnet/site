@@ -350,6 +350,7 @@ main{position:relative;z-index:1}
 /* ---- blocks rise in as they enter: 24 px and a fade over .7 s, 60 ms later for each item in a group (--i), nothing under reduced motion */
 html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0) * 60ms)}
 html.js .reveal.in{opacity:1;transform:none}
+html.js .reveal:focus-within{opacity:1;transform:none;transition:none}
 .sec h2.reveal{--i:1}.sec .lead.reveal{--i:2}
 @media (prefers-reduced-motion: reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
 .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
