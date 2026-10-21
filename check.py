@@ -206,6 +206,10 @@ def static_checks(html, page):
     row("Every mailto is info@felag.net", bool(mails) and not other,
         ", ".join(other) if other else "no mailto found")
 
+    anchors = [a for a in re.findall(r"<a\b[^>]*>", html) if re.search(r'href="https?://', a) and f'href="{SITE}' not in a]
+    same_tab = [re.search(r'href="([^"]*)"', a).group(1) for a in anchors if 'target="_blank"' not in a or "noopener" not in a]
+    row("Every external link opens in a new tab", bool(anchors) and not same_tab, ", ".join(same_tab) if same_tab else "no external link found")
+
     row("Four portraits in #people", page.people_jpegs == 4, f"{page.people_jpegs} portrait files inside #people")
     no_photo = [c["name"].strip() for c in page.cards if c["jpegs"] != 1]
     if no_photo:

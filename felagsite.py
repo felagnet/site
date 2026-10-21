@@ -763,18 +763,18 @@ def sections(t, theme):
     caps = "".join(f'<div class="cap" data-cap="{i}" data-piece="{c["piece"]}"><div class="k">0{i+1}</div><h3>{c["name"]}</h3><p>{c["line"]}</p></div>' for i, c in enumerate(CAPS))
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
-        links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
+        links = "".join(f'<a href="{u}" target="_blank" rel="noopener">{l}</a>' for l, u in c["links"])
         cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="cstory"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p>{(f'<dl class="cfacts">' + "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"]) + "</dl>") if c["facts"] else ""}</div>{(f'<details class="more evidence"><summary>{c["dlabel"]}</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era, case) in enumerate(WALL):
-        lk = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
+        lk = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" target="_blank" rel="noopener">{l}</a>' for l, u in links)
         wall += f'<button class="name {grp}" type="button" data-i="{i}" aria-expanded="false" aria-controls="wall-detail">{nm}</button><div class="wall-line" id="wall-{i}"><div class="wall-era">{era}</div><div><p>{txt}</p><div class="links">{lk}</div></div></div>'
     lineage = "".join(f'<div class="rec reveal"><div class="yr">{y}</div><div><p>{tx}</p></div></div>' for y, tx in LINEAGE)
     eras = ""
     for e in ERAS:
         rows = ""
         for y, tt, bd, lk, case in e["cases"]:
-            ln = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in lk)
+            ln = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" target="_blank" rel="noopener">{l}</a>' for l, u in lk)
             rows += f'<div class="rec reveal"><div class="yr">{y}</div><div><h4>{tt}</h4><p>{bd}</p>{f"<div class=links>{ln}</div>" if ln else ""}</div></div>'
         eras += f'<div class="era-block"><div class="era-head reveal"><h3 class="era-name">{e["name"]}</h3><div class="era-years">{e["years"]}</div><p class="era-intro">{e["intro"]}</p></div><div class="era-cases">{rows}</div></div>'
     panels = ""
@@ -798,7 +798,7 @@ def sections(t, theme):
     who = "".join(f'<article class="sit reveal" style="--i:{i}"><div class="n">0{i+1}</div><h3>{h}</h3><p>{b}</p></article>' for i, (h, b) in enumerate(WHO))
     people = ""
     for i, p in enumerate(PEOPLE):
-        links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in p["links"])
+        links = "".join(f'<a href="{u}" target="_blank" rel="noopener">{l}</a>' for l, u in p["links"])
         where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
         # a portrait with a 1080 px file offers it to the two-column landscape layout, where an 800 px file falls short of 3x
         big = p.get("photo") and os.path.exists(os.path.join(_HERE, "photo", "people", p["photo"] + "-1080.jpg"))
@@ -957,7 +957,7 @@ def sections(t, theme):
 <footer class="foot">
   <div><a class="lockup" href="#top" aria-label="Felag, home">{LOCKUP}</a></div>
   <p class="legal">{ENTITY}.</p>
-  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" rel="noopener">GitHub</a><a href="https://x.com/felagnet" rel="noopener">X</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
+  <div class="links"><a href="https://www.linkedin.com/company/felagnet/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/felagnet" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/felagnet" target="_blank" rel="noopener">X</a><a href="mailto:info@felag.net?subject=Free%20technical%20workshop">info@felag.net</a></div>
 </footer>'''
 
 # ---------------------------------------------------------------------------------------------- motion engine
