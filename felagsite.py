@@ -46,6 +46,7 @@ G_NAMED = "We ran Gateway Yield, the staking infrastructure for Lido, Gnosis, St
 H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecosystems, including EY Nightfall, Polygon zkEVM, Miden and Iden3, with GPU and CPU autoscaling on AWS spot capacity."
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
+DN_CMC = "https://coinmarketcap.com/currencies/deepnode/"
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
@@ -93,7 +94,7 @@ PROOF_CARDS = [
                 ("Projects", "Wirex Pay, Humanity Protocol, the shared prover, the oracles and Gateway Yield.")],
          dlabel="Project background",
          details="Uddug had grown to 15 people when it was acquired in June 2024, and the team joined Gateway.fm as its Platform department."),
-    dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN)], era="Independent engagement, 2025 to 2026",
+    dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], era="Independent engagement, 2025 to 2026",
          body="Ten months as DeepNode's fractional CTO, accountable for its decentralised AI infrastructure and for delivering it through the January 2026 token launch and exchange listing.",
          facts=[("Result", "The network handled about 5,000 requests per second at peak."),
                 ("Context", "The token listed in January 2026 at $140M+ fully diluted valuation.")],
@@ -193,7 +194,7 @@ ERAS = [
              ("2024 to 2025", "Humanity Protocol", F_NAMED, [], 5),
              ("2024 to 2025", "The shared prover", H_NAMED, [], 6),
              ("2025", "Identity for a global technology company", "Account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform, both proofs of concept.", [("Case study, by the team at Gateway.fm", GW_CASE)], 3),
-             ("2025 to 2026", "DeepNode, Andrew's fractional CTO engagement", "Ten months designing DeepNode's decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation.", [("KuCoin listing announcement", KUCOIN)], 8),
+             ("2025 to 2026", "DeepNode, Andrew's fractional CTO engagement", "Ten months designing DeepNode's decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation.", [("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], 8),
              ("December 2025", "EVM compatibility for Canton", "Andrew presented a proposal for EVM compatibility on the Canton Network to its super-validators.", [], None),
              ("2025 to 2026", "Gateway Yield", G_NAMED, [], None),
          ]),
