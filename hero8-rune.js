@@ -129,7 +129,9 @@
   function frame(now){
     running = false;
     var dt = Math.min(0.05, (now - last)/1000); last = now;
-    var pr = pin.getBoundingClientRect();
+    // in flow the canvas covers only the hero text, and the statement below it keeps the taller pin on screen: test the canvas itself.
+    // The header arrival keeps following the scroll through onScroll while the frames are paused
+    var pr = (heroFlow ? canvas : pin).getBoundingClientRect();
     if (pr.bottom <= 0 || pr.top >= window.innerHeight || document.hidden){ pausedAt = now; return; }
     // sp drives the text fade and the header; p drives the flight, and is held at 0 under reduced motion
     var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce || heroFlow ? 0 : sp;

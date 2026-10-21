@@ -182,3 +182,11 @@ The SEO follow-up (felag-audits/2026-10-seo/seo-aeo-positioning-followup-2026-10
 - Organization.knowsAbout, structured data only: Software engineering, Software architecture, Distributed systems, Platform engineering, AI infrastructure, Blockchain applications, Payments, Identity and access (was Backends and infrastructure, Payment rails, Identity and access, Distributed ledgers).
 - Not applied: the felag.io name overlap stays a low-priority observation, and search freshness is deferred, both as the audit says.
 - Same day, second round: "blockchain" came out of the statement, by Andrew's choice, to keep core.md's position-layer rule (no chain or crypto words); it stays in knowsAbout and in the proof. Andrew decided the statement for both founders.
+
+## 21 October 2026, open gaps after the round 3 design audit
+
+Settled with Andrew in the chat:
+- Protocol Labs stays on the names wall and in the 2020 to 2023 record row as it stands; the open risk under C-01 above still applies.
+- felag-core, the Notion proof register and the project docs are Andrew's to update, all of them, by himself: the rate card and core.md against the site's prices and terms, the Humanity Protocol and Marscatsvoyage rows, the Canton row's CIP number, the stale "Mike to confirm" note in core.md, and Pavel's and Andrey's locations in team-and-history.md. Agents do not edit them.
+- CLAUDE.md still lists the lift under stacked panels as copper light, though audit D-12 removed the stack; Andrew edits CLAUDE.md himself.
+- Portraits: Andrew, Mike and Andrey wait on larger photos from Andrew for the 1080 px landscape file Pavel now has.

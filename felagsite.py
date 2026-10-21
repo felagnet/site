@@ -336,7 +336,7 @@ main{position:relative;z-index:1}
 .sec h2,.scene-book h2,.scene-build h2,.h2{font-size:var(--fs-headline);line-height:1;font-weight:600;letter-spacing:-0.03em;max-width:15ch;text-wrap:balance}
 .sec h2.huge,.huge{font-size:var(--fs-display);line-height:.95;font-weight:600;letter-spacing:-0.035em;max-width:11ch;text-wrap:balance;overflow-wrap:break-word}
 /* the two index sections, names and record, are lists, not statements: their headlines take the subhead role */
-#names h2,#record h2{font-size:var(--fs-subhead);line-height:1;letter-spacing:-0.03em;max-width:20ch}
+#names h2,#record h2,#faq h2{font-size:var(--fs-subhead);line-height:1;letter-spacing:-0.03em;max-width:20ch}
 .lead{font-size:var(--fs-lead);line-height:1.45;color:var(--text-secondary);max-width:34em;margin-top:24px}
 .eyebrow{font-size:12px;line-height:20px;letter-spacing:.06em;color:var(--text-secondary);margin-bottom:20px}
 .rule{height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) var(--w,0%),var(--line) var(--w,0%),var(--line) 100%);transition:none}
@@ -345,6 +345,7 @@ main{position:relative;z-index:1}
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
+.nowrap{white-space:nowrap}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
 /* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
 .site-header .btn{transition:background-color .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1)}
@@ -357,6 +358,7 @@ main{position:relative;z-index:1}
 /* ---- blocks rise in as they enter: 24 px and a fade over .7 s, 60 ms later for each item in a group (--i), nothing under reduced motion */
 html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0) * 60ms)}
 html.js .reveal.in{opacity:1;transform:none}
+html.js .reveal:focus-within{opacity:1;transform:none;transition:none}
 .sec h2.reveal{--i:1}.sec .lead.reveal{--i:2}
 @media (prefers-reduced-motion: reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
 .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{content:"";display:block;height:2px;width:0;margin-top:26px;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
@@ -393,7 +395,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .bigmark path{fill:var(--line);transition:fill .5s}
 .bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.skills-foot{margin-top:32px;max-width:46em}
+.skills-foot{margin-top:32px;max-width:58ch}
 .skills-foot .skills{margin-top:4px}
 /* ---- disclosure: a quiet mono summary with a copper plus that turns to a cross when open */
 .more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text);transition:color .15s}
@@ -491,12 +493,14 @@ html:not(.js) .name{cursor:default}
 .era-block::before{content:"";position:absolute;left:-37px;top:14px;width:11px;height:11px;background:var(--bg);border:1px solid var(--line-strong);transform:rotate(45deg);transition:background-color .4s,border-color .4s}
 .era-block.lit::before{background:var(--accent);border-color:var(--accent)}
 .era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
+.era-intro{max-width:58ch}
 .era-name{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .lineage{margin-top:40px;border-top:1px solid var(--line)}
 .lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 .history{margin-top:56px}
-.history-label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.history-label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary);scroll-margin-top:24px}
+.history-label:focus{outline:none}.history-label:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
 .history .eras{margin-top:28px}
 .history-body{position:relative}
 /* closed, with scripts: the first era shows and fades out under the button; without scripts all of it reads */
@@ -509,16 +513,17 @@ html:not(.js) .name{cursor:default}
 .history-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
 .history-btn:active{border-color:var(--accent);color:var(--accent)}
 .history-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.history-btn{scroll-margin-bottom:24px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .rec h4{font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;margin:0}
-.rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:56em}
+.rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:58ch}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
-/* ---- offer: stacking panels. Each sticks under the header 12 px lower than the one before, so the list stacks as the reader scrolls */
+/* ---- offer: five panels in plain flow, so every price and term stays in view for comparison (audit D-12) */
 .stack{margin-top:64px}
-.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -527,12 +532,12 @@ html:not(.js) .name{cursor:default}
 .panel h3{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .panel > div > p{color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);margin-top:18px;max-width:30em}
 .panel .price{text-align:right}
-.panel .price b{display:block;font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--text);font-variant-numeric:lining-nums;text-wrap:balance}
+.panel .price b{display:block;font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em;color:var(--text);font-variant-numeric:tabular-nums lining-nums;text-wrap:balance}
 .panel .price b.word{font-size:var(--fs-title);color:var(--text-secondary)}
 .panel.launch .price b{color:var(--accent)}
 .panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:22px}
-.offer-note{margin-top:32px;max-width:52em;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.offer-note{margin-top:32px;max-width:58ch;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- how */
 .how-line{margin-top:28px}
@@ -554,7 +559,7 @@ html:not(.js) .name{cursor:default}
 .furrow.fire .soil{stroke-dasharray:none;stroke:var(--line)}
 .furrow.fire .sprout{stroke-width:3}
 .furrow .sprout.on{opacity:1}
-.how-note{margin-top:48px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.how-note{margin-top:48px;color:var(--text-secondary);max-width:58ch;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- who */
 /* the situations as a two-column hairline list, the house way to list things: index, title, body, seam rule */
@@ -566,7 +571,7 @@ html:not(.js) .name{cursor:default}
 .sit:hover h3{color:var(--accent-hover)}
 .turn{margin-top:24px;border:1px solid var(--copper-deep);border-radius:4px;padding:32px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;background:linear-gradient(90deg,rgba(var(--deep-rgb),.14),rgba(var(--deep-rgb),0) 60%)}
 .turn h3{font-size:var(--fs-title-sm);font-weight:600;letter-spacing:-0.015em}
-.turn p{color:var(--text)}
+.turn p{color:var(--text);max-width:58ch}
 
 /* ---- people */
 .people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
@@ -581,7 +586,7 @@ html:not(.js) .name{cursor:default}
 .person .where{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-top:8px}
 .person p.bio{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body)}
 .person .links{display:flex;gap:18px;font-size:var(--fs-small);margin-top:auto}
-.people-note{margin-top:56px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.people-note{margin-top:56px;color:var(--text-secondary);max-width:58ch;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- contracting */
 .facts{margin-top:56px;border-top:1px solid var(--line)}
@@ -602,7 +607,7 @@ html:not(.js) .name{cursor:default}
 .faq details[open] summary i{transform:rotate(45deg);border-color:var(--accent)}
 .faq .a{overflow:hidden;height:0;transition:height .45s cubic-bezier(.16,1,.3,1)}
 .faq details.closing .a{transition-duration:.3s}
-.faq .a p{padding:0 0 12px;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);max-width:56em}
+.faq .a p{padding:0 0 12px;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);max-width:58ch}
 .faq .a p:last-child{padding-bottom:28px}
 .faq .a strong{color:var(--text);font-weight:600}
 
@@ -633,10 +638,10 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
 .fmsg.ok{color:var(--text)}
 .brief.sent .fld,.brief.sent .cta button{display:none}
 .scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);max-width:34em;text-align:right}
-.foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
+.foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px max(var(--side), calc((100% - 1440px) / 2 + var(--side))) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
-.foot .legal{grid-column:1 / -1;order:3;max-width:60em;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.foot .legal{grid-column:1 / -1;order:3;max-width:64ch;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 @media (max-width:1100px){
   .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -666,7 +671,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .card{flex-basis:min(86vw,420px);padding:28px}
   .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
-  .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
+  .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
   .panel .price b.word{font-size:var(--fs-title-sm);line-height:1.25;letter-spacing:-0.015em}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
@@ -686,8 +691,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
-  /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
-  .panel{position:relative;top:auto;box-shadow:none}
+  /* below the hero every section reads in its final state: disclosures open at once, nothing travels */
   .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.history-btn,.history-btn::after,.js .history .history-body{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
@@ -789,7 +793,11 @@ def sections(t, theme):
     for i, p in enumerate(PEOPLE):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in p["links"])
         where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
-        pic = (f'<picture><source type="image/webp" srcset="people/{p["photo"]}.webp"><img src="people/{p["photo"]}.jpg" width="800" height="1000" alt="{p.get("alt", p["name"])}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
+        # a portrait with a 1080 px file offers it to the two-column landscape layout, where an 800 px file falls short of 3x
+        big = p.get("photo") and os.path.exists(os.path.join(_HERE, "photo", "people", p["photo"] + "-1080.jpg"))
+        sets = {ext: (f'people/{p["photo"]}.{ext} 800w, people/{p["photo"]}-1080.{ext} 1080w' if big else f'people/{p["photo"]}.{ext}') for ext in ("webp", "jpg")}
+        sizes = ' sizes="(max-width:600px) 120px, (max-width:1100px) 46vw, 300px"' if big else ""
+        pic = (f'<picture><source type="image/webp" srcset="{sets["webp"]}"{sizes}><img src="people/{p["photo"]}.jpg"{f' srcset="{sets["jpg"]}"' if big else ""}{sizes} width="800" height="1000" alt="{p.get("alt", p["name"])}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
         tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
         people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait">{pic}'
                    f'{tag}</div>'
@@ -871,7 +879,7 @@ def sections(t, theme):
     <h2 class="reveal">Where the team comes from.</h2>
     <div class="lineage">{lineage}</div>
     <div class="history closed" id="history">
-      <p class="history-label reveal">The full history: {len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</p>
+      <p class="history-label reveal" id="history-label" tabindex="-1">The full history: {len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</p>
       <div class="history-body" id="history-body">
         <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
       </div>
@@ -984,10 +992,13 @@ SITE_JS = r'''
   var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
+  // the statement arrives as the hero text leaves (that text is gone by 0.124), while the rune is still on its way to the header, so
+  // there is always something to read; a keyboard reader holding the hero text holds the statement back
+  function arrival(hp){ return heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.115)/0.04)); }
   if (reduce || narrow){
-    // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
+    // no word-by-word light
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = heroHeld ? 0 : Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = arrival(heroProgress()); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
     return;
   }
   window.onScrub('statement', function(p, el){
@@ -995,8 +1006,8 @@ SITE_JS = r'''
     // the hero laid out as a plain section: the statement reads whole, every word at rest
     if (inHero && heroFlow){ for (var j = 0; j < n; j++){ words[j].style.opacity = 1; words[j].classList.remove('hot'); } return; }
     if (inHero){
-      // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
-      var hp = heroProgress(), st = heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.3)/0.1));
+      // the statement takes over from the hero text, then lights up word by word
+      var hp = heroProgress(), st = arrival(hp);
       el.style.setProperty('--st', st.toFixed(3)); el.style.pointerEvents = st >= 0.9 ? 'auto' : '';
       q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
     } else {
@@ -1209,15 +1220,28 @@ SITE_JS = r'''
 
 // ---- the record: the full history opens from its button; closed, the faded part is inert
 (function(){
-  var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'); if (!box || !btn) return;
+  var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'), label = document.getElementById('history-label'); if (!box || !btn) return;
   btn.hidden = false; body.inert = true;
+  // opened, the body ends at auto height so it follows rewrapping on a resize or a rotation. With reduced motion it opens at auto at once;
+  // otherwise it animates to its measured height and then lets go of it. Each click bumps gen, so a late frame or timer of an earlier
+  // click never writes a fixed height back
+  var gen = 0;
+  function settle(g){ if (g !== gen) return; gen++; body.style.maxHeight = ''; }
+  body.addEventListener('transitionend', function(e){ if (e.target === body && e.propertyName === 'max-height' && !box.classList.contains('closed')) settle(gen); });
+  // the button sits below the history, so opening pushes it far down: focus moves to the label at the head of the history, and the next
+  // Tab reaches the first project link. A keyboard visitor is brought to the label; a pointer leaves the page where it was. Closing keeps
+  // focus on the button and brings it back into view, with the history from its label when the closed block fits the screen
   btn.addEventListener('click', function(){
-    var open = box.classList.contains('closed');
-    if (open){ body.style.maxHeight = '520px'; box.classList.remove('closed'); body.inert = false;
-      requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; });
-      setTimeout(function(){ body.style.maxHeight = ''; }, reduce ? 0 : 750); }
+    var open = box.classList.contains('closed'), g = ++gen, keyed = btn.matches(':focus-visible'), behavior = reduce ? 'auto' : 'smooth';
+    if (open){ box.classList.remove('closed'); body.inert = false;
+      if (!reduce){ body.style.maxHeight = '520px';
+        requestAnimationFrame(function(){ if (g === gen) body.style.maxHeight = body.scrollHeight + 'px'; });
+        setTimeout(function(){ settle(g); }, 800); }
+      if (label){ label.focus({preventScroll: true}); if (keyed) label.scrollIntoView({block: 'start', behavior: behavior}); } }
     else { body.style.maxHeight = ''; box.classList.add('closed'); body.inert = true;
-      box.scrollIntoView({block: 'start', behavior: reduce ? 'auto' : 'smooth'}); }
+      var head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--head')) || 72;
+      if (box.getBoundingClientRect().height + head <= window.innerHeight) box.scrollIntoView({block: 'start', behavior: behavior});
+      else btn.scrollIntoView({block: 'end', behavior: behavior}); }
     btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'Close the full history' : 'Show the full history';
   });
 })();
@@ -1407,6 +1431,9 @@ BOOK_RUNE_JS = r"""
   var started = false, hold = false, t0 = 0;
   function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } if (visible) schedule(); }
   window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', function(){ layout(); look(); }); document.addEventListener('visibilitychange', look);
+  // the scene's box also changes without a window resize: fonts landing, the form's errors and its sent state, a textarea dragged taller.
+  // Each change resizes the backing store and redraws the frame the scene is at
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ layout(); look(); }).observe(canvas);
   if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
   look(); setTimeout(look, 400);
 })();
@@ -1576,6 +1603,13 @@ def ld_json(title, description):
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 
+def keep_last_pair(line):
+    """The last two words of a headline on one line, so a narrow screen never leaves the final word alone (audit D-01). Markup only."""
+    head, _, last = line.rpartition(" ")
+    head, _, before = head.rpartition(" ")
+    return f'{head} <span class="nowrap">{before} {last}</span>' if head else line
+
+
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
     t = THEMES[theme]
     amb = AMBIENT_RUNE if theme == "rune" else AMBIENT_HARVEST
@@ -1623,7 +1657,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
   <div class="hero-pin">
     {scene_markup}
     <div class="wrap hero-inner">
-      <h1 class="rise r1">{headline}</h1>
+      <h1 class="rise r1">{keep_last_pair(headline)}</h1>
       <p class="sub rise r2">{sub}</p>
       <div class="cta rise r3"><a class="btn" href="#contact">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
     </div>

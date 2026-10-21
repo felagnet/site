@@ -93,4 +93,6 @@ Open decisions, recorded, not invented:
 - Every text and accent pair in the token set passes WCAG AA on the dark background and surface (design.md).
 - With prefers-reduced-motion the page shows the finished mark in the hero and the closing scene with no animation; check.py verifies this in the browser pass.
 - Skip link to main content; canvases are aria-hidden; the lockup carries an accessible name; focus is visible on links and buttons.
+- Focus arriving in a reveal group the scroll has not reached finishes that group at once, so a focused control is never hidden by its entrance.
+- The full history keeps its button below the fading preview (Andrew, 21 October 2026, audit D-22). Opening moves focus to the history label so the next Tab enters the projects; closing keeps focus on the button and brings it into view. Opened, the history sits at auto height and follows a rotation or resize.
 - The browser pass covers 1440, 1728 and 390 px wide.

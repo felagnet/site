@@ -453,17 +453,20 @@ def browser_pass():
             ok = h1["ink"] > 5000 and h1 == h2 and arrived
             row("Reduced motion: hero finished at once", ok,
                 f"ink {h1['ink']}, unchanged {h1 == h2}, header mark shown {arrived}")
+            # under reduced motion the hero reads in flow: hero text, then the statement, both whole at every scroll position
             hero_h = page.evaluate("document.getElementById('top').offsetHeight")
             states = []
-            for frac in (0.0, 0.6):
+            for frac in (0.0, 0.3, 0.6):
                 page.evaluate(f"window.scrollTo(0, {int(hero_h * frac)})")
                 page.wait_for_timeout(300)
                 states.append(page.evaluate(
-                    "[parseFloat(getComputedStyle(document.querySelector('.hero-inner')).opacity),"
-                    " parseFloat(getComputedStyle(document.getElementById('hero-statement')).opacity)]"))
-            ok = states[0][0] > 0.95 and states[0][1] < 0.05 and states[1][0] < 0.05 and states[1][1] > 0.95
-            row("Reduced motion: hero text and statement never overlap", ok,
-                f"at top hero {states[0][0]:.2f}, statement {states[0][1]:.2f}; at 60% hero {states[1][0]:.2f}, statement {states[1][1]:.2f}")
+                    "(() => { const a = document.querySelector('.hero-inner'), b = document.getElementById('hero-statement'),"
+                    " ca = getComputedStyle(a), cb = getComputedStyle(b);"
+                    " return [parseFloat(ca.opacity), parseFloat(cb.opacity), ca.transform === 'none' && cb.transform === 'none',"
+                    " Math.round(b.querySelector('*').getBoundingClientRect().top - a.lastElementChild.getBoundingClientRect().bottom)]; })()"))
+            ok = all(s[0] > 0.99 and s[1] > 0.99 and s[2] and s[3] >= 0 for s in states)
+            row("Reduced motion: hero text and statement read whole, in flow", ok,
+                "; ".join(f"hero {s[0]:.2f}, statement {s[1]:.2f}, still {s[2]}, gap {s[3]} px" for s in states))
             page.evaluate("document.getElementById('book').scrollIntoView({block: 'start'})")
             page.wait_for_timeout(400)
             b1 = page.evaluate(CANVAS_STATS, "#book-art")

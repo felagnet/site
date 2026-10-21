@@ -113,6 +113,11 @@ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, {threshold: 0.2});
   els.forEach(function(e){ io.observe(e); });
+  // focus arriving in a group the scroll has not revealed yet finishes that group and every group around it at once, so the focused
+  // control and its ring are seen on the first frame; the CSS drops the transition for a group holding focus
+  document.addEventListener('focusin', function(e){
+    for (var n = e.target.closest && e.target.closest('.reveal'); n; n = n.parentElement && n.parentElement.closest('.reveal')) { n.classList.add('in'); io.unobserve(n); }
+  });
 })();
 var heroInner = document.querySelector('.hero-inner'), siteHeader = document.querySelector('.site-header'), rootEl = document.getElementById('root');
 // --head follows the header: 72 px at rest, taller when its row wraps under larger text, so every offset below the header stays true
@@ -135,7 +140,8 @@ var heroFlow = false;
     var head = siteHeader ? siteHeader.clientHeight : 72, h = window.innerHeight, frame = Math.max(h, 700), narrow = narrowQ.matches;
     var a = span(heroInner.children), b = span(st.children), air = narrow ? 0.1*h : 0;
     var heroEnd = narrow ? head + a : head + (frame - head - a)/2 + a, stEnd = head + (frame - head - air - b)/2 + b;
-    var f = Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
+    // under reduced motion the hero always reads in flow: the finished mark, the hero text, then the statement, nothing fading or travelling
+    var f = reduce || Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
     if (f !== heroFlow){ heroFlow = f; rootEl.classList.toggle('hero-flow', f); heroInner.style.opacity = ''; heroInner.style.transform = ''; heroInner.style.pointerEvents = ''; }
     // the rune is placed from the text, so it measures again whenever the text changes size, in either state
     window.dispatchEvent(new Event('heroflow'));
