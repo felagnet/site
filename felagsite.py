@@ -97,7 +97,7 @@ PROOF_CARDS = [
          dlabel="Project background",
          details="Uddug had grown to 15 people when it was acquired in June 2024, and the team joined Gateway.fm as its Platform department."),
     dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], era="Independent engagement, 2025 to 2026",
-         body="Ten months as DeepNode's fractional CTO, accountable for its decentralised AI infrastructure and for delivering it through the January 2026 token launch and exchange listing.",
+         body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
          facts=[("Result", "The network handled about 5,000 requests per second at peak."),
                 ("Context", "The token listed in January 2026 at $140M+ fully diluted valuation.")],
          dlabel="Measurement notes",
