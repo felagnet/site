@@ -338,6 +338,7 @@ main{position:relative;z-index:1}
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
+.nowrap{white-space:nowrap}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
 /* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
 .site-header .btn{transition:background-color .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1)}
@@ -978,10 +979,13 @@ SITE_JS = r'''
   var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
+  // the statement arrives as the hero text leaves (that text is gone by 0.124), while the rune is still on its way to the header, so
+  // there is always something to read; a keyboard reader holding the hero text holds the statement back
+  function arrival(hp){ return heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.115)/0.04)); }
   if (reduce || narrow){
-    // no word-by-word light; the statement still arrives only once the hero text has faded, so the two never overlap
+    // no word-by-word light
     words.forEach(function(w){ w.style.opacity = 1; });
-    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = heroHeld ? 0 : Math.max(0, Math.min(1, (heroProgress() - 0.3)/0.1)); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
+    if (inHero){ var hs = document.getElementById('hero-statement'); window.onScrub('statement', function(){ if (heroFlow) return; var st = arrival(heroProgress()); hs.style.setProperty('--st', st.toFixed(3)); hs.style.pointerEvents = st >= 0.9 ? 'auto' : ''; }); }
     return;
   }
   window.onScrub('statement', function(p, el){
@@ -989,8 +993,8 @@ SITE_JS = r'''
     // the hero laid out as a plain section: the statement reads whole, every word at rest
     if (inHero && heroFlow){ for (var j = 0; j < n; j++){ words[j].style.opacity = 1; words[j].classList.remove('hot'); } return; }
     if (inHero){
-      // the statement replaces the rune: it fades in once the rune has landed, then lights up word by word
-      var hp = heroProgress(), st = heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.3)/0.1));
+      // the statement takes over from the hero text, then lights up word by word
+      var hp = heroProgress(), st = arrival(hp);
       el.style.setProperty('--st', st.toFixed(3)); el.style.pointerEvents = st >= 0.9 ? 'auto' : '';
       q = Math.max(0, Math.min(1, (hp - 0.4)/0.55));
     } else {
@@ -1586,6 +1590,13 @@ def ld_json(title, description):
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 
+def keep_last_pair(line):
+    """The last two words of a headline on one line, so a narrow screen never leaves the final word alone (audit D-01). Markup only."""
+    head, _, last = line.rpartition(" ")
+    head, _, before = head.rpartition(" ")
+    return f'{head} <span class="nowrap">{before} {last}</span>' if head else line
+
+
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
     t = THEMES[theme]
     amb = AMBIENT_RUNE if theme == "rune" else AMBIENT_HARVEST
@@ -1633,7 +1644,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
   <div class="hero-pin">
     {scene_markup}
     <div class="wrap hero-inner">
-      <h1 class="rise r1">{headline}</h1>
+      <h1 class="rise r1">{keep_last_pair(headline)}</h1>
       <p class="sub rise r2">{sub}</p>
       <div class="cta rise r3"><a class="btn" href="#contact">Discuss your project</a><a class="textlink" href="#offer">See prices</a></div>
     </div>
