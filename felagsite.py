@@ -784,7 +784,11 @@ def sections(t, theme):
     for i, p in enumerate(PEOPLE):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in p["links"])
         where = f'<div class="where">{p["where"]}</div>' if p["where"] else ""
-        pic = (f'<picture><source type="image/webp" srcset="people/{p["photo"]}.webp"><img src="people/{p["photo"]}.jpg" width="800" height="1000" alt="{p.get("alt", p["name"])}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
+        # a portrait with a 1080 px file offers it to the two-column landscape layout, where an 800 px file falls short of 3x
+        big = p.get("photo") and os.path.exists(os.path.join(_HERE, "photo", "people", p["photo"] + "-1080.jpg"))
+        sets = {ext: (f'people/{p["photo"]}.{ext} 800w, people/{p["photo"]}-1080.{ext} 1080w' if big else f'people/{p["photo"]}.{ext}') for ext in ("webp", "jpg")}
+        sizes = ' sizes="(max-width:600px) 120px, (max-width:1100px) 46vw, 300px"' if big else ""
+        pic = (f'<picture><source type="image/webp" srcset="{sets["webp"]}"{sizes}><img src="people/{p["photo"]}.jpg"{f' srcset="{sets["jpg"]}"' if big else ""}{sizes} width="800" height="1000" alt="{p.get("alt", p["name"])}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
         tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
         people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait">{pic}'
                    f'{tag}</div>'
