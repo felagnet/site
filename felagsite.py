@@ -15,11 +15,11 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 
 # ---------------------------------------------------------------------------------------------- content
 
-STATEMENT = ("Felag is a boutique engineering studio for funded fintech and technology companies. Our principal-led pods own "
-             "the architecture and delivery of backends, payment systems and identity infrastructure.")
-# the search snippet: who we serve, what we build and how we price, as Andrew chose it on 19 October 2026, 148 characters
-DESCRIPTION = ("Principal-led engineering studio for funded fintech and technology companies. Backends, payments and identity, "
-               "priced on outcomes rather than hours.")
+STATEMENT = ("Felag is a boutique, principal-led software engineering studio for technology companies. Our pods own the architecture "
+             "and delivery of platforms, distributed systems, AI infrastructure, payments and identity.")
+# the search snippet: who we serve, what we build and how we price, as Andrew chose it on 21 October 2026, 157 characters
+DESCRIPTION = ("Principal-led software engineering studio for technology companies. Platforms, distributed systems, AI infrastructure "
+               "and fractional CTO, priced on outcomes.")
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
@@ -1562,7 +1562,7 @@ def ld_json(title, description):
            "contactPoint": {"@type": "ContactPoint", "email": "info@felag.net", "contactType": "sales", "availableLanguage": "en"},
            "sameAs": COMPANY_PAGES,
            "founder": [{"@id": SITE + "#andrew"}, {"@id": SITE + "#mike"}],
-           "knowsAbout": ["Backends and infrastructure", "Payment rails", "Identity and access", "Distributed ledgers"],
+           "knowsAbout": ["Software engineering", "Software architecture", "Distributed systems", "Platform engineering", "AI infrastructure", "Blockchain applications", "Payments", "Identity and access"],
            "makesOffer": offers}
     graph = [org,
              {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "Felag", "inLanguage": "en", "publisher": {"@id": SITE + "#org"}},
