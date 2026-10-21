@@ -346,6 +346,20 @@ def dist_checks():
 
 # ---------------------------------------------------------------------------------------------- browser pass
 
+# hero text and statement opacity, and which visible text block the rune's strokes (alpha over 200) overlap, if any
+HANDOFF = """() => {
+  const a = document.querySelector('.hero-inner'), b = document.getElementById('hero-statement'), cv = document.getElementById('scene');
+  const oa = +getComputedStyle(a).opacity, ob = +getComputedStyle(b).opacity, cr = cv.getBoundingClientRect(), k = cr.width / cv.width;
+  const d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
+  let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+  for (let y = 0; y < cv.height; y += 2) for (let x = 0; x < cv.width; x += 2) if (d[(y*cv.width + x)*4 + 3] > 200){ x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+  if (x1 < 0) return [oa, ob, ''];
+  const r = [cr.left + x0*k, cr.top + y0*k, cr.left + x1*k, cr.top + y1*k];
+  const on = el => { const t = el.getBoundingClientRect(); return t.height && !(r[2] < t.left || r[0] > t.right || r[3] < t.top || r[1] > t.bottom); };
+  if (oa > 0.05 && [...a.querySelectorAll('h1, .sub, .cta > *')].some(on)) return [oa, ob, 'hero text'];
+  if (ob > 0.05 && [...b.children].some(on)) return [oa, ob, 'statement'];
+  return [oa, ob, ''];
+}"""
 CANVAS_STATS = """sel => {
   const c = document.querySelector(sel);
   if (!c || !c.width || !c.height) return {ink: 0, copper: 0, hash: 0};
@@ -440,6 +454,76 @@ def browser_pass():
                 if (w, h) == (1440, 900):
                     row("1440x900: no horizontal scroll", max(widths) == 1440, f"scrollWidth reached {max(widths)}")
                 ctx.close()
+
+            # the hero hands over from its text to the statement: wherever the scroll stops one of the two reads whole, and the rune's
+            # strokes never sit on text that can be seen (audit D-01)
+            for w, h in ((1440, 900), (390, 844)):
+                ctx = browser.new_context(viewport={"width": w, "height": h}, is_mobile=w < 900, has_touch=w < 900)
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.wait_for_timeout(5000)
+                bad = []
+                for y in range(0, 401, 20):
+                    page.evaluate(f"window.scrollTo(0, {y})")
+                    page.wait_for_timeout(500)
+                    oa, ob, hit = page.evaluate(HANDOFF)
+                    if max(oa, ob) < 0.95 or hit:
+                        bad.append(f"{y} px: hero {oa:.2f}, statement {ob:.2f}{', rune on ' + hit if hit else ''}")
+                row(f"{w}x{h}: hero handoff reads whole at every stop, rune clear of text", not bad, "; ".join(bad[:4]))
+                ctx.close()
+
+            # WCAG 1.4.12: with the four text spacing overrides the hero heading keeps every glyph on screen. The page hides sideways
+            # overflow, so the document width cannot show this; the heading's own line boxes are measured (audit round 4 D-03)
+            bad = []
+            for w in (320, 360, 390):
+                ctx = browser.new_context(viewport={"width": w, "height": 780})
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.add_style_tag(content="* { line-height: 1.5 !important; letter-spacing: 0.12em !important;"
+                                   " word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }")
+                page.wait_for_timeout(800)
+                over = page.evaluate("(() => { const r = document.createRange(); r.selectNodeContents(document.querySelector('h1'));"
+                                     " return Math.max(...[...r.getClientRects()].map(b => b.right)) - document.documentElement.clientWidth; })()")
+                if over > 0.5:
+                    bad.append(f"{w} px: {over:.1f} px past the edge")
+                ctx.close()
+            row("Text spacing: the hero heading stays on screen at 320, 360 and 390 px", not bad, "; ".join(bad))
+
+            # the proof cards share their rows: the notes control and the foot sit at one height in every card (audit round 4 D-25)
+            for w, h in ((1440, 900), (390, 844)):
+                ctx = browser.new_context(viewport={"width": w, "height": h})
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.wait_for_timeout(800)
+                notes, feet = page.evaluate("(() => { const n = new Set(), f = new Set(); document.querySelectorAll('#proof-cases .card').forEach(c => {"
+                                            " const t = c.getBoundingClientRect().top, s = c.querySelector('.evidence summary');"
+                                            " if (s) n.add(Math.round(s.getBoundingClientRect().top - t)); f.add(Math.round(c.querySelector('.cfoot').getBoundingClientRect().bottom - t)); });"
+                                            " return [[...n], [...f]]; })()")
+                row(f"{w}x{h}: case notes and feet at one height in every card", len(notes) == 1 and len(feet) == 1,
+                    f"notes at {sorted(notes)}, feet end at {sorted(feet)}")
+                ctx.close()
+
+            # reduced motion turned on with the page open stops the drifting strip where it stands, and the section keeps its place on
+            # screen while the hero above changes layout (audit round 4 D-26)
+            ctx = browser.new_context(viewport={"width": 1440, "height": 900})
+            page = ctx.new_page()
+            page.goto(url, wait_until="load")
+            page.wait_for_timeout(1500)
+            page.evaluate("document.getElementById('proof-cases').scrollIntoView({behavior: 'instant'})")
+            page.wait_for_timeout(3000)
+            sl = "document.querySelector('#proof-cases .track').scrollLeft"
+            top = "Math.round(document.getElementById('proof-cases').getBoundingClientRect().top)"
+            a, t0 = page.evaluate(sl), page.evaluate(top)
+            page.wait_for_timeout(1500)
+            drifting = page.evaluate(sl) - a
+            page.emulate_media(reduced_motion="reduce")
+            page.wait_for_timeout(200)
+            b, t1 = page.evaluate(sl), page.evaluate(top)
+            page.wait_for_timeout(2500)
+            after = page.evaluate(sl) - b
+            row("Reduced motion turned on live: the strip stops, the page keeps its place", drifting > 20 and abs(after) < 1 and t0 == t1,
+                f"drift {drifting:.0f} px, then {after:.0f} px in 2.5 s; section top {t0} then {t1}")
+            ctx.close()
 
             ctx = browser.new_context(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
             page = ctx.new_page()

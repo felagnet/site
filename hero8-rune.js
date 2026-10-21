@@ -119,11 +119,13 @@
   function setArrived(v){ if (v === arrived) return; arrived = v; root.classList.toggle('mark-arrived', v); root.classList.toggle('mark-pending', !v); }
   root.classList.add('mark-pending');
   if (reduce) setArrived(true);
+  // reduced motion turned on with the page open: the finished mark in place and in the header at once, as at load
+  window.addEventListener('reducemotion', function(){ if (reduce) setArrived(true); else onScroll(); schedule(); });
 
   // frames run only while the hero is on screen and the rune is alive; the clock pauses in between
   var running = false, pausedAt = 0;
   function schedule(){ if (running) return; running = true; if (pausedAt){ t0 += performance.now() - pausedAt; pausedAt = 0; } last = performance.now(); requestAnimationFrame(frame); }
-  function landed(sp){ return heroFlow ? canvas.getBoundingClientRect().top + cy + 55*S < (siteHeader ? siteHeader.clientHeight : 72) : sp >= 0.29; }
+  function landed(sp){ return heroFlow ? canvas.getBoundingClientRect().top + cy + 55*S < (siteHeader ? siteHeader.clientHeight : 72) : sp >= (narrow ? 0.11 : 0.29); }
   function onScroll(){ if (!reduce){ var pp = heroProgress(); setArrived(landed(pp)); root.classList.toggle('over-hero', pp < 0.3); } schedule(); }
   window.addEventListener('scroll', onScroll, {passive: true}); window.addEventListener('resize', schedule); document.addEventListener('visibilitychange', schedule);
   function frame(now){
@@ -136,7 +138,7 @@
     // sp drives the text fade and the header; p drives the flight, and is held at 0 under reduced motion
     var t = reduce ? 30 : (now - t0)/1000, sp = heroProgress(), p = reduce || heroFlow ? 0 : sp;
     root.classList.toggle('over-hero', sp < 0.3);
-    fadeText(Math.min(1, sp*3.4));
+    swapText(sp);
     mouse.x += (target.x - mouse.x)*0.05; mouse.y += (target.y - mouse.y)*0.05;
     var pg = progress(t), upto = pg.upto;
     // ignition: one pulse along the strokes, then a calm light
@@ -147,12 +149,18 @@
     var rest = t > T_IGNITE ? clamp((t - T_IGNITE - 1.3)/1.6) : 0;
     var glow = lit*(1 - 0.88*rest);
     var breathe = 1 + 0.05*Math.sin(t*1.2)*(1 - rest) - 0.05*(1 - rest);
-    // flight: the rune shrinks and travels to the header mark
-    var fl = easeIO(clamp((p - 0.04)/0.22)), land = landing();
-    var vanish = clamp((p - 0.27)/0.03);
+    // flight: on a desktop the rune rises at the right while it shrinks, glides left in the band under the header, above both text
+    // blocks, and settles into the header mark. On a phone the text fills the width and any way up crosses it, so the rune shrinks and
+    // fades where it stands and the header mark lights in its place
+    var fl = narrow ? 0 : clamp((p - 0.04)/0.22), land = landing(), fade = narrow ? easeIO(clamp((p - 0.075)/0.035)) : 0;
+    var up = easeIO(clamp(fl/0.5)), across = easeIO(clamp((fl - 0.5)/0.35)), settle = easeIO(clamp((fl - 0.85)/0.15));
+    var band = (siteHeader ? siteHeader.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top : 72) + 16 + 55*land.S;
+    var vanish = narrow ? fade : clamp((p - 0.27)/0.03);
     var alive = 1 - vanish;
-    var scale = S*(1 - fl) + land.S*fl;
-    var ox = cx*(1 - fl) + land.ox*fl, oy = (cy + Math.sin(t*0.9)*3*lit*(1 - rest)*(1 - fl))*(1 - fl) + land.oy*fl;
+    var scale = narrow ? S*(1 - 0.6*fade) : S*(1 - up) + land.S*up;
+    var ox = cx*(1 - across) + land.ox*across;
+    var oy = (cy + Math.sin(t*0.9)*3*lit*(1 - rest)*(1 - up))*(1 - up) + (band*(1 - settle) + land.oy*settle)*up;
+    fl = up;
     var wBase = 6.5*(1 - fl) + 24*fl;
     var tiltX = 1 - Math.abs(mouse.x)*0.06*(1 - fl), skew = -mouse.x*0.05*(1 - fl), tiltY = 1 - Math.abs(mouse.y)*0.04*(1 - fl);
     if (!reduce) setArrived(landed(sp));

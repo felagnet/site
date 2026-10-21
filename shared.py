@@ -104,7 +104,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 '''
 
 COMMON_JS = '''
-var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var reduceQ = window.matchMedia('(prefers-reduced-motion: reduce)'), reduce = reduceQ.matches;
+// the preference can change while the page is open: every later read sees the new value, and each scene that moves on its own hears it
+if (reduceQ.addEventListener) reduceQ.addEventListener('change', function(e){ reduce = e.matches; window.dispatchEvent(new Event('reducemotion')); });
 // reveal on scroll
 (function(){
   var els = document.querySelectorAll('.reveal');
@@ -142,12 +144,21 @@ var heroFlow = false;
     var heroEnd = narrow ? head + a : head + (frame - head - a)/2 + a, stEnd = head + (frame - head - air - b)/2 + b;
     // under reduced motion the hero always reads in flow: the finished mark, the hero text, then the statement, nothing fading or travelling
     var f = reduce || Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
-    if (f !== heroFlow){ heroFlow = f; rootEl.classList.toggle('hero-flow', f); heroInner.style.opacity = ''; heroInner.style.transform = ''; heroInner.style.pointerEvents = ''; }
+    if (f !== heroFlow){
+      // the hero changes height between the two layouts. A reader already past it keeps their place on the page below, measured from
+      // where the hero ends on screen; a reader inside it stays at the same scroll position. The browser's own scroll anchoring is off
+      // for that frame, so it cannot add to the correction or send a reader inside the hero further down
+      var hero = document.getElementById('top'), end = hero.getBoundingClientRect().bottom, past = end < h, y = window.scrollY, de = document.documentElement;
+      de.style.overflowAnchor = 'none'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ de.style.overflowAnchor = ''; }); });
+      heroFlow = f; rootEl.classList.toggle('hero-flow', f); heroInner.style.opacity = ''; heroInner.style.transform = ''; heroInner.style.pointerEvents = '';
+      var to = past ? window.scrollY + hero.getBoundingClientRect().bottom - end : y;
+      if (Math.abs(to - window.scrollY) > 0.5) window.scrollTo({top: to, behavior: 'instant'});
+    }
     // the rune is placed from the text, so it measures again whenever the text changes size, in either state
     window.dispatchEvent(new Event('heroflow'));
   }
   decide();
-  window.addEventListener('resize', decide);
+  window.addEventListener('resize', decide); window.addEventListener('reducemotion', decide);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(decide);
   if ('ResizeObserver' in window){ var ro = new ResizeObserver(function(){ decide(); }); Array.prototype.forEach.call(heroInner.children, function(e){ ro.observe(e); }); Array.prototype.forEach.call(st.children, function(e){ ro.observe(e); }); }
 })();
@@ -162,6 +173,24 @@ function fadeText(p){
   heroInner.style.opacity = o; heroInner.style.transform = 'translateY(' + (-40*(1-o)).toFixed(1) + 'px)';
   heroInner.style.pointerEvents = o < 0.3 ? 'none' : '';
   heroInner.inert = o < 0.75;
+}
+// the rune hero hands over at one point of the scroll, as a short timed crossfade in CSS, so wherever the scroll stops one message reads
+// whole. A dead band either side keeps a scroll resting on the point from flickering. On a phone the point comes after the rune has
+// faded, on a desktop while the rune glides above the text. Both the canvas frame and the statement ask, so neither waits on the other
+var heroSwapped = false;
+function heroSwap(sp){
+  heroHeld = !heroFlow && !!heroInner.querySelector(':focus-visible');
+  var at = document.documentElement.clientWidth < 900 ? 0.12 : 0.09;
+  if (heroFlow || heroHeld) heroSwapped = false;
+  else if (sp > at + 0.006) heroSwapped = true;
+  else if (sp < at - 0.006) heroSwapped = false;
+  return heroSwapped;
+}
+function swapText(sp){
+  var s = heroSwap(sp);
+  if (heroFlow){ heroInner.inert = false; return; }
+  heroInner.style.opacity = s ? 0 : 1; heroInner.style.transform = s ? 'translateY(-24px)' : 'none';
+  heroInner.style.pointerEvents = s ? 'none' : ''; heroInner.inert = s;
 }
 if (heroInner){
   // a focus change inside the hero redraws the scene at once, so the hold starts and ends with it

@@ -345,7 +345,9 @@ main{position:relative;z-index:1}
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
-.nowrap{white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){.theme-rune .hero-pin .hero-inner,.hero-statement{transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}}
+/* the last pair moves to a new line together, and wraps inside its own box only when it is wider than the line, as under larger text spacing */
+.keep{display:inline-block}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
 /* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
 .site-header .btn{transition:background-color .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1)}
@@ -413,8 +415,8 @@ html.js .reveal:focus-within{opacity:1;transform:none;transition:none}
 .metric .big em{font-style:normal;color:var(--accent)}
 .metric .label{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--text-secondary)}
 .scene-proof{position:relative;padding:56px 0 clamp(72px,9vh,112px)}
-.track{display:flex;gap:24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
-.card{flex:0 0 clamp(440px,38vw,600px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(440px,38vw,600px);grid-template-rows:auto auto auto;gap:0 24px;padding:0 var(--side) 20px;margin-top:40px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--side);overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.card{grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:18px;scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:36px;position:relative;overflow:hidden}
 .card .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
 /* the hover glow is paint only: it covers the whole card, so it takes no pointer input and the links under it stay live */
 .card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 100% 0%,rgba(var(--copper-rgb),.16),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
@@ -426,12 +428,17 @@ html.js .reveal:focus-within{opacity:1;transform:none;transition:none}
 .card.arrived{border-color:var(--accent)}
 .card:focus{outline:none}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.card .cfacts{display:grid;gap:12px;flex:1;align-content:start}
+/* every card shares three rows with the others in the strip: the story (head, title, body, facts), the notes control, and the links
+   and era. The notes control and the foot sit at one height in every card, whatever a card holds or wraps; a card without notes keeps
+   the row empty */
+.card .cstory{display:flex;flex-direction:column;gap:18px}
+.card .cfacts{display:grid;gap:12px}
+.card .evidence{grid-row:2}
 .card .cfacts div{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline}
 .card .cfacts dt{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .card .cfacts dd{margin:0;color:var(--text);font-size:var(--fs-small);line-height:var(--lh-small)}
 .card .evidence p{margin-top:4px;font-size:var(--fs-small);line-height:var(--lh-small)}
-.card .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.card .cfoot{grid-row:3;align-self:end;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
 .card .links{display:flex;gap:20px;flex-wrap:wrap;font-size:var(--fs-small)}
 .card .idx{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 
@@ -660,7 +667,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .metrics{grid-template-columns:minmax(0,1fr)}
   .scene-proof{padding:56px 0 80px}
   .name{padding:10px 0}
-  .track{gap:16px;padding:0 var(--side) 16px;margin-top:32px}
+  .track{grid-auto-columns:min(86vw,420px);gap:0 16px;padding:0 var(--side) 16px;margin-top:32px}
   /* the controls stay on a phone, under the strip and to the right, where the thumb meets them after the card it has read; the head
      dissolves so the lead line, the strip and the controls can be ordered in one column */
   .scene-proof{display:flex;flex-direction:column}
@@ -668,7 +675,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .strip-head > .lead{padding:0 var(--side)}
   .track{order:1}
   .strip-nav{order:2;align-self:flex-end;margin:16px var(--side) 0}
-  .card{flex-basis:min(86vw,420px);padding:28px}
+  .card{padding:28px}
   .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
   .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
@@ -757,7 +764,7 @@ def sections(t, theme):
     cards = ""
     for i, c in enumerate(PROOF_CARDS):
         links = "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in c["links"])
-        cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p>{(f'<dl class="cfacts">' + "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"]) + "</dl>") if c["facts"] else ""}{(f'<details class="more evidence"><summary>{c["dlabel"]}</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
+        cards += f'<article class="card reveal" id="case-{i+1:02d}" tabindex="-1" style="--i:{min(i,4)}" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(PROOF_CARDS)}"><div class="cstory"><div class="chead"><div class="kicker">{c["kicker"]}</div><div class="idx">{i+1:02d} / {len(PROOF_CARDS):02d}</div></div><h3>{c["title"]}</h3><p>{c["body"]}</p>{(f'<dl class="cfacts">' + "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"]) + "</dl>") if c["facts"] else ""}</div>{(f'<details class="more evidence"><summary>{c["dlabel"]}</summary><p>{c["details"]}</p></details>') if c["details"] else ""}<div class="cfoot"><div class="links">{links}</div><div class="era">{c["era"]}</div></div></article>'
     wall = ""
     for i, (nm, grp, txt, links, era, case) in enumerate(WALL):
         lk = (f'<a class="case-ref" href="#case-{case:02d}">View {CASE_REFS[case]}<span>Case {case:02d}</span></a>' if case else "") + "".join(f'<a href="{u}" rel="noopener">{l}</a>' for l, u in links)
@@ -992,9 +999,9 @@ SITE_JS = r'''
   var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
-  // the statement arrives as the hero text leaves (that text is gone by 0.124), while the rune is still on its way to the header, so
-  // there is always something to read; a keyboard reader holding the hero text holds the statement back
-  function arrival(hp){ return heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.115)/0.04)); }
+  // the statement takes the hero text's place at the swap point, in the same timed crossfade; a keyboard reader holding the hero text
+  // holds the statement back
+  function arrival(hp){ return heroSwap(hp) ? 1 : 0; }
   if (reduce || narrow){
     // no word-by-word light
     words.forEach(function(w){ w.style.opacity = 1; });
@@ -1125,7 +1132,7 @@ SITE_JS = r'''
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. Phones start still, since the
   // controls sit below the cards there. The mouse over the strip pauses it only while it stays; keyboard use, a swipe, a tap or a press stops it
   // until the reader presses Start scrolling, and so does a case link. It also holds while a case's notes are open, so a card read
-  // with the mouse stays put. Never under reduced motion
+  // with the mouse stays put. Never under reduced motion, from load or from the moment the preference turns on with the page open
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
   var narrowQ = window.matchMedia('(max-width:900px)');
   var SPEED = 30, stopped = narrowQ.matches, chosen = false, hover = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
@@ -1181,7 +1188,13 @@ SITE_JS = r'''
   }, {passive: true});
   track.addEventListener('wheel', function(e){ if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, {passive: true});
   // until the reader has chosen, the strip follows the screen: still on a phone, drifting on a desktop
-  narrowQ.addEventListener('change', function(){ if (chosen) return; stopped = narrowQ.matches; show(); pos = track.scrollLeft; kick(); });
+  narrowQ.addEventListener('change', function(){ if (chosen) return; stopped = narrowQ.matches || reduce; show(); pos = track.scrollLeft; kick(); });
+  // reduced motion turned on stops the drift where the strip stands, without counting as the reader's choice; turned off, the drift goes
+  // on only if the reader never stopped it themselves
+  window.addEventListener('reducemotion', function(){
+    if (reduce){ stopped = true; end = 0; back = false; show(); return; }
+    if (!chosen){ stopped = narrowQ.matches; show(); pos = track.scrollLeft; until = performance.now() + 600; kick(); }
+  });
   // notes opening or closing: closing the last one lets the drift go on from where the strip stands
   track.addEventListener('toggle', function(){ if (!reading()) pos = track.scrollLeft; kick(); }, true);
   document.addEventListener('visibilitychange', kick);
@@ -1435,6 +1448,7 @@ BOOK_RUNE_JS = r"""
   // Each change resizes the backing store and redraws the frame the scene is at
   if ('ResizeObserver' in window) new ResizeObserver(function(){ layout(); look(); }).observe(canvas);
   if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
+  window.addEventListener('reducemotion', function(){ if (reduce){ hold = true; p = 0.9; look(); } });
   look(); setTimeout(look, 400);
 })();
 """
@@ -1604,10 +1618,11 @@ def ld_json(title, description):
 
 
 def keep_last_pair(line):
-    """The last two words of a headline on one line, so a narrow screen never leaves the final word alone (audit D-01). Markup only."""
+    """The last two words of a headline kept together, so a narrow screen never leaves the final word alone (audit D-01), yet free to wrap
+    when the pair alone is wider than the line (audit round 4 D-03). Markup only."""
     head, _, last = line.rpartition(" ")
     head, _, before = head.rpartition(" ")
-    return f'{head} <span class="nowrap">{before} {last}</span>' if head else line
+    return f'{head} <span class="keep">{before} {last}</span>' if head else line
 
 
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
