@@ -203,3 +203,7 @@ An outside review said the statement promises AI infrastructure and distributed 
 ## 22 October 2026, andskur.com on Andrew's card
 
 Andrew asked for his personal practice site on felag.net. His People card now links "andskur.com" (https://andskur.com) first, before LinkedIn, GitHub and X. His Person sameAs in the structured data follows, and check.py expects the four links. On a phone the four links still sit on one line.
+
+## 22 October 2026, external links open in a new tab
+
+Andrew asked for every external link to open in a new tab. All 34 on the page now carry target="_blank" with rel="noopener": the case sources, the names wall, the history, the People links and the footer. check.py fails any external link without both. The 404 page's links go to felag.net and stay in the same tab. For a copy decision, Andrew's call: the links do not say they open a new tab. Adding "(opens in a new tab)" to the visible text or an aria label would be a copy change.
