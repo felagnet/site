@@ -345,6 +345,7 @@ main{position:relative;z-index:1}
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
+@media (prefers-reduced-motion:no-preference){.theme-rune .hero-pin .hero-inner,.hero-statement{transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}}
 .nowrap{white-space:nowrap}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
 /* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
@@ -992,9 +993,9 @@ SITE_JS = r'''
   var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
-  // the statement arrives as the hero text leaves (that text is gone by 0.124), while the rune is still on its way to the header, so
-  // there is always something to read; a keyboard reader holding the hero text holds the statement back
-  function arrival(hp){ return heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.115)/0.04)); }
+  // the statement takes the hero text's place at the swap point, in the same timed crossfade; a keyboard reader holding the hero text
+  // holds the statement back
+  function arrival(hp){ return heroSwap(hp) ? 1 : 0; }
   if (reduce || narrow){
     // no word-by-word light
     words.forEach(function(w){ w.style.opacity = 1; });
