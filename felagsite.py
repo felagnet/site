@@ -23,7 +23,7 @@ DESCRIPTION = ("Principal-led software engineering studio for technology compani
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
-    dict(piece=0, name="Backends and infrastructure", line="We build production backends and their cloud infrastructure. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
+    dict(piece=0, name="Backends and infrastructure", line="We build production backends, distributed systems and their cloud infrastructure, including model serving, GPU autoscaling and agent runtimes for AI products. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
     dict(piece=3, name="Payment rails", line="We build account ledgers, settlement services and card integrations with banks, issuers and processors. The scope includes transaction records and audit trails."),
     dict(piece=2, name="Identity and access", line="We integrate enterprise sign-on and build account and permission systems for people and software agents."),
     dict(piece=1, name="Distributed ledgers", line="We build systems that share and verify records across organisations. The Architecture Sprint establishes where a shared ledger is useful and where a conventional database is sufficient."),
