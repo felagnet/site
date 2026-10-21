@@ -140,7 +140,8 @@ var heroFlow = false;
     var head = siteHeader ? siteHeader.clientHeight : 72, h = window.innerHeight, frame = Math.max(h, 700), narrow = narrowQ.matches;
     var a = span(heroInner.children), b = span(st.children), air = narrow ? 0.1*h : 0;
     var heroEnd = narrow ? head + a : head + (frame - head - a)/2 + a, stEnd = head + (frame - head - air - b)/2 + b;
-    var f = Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
+    // under reduced motion the hero always reads in flow: the finished mark, the hero text, then the statement, nothing fading or travelling
+    var f = reduce || Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
     if (f !== heroFlow){ heroFlow = f; rootEl.classList.toggle('hero-flow', f); heroInner.style.opacity = ''; heroInner.style.transform = ''; heroInner.style.pointerEvents = ''; }
     // the rune is placed from the text, so it measures again whenever the text changes size, in either state
     window.dispatchEvent(new Event('heroflow'));
