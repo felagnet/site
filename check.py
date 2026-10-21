@@ -38,7 +38,7 @@ BANNED = ["passionate", "cutting-edge", "seamless", "empower", "world-class", "A
           "four people", "Talk to a founder", "sold to"]
 # which links each People card carries; the addresses come from felagsite.PEOPLE
 PEOPLE_LINKS = {
-    "Andrew Skurlatov": ["LinkedIn", "GitHub", "X"],
+    "Andrew Skurlatov": ["andskur.com", "LinkedIn", "GitHub", "X"],
     "Mikhail Manko": ["LinkedIn"],
     "Pavel Dodonov": ["LinkedIn", "GitHub"],
     "Andrey Solovov": ["LinkedIn", "GitHub"],
