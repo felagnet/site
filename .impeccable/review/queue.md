@@ -102,6 +102,7 @@ Worked on the seo-metadata branch from origin/main. Andrew chose the title and d
 - seo-6-1 [P1] done 4a082df: Title and description name the services and the audience, outcome pricing kept (copy-notes.md, 19 October 2026)
 - seo-6-2 [P2] done: Organization carries the registration number as an identifier and the registered office as a PostalAddress in GE, read from the same constants as the footer
 - seo-6-3 [P2] done: Fractional CTO (from 4000 USD) and Pods (10000 to 60000 USD) as unit prices per month; the one-day-a-week note stays in the description
+- seo-7-1 [P2] closed (Andrew, 21 October 2026: both notes stay as they are): S-23, the RPC measurement note calls the 50 ms average a peak, and the Oracles row puts one peak label on the 500 ms interval and the request rate (seo, round 4)
 
 ## UX audit, 19 October 2026
 Worked on the ux-audit-1019 branch from origin/main. Andrew's decisions in the chat: phones start the strip still, the desktop keeps the drift; the mouse pauses it only while it rests on the strip, and keyboard use, a swipe, a tap or a press stops it until Start scrolling. Checked in Chromium and WebKit through Playwright, not in Safari itself.
