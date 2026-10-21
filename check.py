@@ -489,6 +489,20 @@ def browser_pass():
                 ctx.close()
             row("Text spacing: the hero heading stays on screen at 320, 360 and 390 px", not bad, "; ".join(bad))
 
+            # the proof cards share their rows: the notes control and the foot sit at one height in every card (audit round 4 D-25)
+            for w, h in ((1440, 900), (390, 844)):
+                ctx = browser.new_context(viewport={"width": w, "height": h})
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.wait_for_timeout(800)
+                notes, feet = page.evaluate("(() => { const n = new Set(), f = new Set(); document.querySelectorAll('#proof-cases .card').forEach(c => {"
+                                            " const t = c.getBoundingClientRect().top, s = c.querySelector('.evidence summary');"
+                                            " if (s) n.add(Math.round(s.getBoundingClientRect().top - t)); f.add(Math.round(c.querySelector('.cfoot').getBoundingClientRect().bottom - t)); });"
+                                            " return [[...n], [...f]]; })()")
+                row(f"{w}x{h}: case notes and feet at one height in every card", len(notes) == 1 and len(feet) == 1,
+                    f"notes at {sorted(notes)}, feet end at {sorted(feet)}")
+                ctx.close()
+
             # reduced motion turned on with the page open stops the drifting strip where it stands, and the section keeps its place on
             # screen while the hero above changes layout (audit round 4 D-26)
             ctx = browser.new_context(viewport={"width": 1440, "height": 900})
