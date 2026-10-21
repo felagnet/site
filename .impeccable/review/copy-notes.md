@@ -199,3 +199,7 @@ An outside review said the statement promises AI infrastructure and distributed 
 ## 21 October 2026, round 4 design audit
 
 - D-14, portraits: Andrew chose to recrop for matched head size. Andrew, Mike and Pavel already sit in one range from round 3 (head about 37% of the frame height, eyes about 40% down). Andrey's head fills about 53% with the eyes at 33%, and his source, andrey-src.jpg, is a 594 px square whose full height the current crop already uses, so no recrop can make the head smaller or lower the eye line without inventing pixels. Left as it is. What each new photo needs: room for a 4:5 crop at least 1080 by 1350 px with the head (crown to chin) about 37% of the height and the eyes about 40% down, which for Andrey means a wider frame with space above the cap and down to the chest. With those, all four get a 1080 px file beside the 800 px one, as Pavel has.
+
+## 22 October 2026, andskur.com on Andrew's card
+
+Andrew asked for his personal practice site on felag.net. His People card now links "andskur.com" (https://andskur.com) first, before LinkedIn, GitHub and X. His Person sameAs in the structured data follows, and check.py expects the four links. On a phone the four links still sit on one line.
