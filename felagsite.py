@@ -30,7 +30,7 @@ CAPS = [
 ]
 
 SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nuxt, React Native/Expo, Flutter; AWS, GCP, Kubernetes, "
-          "Terraform; EVM (Ethereum, L2s, Polygon CDK), Substrate/Polkadot, Solana, Cosmos, Canton/Daml, Stellar, Bitcoin/Lightning, TON; "
+          "Terraform, GPU scheduling on Kubernetes, vLLM; EVM (Ethereum, L2s, Polygon CDK), Substrate/Polkadot, Solana, Cosmos, Canton/Daml, Stellar, Bitcoin/Lightning, TON; "
           "Postgres, Redis, ScyllaDB/Cassandra, ClickHouse, Kafka, NATS, RabbitMQ, gRPC, GraphQL, REST, websockets, The Graph and custom indexers.")
 
 L2B = "https://l2beat.com/layer2s/projects/wirex"
