@@ -47,6 +47,8 @@ H_NAMED = "We built a shared prover used across several ZK protocols and L2 ecos
 DN_LINE = "Andrew served as fractional CTO to DeepNode for ten months, designing its decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation."
 KUCOIN = "https://www.kucoin.com/announcement/en-deepnode-dn-gets-listed-on-kucoin-world-premiere"
 DN_CMC = "https://coinmarketcap.com/currencies/deepnode/"
+CANTON_CIP = "https://lists.sync.global/g/cip-discuss/topic/cip_tbd_canton_evm/116639522"
+NEAR_OCC = "https://legacy.near.social/infrastructure-committee.near/widget/app?page=proposal&id=68"
 J_LINE = "We built an EVM event-indexing code-generation platform that became the standard across most of the company's projects."
 K_LINE = "We led the Presto tokenised-finance product to revenue and built its stablecoin, RWA, DEX and payments blueprints."
 O_LINE = "Uddug built the technology behind the OG:Crystals launch end to end, in collaboration with Snark.art."
@@ -193,9 +195,10 @@ ERAS = [
              ("2024", "Wirex Pay", "The L2 chain, launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], 1),
              ("2024 to 2025", "Humanity Protocol", F_NAMED, [], 5),
              ("2024 to 2025", "The shared prover", H_NAMED, [], 6),
+             ("2025", "OneClick Connect on NEAR", "Multichain sign-in for NEAR apps, deployed for SWEAT Economy and Metapool.", [("Proposal to the NEAR Infrastructure Committee", NEAR_OCC)], None),
              ("2025", "Identity for a global technology company", "Account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform, both proofs of concept.", [("Case study, by the team at Gateway.fm", GW_CASE)], 3),
              ("2025 to 2026", "DeepNode, Andrew's fractional CTO engagement", "Ten months designing DeepNode's decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation.", [("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], 8),
-             ("December 2025", "EVM compatibility for Canton", "Andrew presented a proposal for EVM compatibility on the Canton Network to its super-validators.", [], None),
+             ("December 2025", "EVM compatibility for Canton", "Andrew presented a proposal for EVM compatibility on the Canton Network to its super-validators.", [("The draft CIP on cip-discuss", CANTON_CIP)], None),
              ("2025 to 2026", "Gateway Yield", G_NAMED, [], None),
          ]),
     dict(name="Felag", years="From July 2026",
