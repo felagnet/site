@@ -16,7 +16,7 @@ PIECES = ["M0 0H32V104H0Z", "M44 0H66L44 22Z", "M44 38L82 0H104L44 60Z", "M44 76
 # ---------------------------------------------------------------------------------------------- content
 
 STATEMENT = ("Felag is a boutique, principal-led software engineering studio for technology companies. Our pods own the architecture "
-             "and delivery of platforms, distributed systems, AI infrastructure, blockchain, payments and identity.")
+             "and delivery of platforms, distributed systems, AI infrastructure, payments and identity.")
 # the search snippet: who we serve, what we build and how we price, as Andrew chose it on 21 October 2026, 157 characters
 DESCRIPTION = ("Principal-led software engineering studio for technology companies. Platforms, distributed systems, AI infrastructure "
                "and fractional CTO, priced on outcomes.")

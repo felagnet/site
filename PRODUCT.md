@@ -26,7 +26,7 @@ Success for a visit is an email to info@felag.net asking for the free technical 
 
 Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, priced on outcomes rather than hours. Both lines are locked in core.md, used verbatim on the site, LinkedIn and proposal covers, and are never edited by an agent.
 
-The statement under "The studio" is the one sentence from core.md, locked by both founders (Andrew, 15 and 16 October 2026). core.md still carries a "Mike to confirm before public use" note on it, which is stale; a founder updates it there.
+The statement under "The studio" reads "Felag is a boutique, principal-led software engineering studio for technology companies. Our pods own the architecture and delivery of platforms, distributed systems, AI infrastructure, payments and identity." Andrew chose it for both founders on 21 October 2026, broadening the earlier core.md sentence (funded fintech and technology companies; backends, payment systems and identity infrastructure) to match the published cases. It keeps the position-layer rule below: no chain or crypto words. core.md in felag-core still carries the earlier sentence; a founder updates it there.
 
 What a neighbouring agency cannot truthfully copy:
 
