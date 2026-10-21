@@ -23,14 +23,14 @@ DESCRIPTION = ("Principal-led software engineering studio for technology compani
 
 # the four things we build, one per piece of the mark: the bar, then the three pieces on the right, the small one last
 CAPS = [
-    dict(piece=0, name="Backends and infrastructure", line="We build production backends and their cloud infrastructure. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
+    dict(piece=0, name="Backends and infrastructure", line="We build production backends, distributed systems and their cloud infrastructure, including model serving, GPU autoscaling and agent runtimes for AI products. When an existing system struggles under load, we identify the bottleneck before proposing changes."),
     dict(piece=3, name="Payment rails", line="We build account ledgers, settlement services and card integrations with banks, issuers and processors. The scope includes transaction records and audit trails."),
     dict(piece=2, name="Identity and access", line="We integrate enterprise sign-on and build account and permission systems for people and software agents."),
     dict(piece=1, name="Distributed ledgers", line="We build systems that share and verify records across organisations. The Architecture Sprint establishes where a shared ledger is useful and where a conventional database is sufficient."),
 ]
 
 SKILLS = ("Go, Rust, Node.js/TypeScript, Python, Solidity; React/Next.js, Vue/Nuxt, React Native/Expo, Flutter; AWS, GCP, Kubernetes, "
-          "Terraform; EVM (Ethereum, L2s, Polygon CDK), Substrate/Polkadot, Solana, Cosmos, Canton/Daml, Stellar, Bitcoin/Lightning, TON; "
+          "Terraform, GPU scheduling on Kubernetes, vLLM; EVM (Ethereum, L2s, Polygon CDK), Substrate/Polkadot, Solana, Cosmos, Canton/Daml, Stellar, Bitcoin/Lightning, TON; "
           "Postgres, Redis, ScyllaDB/Cassandra, ClickHouse, Kafka, NATS, RabbitMQ, gRPC, GraphQL, REST, websockets, The Graph and custom indexers.")
 
 L2B = "https://l2beat.com/layer2s/projects/wirex"
@@ -97,7 +97,7 @@ PROOF_CARDS = [
          dlabel="Project background",
          details="Uddug had grown to 15 people when it was acquired in June 2024, and the team joined Gateway.fm as its Platform department."),
     dict(kicker="Fractional CTO, ten months", title="DeepNode", links=[("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], era="Independent engagement, 2025 to 2026",
-         body="Ten months as DeepNode's fractional CTO, accountable for its decentralised AI infrastructure and for delivering it through the January 2026 token launch and exchange listing.",
+         body="Ten months as DeepNode's fractional CTO, designing its decentralised AI infrastructure through the January 2026 token launch and exchange listing.",
          facts=[("Result", "The network handled about 5,000 requests per second at peak."),
                 ("Context", "The token listed in January 2026 at $140M+ fully diluted valuation.")],
          dlabel="Measurement notes",
@@ -195,7 +195,7 @@ ERAS = [
              ("2024", "Wirex Pay", "The L2 chain, launched in August 2024, and the application layer, indexer, oracles and account abstraction behind its non-custodial debit cards.", [("L2BEAT listing", L2B), ("Partnership announcement", WIREX_PR)], 1),
              ("2024 to 2025", "Humanity Protocol", F_NAMED, [], 5),
              ("2024 to 2025", "The shared prover", H_NAMED, [], 6),
-             ("2025", "OneClick Connect on NEAR", "Multichain sign-in for NEAR apps, deployed for SWEAT Economy and Metapool.", [("Proposal to the NEAR Infrastructure Committee", NEAR_OCC)], None),
+             ("2024 to 2025", "OneClick Connect on NEAR", "Multichain sign-in for NEAR apps, deployed for SWEAT Economy and Metapool.", [("Proposal to the NEAR Infrastructure Committee", NEAR_OCC)], None),
              ("2025", "Identity for a global technology company", "Account-abstraction wallets with enterprise single sign-on, and an identity system for AI agents on a major cloud platform, both proofs of concept.", [("Case study, by the team at Gateway.fm", GW_CASE)], 3),
              ("2025 to 2026", "DeepNode, Andrew's fractional CTO engagement", "Ten months designing DeepNode's decentralised AI infrastructure and leading it through the January 2026 token launch and exchange listing. The network handled about 5,000 requests per second at peak, and the token listed at $140M+ fully diluted valuation.", [("KuCoin listing announcement", KUCOIN), ("DN on CoinMarketCap", DN_CMC)], 8),
              ("December 2025", "EVM compatibility for Canton", "Andrew presented a proposal for EVM compatibility on the Canton Network to its super-validators.", [("The draft CIP on cip-discuss", CANTON_CIP)], None),
