@@ -346,7 +346,8 @@ main{position:relative;z-index:1}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
 @media (prefers-reduced-motion:no-preference){.theme-rune .hero-pin .hero-inner,.hero-statement{transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}}
-.nowrap{white-space:nowrap}
+/* the last pair moves to a new line together, and wraps inside its own box only when it is wider than the line, as under larger text spacing */
+.keep{display:inline-block}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
 /* the header button stays a hairline button while the mark is still in flight, and fills copper in the moment the mark lands */
 .site-header .btn{transition:background-color .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1)}
@@ -1605,10 +1606,11 @@ def ld_json(title, description):
 
 
 def keep_last_pair(line):
-    """The last two words of a headline on one line, so a narrow screen never leaves the final word alone (audit D-01). Markup only."""
+    """The last two words of a headline kept together, so a narrow screen never leaves the final word alone (audit D-01), yet free to wrap
+    when the pair alone is wider than the line (audit round 4 D-03). Markup only."""
     head, _, last = line.rpartition(" ")
     head, _, before = head.rpartition(" ")
-    return f'{head} <span class="nowrap">{before} {last}</span>' if head else line
+    return f'{head} <span class="keep">{before} {last}</span>' if head else line
 
 
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):

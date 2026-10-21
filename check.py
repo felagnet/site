@@ -472,6 +472,23 @@ def browser_pass():
                 row(f"{w}x{h}: hero handoff reads whole at every stop, rune clear of text", not bad, "; ".join(bad[:4]))
                 ctx.close()
 
+            # WCAG 1.4.12: with the four text spacing overrides the hero heading keeps every glyph on screen. The page hides sideways
+            # overflow, so the document width cannot show this; the heading's own line boxes are measured (audit round 4 D-03)
+            bad = []
+            for w in (320, 360, 390):
+                ctx = browser.new_context(viewport={"width": w, "height": 780})
+                page = ctx.new_page()
+                page.goto(url, wait_until="load")
+                page.add_style_tag(content="* { line-height: 1.5 !important; letter-spacing: 0.12em !important;"
+                                   " word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }")
+                page.wait_for_timeout(800)
+                over = page.evaluate("(() => { const r = document.createRange(); r.selectNodeContents(document.querySelector('h1'));"
+                                     " return Math.max(...[...r.getClientRects()].map(b => b.right)) - document.documentElement.clientWidth; })()")
+                if over > 0.5:
+                    bad.append(f"{w} px: {over:.1f} px past the edge")
+                ctx.close()
+            row("Text spacing: the hero heading stays on screen at 320, 360 and 390 px", not bad, "; ".join(bad))
+
             ctx = browser.new_context(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
             page = ctx.new_page()
             errors = watch(page)
