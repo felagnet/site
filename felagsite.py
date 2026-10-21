@@ -1202,11 +1202,18 @@ SITE_JS = r'''
 (function(){
   var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'); if (!box || !btn) return;
   btn.hidden = false; body.inert = true;
+  // opened, the body ends at auto height so it follows rewrapping on a resize or a rotation. With reduced motion it opens at auto at once;
+  // otherwise it animates to its measured height and then lets go of it. Each click bumps gen, so a late frame or timer of an earlier
+  // click never writes a fixed height back
+  var gen = 0;
+  function settle(g){ if (g !== gen) return; gen++; body.style.maxHeight = ''; }
+  body.addEventListener('transitionend', function(e){ if (e.target === body && e.propertyName === 'max-height' && !box.classList.contains('closed')) settle(gen); });
   btn.addEventListener('click', function(){
-    var open = box.classList.contains('closed');
-    if (open){ body.style.maxHeight = '520px'; box.classList.remove('closed'); body.inert = false;
-      requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; });
-      setTimeout(function(){ body.style.maxHeight = ''; }, reduce ? 0 : 750); }
+    var open = box.classList.contains('closed'), g = ++gen;
+    if (open){ box.classList.remove('closed'); body.inert = false;
+      if (!reduce){ body.style.maxHeight = '520px';
+        requestAnimationFrame(function(){ if (g === gen) body.style.maxHeight = body.scrollHeight + 'px'; });
+        setTimeout(function(){ settle(g); }, 800); } }
     else { body.style.maxHeight = ''; box.classList.add('closed'); body.inert = true;
       box.scrollIntoView({block: 'start', behavior: reduce ? 'auto' : 'smooth'}); }
     btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'Close the full history' : 'Show the full history';
