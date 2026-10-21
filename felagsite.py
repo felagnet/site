@@ -627,7 +627,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
 .fmsg.ok{color:var(--text)}
 .brief.sent .fld,.brief.sent .cta button{display:none}
 .scene-book .line{position:absolute;right:var(--side);bottom:40px;z-index:2;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);max-width:34em;text-align:right}
-.foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px var(--side) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
+.foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px max(var(--side), calc((100% - 1440px) / 2 + var(--side))) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
 .foot .legal{grid-column:1 / -1;order:3;max-width:60em;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
