@@ -490,7 +490,8 @@ html:not(.js) .name{cursor:default}
 .lineage{margin-top:40px;border-top:1px solid var(--line)}
 .lineage .rec p{margin-top:0;color:var(--text);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 .history{margin-top:56px}
-.history-label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.history-label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary);scroll-margin-top:24px}
+.history-label:focus{outline:none}.history-label:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
 .history .eras{margin-top:28px}
 .history-body{position:relative}
 /* closed, with scripts: the first era shows and fades out under the button; without scripts all of it reads */
@@ -503,6 +504,7 @@ html:not(.js) .name{cursor:default}
 .history-btn:hover{border-color:var(--accent);color:var(--accent-hover)}
 .history-btn:active{border-color:var(--accent);color:var(--accent)}
 .history-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.history-btn{scroll-margin-bottom:24px}
 .era-cases{margin-top:20px;border-top:1px solid var(--line)}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
@@ -863,7 +865,7 @@ def sections(t, theme):
     <h2 class="reveal">Where the team comes from.</h2>
     <div class="lineage">{lineage}</div>
     <div class="history closed" id="history">
-      <p class="history-label reveal">The full history: {len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</p>
+      <p class="history-label reveal" id="history-label" tabindex="-1">The full history: {len(ERAS)} eras and {sum(len(e["cases"]) for e in ERAS)} projects, from a 2014 faucet network to Felag</p>
       <div class="history-body" id="history-body">
         <div class="eras" id="eras"><div class="era-line" aria-hidden="true"><i id="era-line-fill"></i></div>{eras}</div>
       </div>
@@ -1201,7 +1203,7 @@ SITE_JS = r'''
 
 // ---- the record: the full history opens from its button; closed, the faded part is inert
 (function(){
-  var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'); if (!box || !btn) return;
+  var box = document.getElementById('history'), body = document.getElementById('history-body'), btn = document.getElementById('history-btn'), label = document.getElementById('history-label'); if (!box || !btn) return;
   btn.hidden = false; body.inert = true;
   // opened, the body ends at auto height so it follows rewrapping on a resize or a rotation. With reduced motion it opens at auto at once;
   // otherwise it animates to its measured height and then lets go of it. Each click bumps gen, so a late frame or timer of an earlier
@@ -1209,14 +1211,20 @@ SITE_JS = r'''
   var gen = 0;
   function settle(g){ if (g !== gen) return; gen++; body.style.maxHeight = ''; }
   body.addEventListener('transitionend', function(e){ if (e.target === body && e.propertyName === 'max-height' && !box.classList.contains('closed')) settle(gen); });
+  // the button sits below the history, so opening pushes it far down: focus moves to the label at the head of the history, and the next
+  // Tab reaches the first project link. A keyboard visitor is brought to the label; a pointer leaves the page where it was. Closing keeps
+  // focus on the button and brings it back into view, with the history from its label when the closed block fits the screen
   btn.addEventListener('click', function(){
-    var open = box.classList.contains('closed'), g = ++gen;
+    var open = box.classList.contains('closed'), g = ++gen, keyed = btn.matches(':focus-visible'), behavior = reduce ? 'auto' : 'smooth';
     if (open){ box.classList.remove('closed'); body.inert = false;
       if (!reduce){ body.style.maxHeight = '520px';
         requestAnimationFrame(function(){ if (g === gen) body.style.maxHeight = body.scrollHeight + 'px'; });
-        setTimeout(function(){ settle(g); }, 800); } }
+        setTimeout(function(){ settle(g); }, 800); }
+      if (label){ label.focus({preventScroll: true}); if (keyed) label.scrollIntoView({block: 'start', behavior: behavior}); } }
     else { body.style.maxHeight = ''; box.classList.add('closed'); body.inert = true;
-      box.scrollIntoView({block: 'start', behavior: reduce ? 'auto' : 'smooth'}); }
+      var head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--head')) || 72;
+      if (box.getBoundingClientRect().height + head <= window.innerHeight) box.scrollIntoView({block: 'start', behavior: behavior});
+      else btn.scrollIntoView({block: 'end', behavior: behavior}); }
     btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'Close the full history' : 'Show the full history';
   });
 })();
