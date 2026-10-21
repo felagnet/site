@@ -387,7 +387,7 @@ html.js .reveal:focus-within{opacity:1;transform:none;transition:none}
 .bigmark path{fill:var(--line);transition:fill .5s}
 .bigmark path.on{fill:var(--accent)}
 .mark-count{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
-.skills-foot{margin-top:32px;max-width:46em}
+.skills-foot{margin-top:32px;max-width:58ch}
 .skills-foot .skills{margin-top:4px}
 /* ---- disclosure: a quiet mono summary with a copper plus that turns to a cross when open */
 .more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text);transition:color .15s}
@@ -485,6 +485,7 @@ html:not(.js) .name{cursor:default}
 .era-block::before{content:"";position:absolute;left:-37px;top:14px;width:11px;height:11px;background:var(--bg);border:1px solid var(--line-strong);transform:rotate(45deg);transition:background-color .4s,border-color .4s}
 .era-block.lit::before{background:var(--accent);border-color:var(--accent)}
 .era-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:60em}
+.era-intro{max-width:58ch}
 .era-name{font-size:var(--fs-subhead);line-height:1;font-weight:600;letter-spacing:-0.03em}
 .era-years{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .lineage{margin-top:40px;border-top:1px solid var(--line)}
@@ -509,7 +510,7 @@ html:not(.js) .name{cursor:default}
 .rec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rec .yr{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);padding-top:4px}
 .rec h4{font-size:var(--fs-title-sm);line-height:1.25;font-weight:600;letter-spacing:-0.015em;margin:0}
-.rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:56em}
+.rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:58ch}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
 /* ---- offer: stacking panels. Each sticks under the header 12 px lower than the one before, so the list stacks as the reader scrolls */
@@ -528,7 +529,7 @@ html:not(.js) .name{cursor:default}
 .panel.launch .price b{color:var(--accent)}
 .panel .price span{display:block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary)}
 .panel .n{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:22px}
-.offer-note{margin-top:32px;max-width:52em;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.offer-note{margin-top:32px;max-width:58ch;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- how */
 .how-line{margin-top:28px}
@@ -550,7 +551,7 @@ html:not(.js) .name{cursor:default}
 .furrow.fire .soil{stroke-dasharray:none;stroke:var(--line)}
 .furrow.fire .sprout{stroke-width:3}
 .furrow .sprout.on{opacity:1}
-.how-note{margin-top:48px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.how-note{margin-top:48px;color:var(--text-secondary);max-width:58ch;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- who */
 /* the situations as a two-column hairline list, the house way to list things: index, title, body, seam rule */
@@ -562,7 +563,7 @@ html:not(.js) .name{cursor:default}
 .sit:hover h3{color:var(--accent-hover)}
 .turn{margin-top:24px;border:1px solid var(--copper-deep);border-radius:4px;padding:32px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;background:linear-gradient(90deg,rgba(var(--deep-rgb),.14),rgba(var(--deep-rgb),0) 60%)}
 .turn h3{font-size:var(--fs-title-sm);font-weight:600;letter-spacing:-0.015em}
-.turn p{color:var(--text)}
+.turn p{color:var(--text);max-width:58ch}
 
 /* ---- people */
 .people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
@@ -577,7 +578,7 @@ html:not(.js) .name{cursor:default}
 .person .where{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-top:8px}
 .person p.bio{color:var(--text-secondary);font-size:var(--fs-body);line-height:var(--lh-body)}
 .person .links{display:flex;gap:18px;font-size:var(--fs-small);margin-top:auto}
-.people-note{margin-top:56px;color:var(--text-secondary);max-width:52em;font-size:var(--fs-prose);line-height:var(--lh-prose)}
+.people-note{margin-top:56px;color:var(--text-secondary);max-width:58ch;font-size:var(--fs-prose);line-height:var(--lh-prose)}
 
 /* ---- contracting */
 .facts{margin-top:56px;border-top:1px solid var(--line)}
@@ -598,7 +599,7 @@ html:not(.js) .name{cursor:default}
 .faq details[open] summary i{transform:rotate(45deg);border-color:var(--accent)}
 .faq .a{overflow:hidden;height:0;transition:height .45s cubic-bezier(.16,1,.3,1)}
 .faq details.closing .a{transition-duration:.3s}
-.faq .a p{padding:0 0 28px;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);max-width:56em}
+.faq .a p{padding:0 0 28px;color:var(--text-secondary);font-size:var(--fs-prose);line-height:var(--lh-prose);max-width:58ch}
 
 /* ---- closing */
 .scene-book{position:relative}
@@ -630,7 +631,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
 .foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:40px max(var(--side), calc((100% - 1440px) / 2 + var(--side))) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;font-size:var(--fs-small);color:var(--text-secondary);background:var(--bg)}
 .foot .lockup svg{height:28px}
 .foot .links{display:flex;gap:20px;flex-wrap:wrap}
-.foot .legal{grid-column:1 / -1;order:3;max-width:60em;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
+.foot .legal{grid-column:1 / -1;order:3;max-width:64ch;font-size:var(--fs-label);line-height:var(--lh-label);color:var(--text-secondary)}
 
 @media (max-width:1100px){
   .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
