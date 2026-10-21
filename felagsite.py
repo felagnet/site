@@ -1414,6 +1414,9 @@ BOOK_RUNE_JS = r"""
   var started = false, hold = false, t0 = 0;
   function look(){ var r = canvas.getBoundingClientRect(); visible = r.bottom > 0 && r.top < window.innerHeight; if (!started && r.top < window.innerHeight*0.72){ started = true; t0 = t; } if (visible) schedule(); }
   window.addEventListener('scroll', look, {passive: true}); window.addEventListener('resize', function(){ layout(); look(); }); document.addEventListener('visibilitychange', look);
+  // the scene's box also changes without a window resize: fonts landing, the form's errors and its sent state, a textarea dragged taller.
+  // Each change resizes the backing store and redraws the frame the scene is at
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ layout(); look(); }).observe(canvas);
   if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
   look(); setTimeout(look, 400);
 })();
