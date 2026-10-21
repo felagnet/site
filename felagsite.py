@@ -513,9 +513,9 @@ html:not(.js) .name{cursor:default}
 .rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:58ch}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
-/* ---- offer: stacking panels. Each sticks under the header 12 px lower than the one before, so the list stacks as the reader scrolls */
+/* ---- offer: five panels in plain flow, so every price and term stays in view for comparison (audit D-12) */
 .stack{margin-top:64px}
-.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -661,7 +661,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .card{flex-basis:min(86vw,420px);padding:28px}
   .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
-  .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
+  .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
   .panel .price b.word{font-size:var(--fs-title-sm);line-height:1.25;letter-spacing:-0.015em}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
@@ -681,8 +681,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
-  /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
-  .panel{position:relative;top:auto;box-shadow:none}
+  /* below the hero every section reads in its final state: disclosures open at once, nothing travels */
   .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.history-btn,.history-btn::after,.js .history .history-body{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
