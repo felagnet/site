@@ -190,3 +190,7 @@ Settled with Andrew in the chat:
 - felag-core, the Notion proof register and the project docs are Andrew's to update, all of them, by himself: the rate card and core.md against the site's prices and terms, the Humanity Protocol and Marscatsvoyage rows, the Canton row's CIP number, the stale "Mike to confirm" note in core.md, and Pavel's and Andrey's locations in team-and-history.md. Agents do not edit them.
 - CLAUDE.md still lists the lift under stacked panels as copper light, though audit D-12 removed the stack; Andrew edits CLAUDE.md himself.
 - Portraits: Andrew, Mike and Andrey wait on larger photos from Andrew for the 1080 px landscape file Pavel now has.
+
+## 21 October 2026, round 4 design audit
+
+- D-14, portraits: Andrew chose to recrop for matched head size. Andrew, Mike and Pavel already sit in one range from round 3 (head about 37% of the frame height, eyes about 40% down). Andrey's head fills about 53% with the eyes at 33%, and his source, andrey-src.jpg, is a 594 px square whose full height the current crop already uses, so no recrop can make the head smaller or lower the eye line without inventing pixels. Left as it is. What each new photo needs: room for a 4:5 crop at least 1080 by 1350 px with the head (crown to chin) about 37% of the height and the eyes about 40% down, which for Andrey means a wider frame with space above the cap and down to the chest. With those, all four get a 1080 px file beside the 800 px one, as Pavel has.
