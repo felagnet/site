@@ -26,7 +26,7 @@ Success for a visit is an email to info@felag.net asking for the free technical 
 
 Senior engineers who own the architecture and ship to production. A principal-led studio for technology companies, priced on outcomes rather than hours. Both lines are locked in core.md, used verbatim on the site, LinkedIn and proposal covers, and are never edited by an agent.
 
-The statement under "The studio" is the one sentence from core.md, locked by both founders (Andrew, 15 and 16 October 2026). core.md still carries a "Mike to confirm before public use" note on it, which is stale; a founder updates it there.
+The statement under "The studio" reads "Felag is a boutique, principal-led software engineering studio for technology companies. Our pods own the architecture and delivery of platforms, distributed systems, AI infrastructure, payments and identity." Andrew chose it for both founders on 21 October 2026, broadening the earlier core.md sentence (funded fintech and technology companies; backends, payment systems and identity infrastructure) to match the published cases. It keeps the position-layer rule below: no chain or crypto words. core.md in felag-core still carries the earlier sentence; a founder updates it there.
 
 What a neighbouring agency cannot truthfully copy:
 
@@ -61,6 +61,7 @@ Open decisions, recorded, not invented:
 - positioning.md is draft 0.3.2 and unlocked: the supporting paragraph, the three verb-phrase families and their order, and the three sprint scopes in offers.md are not on the site until both founders lock them.
 - The rate-card review (two-principal pod as default, sprint at the top of its band) is open; the site follows the published card.
 - An EU contracting wrapper (NL BV) is undecided; nothing on the site promises EU establishment.
+- Decided by Andrew on 21 October 2026: robots.txt keeps allowing every crawler, AI training crawlers (GPTBot, ClaudeBot, CCBot, Bytespider) included, so answer engines learn the name alongside the same-name felag.io.
 - Decided by Andrew on 16 October 2026 in the review loop: no legal entity line in the footer (reversed on 19 October 2026: the footer carries the full entity); the proof stays told three times (strip, wall, record); Snark.art stays on the names wall and DeepNode in the lead cases, both in the register's wording for Andrew's personal rows; the Infinex and XIP-9 case stays unlinked until proof-register.md row C carries a live artefact; the FAQ carries the sprint-ownership term from positioning.md.
 - The bridge case (the Uddug-era consumer high-load backend) enters the proof once its number is confirmed, target 31 January 2027. No non-fintech technology-company case is published yet.
 
