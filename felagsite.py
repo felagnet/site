@@ -1127,7 +1127,7 @@ SITE_JS = r'''
   // ---- the drift: 30 px a second while the strip is on screen, back to the first card after the last. Phones start still, since the
   // controls sit below the cards there. The mouse over the strip pauses it only while it stays; keyboard use, a swipe, a tap or a press stops it
   // until the reader presses Start scrolling, and so does a case link. It also holds while a case's notes are open, so a card read
-  // with the mouse stays put. Never under reduced motion
+  // with the mouse stays put. Never under reduced motion, from load or from the moment the preference turns on with the page open
   var play = document.getElementById('strip-play'); if (!play || reduce) return;
   var narrowQ = window.matchMedia('(max-width:900px)');
   var SPEED = 30, stopped = narrowQ.matches, chosen = false, hover = false, seen = false, until = 0, end = 0, back = false, pos = track.scrollLeft, last = 0, raf = 0;
@@ -1183,7 +1183,13 @@ SITE_JS = r'''
   }, {passive: true});
   track.addEventListener('wheel', function(e){ if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, {passive: true});
   // until the reader has chosen, the strip follows the screen: still on a phone, drifting on a desktop
-  narrowQ.addEventListener('change', function(){ if (chosen) return; stopped = narrowQ.matches; show(); pos = track.scrollLeft; kick(); });
+  narrowQ.addEventListener('change', function(){ if (chosen) return; stopped = narrowQ.matches || reduce; show(); pos = track.scrollLeft; kick(); });
+  // reduced motion turned on stops the drift where the strip stands, without counting as the reader's choice; turned off, the drift goes
+  // on only if the reader never stopped it themselves
+  window.addEventListener('reducemotion', function(){
+    if (reduce){ stopped = true; end = 0; back = false; show(); return; }
+    if (!chosen){ stopped = narrowQ.matches; show(); pos = track.scrollLeft; until = performance.now() + 600; kick(); }
+  });
   // notes opening or closing: closing the last one lets the drift go on from where the strip stands
   track.addEventListener('toggle', function(){ if (!reading()) pos = track.scrollLeft; kick(); }, true);
   document.addEventListener('visibilitychange', kick);
@@ -1437,6 +1443,7 @@ BOOK_RUNE_JS = r"""
   // Each change resizes the backing store and redraws the frame the scene is at
   if ('ResizeObserver' in window) new ResizeObserver(function(){ layout(); look(); }).observe(canvas);
   if (reduce || window.innerWidth < 900){ hold = true; p = 0.9; }
+  window.addEventListener('reducemotion', function(){ if (reduce){ hold = true; p = 0.9; look(); } });
   look(); setTimeout(look, 400);
 })();
 """

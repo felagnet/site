@@ -119,6 +119,8 @@
   function setArrived(v){ if (v === arrived) return; arrived = v; root.classList.toggle('mark-arrived', v); root.classList.toggle('mark-pending', !v); }
   root.classList.add('mark-pending');
   if (reduce) setArrived(true);
+  // reduced motion turned on with the page open: the finished mark in place and in the header at once, as at load
+  window.addEventListener('reducemotion', function(){ if (reduce) setArrived(true); else onScroll(); schedule(); });
 
   // frames run only while the hero is on screen and the rune is alive; the clock pauses in between
   var running = false, pausedAt = 0;

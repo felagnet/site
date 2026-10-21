@@ -489,6 +489,28 @@ def browser_pass():
                 ctx.close()
             row("Text spacing: the hero heading stays on screen at 320, 360 and 390 px", not bad, "; ".join(bad))
 
+            # reduced motion turned on with the page open stops the drifting strip where it stands, and the section keeps its place on
+            # screen while the hero above changes layout (audit round 4 D-26)
+            ctx = browser.new_context(viewport={"width": 1440, "height": 900})
+            page = ctx.new_page()
+            page.goto(url, wait_until="load")
+            page.wait_for_timeout(1500)
+            page.evaluate("document.getElementById('proof-cases').scrollIntoView({behavior: 'instant'})")
+            page.wait_for_timeout(3000)
+            sl = "document.querySelector('#proof-cases .track').scrollLeft"
+            top = "Math.round(document.getElementById('proof-cases').getBoundingClientRect().top)"
+            a, t0 = page.evaluate(sl), page.evaluate(top)
+            page.wait_for_timeout(1500)
+            drifting = page.evaluate(sl) - a
+            page.emulate_media(reduced_motion="reduce")
+            page.wait_for_timeout(200)
+            b, t1 = page.evaluate(sl), page.evaluate(top)
+            page.wait_for_timeout(2500)
+            after = page.evaluate(sl) - b
+            row("Reduced motion turned on live: the strip stops, the page keeps its place", drifting > 20 and abs(after) < 1 and t0 == t1,
+                f"drift {drifting:.0f} px, then {after:.0f} px in 2.5 s; section top {t0} then {t1}")
+            ctx.close()
+
             ctx = browser.new_context(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
             page = ctx.new_page()
             errors = watch(page)
