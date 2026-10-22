@@ -1330,8 +1330,9 @@ SITE_JS = r'''
     msg.appendChild(document.createTextNode("That didn't send. Email us directly at "));
     msg.appendChild(a); msg.appendChild(document.createTextNode('.'));
   }
+  function count(){ if (window.plausible) plausible('Contact form sent'); }
   if (/[?&]sent=1/.test(location.search)){
-    f.classList.add('sent'); say('ok');
+    f.classList.add('sent'); say('ok'); count();
     try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
   }
   // until the real form id is set, open the visitor's mail client rather than post into a 404
@@ -1352,7 +1353,7 @@ SITE_JS = r'''
     if (btn){ btn.disabled = true; btn.textContent = 'Sending'; }
     if (msg) msg.hidden = true;
     fetch(endpoint, {method: 'POST', body: new FormData(f), headers: {Accept: 'application/json'}})
-      .then(function(r){ if (!r.ok) throw new Error(String(r.status)); f.classList.add('sent'); say('ok'); })
+      .then(function(r){ if (!r.ok) throw new Error(String(r.status)); f.classList.add('sent'); say('ok'); count(); })
       .catch(function(){ say('bad'); })
       .then(function(){ if (btn && !f.classList.contains('sent')){ btn.disabled = false; btn.textContent = label; } });
   });
@@ -1625,6 +1626,14 @@ def keep_last_pair(line):
     return f'{head} <span class="keep">{before} {last}</span>' if head else line
 
 
+# cookieless analytics, the one third-party script on the page; only the rune page, which ships as index.html, carries it
+PLAUSIBLE = """<script async src="https://plausible.io/js/pa-1ZK1zeIoMLCPeJ9EIDKOd.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>"""
+
+
 def full_page(theme, title, description_line, headline, sub, scene_markup, scene_script, extra_css="", scripts_before=""):
     t = THEMES[theme]
     amb = AMBIENT_RUNE if theme == "rune" else AMBIENT_HARVEST
@@ -1660,6 +1669,7 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="theme-color" content="#0E1114">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{ld_json(title, DESCRIPTION)}</script>
+{PLAUSIBLE if theme == "rune" else ""}
 {FONT_LINKS}
 <style>{CSS}{SITE_CSS}{amb["css"]}{extra_css}</style>
 </head>

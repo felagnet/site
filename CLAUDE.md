@@ -30,6 +30,7 @@ DESIGN.md is the master of the Felag design system. Read it before any visual ch
 
 ## Do not add
 Analytics, cookie banners, chat widgets, third-party scripts, new fonts or new dependencies for the page.
+The one exception is Plausible, the cookieless analytics Andrew chose on 22 October 2026: its snippet in the head of index.html and the Contact form sent event. No other analytics, no cookies, no consent banner.
 
 ## Git
 Work on a branch. Never push, merge to main or change repository settings without Andrew's go in the chat.
