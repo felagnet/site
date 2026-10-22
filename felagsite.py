@@ -343,6 +343,8 @@ main{position:relative;z-index:1}
 
 /* ---- rune theme: the rune lands in the header, fire on titles and numbers */
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
+/* the hero frame keeps the small viewport height, so a phone toolbar collapsing on the first scroll never resizes the rune or moves the statement */
+.theme-rune .hero-pin{height:100vh;height:100svh}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
 /* the last pair moves to a new line together, and wraps inside its own box only when it is wider than the line, as under larger text spacing */
