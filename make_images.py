@@ -1,9 +1,11 @@
-"""Render the two raster images the site needs into static/: og.png (1200 by 630, the link preview) and
-apple-touch-icon.png (180 by 180). Each is a small HTML page drawn by Chromium through Playwright at device
+"""Render the raster images the site needs into static/: og.png (1200 by 630, the link preview),
+apple-touch-icon.png (180 by 180), and the raster favicons for browsers and icon services that skip
+favicon.svg: favicon-16.png, favicon-32.png and favicon.ico, which holds 16, 32 and 48 px PNGs. Each is a small HTML page drawn by Chromium through Playwright at device
 scale 1. Run it again when the mark, the lockup or the hero line changes; make_dist.py copies the results
 into dist/. Needs Playwright with Chromium, see README.md."""
 
 import os
+import struct
 import sys
 
 from playwright.sync_api import sync_playwright
@@ -47,6 +49,24 @@ TOUCH_HTML = f"""<!doctype html>
 svg{{position:absolute;left:36px;top:36px;width:108px;height:108px}}</style></head>
 <body><svg viewBox="0 0 104 104" aria-hidden="true"><path fill="{COPPER}" d="{MARK_PATH}"></path></svg></body></html>"""
 
+# the mark alone in copper on a clear ground, as favicon.svg draws it
+FAVICON_HTML = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<style>html,body{{margin:0;width:{size}px;height:{size}px;overflow:hidden;background:transparent}}
+svg{{display:block;width:{size}px;height:{size}px}}</style></head>
+<body><svg viewBox="0 0 104 104" aria-hidden="true"><path fill="%s" d="%s"></path></svg></body></html>""" % (COPPER, MARK_PATH)
+ICO_SIZES = (16, 32, 48)
+
+
+def ico(pngs):
+    """An .ico file that carries each size as a PNG, which every current browser and icon service reads."""
+    head = struct.pack("<HHH", 0, 1, len(pngs))
+    offset, entries, data = 6 + 16 * len(pngs), b"", b""
+    for size, png in pngs:
+        entries += struct.pack("<BBBBHHII", size % 256, size % 256, 0, 0, 1, 32, len(png), offset + len(data))
+        data += png
+    return head + entries + data
+
 
 def render(browser, html, width, height, out, needs_font=False):
     ctx = browser.new_context(viewport={"width": width, "height": height}, device_scale_factor=1)
@@ -56,9 +76,13 @@ def render(browser, html, width, height, out, needs_font=False):
         page.evaluate("document.fonts.ready")
         if not page.evaluate("document.fonts.check('600 56px \"Schibsted Grotesk\"')"):
             sys.exit("Schibsted Grotesk did not load from Google Fonts; og.png not written")
-    page.screenshot(path=out, clip={"x": 0, "y": 0, "width": width, "height": height})
+    png = page.screenshot(clip={"x": 0, "y": 0, "width": width, "height": height}, omit_background=True)
     ctx.close()
-    print(os.path.relpath(out, HERE), width, "by", height)
+    if out:
+        with open(out, "wb") as f:
+            f.write(png)
+        print(os.path.relpath(out, HERE), width, "by", height)
+    return png
 
 
 def main():
@@ -67,6 +91,14 @@ def main():
         browser = p.chromium.launch()
         render(browser, OG_HTML, 1200, 630, os.path.join(STATIC, "og.png"), needs_font=True)
         render(browser, TOUCH_HTML, 180, 180, os.path.join(STATIC, "apple-touch-icon.png"))
+        pngs = []
+        for size in ICO_SIZES:
+            name = f"favicon-{size}.png" if size in (16, 32) else None
+            pngs.append((size, render(browser, FAVICON_HTML.format(size=size), size, size,
+                                      os.path.join(STATIC, name) if name else None)))
+        with open(os.path.join(STATIC, "favicon.ico"), "wb") as f:
+            f.write(ico(pngs))
+        print("static/favicon.ico", ", ".join(str(n) for n in ICO_SIZES), "px")
         browser.close()
 
 

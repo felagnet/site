@@ -1652,6 +1652,8 @@ def full_page(theme, title, description_line, headline, sub, scene_markup, scene
 <meta name="description" content="{DESCRIPTION}">
 <link rel="canonical" href="https://felag.net/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Felag">

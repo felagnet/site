@@ -44,7 +44,7 @@ PEOPLE_LINKS = {
     "Andrey Solovov": ["LinkedIn", "GitHub"],
 }
 DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "llms.txt", "favicon.svg",
-              "apple-touch-icon.png", "og.png", "404.html", "fonts/schibsted-grotesk.woff2", "fonts/ibm-plex-mono-400.woff2",
+              "apple-touch-icon.png", "og.png", "404.html", "favicon.ico", "favicon-16.png", "favicon-32.png", "fonts/schibsted-grotesk.woff2", "fonts/ibm-plex-mono-400.woff2",
               "fonts/schibsted-grotesk-OFL.txt", "fonts/ibm-plex-mono-OFL.txt"] + [
               f"people/{n}.{ext}" for n in ("andrew", "mike", "pavel", "andrey") for ext in ("jpg", "webp")]
 VIEWPORTS = [(1440, 900), (1728, 1117), (390, 844)]
@@ -237,7 +237,7 @@ def static_checks(html, page):
     row("Head: canonical", canon == [SITE], f"canonical is {canon}")
     row("Head: og:image", page.meta("og:image") == SITE + "og.png", f"og:image is {page.meta('og:image')!r}")
     icons = [l.get("href") for l in page.link("icon")]
-    row("Head: favicon", "/favicon.svg" in icons, f"icon links {icons}")
+    row("Head: favicon", {"/favicon.svg", "/favicon-32.png", "/favicon-16.png"} <= set(icons), f"icon links {icons}")
     row("Head: theme-color", (page.meta("theme-color") or "").upper() == "#0E1114",
         f"theme-color is {page.meta('theme-color')!r}")
     want = {"og:type": "website", "og:site_name": "Felag", "og:title": norm(page.title), "og:description": desc,
@@ -302,11 +302,15 @@ def dist_checks():
     row("CNAME is exactly felag.net", cname is not None and cname.rstrip("\n") == "felag.net"
         and "\n" not in cname.rstrip("\n"), f"CNAME reads {cname!r}")
     sizes = {}
-    for name, want in (("og.png", (1200, 630)), ("apple-touch-icon.png", (180, 180))):
+    want = {"og.png": (1200, 630), "apple-touch-icon.png": (180, 180), "favicon-32.png": (32, 32), "favicon-16.png": (16, 16)}
+    for name in want:
         p = os.path.join(DIST, name)
         sizes[name] = png_size(p) if os.path.isfile(p) else None
-    bad = [f"{n} is {s}" for n, s in sizes.items() if s != {"og.png": (1200, 630), "apple-touch-icon.png": (180, 180)}[n]]
-    row("og.png 1200x630, touch icon 180x180", not bad, "; ".join(bad))
+    bad = [f"{n} is {s}" for n, s in sizes.items() if s != want[n]]
+    ico = open(os.path.join(DIST, "favicon.ico"), "rb").read(6) if os.path.isfile(os.path.join(DIST, "favicon.ico")) else b""
+    if ico[:4] != b"\x00\x00\x01\x00" or ico[4] < 3:
+        bad.append("favicon.ico is not an icon with 16, 32 and 48 px")
+    row("og.png 1200x630, touch icon 180x180, favicons 16, 32 and .ico", not bad, "; ".join(bad))
 
     note = ""
     try:
