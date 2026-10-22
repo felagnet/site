@@ -142,8 +142,9 @@ var heroFlow = false;
     var head = siteHeader ? siteHeader.clientHeight : 72, h = window.innerHeight, frame = Math.max(h, 700), narrow = narrowQ.matches;
     var a = span(heroInner.children), b = span(st.children), air = narrow ? 0.1*h : 0;
     var heroEnd = narrow ? head + a : head + (frame - head - a)/2 + a, stEnd = head + (frame - head - air - b)/2 + b;
-    // under reduced motion the hero always reads in flow: the finished mark, the hero text, then the statement, nothing fading or travelling
-    var f = reduce || Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
+    // under reduced motion the hero always reads in flow: the finished mark, the hero text, then the statement, nothing fading or travelling.
+    // On a phone it does too, so the first swipe scrolls the page as any page scrolls, with nothing tied to the finger
+    var f = reduce || narrow || Math.max(heroEnd, stEnd) > h - (heroFlow ? 8 : 0) || a > h - head || b > h - head;
     if (f !== heroFlow){
       // the hero changes height between the two layouts. A reader already past it keeps their place on the page below, measured from
       // where the hero ends on screen; a reader inside it stays at the same scroll position. The browser's own scroll anchoring is off
