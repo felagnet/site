@@ -1,5 +1,5 @@
 """Assemble dist/, the folder GitHub Pages serves: the rune page as index.html, plus CNAME, .nojekyll,
-robots.txt, sitemap.xml, llms.txt, favicon.svg, apple-touch-icon.png, og.png, 404.html, the fonts under fonts/ and the portraits under people/.
+robots.txt, sitemap.xml, llms.txt, favicon.svg, favicon.ico, favicon-16.png, favicon-32.png, apple-touch-icon.png, og.png, 404.html, the fonts under fonts/ and the portraits under people/.
 Standard library only. Run after build_site.py. The harvest page is a kept prototype and is not copied."""
 
 import datetime
@@ -42,6 +42,8 @@ PAGE_404 = f"""<!doctype html>
 <title>Felag, page not found</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
 <meta name="theme-color" content="#0E1114">
 {FONTS}
 <style>
@@ -126,7 +128,7 @@ def main():
     page = os.path.join(OUT, "felag-rune.html")
     if not os.path.exists(page):
         sys.exit("out/felag-rune.html is missing; run python3 build_site.py first")
-    images = [os.path.join(STATIC, n) for n in ("apple-touch-icon.png", "og.png")]
+    images = [os.path.join(STATIC, n) for n in ("apple-touch-icon.png", "og.png", "favicon.ico", "favicon-16.png", "favicon-32.png")]
     for img in images:
         if not os.path.exists(img):
             sys.exit(f"{os.path.relpath(img, HERE)} is missing; run python3 make_images.py first")
