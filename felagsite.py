@@ -343,9 +343,10 @@ main{position:relative;z-index:1}
 
 /* ---- rune theme: the rune lands in the header, fire on titles and numbers */
 .theme-rune .hero{height:calc(100vh + 1250px);min-height:1950px}
+/* the hero frame keeps the small viewport height, so a phone toolbar collapsing on the first scroll never resizes the rune or moves the statement */
+.theme-rune .hero-pin{height:100vh;height:100svh}
 .hero-statement{position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:var(--head);opacity:var(--st,0);pointer-events:none;transform:translateY(calc((1 - var(--st,0)) * 28px))}
 .hero-statement .statement{margin-top:24px}
-@media (prefers-reduced-motion:no-preference){.theme-rune .hero-pin .hero-inner,.hero-statement{transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}}
 /* the last pair moves to a new line together, and wraps inside its own box only when it is wider than the line, as under larger text spacing */
 .keep{display:inline-block}
 .theme-rune.over-hero .site-header{background:transparent;border-color:transparent}
@@ -528,9 +529,9 @@ html:not(.js) .name{cursor:default}
 .rec p{color:var(--text-secondary);font-size:var(--fs-small);line-height:var(--lh-small);margin-top:6px;max-width:58ch}
 .rec .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:var(--fs-small)}
 
-/* ---- offer: five panels in plain flow, so every price and term stays in view for comparison (audit D-12) */
+/* ---- offer: stacking panels. Each sticks under the header 12 px lower than the one before, so the list stacks as the reader scrolls */
 .stack{margin-top:64px}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start}
+.panel{position:sticky;top:calc(var(--head) + 24px + var(--i) * 12px);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);margin-bottom:24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px 40px;align-items:start;box-shadow:0 -20px 60px rgba(var(--iron-rgb),.6)}
 .pcols{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:24px}
 .pk{font-family:var(--mono);font-size:var(--fs-label);color:var(--text-secondary);margin-bottom:10px}
 .pcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -678,7 +679,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .card{padding:28px}
   .card .cfacts div{grid-template-columns:minmax(0,1fr);gap:2px}
   /* one column, and the price reads directly under the title: the left div dissolves into the grid so its children can be ordered */
-  .panel{grid-template-columns:minmax(0,1fr);gap:0}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
+  .panel{grid-template-columns:minmax(0,1fr);gap:0;position:relative;top:auto;box-shadow:none}.panel > div:first-child{display:contents}.pcols{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .panel .n{order:1}.panel h3{order:2}.panel .price{order:3;text-align:left;margin-top:4px}.panel > div > p{order:4}.panel .pcols{order:5}
   .panel .price b.word{font-size:var(--fs-title-sm);line-height:1.25;letter-spacing:-0.015em}
   .turn,.facts .row{grid-template-columns:minmax(0,1fr)}
@@ -698,7 +699,8 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
   .person h3{font-size:var(--fs-title-sm)}
 }
 @media (prefers-reduced-motion:reduce){
-  /* below the hero every section reads in its final state: disclosures open at once, nothing travels */
+  /* below the hero every section reads in its final state: the offer is a plain list, disclosures open at once, nothing travels */
+  .panel{position:relative;top:auto;box-shadow:none}
   .wall-detail,.faq .a,.name::after,.faq summary i,.card::before,.cap,.cap p,.cap h3,.cap .k,.bigmark path,.era-block::before,.strip-btn,.more summary::before,.history-btn,.history-btn::after,.js .history .history-body{transition:none}
   .theme-rune .sec h2.reveal::after,.theme-rune .scene-book h2::after{width:120px;transition:none}
   .mark-arrived .site-header .mark-fill{animation:none}
@@ -999,9 +1001,9 @@ SITE_JS = r'''
   var words = document.querySelectorAll('#statement-text .w'); if (!words.length) return;
   var n = words.length, narrow = window.innerWidth < 900;
   var inHero = !!document.getElementById('hero-statement');
-  // the statement takes the hero text's place at the swap point, in the same timed crossfade; a keyboard reader holding the hero text
-  // holds the statement back
-  function arrival(hp){ return heroSwap(hp) ? 1 : 0; }
+  // the statement arrives as the hero text leaves (that text is gone by 0.124), while the rune is still on its way to the header, so
+  // there is always something to read; a keyboard reader holding the hero text holds the statement back
+  function arrival(hp){ return heroHeld ? 0 : Math.max(0, Math.min(1, (hp - 0.115)/0.04)); }
   if (reduce || narrow){
     // no word-by-word light
     words.forEach(function(w){ w.style.opacity = 1; });
