@@ -174,24 +174,6 @@ function fadeText(p){
   heroInner.style.pointerEvents = o < 0.3 ? 'none' : '';
   heroInner.inert = o < 0.75;
 }
-// the rune hero hands over at one point of the scroll, as a short timed crossfade in CSS, so wherever the scroll stops one message reads
-// whole. A dead band either side keeps a scroll resting on the point from flickering. On a phone the point comes after the rune has
-// faded, on a desktop while the rune glides above the text. Both the canvas frame and the statement ask, so neither waits on the other
-var heroSwapped = false;
-function heroSwap(sp){
-  heroHeld = !heroFlow && !!heroInner.querySelector(':focus-visible');
-  var at = document.documentElement.clientWidth < 900 ? 0.12 : 0.09;
-  if (heroFlow || heroHeld) heroSwapped = false;
-  else if (sp > at + 0.006) heroSwapped = true;
-  else if (sp < at - 0.006) heroSwapped = false;
-  return heroSwapped;
-}
-function swapText(sp){
-  var s = heroSwap(sp);
-  if (heroFlow){ heroInner.inert = false; return; }
-  heroInner.style.opacity = s ? 0 : 1; heroInner.style.transform = s ? 'translateY(-24px)' : 'none';
-  heroInner.style.pointerEvents = s ? 'none' : ''; heroInner.inert = s;
-}
 if (heroInner){
   // a focus change inside the hero redraws the scene at once, so the hold starts and ends with it
   ['focusin', 'focusout'].forEach(function(t){ heroInner.addEventListener(t, function(){ setTimeout(function(){ window.dispatchEvent(new Event('scroll')); }, 0); }); });

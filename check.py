@@ -350,20 +350,6 @@ def dist_checks():
 
 # ---------------------------------------------------------------------------------------------- browser pass
 
-# hero text and statement opacity, and which visible text block the rune's strokes (alpha over 200) overlap, if any
-HANDOFF = """() => {
-  const a = document.querySelector('.hero-inner'), b = document.getElementById('hero-statement'), cv = document.getElementById('scene');
-  const oa = +getComputedStyle(a).opacity, ob = +getComputedStyle(b).opacity, cr = cv.getBoundingClientRect(), k = cr.width / cv.width;
-  const d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
-  let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
-  for (let y = 0; y < cv.height; y += 2) for (let x = 0; x < cv.width; x += 2) if (d[(y*cv.width + x)*4 + 3] > 200){ x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
-  if (x1 < 0) return [oa, ob, ''];
-  const r = [cr.left + x0*k, cr.top + y0*k, cr.left + x1*k, cr.top + y1*k];
-  const on = el => { const t = el.getBoundingClientRect(); return t.height && !(r[2] < t.left || r[0] > t.right || r[3] < t.top || r[1] > t.bottom); };
-  if (oa > 0.05 && [...a.querySelectorAll('h1, .sub, .cta > *')].some(on)) return [oa, ob, 'hero text'];
-  if (ob > 0.05 && [...b.children].some(on)) return [oa, ob, 'statement'];
-  return [oa, ob, ''];
-}"""
 CANVAS_STATS = """sel => {
   const c = document.querySelector(sel);
   if (!c || !c.width || !c.height) return {ink: 0, copper: 0, hash: 0};
@@ -457,23 +443,6 @@ def browser_pass():
                     f"{len(errors)} error(s), first: {errors[0][:160]}" if errors else "")
                 if (w, h) == (1440, 900):
                     row("1440x900: no horizontal scroll", max(widths) == 1440, f"scrollWidth reached {max(widths)}")
-                ctx.close()
-
-            # the hero hands over from its text to the statement: wherever the scroll stops one of the two reads whole, and the rune's
-            # strokes never sit on text that can be seen (audit D-01)
-            for w, h in ((1440, 900), (390, 844)):
-                ctx = browser.new_context(viewport={"width": w, "height": h}, is_mobile=w < 900, has_touch=w < 900)
-                page = ctx.new_page()
-                page.goto(url, wait_until="load")
-                page.wait_for_timeout(5000)
-                bad = []
-                for y in range(0, 401, 20):
-                    page.evaluate(f"window.scrollTo(0, {y})")
-                    page.wait_for_timeout(500)
-                    oa, ob, hit = page.evaluate(HANDOFF)
-                    if max(oa, ob) < 0.95 or hit:
-                        bad.append(f"{y} px: hero {oa:.2f}, statement {ob:.2f}{', rune on ' + hit if hit else ''}")
-                row(f"{w}x{h}: hero handoff reads whole at every stop, rune clear of text", not bad, "; ".join(bad[:4]))
                 ctx.close()
 
             # WCAG 1.4.12: with the four text spacing overrides the hero heading keeps every glyph on screen. The page hides sideways
