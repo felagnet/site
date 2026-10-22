@@ -711,7 +711,7 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
 /* ---- without JavaScript every word reads at rest: the scenes lay out as plain sections and nothing waits on the scroll */
 html:not(.js) .theme-rune .hero{height:auto;min-height:0}
 html:not(.js) .theme-rune .hero-pin{position:relative;height:auto;min-height:0;overflow:visible}
-html:not(.js) .theme-rune .hero-inner{height:auto;min-height:100vh;min-height:100dvh}
+html:not(.js) .theme-rune .hero-inner{height:auto;min-height:100vh;min-height:100svh}
 html:not(.js) .hero-statement{position:relative;opacity:1;transform:none;pointer-events:auto;padding-bottom:64px}
 html:not(.js) .statement .w{opacity:1}
 html:not(.js) .scene-build{height:auto}
@@ -731,7 +731,7 @@ html:not(.js) .faq .a{height:auto}
    with room under the buttons on a phone for the rune, which draws in place there instead of flying to the header */
 .theme-rune.hero-flow .hero{height:auto;min-height:0}
 .theme-rune.hero-flow .hero-pin{position:relative;height:auto;min-height:0}
-.theme-rune.hero-flow .hero-inner{height:auto;min-height:100vh;min-height:100dvh}
+.theme-rune.hero-flow .hero-inner{height:auto;min-height:100vh;min-height:100svh}
 .theme-rune.hero-flow .hero-statement{position:relative;opacity:1;transform:none;pointer-events:auto;padding-bottom:64px}
 @media (max-width:900px){.theme-rune.hero-flow .hero-inner{padding-bottom:calc(min(62vw,30vh) + 48px)}}
 /* the canvas ends where the hero text does, so its light fades out over the last 96 px instead of stopping on a line */

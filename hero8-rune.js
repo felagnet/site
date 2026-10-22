@@ -93,8 +93,9 @@
       var cta = pin.querySelector('.hero-inner .cta'), pr = pin.getBoundingClientRect();
       var ib = cta ? cta.getBoundingClientRect().bottom - pr.top : H*0.55;
       if (heroFlow){
-        // sized by the screen, not the section, and set in the room the section keeps for it under the buttons
-        S = Math.min(W*0.62, window.innerHeight*0.30)/110; S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110)); cy = ib + 24 + 55*S;
+        // sized by the screen, not the section, and set in the room the section keeps for it under the buttons. The screen is read without
+        // the phone toolbar, which stays the same when the toolbar collapses on the first scroll, so the rune never resizes mid-swipe
+        S = Math.min(W*0.62, document.documentElement.clientHeight*0.30)/110; S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110)); cy = ib + 24 + 55*S;
       } else {
         S = Math.min(S, Math.max(0.6, (H - 48 - ib)/110));
         cy = Math.max(H*0.71, ib + 24 + 55*S);
