@@ -253,6 +253,9 @@ PEOPLE = [
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through its acquisition, and then headed the platform team for Gateway.fm's tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
+    dict(ini="VK", name="Vasyl Kyryliuk", role="Co-founder and CBDO", where="Based in Dubai", alt="Vasyl Kyryliuk, co-founder and CBDO of Felag",
+         bio="Vasyl leads business development at Felag, finding the companies and partners it works with, from neobanks to real-world assets and prediction markets. For more than three years he was Head of Business Development at Gateway.fm. Before that he spent nearly five years at Bemobi in Oslo, managing new products and negotiating contracts with C-level executives.",
+         links=[("LinkedIn", "https://www.linkedin.com/in/vasyl-kyryliuk-8511a6161/"), ("X", "https://x.com/KyryliukVasyl")], seed=13, photo=_photo("vasyl")),
     dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer at Felag",
          bio="Pavel leads engineering on Felag's engagements. He came to software after a decade of scientific R&D and 20+ published papers. In nearly four years at Gateway.fm he went from Go backend engineer to Backend Lead, and led the architecture of the shared prover that several ZK networks ran on.",
          links=[("LinkedIn", "https://www.linkedin.com/in/paveldodonov/"), ("GitHub", "https://github.com/Pashteto")], seed=11, photo=_photo("pavel")),
@@ -285,7 +288,7 @@ FAQ = [
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, always led by one of us."),
     ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
-    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands and Cyprus."),
+    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands, Cyprus and Dubai."),
     ("How are deliverables accepted and scope changes agreed?", "<strong>Monthly pods:</strong> We review and accept deliverables with you each month against the SOW. Scope changes agreed at that review go into the next month's SOW.\n\n"
      "<strong>Architecture Sprints and technical due diligence:</strong> A principal presents the output at delivery. You have five business days to accept it or send a written list of gaps.\n\n"
      "<strong>Fixed-price builds:</strong> We review each milestone against criteria agreed in the Architecture Sprint. You have five business days after each demo to accept it or send a written list of gaps.\n\n"
@@ -582,7 +585,7 @@ html:not(.js) .name{cursor:default}
 .turn p{color:var(--text);max-width:58ch}
 
 /* ---- people */
-.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+.people-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
 .person{display:flex;flex-direction:column;gap:18px}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .portrait svg,.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -653,7 +656,6 @@ button.btn:disabled{cursor:default;opacity:var(--dim)}
 
 @media (max-width:1100px){
   .who-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
@@ -805,7 +807,7 @@ def sections(t, theme):
         # a portrait with a 1080 px file offers it to the two-column landscape layout, where an 800 px file falls short of 3x
         big = p.get("photo") and os.path.exists(os.path.join(_HERE, "photo", "people", p["photo"] + "-1080.jpg"))
         sets = {ext: (f'people/{p["photo"]}.{ext} 800w, people/{p["photo"]}-1080.{ext} 1080w' if big else f'people/{p["photo"]}.{ext}') for ext in ("webp", "jpg")}
-        sizes = ' sizes="(max-width:600px) 120px, (max-width:1100px) 46vw, 300px"' if big else ""
+        sizes = ' sizes="(max-width:600px) 120px, (max-width:900px) 46vw, 384px"' if big else ""
         pic = (f'<picture><source type="image/webp" srcset="{sets["webp"]}"{sizes}><img src="people/{p["photo"]}.jpg"{f' srcset="{sets["jpg"]}"' if big else ""}{sizes} width="800" height="1000" alt="{p.get("alt", p["name"])}" loading="lazy" decoding="async"></picture>' if p.get("photo") else silhouette(p["seed"]))
         tag = "" if p.get("photo") else f'<div class="ini">{p["ini"]}</div><div class="slot">photo slot</div>'
         people += (f'<article class="person reveal" style="--i:{i}"><div class="portrait">{pic}'
@@ -1577,8 +1579,8 @@ def _offer(o, price=None, spec=None, monthly=False):
 def ld_json(title, description):
     """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
     No headcount, no relation to Gateway.fm beyond the verbatim bios; the only address is the registered office in the footer."""
-    people_ids = ["andrew", "mike", "pavel", "andrey"]
-    homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus"}
+    people_ids = ["andrew", "mike", "vasyl", "pavel", "andrey"]
+    homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus", "Vasyl Kyryliuk": "Dubai"}
     persons = []
     for pid, p in zip(people_ids, PEOPLE):
         d = {"@type": "Person", "@id": SITE + "#" + pid, "name": p["name"], "jobTitle": p["role"],
