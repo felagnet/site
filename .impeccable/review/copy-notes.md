@@ -207,3 +207,7 @@ Andrew asked for his personal practice site on felag.net. His People card now li
 ## 22 October 2026, external links open in a new tab
 
 Andrew asked for every external link to open in a new tab. All 34 on the page now carry target="_blank" with rel="noopener": the case sources, the names wall, the history, the People links and the footer. check.py fails any external link without both. The 404 page's links go to felag.net and stay in the same tab. For a copy decision, Andrew's call: the links do not say they open a new tab. Adding "(opens in a new tab)" to the visible text or an aria label would be a copy change.
+
+## 13 November 2026, Dmitrii Anikin on the People section
+
+Andrew added Dmitrii Anikin, Principal QA Engineer, based in Singapore, with LinkedIn and GitHub. His bio is drafted from his LinkedIn experience and approved by Andrew. The FAQ answer "Contractors join for QA, DevOps and additional development" stays as it is: Andrew confirmed other QA engineers and developers still join as contractors. The portrait source is 585 by 760 px, so it ships at 800 px only, with no 1080 px file, and the eyes sit about 30% down because the source has no room above the head for the 40% line.

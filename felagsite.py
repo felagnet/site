@@ -262,6 +262,9 @@ PEOPLE = [
     dict(ini="AS", name="Andrey Solovov", role="Principal Engineer, partner", where="Based in Finland", alt="Andrey Solovov, Principal Engineer at Felag",
          bio="Andrey leads delivery on Felag's engagements. He started at Uddug, building smart contracts and payments architecture. At Gateway.fm he spent more than two years as Blockchain Dev Lead, shipping production systems for DeFi, oracle, L2 and identity clients, from the contracts down to the services behind them.",
          links=[("LinkedIn", "https://www.linkedin.com/in/andrey-solovov-bb665884/"), ("GitHub", "https://github.com/asolovov")], seed=5, photo=_photo("andrey")),
+    dict(ini="DA", name="Dmitrii Anikin", role="Principal QA Engineer", where="Based in Singapore", alt="Dmitrii Anikin, Principal QA Engineer at Felag",
+         bio="Dmitrii leads quality assurance on Felag's engagements, from test strategy to release sign-off. For more than two years he was Lead QA Engineer at Gateway.fm, where he built the Python and Web3.py automation framework that became the platform's main regression suite, and tested smart contracts, indexers, bridges and RPC infrastructure. Before that he spent five years testing a metering platform used by 50M+ people.",
+         links=[("LinkedIn", "https://www.linkedin.com/in/dmitrii-sergeevich-anikin/"), ("GitHub", "https://github.com/BnykMapadyk")], seed=17, photo=_photo("dmitrii")),
 ]
 PEOPLE_NOTE = "We bring in specialist contractors when a project needs them, always led by one of us."
 
@@ -1579,7 +1582,7 @@ def _offer(o, price=None, spec=None, monthly=False):
 def ld_json(title, description):
     """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
     No headcount, no relation to Gateway.fm beyond the verbatim bios; the only address is the registered office in the footer."""
-    people_ids = ["andrew", "mike", "vasyl", "pavel", "andrey"]
+    people_ids = ["andrew", "mike", "vasyl", "pavel", "andrey", "dmitrii"]
     homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus", "Vasyl Kyryliuk": "Dubai"}
     persons = []
     for pid, p in zip(people_ids, PEOPLE):
