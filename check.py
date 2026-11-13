@@ -43,11 +43,12 @@ PEOPLE_LINKS = {
     "Vasyl Kyryliuk": ["LinkedIn", "X"],
     "Pavel Dodonov": ["LinkedIn", "GitHub"],
     "Andrey Solovov": ["LinkedIn", "GitHub"],
+    "Dmitrii Anikin": ["LinkedIn", "GitHub"],
 }
 DIST_FILES = ["index.html", "CNAME", ".nojekyll", "robots.txt", "sitemap.xml", "llms.txt", "favicon.svg",
               "apple-touch-icon.png", "og.png", "404.html", "favicon.ico", "favicon-16.png", "favicon-32.png", "fonts/schibsted-grotesk.woff2", "fonts/ibm-plex-mono-400.woff2",
               "fonts/schibsted-grotesk-OFL.txt", "fonts/ibm-plex-mono-OFL.txt"] + [
-              f"people/{n}.{ext}" for n in ("andrew", "mike", "vasyl", "pavel", "andrey") for ext in ("jpg", "webp")]
+              f"people/{n}.{ext}" for n in ("andrew", "mike", "vasyl", "pavel", "andrey", "dmitrii") for ext in ("jpg", "webp")]
 VIEWPORTS = [(1440, 900), (1728, 1117), (390, 844)]
 GL_NOISE = re.compile(r"GL Driver Message|GPU stall|GroupMarkerNotSet|swiftshader|ANGLE|WebGL", re.I)
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -211,7 +212,7 @@ def static_checks(html, page):
     same_tab = [re.search(r'href="([^"]*)"', a).group(1) for a in anchors if 'target="_blank"' not in a or "noopener" not in a]
     row("Every external link opens in a new tab", bool(anchors) and not same_tab, ", ".join(same_tab) if same_tab else "no external link found")
 
-    row("Five portraits in #people", page.people_jpegs == 5, f"{page.people_jpegs} portrait files inside #people")
+    row("Six portraits in #people", page.people_jpegs == 6, f"{page.people_jpegs} portrait files inside #people")
     no_photo = [c["name"].strip() for c in page.cards if c["jpegs"] != 1]
     if no_photo:
         row("Each People card has its portrait", False, ", ".join(no_photo))
