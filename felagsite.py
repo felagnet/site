@@ -253,7 +253,7 @@ PEOPLE = [
     dict(ini="MM", name="Mikhail Manko", role="Co-founder and CEO", where="Based in Cyprus", alt="Mikhail Manko, co-founder and CEO of Felag",
          bio="Mikhail looks after partnerships and deals at Felag, from the first call to the signed contract. He has spent 13 years running teams, products and operations. He co-founded Uddug with Andrew in 2018, saw it through its acquisition, and then headed the platform team for Gateway.fm's tokenised-finance product.",
          links=[("LinkedIn", "https://www.linkedin.com/in/mikhail-manko/")], seed=7, photo=_photo("mike")),
-    dict(ini="VK", name="Vasyl Kyryliuk", role="Co-founder and CBDO", where="Based in Dubai", alt="Vasyl Kyryliuk, co-founder and CBDO of Felag",
+    dict(ini="VK", name="Vasyl Kyryliuk", role="Co-founder and CBDO", where="Based in the UAE", alt="Vasyl Kyryliuk, co-founder and CBDO of Felag",
          bio="Vasyl leads business development at Felag, finding the companies and partners it works with, from neobanks to real-world assets and prediction markets. For more than three years he was Head of Business Development at Gateway.fm. Before that he spent nearly five years at Bemobi in Oslo, managing new products and negotiating contracts with C-level executives.",
          links=[("LinkedIn", "https://www.linkedin.com/in/vasyl-kyryliuk-8511a6161/"), ("X", "https://x.com/KyryliukVasyl")], seed=13, photo=_photo("vasyl")),
     dict(ini="PD", name="Pavel Dodonov", role="Principal Engineer, partner", where="Based in Serbia", alt="Pavel Dodonov, Principal Engineer at Felag",
@@ -291,7 +291,7 @@ FAQ = [
     ("Who actually works on our system?", "One of the people above leads every engagement and is identified in the SOW. Contractors join for QA, DevOps and additional development when the scope needs them, always led by one of us."),
     ("How do we start?", "With a free technical workshop with a founder. For a build, the next step is a paid Architecture Sprint. Fractional CTO work and technical due diligence go straight to a scoped proposal."),
     ("What do we keep if we stop after the sprint?", "The spec, the architecture decisions, the risk register and the costed build options are yours. The sprint is paid in advance and credited in full against a pod or fixed-price build signed within 30 days of its delivery."),
-    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands, Cyprus and Dubai."),
+    ("Where are you based and who do we contract with?", "The contract is with " + ENTITY + ". The founders work from the Netherlands, Cyprus and the UAE."),
     ("How are deliverables accepted and scope changes agreed?", "<strong>Monthly pods:</strong> We review and accept deliverables with you each month against the SOW. Scope changes agreed at that review go into the next month's SOW.\n\n"
      "<strong>Architecture Sprints and technical due diligence:</strong> A principal presents the output at delivery. You have five business days to accept it or send a written list of gaps.\n\n"
      "<strong>Fixed-price builds:</strong> We review each milestone against criteria agreed in the Architecture Sprint. You have five business days after each demo to accept it or send a written list of gaps.\n\n"
@@ -1583,7 +1583,7 @@ def ld_json(title, description):
     """The structured data, built from the same constants as the visible copy so it cannot drift from the page.
     No headcount, no relation to Gateway.fm beyond the verbatim bios; the only address is the registered office in the footer."""
     people_ids = ["andrew", "mike", "vasyl", "pavel", "andrey", "dmitrii"]
-    homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus", "Vasyl Kyryliuk": "Dubai"}
+    homes = {"Andrew Skurlatov": "Netherlands", "Mikhail Manko": "Cyprus", "Vasyl Kyryliuk": "United Arab Emirates"}
     persons = []
     for pid, p in zip(people_ids, PEOPLE):
         d = {"@type": "Person", "@id": SITE + "#" + pid, "name": p["name"], "jobTitle": p["role"],
